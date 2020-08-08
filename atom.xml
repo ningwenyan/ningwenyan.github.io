@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>文彦Blog</title>
+  
+  <subtitle>Flask笔记</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://ningwenyan.github.io/"/>
+  <updated>2020-08-07T14:07:45.259Z</updated>
+  <id>https://ningwenyan.github.io/</id>
+  
+  <author>
+    <name>文彦</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL事务</title>
+    <link href="https://ningwenyan.github.io/2020/08/06/sql-shi-wu/"/>
+    <id>https://ningwenyan.github.io/2020/08/06/sql-shi-wu/</id>
+    <published>2020-08-06T14:07:36.000Z</published>
+    <updated>2020-08-07T14:07:45.259Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;SQL事务&quot;&gt;&lt;a href=&quot;#SQL事务&quot; class=&quot;headerlink&quot; title=&quot;SQL事务&quot;&gt;&lt;/a&gt;&lt;code&gt;SQL&lt;/code&gt;事务&lt;/h2&gt;&lt;h3 id=&quot;1-什么是事务&quot;&gt;&lt;a href=&quot;#1-什么是事务&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="MySQL" scheme="https://ningwenyan.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>about</title>
+    <link href="https://ningwenyan.github.io/2020/08/06/about/"/>
+    <id>https://ningwenyan.github.io/2020/08/06/about/</id>
+    <published>2020-08-06T12:14:42.000Z</published>
+    <updated>2020-08-06T12:14:42.534Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://ningwenyan.github.io/2020/08/06/test/"/>
+    <id>https://ningwenyan.github.io/2020/08/06/test/</id>
+    <published>2020-08-06T09:55:15.000Z</published>
+    <updated>2020-08-07T16:48:58.031Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;python&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://ningwenyan.github.io/2020/08/05/hello-world/"/>
+    <id>https://ningwenyan.github.io/2020/08/05/hello-world/</id>
+    <published>2020-08-05T15:59:08.292Z</published>
+    <updated>2020-08-05T15:59:08.292Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
