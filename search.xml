@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Github加速下载</title>
+      <link href="/2020/08/10/github-jia-su-xia-zai/"/>
+      <url>/2020/08/10/github-jia-su-xia-zai/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/github.png" alt="github"></p><h2 id="Github加速访问和下载"><a href="#Github加速访问和下载" class="headerlink" title="Github加速访问和下载"></a><code>Github</code>加速访问和下载</h2><h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><blockquote><p>前几天,我们讲解了如何自建一个<code>Hexo</code>博客,在搭建的过程中,就感受到了<code>Github</code> 的访问速度非常慢,而且<code>git clone</code>项目半天下载不下来了.今天就总结几个明显提高速度的方法.</p></blockquote><h3 id="Github提升访问速度"><a href="#Github提升访问速度" class="headerlink" title="Github提升访问速度"></a><code>Github</code>提升访问速度</h3><blockquote><p>由于不可预知的原因,<code>Github</code>的<code>DNS</code>被污染,所有这里使用修改本机<code>hosts</code>文件的方法,修正其<code>DNS</code>地址.</p></blockquote><h4 id="1-获取Github地址"><a href="#1-获取Github地址" class="headerlink" title="1.获取Github地址"></a>1.获取<code>Github</code>地址</h4><blockquote><p>访问<code>https://www.ipaddress.com/</code>查询以下链接的<code>DNS</code>地址</p><pre class="line-numbers language-bash"><code class="language-bash">github.comassets-cdn.github.comgithub.global.ssl.fastly.net<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>并打开命令行手动<code>ping</code>哪个地址对自己的延迟最小,然后记录下来(注意根据自己的实际情况来)</p><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10150.png" alt="10150"></p></blockquote><h4 id="2-更新地址"><a href="#2-更新地址" class="headerlink" title="2.更新地址"></a>2.更新地址</h4><blockquote><p><code>windows</code> :打开<code>C:\Windows\System32\drivers\etc\hosts</code>文件,并添加上面的地址和<code>ip</code>对应.</p><p><code>ubuntu</code>:<code>/etc/hosts</code>文件,添加并修改</p></blockquote><h4 id="3-刷新缓存"><a href="#3-刷新缓存" class="headerlink" title="3.刷新缓存"></a>3.刷新缓存</h4><blockquote><p><code>windows</code>:打开命令行<code>cmd</code>工具,并输入<code>ipcofnig /flushdns</code></p><p><code>ubuntu</code>:打开<code>terminal</code>,并输入<code>service network restart</code></p></blockquote><h3 id="Github提上下载速度"><a href="#Github提上下载速度" class="headerlink" title="Github提上下载速度"></a><code>Github</code>提上下载速度</h3><blockquote><p>解决项目下载慢问题.</p></blockquote><h4 id="1-使用加速插件"><a href="#1-使用加速插件" class="headerlink" title="1.使用加速插件"></a>1.使用加速插件</h4><blockquote><p>使用<code>chrome</code>插件加速.<br><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10151.png" alt="10151"></p><p>如果你不能科学上网,请尝试访问我的插件盘￼点.</p>>> <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">> <iframe src="//player.bilibili.com/player.html?aid=328695603&bvid=BV1qA411i7aC&cid=208780563&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;> </iframe>> </div>> <p>访问效果如下:</p><p><img src=" https: gitee.com ningwenyan my_chat_picgo raw master 10152.png" alt="10152"><p></p></iframe></div></blockquote><h4 id="2-gitclone"><a href="#2-gitclone" class="headerlink" title="2.gitclone"></a>2.<code>gitclone</code></h4><blockquote><p>上面也提供了<code>ssh</code>的方法,这里再提供一个命令行的加速工具<code>gitlcone</code></p><p>官网:<code>https://gitclone.com/</code></p><p>使用非常简单,只需要在要下载的资源钱加<code>gitclone</code>就行.具体的可以看官网的介绍<code>https://gitclone.com/docs/feature</code></p></blockquote><h4 id="3-一些github代下载网站"><a href="#3-一些github代下载网站" class="headerlink" title="3.一些github代下载网站"></a>3.一些<code>github</code>代下载网站</h4><blockquote><p>比如:</p><ul><li><code>http://g.widyun.com/</code></li><li><code>https://www.toolnb.com/</code></li></ul><p>等等.</p><p>我觉得以上应该基本满足应用了.</p></blockquote><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MarkDown初探</title>
       <link href="/2020/08/10/markdown-chu-tan/"/>
       <url>/2020/08/10/markdown-chu-tan/</url>

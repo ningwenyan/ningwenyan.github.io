@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ningwenyan.github.io/"/>
-  <updated>2020-08-10T12:39:05.245Z</updated>
+  <updated>2020-08-10T15:27:25.403Z</updated>
   <id>https://ningwenyan.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Github加速下载</title>
+    <link href="https://ningwenyan.github.io/2020/08/10/github-jia-su-xia-zai/"/>
+    <id>https://ningwenyan.github.io/2020/08/10/github-jia-su-xia-zai/</id>
+    <published>2020-08-10T15:09:24.000Z</published>
+    <updated>2020-08-10T15:27:25.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/github.png&quot; alt=&quot;github&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Github加速访问和下载&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="github" scheme="https://ningwenyan.github.io/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>MarkDown初探</title>
