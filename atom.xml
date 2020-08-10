@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ningwenyan.github.io/"/>
-  <updated>2020-08-09T07:09:04.890Z</updated>
+  <updated>2020-08-10T12:39:05.245Z</updated>
   <id>https://ningwenyan.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MarkDown初探</title>
+    <link href="https://ningwenyan.github.io/2020/08/10/markdown-chu-tan/"/>
+    <id>https://ningwenyan.github.io/2020/08/10/markdown-chu-tan/</id>
+    <published>2020-08-10T12:36:48.000Z</published>
+    <updated>2020-08-10T12:39:05.245Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Markdown初探&quot;&gt;&lt;a href=&quot;#Markdown初探&quot; class=&quot;headerlink&quot; title=&quot;Markdown初探&quot;&gt;&lt;/a&gt;&lt;code&gt;Markdown&lt;/code&gt;初探&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="markdown" scheme="https://ningwenyan.github.io/tags/markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo博客搭建</title>
