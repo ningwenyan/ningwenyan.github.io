@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>阿里云免费注册HTTP SSL证书</title>
+      <link href="/2020/08/14/a-li-yun-mian-fei-zhu-ce-http-ssl-zheng-shu/"/>
+      <url>/2020/08/14/a-li-yun-mian-fei-zhu-ce-http-ssl-zheng-shu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="阿里云免费HTTP-SSL证书注册"><a href="#阿里云免费HTTP-SSL证书注册" class="headerlink" title="阿里云免费HTTP SSL证书注册"></a>阿里云免费<code>HTTP SSL</code>证书注册</h2><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10170.png" alt="10170"></p><h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><blockquote><p><strong>HTTP</strong>(<code>HyperText Transfer Protocol</code>：超文本传输协议)是一种用于分布式,协作式和超媒体信息系统的应用层协议.简单来说就是一种发布和接收 HTML 页面的方法,被用于在 Web 浏览器和网站服务器之间传递信息.</p><p>HTTP 默认工作在 TCP 协议 80 端口,用户访问网站 <strong>http://</strong> 打头的都是标准 HTTP 服务.</p><p>HTTP 协议以明文方式发送内容,不提供任何方式的数据加密,如果攻击者截取了Web浏览器和网站服务器之间的传输报文,就可以直接读懂其中的信息,因此,HTTP协议不适合传输一些敏感信息,比如:信用卡号,密码等支付信息.</p><p><strong>HTTPS</strong><code>Hypertext Transfer Protocol Secure</code>:超文本传输安全协议)是一种透过计算机网络进行安全通信的传输协议.HTTPS 经由 HTTP 进行通信,但利用 SSL/TLS 来加密数据包.HTTPS 开发的主要目的,是提供对网站服务器的身份认证,保护交换数据的隐私与完整性.</p><p>HTTPS 默认工作在 TCP 协议443端口,它的工作流程一般如以下方式:</p><ul><li>1.TCP 三次同步握手</li><li>2.客户端验证服务器数字证书</li><li>3.DH 算法协商对称加密算法的密钥、hash 算法的密钥</li><li>4.SSL 安全加密隧道协商完成</li><li>5.网页以加密的方式传输,用协商的对称加密算法和密钥加密,保证数据机密性;用协商的hash算法进行数据完整性保护,保证数据不被篡改.</li></ul><p>可以说,<code>HTTPS</code>已经是网络发展的趋势.</p></blockquote><h3 id="阿里云购买免费HTTPS-SSL"><a href="#阿里云购买免费HTTPS-SSL" class="headerlink" title="阿里云购买免费HTTPS SSL"></a>阿里云购买免费<code>HTTPS SSL</code></h3><blockquote><ol><li>登录阿里云</li><li>访问<code>SSL</code>证书<a href="https://www.aliyun.com/product/cas?source=5176.11533457&userCode=ywqc0ubl&type=copy" target="_blank" rel="noopener">页面</a></li><li>点击证书对比,然后点击免费证书购买</li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10157.png" alt="10157"></p><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10158.png" alt="10158"></p><ol start="4"><li>选中<code>DV SSL</code>,然后立即购买.</li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10159.png" alt="10159"></p></blockquote><h3 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h3><blockquote><ol><li>打开阿里云的控制台<code>https://homenew.console.aliyun.com/</code></li><li>找到<code>ssl证书</code></li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10160.png" alt="10160"></p><ol start="3"><li>点击证书申请</li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10161.png" alt="10161"></p><ol start="4"><li>填写相关信息</li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10162.png" alt="10162"></p><ol start="5"><li>等待电话或者邮件的复核.</li></ol></blockquote><h3 id="等待…"><a href="#等待…" class="headerlink" title="等待…."></a>等待….</h3><blockquote><p>今天<code>2020-8-12</code>,应该等待2个工作日,结果会下来.结果下来会再次更新.</p></blockquote><h3 id="申请成功"><a href="#申请成功" class="headerlink" title="申请成功"></a>申请成功</h3><blockquote><p>今天阿里云通知我<code>SSL</code>证书申请成功.</p><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10165.png" alt="shadow"></p><p>因为申请是就是<code>www.wenyan.online</code>,而且是跳转到<code>github</code>网站,所以以上就可以.</p></blockquote><h3 id="访问网站"><a href="#访问网站" class="headerlink" title="访问网站"></a>访问网站</h3><blockquote><p>如果访问<code>http://wenyan.online/</code>,依然是可以访问到网站的,原因就是他不是自动跳转<code>https</code>的.<br><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10166.png" alt="10166"></p><p>(可以看到有不安全的提示)</p><p>现在我们设置强制<code>https</code>访问.</p><ol><li>访问<code>github page</code>项目,打开<code>setting</code></li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10167.png" alt="10167"></p><ol start="2"><li>找到<code>enforce https</code>,确定强制跳转</li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10168.png" alt="10168"></p><ol start="3"><li>再次访问<code>wenyan.online</code>,会自动跳转到<code>https://wenyan.online</code></li></ol><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10169.png" alt="10169"></p></blockquote><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 阿里云 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Github加速下载</title>
       <link href="/2020/08/10/github-jia-su-xia-zai/"/>
       <url>/2020/08/10/github-jia-su-xia-zai/</url>
