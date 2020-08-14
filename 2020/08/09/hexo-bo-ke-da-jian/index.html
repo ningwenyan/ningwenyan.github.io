@@ -1195,6 +1195,76 @@ $ hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10146.png"></p>
 <p>尝试访问<code>www.wenyan.online</code> 就可以转到自己的网站上.</p>
 </blockquote>
+<h3 id="8-加载SSL证书"><a href="#8-加载SSL证书" class="headerlink" title="8.加载SSL证书"></a>8.加载<code>SSL</code>证书</h3><blockquote>
+<p><a href="https://wenyan.online/2020/08/14/a-li-yun-mian-fei-zhu-ce-http-ssl-zheng-shu/" target="_blank" rel="noopener">阿里云申请免费证书</a></p>
+<p>申请成功后,设置<code>github page</code>.</p>
+<hr>
+<p>如果访问<code>http://wenyan.online/</code>,依然是可以访问到网站的,原因就是他不是自动跳转<code>https</code>的.<br><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10166.png" alt="10166"></p>
+<p>(可以看到有不安全的提示)</p>
+<p>现在我们设置强制<code>https</code>访问.</p>
+<ol>
+<li>访问<code>github page</code>项目,打开<code>setting</code></li>
+</ol>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10167.png" alt="10167"></p>
+<ol start="2">
+<li>找到<code>enforce https</code>,确定强制跳转</li>
+</ol>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10168.png" alt="10168"></p>
+<ol start="3">
+<li>再次访问<code>wenyan.online</code>,会自动跳转到<code>https://wenyan.online</code></li>
+</ol>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10169.png" alt="10169"></p>
+</blockquote>
+<h3 id="9-加载bilibili视频"><a href="#9-加载bilibili视频" class="headerlink" title="9.加载bilibili视频"></a>9.加载<code>bilibili</code>视频</h3><blockquote>
+<p>由于<code>Github</code>的限制,再加上<code>Hexo</code>本身属于一个静态的网站,并没有管理后台,所以选择在网页上镶入<code>bilibili</code>视频.</p>
+<p><code>Markdown</code>脱胎于<code>HTML</code>,所以可以直接在<code>Markdown</code>语法中插入<code>html</code>代码,但是为了防止一些其他因素的干扰,<code>Hexo</code>特意提供了一个<code>raw</code>的标签来插入<code>html</code>代码.</p>
+<pre class="line-numbers language-text"><code class="language-text">{% raw %}
+> 
+> <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+> 
+> <iframe src="//player.bilibili.com/player.html?aid=883652857&bvid=BV1qK4y147NY&cid=205795290&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true style=" position: absolute; width: 100%; height: left: 0; top: 0;">
+> </iframe>
+> </div>
+> 
+> {% endraw %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果如下:</p>
+
+>
+> <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+> 
+>
+> <iframe src="//player.bilibili.com/player.html?aid=883652857&bvid=BV1qK4y147NY&cid=205795290&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true style=" position: absolute; width: 100%; height: left: 0; top: 0;">
+> </iframe>
+>
+> </div>
+>
+> 
+
+<hr>
+<p>其中的<code>iframe</code>标签来自于<code>b</code>站自己的分享嵌入代码,可如下拿到:</p>
+<ol>
+<li>找到自己想要的视频,比如:<a href="https://www.bilibili.com/video/BV1qK4y147NY" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qK4y147NY</a></li>
+<li>点击视频下方的分享-嵌入代码</li>
+</ol>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10156.png" alt="10156"></p>
+<ol start="3">
+<li>复制代码,放在自己文章的<code>raw</code>中,注意添加<code>div</code>和<code>iframe</code>的<code>style</code>标签,内容如上,才能做到视频大小适合屏幕.</li>
+</ol>
+</blockquote>
+<h3 id="10-科技线加载"><a href="#10-科技线加载" class="headerlink" title="10.科技线加载"></a>10.科技线加载</h3><blockquote>
+<p>找到主题文件夹下<code>theme/matery/layout/layout.ejs</code>,并添加如下内容:</p>
+<pre class="line-numbers language-ejs"><code class="language-ejs"><!--动态线条背景-->
+<script type="text/javascript"
+color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><code>color</code>:表示线条颜色</li>
+<li><code>opacity</code>:表示线条透明度(0-1)</li>
+<li><code>count</code>:线条的总数量</li>
+<li><code>zIndex</code>:表示背景的<code>z-index</code>属性,<code>css</code>属性用于控制层数的位置.</li>
+</ul>
+</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 
             </div>
             <hr/>
