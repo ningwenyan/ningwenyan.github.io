@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ningwenyan.github.io/"/>
-  <updated>2020-08-14T16:01:22.873Z</updated>
+  <updated>2020-08-16T13:52:51.582Z</updated>
   <id>https://ningwenyan.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown表情</title>
+    <link href="https://ningwenyan.github.io/2020/08/16/markdown-biao-qing/"/>
+    <id>https://ningwenyan.github.io/2020/08/16/markdown-biao-qing/</id>
+    <published>2020-08-16T13:46:43.000Z</published>
+    <updated>2020-08-16T13:52:51.582Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/markdown_em.png&quot; alt=&quot;markdown_em&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Emoji表情&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="markdown" scheme="https://ningwenyan.github.io/tags/markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>阿里云免费注册HTTP SSL证书</title>
