@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-08-16T13:52:51.582Z</updated>
+  <updated>2020-08-19T14:40:42.420Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git学习</title>
+    <link href="https://www.wenyan.online/2020/08/19/git-xue-xi/"/>
+    <id>https://www.wenyan.online/2020/08/19/git-xue-xi/</id>
+    <published>2020-08-19T14:38:24.000Z</published>
+    <updated>2020-08-19T14:40:42.420Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;&lt;code&gt;Git&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Git" scheme="https://www.wenyan.online/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>markdown表情</title>
