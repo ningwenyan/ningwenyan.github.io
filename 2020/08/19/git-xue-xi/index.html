@@ -713,6 +713,314 @@ doc/**/*.pdf<span aria-hidden="true" class="line-numbers-rows"><span></span><spa
 <p>所以,最好的做法就是在项目刚开始的时候,先添加<code>.gitignore</code>文件.当然,即使是发生了,还是有解决方法的,可以键入下述命令清除标记状态,然后先添加<code>.gitignore</code>,再添加文件即可：</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">rm</span> -r --cached <span class="token keyword">.</span> <span class="token comment" spellcheck="true"># 清除版本控制标记，.代表所有文件，也可指定具体文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
+<h3 id="5-版本回溯"><a href="#5-版本回溯" class="headerlink" title="5.版本回溯"></a>5.版本回溯</h3><h4 id="1-文件恢复git-checkout"><a href="#1-文件恢复git-checkout" class="headerlink" title="1.文件恢复git checkout"></a>1.文件恢复<code>git checkout</code></h4><blockquote>
+<p>切换分支或恢复文件</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> checkout -- filename     <span class="token comment" spellcheck="true"># 丢球工作区中的某个文件修改</span>
+$ <span class="token function">git</span> checkout -- <span class="token keyword">.</span>            <span class="token comment" spellcheck="true"># 丢弃工作区中的所有修改 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">touch</span> 2.txt
+$ <span class="token function">git</span> status
+On branch master
+Untracked files:
+<span class="token punctuation">(</span>use <span class="token string">"git add &lt;file>..."</span> to include <span class="token keyword">in</span> what will be committed<span class="token punctuation">)</span>
+     2.txt
+
+nothing added to commit but untracked files present <span class="token punctuation">(</span>use <span class="token string">"git add"</span> to track<span class="token punctuation">)</span>
+
+$ <span class="token function">git</span> add 2.txt
+$ <span class="token function">git</span> status
+On branch master
+Changes to be committed:
+<span class="token punctuation">(</span>use <span class="token string">"git restore --staged &lt;file>..."</span> to unstage<span class="token punctuation">)</span>
+     new file:   2.txt
+
+$ <span class="token function">git</span> commit -m <span class="token string">'add 2.txt'</span>
+<span class="token punctuation">[</span>master 353e702<span class="token punctuation">]</span> add 2.txt
+1 <span class="token function">file</span> changed, 0 insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>, 0 deletions<span class="token punctuation">(</span>-<span class="token punctuation">)</span>
+create mode 100644 2.txt
+
+$ <span class="token function">git</span> status
+On branch master
+nothing to commit, working tree clean
+
+$ <span class="token function">rm</span> 2.txt
+$ <span class="token function">git</span> status
+On branch master
+Changes not staged <span class="token keyword">for</span> commit:
+<span class="token punctuation">(</span>use <span class="token string">"git add/rm &lt;file>..."</span> to update what will be committed<span class="token punctuation">)</span>
+<span class="token punctuation">(</span>use <span class="token string">"git restore &lt;file>..."</span> to discard changes <span class="token keyword">in</span> working directory<span class="token punctuation">)</span>
+     deleted:    2.txt
+
+no changes added to commit <span class="token punctuation">(</span>use <span class="token string">"git add"</span> and/or <span class="token string">"git commit -a"</span><span class="token punctuation">)</span>
+
+$ <span class="token function">git</span> checkout 2.txt
+Updated 1 path from the index
+
+$ <span class="token function">git</span> status
+On branch master
+nothing to commit, working tree clean
+
+$ <span class="token function">ls</span>
+2.txt  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-git-reset"><a href="#2-git-reset" class="headerlink" title="2.git reset"></a>2.<code>git reset</code></h4><blockquote>
+<p>每次的更改都会在<code>git</code>中留下记录值<code>HEAD</code>也就是<code>commit id</code>.根据这个<code>HEAD</code> 可以跳回到原来的状态.</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> reset  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可以通过<code>git log</code>来查看更改的<code>HEAD</code>值</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 新建一个测试文件</span>
+$ <span class="token function">touch</span> 3.txt
+
+<span class="token comment" spellcheck="true"># 编辑测试文件,并添加数字 1,2,3,4</span>
+$ vim 3.txt
+
+$ <span class="token function">git</span> status
+On branch master
+Untracked files:
+<span class="token punctuation">(</span>use <span class="token string">"git add &lt;file>..."</span> to include <span class="token keyword">in</span> what will be committed<span class="token punctuation">)</span>
+     3.txt
+
+
+
+$ <span class="token function">git</span> add 3.txt
+
+
+$ <span class="token function">git</span> commit -m <span class="token string">"add 3.txt"</span>
+<span class="token punctuation">[</span>master e38dbcb<span class="token punctuation">]</span> add 3.txt
+1 <span class="token function">file</span> changed, 4 insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+create mode 100644 3.txt
+
+
+$ <span class="token function">git</span> status
+On branch master
+nothing to commit, working tree clean
+
+<span class="token comment" spellcheck="true"># 在测试文件中新添加数字 5</span>
+$ vim 3.txt
+
+$ <span class="token function">git</span> status
+On branch master
+Changes not staged <span class="token keyword">for</span> commit:
+<span class="token punctuation">(</span>use <span class="token string">"git add &lt;file>..."</span> to update what will be committed<span class="token punctuation">)</span>
+<span class="token punctuation">(</span>use <span class="token string">"git restore &lt;file>..."</span> to discard changes <span class="token keyword">in</span> working directory<span class="token punctuation">)</span>
+     modified:   3.txt
+
+no changes added to commit <span class="token punctuation">(</span>use <span class="token string">"git add"</span> and/or <span class="token string">"git commit -a"</span><span class="token punctuation">)</span>
+
+
+$ <span class="token function">git</span> add 3.txt
+
+
+
+$ <span class="token function">git</span> commit -m <span class="token string">'add 5 in 3.txt'</span>
+<span class="token punctuation">[</span>master 840106f<span class="token punctuation">]</span> add 5 <span class="token keyword">in</span> 3.txt
+1 <span class="token function">file</span> changed, 1 insertion<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+
+$ <span class="token function">git</span> status
+On branch master
+nothing to commit, working tree clean
+
+<span class="token comment" spellcheck="true"># 查看commit id</span>
+$ <span class="token function">git</span> log
+commit 840106f762192b023f26abfd1e6c2a55b96379f5 <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> master<span class="token punctuation">)</span>
+ add 5 <span class="token keyword">in</span> 3.txt
+
+
+$ <span class="token function">ls</span>
+2.txt  3.txt  test.txt  test1
+
+
+$ <span class="token function">cat</span> 3.txt
+1
+2
+3
+4
+5
+
+
+<span class="token comment" spellcheck="true"># 回溯文件的 commit id</span>
+$ <span class="token function">git</span> reset --hard e38dbcb124  <span class="token comment" spellcheck="true"># id号不用写全</span>
+HEAD is now at e38dbcb add 3.txt
+
+
+$ <span class="token function">ls</span>
+2.txt  3.txt  test.txt  test1
+c
+
+$ <span class="token function">cat</span> 3.txt
+1
+2
+3
+4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-查看历史命令git-reflog"><a href="#3-查看历史命令git-reflog" class="headerlink" title="3.查看历史命令git reflog"></a>3.查看历史命令<code>git reflog</code></h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> reflog   <span class="token comment" spellcheck="true"># 查看指令,但是不会永久保存,git会自己定时清理</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h4 id="4-查看某次提交的内容git-show"><a href="#4-查看某次提交的内容git-show" class="headerlink" title="4.查看某次提交的内容git show"></a>4.查看某次提交的内容<code>git show</code></h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> show <span class="token string">"commit id"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h4 id="5-查看分支版本号"><a href="#5-查看分支版本号" class="headerlink" title="5.查看分支版本号"></a>5.查看分支版本号</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> rev-parse 分支名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="6-分支"><a href="#6-分支" class="headerlink" title="6.分支"></a>6.分支</h3><h4 id="1-分支的创建-切换"><a href="#1-分支的创建-切换" class="headerlink" title="1.分支的创建/切换"></a>1.分支的创建/切换</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 创建分支</span>
+$ <span class="token function">git</span> branch 分支名
+
+<span class="token comment" spellcheck="true"># 查看分支</span>
+$ <span class="token function">git</span> branch 
+
+<span class="token comment" spellcheck="true"># 切换分支</span>
+$ <span class="token function">git</span> checkout 分支名
+
+<span class="token comment" spellcheck="true"># 创建分支并切换到这个分支</span>
+$ <span class="token function">git</span> checkout -b 分支名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例:</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 创建分支1</span>
+$ <span class="token function">git</span> branch branch_1
+
+<span class="token comment" spellcheck="true"># 查看所有的分支</span>
+$ <span class="token function">git</span> branch
+branch_1
+* master
+
+<span class="token comment" spellcheck="true"># 创建分支2</span>
+$ <span class="token function">git</span> branch branch_2
+
+<span class="token comment" spellcheck="true"># 切换分支2</span>
+$ <span class="token function">git</span> checkout branch_2
+Switched to branch <span class="token string">'branch_2'</span>
+
+<span class="token comment" spellcheck="true"># 创建文件</span>
+$ <span class="token function">touch</span> 2.txt
+
+$ vim 2.txt
+
+<span class="token comment" spellcheck="true"># 分支2中查看到2个文件</span>
+$ <span class="token function">ls</span>
+1.txt  2.txt
+
+$ <span class="token function">git</span> add <span class="token keyword">.</span>
+$ <span class="token function">git</span> commit -m <span class="token string">"add 2.txt in branch_2"</span>
+
+<span class="token comment" spellcheck="true"># 切换到主分支</span>
+$ <span class="token function">git</span> checkout master
+Switched to branch <span class="token string">'master'</span>
+
+<span class="token comment" spellcheck="true"># 查看到只有1个文件</span>
+$ <span class="token function">ls</span>
+1.txt
+
+<span class="token comment" spellcheck="true"># 查看所有的分区和所处的分区(* 为所在分区)</span>
+$ <span class="token function">git</span> branch
+  branch_1
+  branch_2
+* master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>GUI</code>界面中查看更容易:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10216.png" alt="10216"></p>
+</blockquote>
+<h4 id="2-分支合并"><a href="#2-分支合并" class="headerlink" title="2.分支合并"></a>2.分支合并</h4><blockquote>
+<p>当我们修复完<code>bug</code>或者是开发新的特性后,需要合并回原理的主分支上.</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> merge    <span class="token comment" spellcheck="true"># Join two or more development histories together </span>
+$ <span class="token function">git</span> rebase   <span class="token comment" spellcheck="true"># Reapply commits on top of another base tip</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-分支删除"><a href="#3-分支删除" class="headerlink" title="3.分支删除"></a>3.分支删除</h4><blockquote>
+<p>当分支完成自己的使命后,分支就不需要了,可以删除他</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> branch -d 分支名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="7-远程仓库"><a href="#7-远程仓库" class="headerlink" title="7.远程仓库"></a>7.远程仓库</h3><h4 id="1-创建SSH-KEY"><a href="#1-创建SSH-KEY" class="headerlink" title="1.创建SSH KEY"></a>1.创建<code>SSH KEY</code></h4><blockquote>
+<p>为了演示方便使用<code>gitee</code></p>
+<p>如果本地用户主目录中没有<code>.ssh</code> 目录,则需要手动创建<code>ssh_key</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ ssh-keygen -t rsa -C <span class="token string">"youremail@example.com"</span> <span class="token comment" spellcheck="true"># 使用默认值即可</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cd</span> .ssh/
+
+$ <span class="token function">ls</span>
+id_rsa    <span class="token comment" spellcheck="true"># 私钥,不能泄露</span>
+id_rsa.pub  <span class="token comment" spellcheck="true"># 公钥,需要上传给服务器</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-上传公钥"><a href="#2-上传公钥" class="headerlink" title="2.上传公钥"></a>2.上传公钥</h4><blockquote>
+<p>登录<code>gitee</code>,并上传<code>ssh公钥</code></p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10217.png" alt="10217"></p>
+</blockquote>
+<h4 id="3-新建一个远程仓库"><a href="#3-新建一个远程仓库" class="headerlink" title="3.新建一个远程仓库"></a>3.新建一个远程仓库</h4><blockquote>
+<p>如图:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10218.png" alt="10218"></p>
+</blockquote>
+<h4 id="4-推送本地库到远程库"><a href="#4-推送本地库到远程库" class="headerlink" title="4.推送本地库到远程库"></a>4.推送本地库到远程库</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 关联本地仓库和远程仓库</span>
+<span class="token function">git</span> remote add origin 远程仓库地址<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 使用git 地址</span>
+$ <span class="token function">git</span> remote add origin git@gitee.com:ningwenyan/test.git
+
+$ <span class="token function">git</span> remote -v
+origin  git@gitee.com:ningwenyan/test.git <span class="token punctuation">(</span>fetch<span class="token punctuation">)</span>
+origin  git@gitee.com:ningwenyan/test.git <span class="token punctuation">(</span>push<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后,可以正常的<code>git push</code>和<code>git pull</code>进行推送</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> push -u origin master  
+<span class="token comment" spellcheck="true">#  -u参数 作为第一次提交使用， </span>
+<span class="token comment" spellcheck="true"># 作用是把本地master分支和远程master分支关联起来(设置默认远程主机)， </span>
+<span class="token comment" spellcheck="true"># 后续提交不需要这个参数！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其他命令</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> remote set-url origin 远程仓库地址
+<span class="token comment" spellcheck="true"># 也可以先删除origin后再添加</span>
+<span class="token function">git</span> remote <span class="token function">rm</span> origin    <span class="token comment" spellcheck="true"># 删除仓库关联</span>
+<span class="token function">git</span> remote add origin 远程仓库地址 <span class="token comment" spellcheck="true"># 添加仓库关联</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>windows系统添加用户名密码错误修改方法:可以在控制面板中找到<code>凭据管理器</code> 删除错误的用户名密码,然后重新登录.</p>
+<p>本电脑不知是不是因为输错密码的缘故,弹出错误提示如下</p>
+<pre class="line-numbers language-bash"><code class="language-bash">To gitee.com:ningwenyan/test1.git
+<span class="token operator">!</span> <span class="token punctuation">[</span>rejected<span class="token punctuation">]</span>        master -<span class="token operator">></span> master <span class="token punctuation">(</span>non-fast-forward<span class="token punctuation">)</span>
+error: failed to push some refs to <span class="token string">'git@gitee.com:ningwenyan/test1.git'</span>
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes <span class="token punctuation">(</span>e.g.
+hint: <span class="token string">'git pull ...'</span><span class="token punctuation">)</span> before pushing again.
+hint: See the <span class="token string">'Note about fast-forwards'</span> <span class="token keyword">in</span> <span class="token string">'git push --help'</span> <span class="token keyword">for</span> details.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解决办法：使用git pull 合并分支</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> pull -u -f  origin master  <span class="token comment" spellcheck="true"># 第一次加-f 后续就不用添加了</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h4 id="5-从远程仓库克隆"><a href="#5-从远程仓库克隆" class="headerlink" title="5.从远程仓库克隆"></a>5.从远程仓库克隆</h4><blockquote>
+<p>远端新建仓库</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10219.png" alt="10219"></p>
+<p>执行如下命令</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> clone git@gitee.com:ningwenyan/test2.git
+Cloning into <span class="token string">'test2'</span><span class="token punctuation">..</span>.
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% <span class="token punctuation">(</span>4/4<span class="token punctuation">)</span>, done.
+remote: Compressing objects: 100% <span class="token punctuation">(</span>4/4<span class="token punctuation">)</span>, done.
+remote: Total 4 <span class="token punctuation">(</span>delta 0<span class="token punctuation">)</span>, reused 0 <span class="token punctuation">(</span>delta 0<span class="token punctuation">)</span>
+Receiving objects: 100% <span class="token punctuation">(</span>4/4<span class="token punctuation">)</span>, done.
+
+$ <span class="token function">ls</span>
+test2/
+
+$ <span class="token function">cd</span> test2/
+
+$ <span class="token function">ls</span>
+README.en.md  README.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="8-标签"><a href="#8-标签" class="headerlink" title="8.标签"></a>8.标签</h3><blockquote>
+<p>打标签的作用,就是给项目的开发节点,加上语义化的名字,也即功能版本的别名. 打上标签名的同时,写上附带信息,可以方便项目日后维护过程中的回溯和复查.</p>
+<p>另外,也可以通过标签记录,大致了解当前项目的向下兼容性,API的修改和迭代情况.</p>
+</blockquote>
+<h4 id="1-创建标签"><a href="#1-创建标签" class="headerlink" title="1.创建标签"></a>1.创建标签</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> tag -a <span class="token string">"tagname"</span> -m <span class="token string">"comment"</span> <span class="token string">"commit_id"</span>
+<span class="token comment" spellcheck="true"># -a 标签名</span>
+<span class="token comment" spellcheck="true"># -m 备注信息</span>
+<span class="token comment" spellcheck="true"># commit_id 提交id</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> tag -a <span class="token string">'v0.1.0'</span> -m <span class="token string">"初始"</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>类似<code>v0.1.0</code>遵从一个简单的规范</p>
+<ul>
+<li>主版本号: 当你做了不兼容的<code>API</code>修改</li>
+<li>次版本号: 向下兼容的功能性增加</li>
+<li>修订号: 向下兼容的问题修正</li>
+</ul>
+</blockquote>
+<h4 id="2-查看所有标签"><a href="#2-查看所有标签" class="headerlink" title="2.查看所有标签"></a>2.查看所有标签</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> tag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-查看具体标签信息"><a href="#3-查看具体标签信息" class="headerlink" title="3.查看具体标签信息"></a>3.查看具体标签信息</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> show tagname<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h4 id="4-删除本地标签"><a href="#4-删除本地标签" class="headerlink" title="4.删除本地标签"></a>4.删除本地标签</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> tag -d tagname<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 
             </div>
