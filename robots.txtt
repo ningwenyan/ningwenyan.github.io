@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Allow: /about/
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/ 
+Allow: /top/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /lib/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /fancybox/
+
+Sitemap: https://wenyan.online/sitemap.xml
+Sitemap: https://wenyan.online/baidusitemap.xml
