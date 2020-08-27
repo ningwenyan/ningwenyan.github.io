@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-08-21T13:38:54.021Z</updated>
+  <updated>2020-08-27T14:20:55.884Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQLAlchemy总结</title>
+    <link href="https://www.wenyan.online/2020/08/27/sqlalchemy-zong-jie/"/>
+    <id>https://www.wenyan.online/2020/08/27/sqlalchemy-zong-jie/</id>
+    <published>2020-08-27T14:18:28.000Z</published>
+    <updated>2020-08-27T14:20:55.884Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10229.png&quot; alt=&quot;10229&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;SQLAlchemy总结&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+      <category term="SQLAlchemy" scheme="https://www.wenyan.online/tags/SQLAlchemy/"/>
+    
+  </entry>
   
   <entry>
     <title>Git学习</title>
