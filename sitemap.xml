@@ -123,7 +123,7 @@
 
   <url>
     <loc>https://www.wenyan.online/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -131,63 +131,63 @@
   
   <url>
     <loc>https://www.wenyan.online/tags/github/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/markdown/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/MySQL/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Hexo/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Git/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Python/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Flask/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/SQLAlchemy/</loc>
-    <lastmod>2020-08-27</lastmod>
+    <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
