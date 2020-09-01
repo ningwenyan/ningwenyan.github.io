@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-08-27T14:20:55.884Z</updated>
+  <updated>2020-09-01T14:44:28.406Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单登录页面</title>
+    <link href="https://www.wenyan.online/2020/09/01/login-demo-md/"/>
+    <id>https://www.wenyan.online/2020/09/01/login-demo-md/</id>
+    <published>2020-09-01T14:41:17.000Z</published>
+    <updated>2020-09-01T14:44:28.406Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简单登录页面&quot;&gt;&lt;a href=&quot;#简单登录页面&quot; class=&quot;headerlink&quot; title=&quot;简单登录页面&quot;&gt;&lt;/a&gt;简单登录页面&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+      <category term="Pillow" scheme="https://www.wenyan.online/tags/Pillow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免费在线云数据库</title>
+    <link href="https://www.wenyan.online/2020/09/01/free-online-database-md/"/>
+    <id>https://www.wenyan.online/2020/09/01/free-online-database-md/</id>
+    <published>2020-09-01T14:37:55.000Z</published>
+    <updated>2020-09-01T14:40:38.023Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;免费在线云数据库&quot;&gt;&lt;a href=&quot;#免费在线云数据库&quot; class=&quot;headerlink&quot; title=&quot;免费在线云数据库&quot;&gt;&lt;/a&gt;免费在线云数据库&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
+    
+      <category term="MongoDB" scheme="https://www.wenyan.online/tags/MongoDB/"/>
+    
+      <category term="Redis" scheme="https://www.wenyan.online/tags/Redis/"/>
+    
+      <category term="PostgreSQL" scheme="https://www.wenyan.online/tags/PostgreSQL/"/>
+    
+  </entry>
   
   <entry>
     <title>SQLAlchemy总结</title>
