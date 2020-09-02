@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="免费 数据库 在线">
+    <meta name="keywords" content="Flask Python MySQL">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>免费在线云数据库 | 文彦Blog</title>
+    <title>Flask在线部署 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-1/1598970771491-10242.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599051996097-10247.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">免费在线云数据库</h1>
+                    <h1 class="description center-align post-title">Flask在线部署</h1>
                 </div>
             </div>
         </div>
@@ -436,16 +436,12 @@
                                 <span class="chip bg-color">MySQL</span>
                             </a>
                         
-                            <a href="/tags/MongoDB/">
-                                <span class="chip bg-color">MongoDB</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
-                            <a href="/tags/Redis/">
-                                <span class="chip bg-color">Redis</span>
-                            </a>
-                        
-                            <a href="/tags/PostgreSQL/">
-                                <span class="chip bg-color">PostgreSQL</span>
+                            <a href="/tags/Flask/">
+                                <span class="chip bg-color">Flask</span>
                             </a>
                         
                     </div>
@@ -460,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-01
+                    2020-09-02
                 </div>
                 
 
@@ -476,58 +472,114 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="免费在线云数据库"><a href="#免费在线云数据库" class="headerlink" title="免费在线云数据库"></a>免费在线云数据库</h2><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-1/1598970771491-10242.png" alt="10242"></p>
-<blockquote>
-<p>记录一些网络上的在线可用的小型免费数据库,容量<code>20-512MB</code>不等.</p>
+                <h2 id="Flask在线部署"><a href="#Flask在线部署" class="headerlink" title="Flask在线部署"></a><code>Flask</code>在线部署</h2><blockquote>
+<p>到目前为止,我们的<code>Flask</code>网站只能跑在本机电脑上,而不能在互联网上看到.这样既不方面调试,也不方便我们展示自己的成果.于是,一个能够在线展示<code>demo</code>的网站,就变成了我们的急切需求.</p>
+<p>如果,自己花钱买服务器在部署网站,肯定能满足需求,但是也有免费的方案可供选择,这就是<code>pythonanywhere</code>.</p>
 </blockquote>
-<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a><code>MySQL</code></h3><h4 id="1-db4free"><a href="#1-db4free" class="headerlink" title="1.db4free"></a>1.<code>db4free</code></h4><blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-1/1598970223324-10239.png" alt="10239"></p>
-<p><code>db4free</code>使用非常简单,只需要使用邮箱就可以注册,但是它不是一个商业性的工具,访问速度非常慢,并且存在停机,数据丢失这种高风险的情况.总体来说,它是一个可以临时提供一个测试环境.</p>
+<h3 id="1-pythonanywhere"><a href="#1-pythonanywhere" class="headerlink" title="1.pythonanywhere"></a>1.<code>pythonanywhere</code></h3><blockquote>
+<p><code>Pythonanywhere</code>是一个基于<code>python</code>的<code>web</code>托管服务,网址<code>https://www.pythonanywhere.com</code>.免费的账户支持创建一个站点,系统会分配一个二级域名.<code>xxx.pythonanywhere.com</code>,其中<code>xxx</code>代表注册账户时使用的用户名.所以这个还是比较重要的.</p>
+<p>站点会免费维持2个月,然后被系统删除.</p>
+</blockquote>
+<h3 id="2-注册"><a href="#2-注册" class="headerlink" title="2.注册"></a>2.注册</h3><blockquote>
+<p><a href="https://www.pythonanywhere.com/" target="_blank" rel="noopener">pythonanywhere</a>:<code>https://www.pythonanywhere.com</code>,访问网站,选择注册账户,需要注意的是,注册的用户名会称为你的网站的一部分.所以,最好选择和自己网站内容相关的名字.</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599051996097-10247.png" alt="10247"></p>
+</blockquote>
+<h3 id="3-创建站点"><a href="#3-创建站点" class="headerlink" title="3.创建站点"></a>3.创建站点</h3><blockquote>
 <ul>
-<li>提供<code>phpmyadmin</code>管理工具.</li>
-<li>不需要备案</li>
+<li><p>注册完成后,来到首页,点击<code>Files</code></p>
+</li>
+<li><p>然后创建一个站点,</p>
+</li>
+<li><p>最后,网页会提示你上传文档,这里有2个选择.可以选择上传自己<code>demo</code>代码的压缩包上传.或者打开<code>bash</code>使用<code>git </code>命令拉取自己<code>github</code>仓库.</p>
+</li>
 </ul>
-<p><a href="https://www.db4free.net/index.php?language=zh" target="_blank" rel="noopener">db4free</a>:<code>https://www.db4free.net/index.php?language=zh</code></p>
-</blockquote>
-<h4 id="2-remotemysql"><a href="#2-remotemysql" class="headerlink" title="2.remotemysql"></a>2.<code>remotemysql</code></h4><blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-1/1598970347430-10238.png" alt="10238"></p>
-<p><code>remotemysql</code>提供一个免费的<code>MySQL database</code>,大小有 <code>100M</code>,访问速度尚可,同样的,建议作为一个临时性的存放数据的仓库.</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599052324916-10248.png" alt="10248"></p>
+<hr>
 <ul>
-<li>提供<code>phpmyadmin</code>管理工具.</li>
-<li>不需要备案</li>
+<li>打开<code>bash</code>:</li>
 </ul>
-<p><a href="https://remotemysql.com/" target="_blank" rel="noopener">remotemysql</a>:<code>https://remotemysql.com/</code></p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599052478491-10249.png" alt="10249"></p>
+<ul>
+<li>打开自己的<code>github</code>,找到自己的项目,获取下载地址:</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599052679298-10250.png" alt="10250"></p>
+<ul>
+<li>在<code>bash</code>中下载自己的项目</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599052849212-10251.png" alt="10251"></p>
+<ul>
+<li>下载完毕后,即可进入到自己的项目目录中</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span>  deom_code<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a><code>MongoDB</code></h3><h4 id="1-mlab"><a href="#1-mlab" class="headerlink" title="1.mlab"></a>1.<code>mlab</code></h4><blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-1/1598970223320-10240.png" alt="10240"></p>
-<p><code>mlab</code>提供永久免费的<code>500MB</code>数据库服务,而且提供较好的服务保障.</p>
-<p>但是由于是国外网站的缘故,会出现连接慢的问题.</p>
-<p><a href="https://mlab.com/" target="_blank" rel="noopener">mlab</a>:<code>https://mlab.com/</code></p>
+<h3 id="4-创建web"><a href="#4-创建web" class="headerlink" title="4.创建web"></a>4.创建<code>web</code></h3><blockquote>
+<ul>
+<li>点击<code>web</code>创建<code>web app</code>.注意免费账户只能创建一个<code>app</code>,</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599053133153-10252.png" alt="10252"></p>
+<ul>
+<li>点击下一步,会让选择自己的<code>web</code>框架,这里我们选择使用<code>flask</code>.</li>
+<li>点击下一步,选择使用的<code>python</code>版本.这个要根据自己的项目的实际使用情况选择.</li>
+<li>创建完毕后,会有一个汇总页面.这里有2个需要注意的地方<ul>
+<li><code>source code</code>:指定了前面我们创建的文件夹,如果不是,需要手动指定.</li>
+<li><code>wsgi configuration file</code>:<code>wsgi</code>框架,指定要运行的<code>app</code>文件.这个文件指定了<code>flask</code>的主运行文件必须是<code>app.py</code></li>
+<li><code>virtualenv</code>:虚拟环境,强烈建议使用虚拟环境,配置自己的<code>app</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599053449167-10253.png" alt="10253"></p>
 </blockquote>
-<h4 id="2-MongoDB-Altlas"><a href="#2-MongoDB-Altlas" class="headerlink" title="2.MongoDB Altlas"></a>2.<code>MongoDB Altlas</code></h4><blockquote>
-<p><code>MongoDB Altlas</code>提供<code>512M</code>的数据库服务,有香港节点,可以选择<code>Azure</code>.</p>
-<p><a href="https://cloud.mongodb.com/" target="_blank" rel="noopener">mongodb</a>:<code>https://cloud.mongodb.com/</code></p>
+<h4 id="1-virtualenv"><a href="#1-virtualenv" class="headerlink" title="1.virtualenv"></a>1.<code>virtualenv</code></h4><blockquote>
+<p><code>pythonanywhere</code>下的<code>python</code> 虚拟环境管理.</p>
+<ul>
+<li>登录到<code>bash colsole</code>后,可以创建虚拟环境.</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 根据自己的实际情况,指定python版本</span>
+$  mkvirtualenv mylearn --python<span class="token operator">=</span>3.7
+
+<span class="token punctuation">(</span>mylearn<span class="token punctuation">)</span> $ <span class="token function">which</span> python
+/home/myusername/.virtualenvs/mylearn/bin/python
+
+<span class="token punctuation">(</span>mylearn<span class="token punctuation">)</span> $ deactivate
+$ <span class="token function">which</span> python
+/usr/bin/python
+
+$ workon mylearn
+
+<span class="token punctuation">(</span>mylearn<span class="token punctuation">)</span> $ <span class="token function">which</span> python
+/home/myusername/.virtualenvs/mylearn/bin/python<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>创建好虚拟环境后,需要指定要安装的第三方插件.我们这里使用<code>pip</code>的功能完成</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 登录到自己本机虚拟环境中,使用pip打包第三方应用</span>
+<span class="token comment" spellcheck="true"># 我的本机虚拟环境是learnpy , pythonanywhere 是 mylearn</span>
+<span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span>$ pip freeze <span class="token operator">></span> requirements.txt
+
+<span class="token comment" spellcheck="true"># 文件形式如下</span>
+<span class="token comment" spellcheck="true"># alembic==1.0.10</span>
+<span class="token comment" spellcheck="true"># blinker==1.4</span>
+<span class="token comment" spellcheck="true"># Click==7.0</span>
+<span class="token comment" spellcheck="true"># dominate==2.3.5</span>
+<span class="token comment" spellcheck="true"># Flask==1.0.3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>上传文件到<code>pythonanywhere</code>,然后登录到<code>bash colsole</code>,即可安装所有的依赖包</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>mylearn<span class="token punctuation">)</span> $ pip <span class="token function">install</span> -r requirements.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-<h3 id="PostgreSQL"><a href="#PostgreSQL" class="headerlink" title="PostgreSQL"></a><code>PostgreSQL</code></h3><h4 id="1-elephantsql"><a href="#1-elephantsql" class="headerlink" title="1.elephantsql"></a>1.<code>elephantsql</code></h4><blockquote>
-<p>提供<code>20MB</code>的在线数据库,非常小.</p>
-<p><a href="https://www.elephantsql.com/" target="_blank" rel="noopener">elephantsql</a>:<a href="https://www.elephantsql.com/" target="_blank" rel="noopener">https://www.elephantsql.com/</a></p>
+<h4 id="2-log"><a href="#2-log" class="headerlink" title="2.log"></a>2.<code>log</code></h4><blockquote>
+<p>如果<code>app</code>有任何的问题,要主动关注<code>error.log</code>来解决问题.</p>
 </blockquote>
-<h4 id="2-Heroku"><a href="#2-Heroku" class="headerlink" title="2.Heroku"></a>2.<code>Heroku</code></h4><blockquote>
-<p>提供免费的<code>2W</code>行数据.地址:<a href="https://www.elephantsql.com/" target="_blank" rel="noopener">https://www.elephantsql.com/</a></p>
+<h3 id="5-访问网站"><a href="#5-访问网站" class="headerlink" title="5.访问网站"></a>5.访问网站</h3><blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599053133153-10252.png" alt="10252"></p>
+<p>点击上图中<code>ningwenyan.pythonanywhere.com</code>的连接,就可以跳转到自己的网站:</p>
+<p><img src="https://tva1.sinaimg.cn/large/a20ab060ly1giacwb82ytg20zn0md42t.gif" alt="login_demo.gif"></p>
 </blockquote>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a><code>Redis</code></h3><h4 id="1-redislabs"><a href="#1-redislabs" class="headerlink" title="1.redislabs"></a>1.<code>redislabs</code></h4><blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-1/1598970223312-10241.png" alt="10241"></p>
-<p>提供 <code>30MB</code> 空间免费 <code>Redis </code>在线数据库服务,但是访问速度慢.</p>
-<p><code>redislabs</code>:<code>https://app.redislabs.com/#/login</code></p>
+<h3 id="6-添加MySQL数据库"><a href="#6-添加MySQL数据库" class="headerlink" title="6.添加MySQL数据库"></a>6.添加<code>MySQL</code>数据库</h3><blockquote>
+<p>如果你是免费账户,你不允许使用外部数据库的.幸好,<code>pythonanywhere</code>提供了小型的<code>mysql</code>数据库.</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599055761788-10254.png" alt="10254"></p>
 </blockquote>
-<h3 id="大型云服务供应商"><a href="#大型云服务供应商" class="headerlink" title="大型云服务供应商"></a>大型云服务供应商</h3><h4 id="1-amazon"><a href="#1-amazon" class="headerlink" title="1.amazon"></a>1.<code>amazon</code></h4><blockquote>
-<p>推荐<code>amazon</code>,不用备案,而且送12个月的免费套餐.访问<code> aws.amazon.com/free</code></p>
-</blockquote>
-<h4 id="2-google"><a href="#2-google" class="headerlink" title="2.google"></a>2.<code>google</code></h4><blockquote>
-<p>访问<code>https://cloud.google.com/free 获得更多信息.</code></p>
-</blockquote>
-<h4 id="3-azure"><a href="#3-azure" class="headerlink" title="3.azure"></a>3.<code>azure</code></h4><blockquote>
-<p>访问<code>https://azure.microsoft.com/zh-cn/free/?cdn=disable</code> 获得更多信息.</p>
+<h3 id="7-问题"><a href="#7-问题" class="headerlink" title="7.问题"></a>7.问题</h3><blockquote>
+<p>如果你有问题,可以在下方留言,一起讨论解决.</p>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 
@@ -555,7 +607,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/01/free-online-database-md/">https://www.wenyan.online/2020/09/01/free-online-database-md/</a>
+                    <a href="https://www.wenyan.online/2020/09/02/flaskwebonline-md/">https://www.wenyan.online/2020/09/02/flaskwebonline-md/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -597,16 +649,12 @@
                                     <span class="chip bg-color">MySQL</span>
                                 </a>
                             
-                                <a href="/tags/MongoDB/">
-                                    <span class="chip bg-color">MongoDB</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
-                                <a href="/tags/Redis/">
-                                    <span class="chip bg-color">Redis</span>
-                                </a>
-                            
-                                <a href="/tags/PostgreSQL/">
-                                    <span class="chip bg-color">PostgreSQL</span>
+                                <a href="/tags/Flask/">
+                                    <span class="chip bg-color">Flask</span>
                                 </a>
                             
                         </div>
@@ -777,7 +825,7 @@
         repo: 'gitalk',
         owner: 'ningwenyan',
         admin: "ningwenyan",
-        id: '2020-09-01T22-37-55',
+        id: '2020-09-02T22-22-48',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -801,9 +849,63 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/09/02/flaskwebonline-md/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599051996097-10247.png" class="responsive-img" alt="Flask在线部署">
+                        
+                        <span class="card-title">Flask在线部署</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在线部署Flask
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            文彦
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/Flask/">
+                        <span class="chip bg-color">Flask</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/09/01/login-demo-md/">
                     <div class="card-image">
@@ -820,9 +922,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -844,62 +946,6 @@
                     
                     <a href="/tags/Pillow/">
                         <span class="chip bg-color">Pillow</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/08/27/sqlalchemy-zong-jie/">
-                    <div class="card-image">
-                        
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10229.png" class="responsive-img" alt="SQLAlchemy总结">
-                        
-                        <span class="card-title">SQLAlchemy总结</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            SQLAlchemy学习总结
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            文彦
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
-                    </a>
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/Flask/">
-                        <span class="chip bg-color">Flask</span>
-                    </a>
-                    
-                    <a href="/tags/SQLAlchemy/">
-                        <span class="chip bg-color">SQLAlchemy</span>
                     </a>
                     
                 </div>
