@@ -1458,6 +1458,106 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 </ol>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10211.png" alt="10211"></p>
 </blockquote>
+<h2 id="Hexo双线部署到coding"><a href="#Hexo双线部署到coding" class="headerlink" title="Hexo双线部署到coding"></a><code>Hexo</code>双线部署到<code>coding</code></h2><h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><blockquote>
+<p>今天突然发现,在使用联通<code>4G</code>流量的情况下,居然不能正常打开<code>github page</code>.会被联通的<code>DNS</code>恶意解析到<code>127.0.0.1</code></p>
+<ul>
+<li>联通<code>DNS</code>解析</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599139884414-10255.png" alt="10255"></p>
+<ul>
+<li>联通<code>DNS</code>:<code>60.50.246.85</code>,这是典型的<code>DNS</code>劫持.如果你电脑端,是可以通过修改<code>hosts</code>文件的,手机端没有<code>root</code>还有点麻烦.</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599139884379-10257.png" alt="10257"></p>
+<ul>
+<li>公共<code>DNS</code>解析,可以看到公共解析是没有问题的.</li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599139884410-10256.png" alt="10256"></p>
+<hr>
+<p>为了避免这些情况,决定把<code>HEXO</code>部署在<code>coding</code>上一份,供国内流量访问.</p>
+</blockquote>
+<h3 id="1-申请账户"><a href="#1-申请账户" class="headerlink" title="1.申请账户"></a>1.申请账户</h3><blockquote>
+<p>访问<a href="https://e.coding.net/register?from=dev-tencent" target="_blank" rel="noopener">Coding</a>官网:<code>https://e.coding.net/register?from=dev-tencent</code>,注册一个账户,注意绑定自己的邮箱.</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599140335723-10258.png" alt="10258"></p>
+</blockquote>
+<h3 id="2-创建新项目"><a href="#2-创建新项目" class="headerlink" title="2.创建新项目"></a>2.创建新项目</h3><blockquote>
+<p>注册完成之后就会进入主页面,然后创建新项目,选择<code>DevOps</code>项目.</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599140525612-10259.png" alt="10259"></p>
+<p>写入自己的项目名称,可以是用户名,如下:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599140638188-10260.png" alt="10260"></p>
+<p>创建好项目后,需要创建一个代码仓库,首先进入项目,然后创建如下:(注意保存自己的仓库地址)</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599140845085-10261.png" alt="10261"></p>
+</blockquote>
+<h3 id="3-创建ssh公钥"><a href="#3-创建ssh公钥" class="headerlink" title="3.创建ssh公钥"></a>3.创建<code>ssh</code>公钥</h3><blockquote>
+<ul>
+<li>打开自己的公钥文件并复制.</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cat</span> ~/.ssh/id_rsa.pub<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><p>登录<code>coding</code>,点击左上角的<code>个人设置</code>,选择菜单<code>ssh公钥</code>,点击<code>新增公钥</code>按钮,然后将复制的公钥写入到<code>coding</code>中即可.</p>
+</li>
+<li><p>完成后,在命令好中创建连接,有如下语句,表示连接成功.</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">ssh</span> -T git@e.coding.net
+
+ningwenyan，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个个人公钥.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>如果你么有公钥,尝试用如下命令生成.</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash">$ ssh-keygen -t rsa -b 4096 -C <span class="token string">"your.email@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="4-创建项目令牌"><a href="#4-创建项目令牌" class="headerlink" title="4.创建项目令牌"></a>4.创建项目令牌</h3><blockquote>
+<p>令牌的作用是:后续推送代码操作无需再次输入用户名和密码</p>
+<ul>
+<li>在项目中点击【项目设置】-&gt;【开发者选项】-&gt;【项目令牌】-&gt;【 新增项目令牌】</li>
+<li>输入令牌名称、选择过期时间、勾选令牌权限后即可完成创建</li>
+<li>创建成功后,会有一个用户名和<code>token</code></li>
+</ul>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599141498642-10262.png" alt="10262"></p>
+</blockquote>
+<h3 id="5-修改HEXO配置文件"><a href="#5-修改HEXO配置文件" class="headerlink" title="5.修改HEXO配置文件"></a>5.修改<code>HEXO</code>配置文件</h3><blockquote>
+<p>修改<code>HEXO</code>博客的主配置文件<code>_config.yml</code>,找到<code>deploy</code>,修改如下</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">'git'</span>
+<span class="token key atrule">repository</span><span class="token punctuation">:</span>
+ <span class="token key atrule">github</span><span class="token punctuation">:</span>  <span class="token punctuation">[</span>你的github地址<span class="token punctuation">]</span>
+ <span class="token key atrule">coding</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//用户名<span class="token punctuation">:</span>token@仓库地址
+ <span class="token comment" spellcheck="true"># 比如: coding: https://JaH:c936bdad9@e.coding.net/ningwenyan/ningwenyan.git</span>
+<span class="token key atrule">branch</span><span class="token punctuation">:</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>修改完毕后,将内容推送到<code>coding</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ hexo clean
+$ hexo g
+$ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="6-生成静态网站"><a href="#6-生成静态网站" class="headerlink" title="6.生成静态网站"></a>6.生成静态网站</h3><blockquote>
+<p>推送完毕后,登录<code>coding</code>,选择生成静态网站,如下</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599141908124-10263.png" alt="10263"></p>
+<p>点击生成静态网站,可以选择自动部署,如下:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142021649-10264.png" alt="10264"></p>
+<p>点击保存,然后可以点击立即部署:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142151553-10265.png" alt="10265"></p>
+<p>部署成功后,可以点击访问网址,查看是否创建成功.</p>
+</blockquote>
+<h3 id="7-绑定域名"><a href="#7-绑定域名" class="headerlink" title="7.绑定域名"></a>7.绑定域名</h3><blockquote>
+<p>实现:</p>
+<ul>
+<li>境外:访问<code>wenyan.onlie</code>解析到<code>github</code></li>
+<li>境内:访问<code>wenyan.online</code>解析到<code>coding</code></li>
+</ul>
+<p>由于我使用的阿里云的域名,所有这里设置阿里云的域名解析,如下:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142575049-10266.png" alt="10266"></p>
+<p>然后点击<code>coding</code>上的设置,并绑定<code>wenyan.online</code>地址,勾选强制使用<code>http</code></p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142702300-10267.png" alt="10267"><br><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142702296-10268.png" alt="10268"></p>
+</blockquote>
+<h3 id="8-测试"><a href="#8-测试" class="headerlink" title="8.测试"></a>8.测试</h3><blockquote>
+<p>打开站长工具<code>http://ping.chinaz.com/</code></p>
+<p>选择海外测试,查看解析到的地址:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142975648-10269.png" alt="10269"></p>
+<p>选择境内测试:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599142975643-10270.png" alt="10270"></p>
+<p>手机<code>4G</code>访问</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599143132253-10271.png" alt="10271"></p>
+</blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 
             </div>
@@ -2128,7 +2228,7 @@ $(function () {
                                                                                                     
                                                                                                         <!--动态线条背景-->
                                                                                                         <script type="text/javascript" color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
-                                                                                                        </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+                                                                                                        </script>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>
