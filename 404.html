@@ -306,7 +306,7 @@
 
 </header>
 
-            <style type="text/css">
+            <!-- <style type="text/css">
     /* don't remove. */
     .about-cover {
         height: 90.2vh;
@@ -335,8 +335,45 @@
         var bannerUrl = "https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/banner/" + new Date().getDay() + '.jpg';
         $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
     </script>
+ -->
+<style type="text/css">
+    /* don't remove. */
+    
+    .page404-cover {
+        /* height: 75vh; */
+        height: 88vh;
+    }
+    
+    #svgContainer {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+</style>
 
 
+<script src="/libs/my404/bodymovin.js"></script>
+<script src="/libs/my404/data.js"></script>
+
+<div class="bg-cover pd-header page404-cover">
+    <div id="svgContainer"></div>
+
+    <script type="text/javascript">
+        var svgContainer = document.getElementById('svgContainer');
+        var animItem = bodymovin.loadAnimation({
+            wrapper: svgContainer,
+            animType: 'svg',
+            loop: true,
+            animationData: JSON.parse(animationData)
+        });
+    </script>
+</div>
 
                 <footer class="page-footer bg-color">
     
