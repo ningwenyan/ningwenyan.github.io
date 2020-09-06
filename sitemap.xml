@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.wenyan.online/2020/09/06/alembic/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.wenyan.online/404.html</loc>
     
     <lastmod>2020-09-06</lastmod>
@@ -269,6 +276,20 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://www.wenyan.online/tags/alembic/</loc>
+    <lastmod>2020-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>https://www.wenyan.online/categories/SQLAlchemy/</loc>
+    <lastmod>2020-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 </urlset>

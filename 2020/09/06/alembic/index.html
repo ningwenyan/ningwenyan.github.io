@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="OAuth2.0  github">
+    <meta name="keywords" content="Python Flask MySQL alembic">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>OAuth2.0协议介绍 | 文彦Blog</title>
+    <title>MySQL版本管理工具alembic | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290439208-10275.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599404990051-84109093-14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">OAuth2.0协议介绍</h1>
+                    <h1 class="description center-align post-title">MySQL版本管理工具alembic</h1>
                 </div>
             </div>
         </div>
@@ -432,22 +432,35 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
+                            </a>
+                        
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
                             <a href="/tags/Flask/">
                                 <span class="chip bg-color">Flask</span>
                             </a>
                         
-                            <a href="/tags/OAuth2-0/">
-                                <span class="chip bg-color">OAuth2.0</span>
-                            </a>
-                        
-                            <a href="/tags/Github/">
-                                <span class="chip bg-color">Github</span>
+                            <a href="/tags/alembic/">
+                                <span class="chip bg-color">alembic</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/SQLAlchemy/" class="post-category">
+                                SQLAlchemy
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -456,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-05
+                    2020-09-06
                 </div>
                 
 
@@ -472,325 +485,293 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="OAuth2-0-协议"><a href="#OAuth2-0-协议" class="headerlink" title="OAuth2.0 协议"></a><code>OAuth2.0</code> 协议</h2><h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><blockquote>
-<p><a href="https://wenyan.online/" target="_blank" rel="noopener">个人博客</a><code>https://wenyan.online</code> 有一个评论的功能,如果用户想要评论文章,必须申请用户名和密码登录.但是,它也可以很方便的使用<code>Github</code>账户进行第三方登录,非常的高效.</p>
-<p>像这样的,便捷安全的登录第三方应用的协议就是<code>OAuth</code>.</p>
-<p><a href="https://github.com/ningwenyan/demo_code" target="_blank" rel="noopener">参考代码</a>:<code>https://github.com/ningwenyan/demo_code</code></p>
+                <h2 id="alembic"><a href="#alembic" class="headerlink" title="alembic"></a><code>alembic</code></h2><h3 id="1-什么是alembic"><a href="#1-什么是alembic" class="headerlink" title="1. 什么是alembic"></a>1. 什么是<code>alembic</code></h3><blockquote>
+<p>随着项目业务需求的不断变更,数据库的表结构修改难以避免,此时就需要对数据库的修改加以记录和控制,便于项目的版本管理和随意升级和降级.</p>
+<p><code>alembic</code> 很好的解决了这个问题,<code>alembic</code> 是<code>SQLAlchemy</code>的作者开发的<code>Python</code>数据库版本管理工具.</p>
+<p><a href="https://alembic.sqlalchemy.org/en/latest/tutorial.html#the-migration-environment" target="_blank" rel="noopener">官网</a></p>
 </blockquote>
-<h3 id="什么是OAuth-2-0"><a href="#什么是OAuth-2-0" class="headerlink" title="什么是OAuth 2.0"></a>什么是<code>OAuth 2.0</code></h3><blockquote>
-<p><code>OAuth</code>:开放授权是一个开放标准,允许用户让第三方应用访问该用户在某一网站上存储的私密的资源(如照片,视频,联系人列表),而无需将用户名和密码提供给第三方应用.</p>
-<p><code>OAuth</code>允许用户提供一个<code>token</code>,而不是用户名和密码来访问他们存放在特定服务器上的数据.每一个令牌授权一个特定的网站在特定的时段内访问特定的资源.这样,<code>OAuth</code>让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息,而非所有内容.</p>
-<p><code>OAuth2.0</code>是<code>OAuth</code>协议的下一个版本,当不向上兼容.<code>OAuth2.0</code>注客户端开发者的简易性,同时为为<code>Web</code>应用,桌面应用,手机和智能设备提供专门的认证流程.</p>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ conda <span class="token function">install</span> alembic<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>alembic</code> 需要<code>sqlalchemy</code> 和数据库控制工具如<code>pymysql</code> 的支持,确保安装了这两个工具.</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ conda <span class="token function">install</span> sqlalchemy
+$ conda <span class="token function">install</span> pymysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
-<h3 id="角色-roles"><a href="#角色-roles" class="headerlink" title="角色(roles)"></a>角色(<code>roles</code>)</h3><blockquote>
-<p>整个协议中所有涉及到的角色</p>
-<ul>
-<li><code>resource owner</code>:资源拥有者,能够运行访问收保护资源的实体.</li>
-<li><code>resource serve</code>:资源服务器,托管受保护资源的服务器</li>
-<li><code>client</code>:客户端,第三方应用.如:<code>web</code>站点,移动应用等.</li>
-<li><code>authorization server</code>:授权服务器,即服务提供商专门用来处理认证的服务器</li>
-<li><code>user agent</code>:用户代理,一般为<code>web</code>浏览器,移动<code>app</code>等</li>
-</ul>
-</blockquote>
-<h3 id="协议流程"><a href="#协议流程" class="headerlink" title="协议流程"></a>协议流程</h3><blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-4/1599231300483-10272.png" alt="10272">’</p>
-<ul>
-<li><p><code>A</code> : 客户端向资源拥有者请求授权.授权请求可以直接对资源所有者请求,也可以通过<code>Authorization server</code> 中转间接进行.</p>
-</li>
-<li><p><code>B</code>: 资源所有者运行授权,并返回凭证</p>
-</li>
-<li><p><code>C</code>:客户端通过授权服务器进行身份验证,并提供授权凭证,同时,请求<code>token</code>令牌</p>
-</li>
-<li><p><code>D</code>:授权服务器对客户顿进行身份验证,如果有效,,则发布<code>token</code>令牌.</p>
-</li>
-<li><p><code>E</code>:客户端通过提供<code>token</code>进行身份验证,进而请求资源服务器受保护的资源</p>
-</li>
-<li><p><code>F</code>: 资源服务器验证访问令牌,如果正确这返回受保护资源</p>
-</li>
-<li><p>实例: 我 使用 <code>github</code>账户登录<code>wenyan.online</code>.那么我就是<code>resource owner</code> ,<code>wenyan.online</code>这个网站就是<code>client</code>客户端,浏览器就是<code>user agent</code>,资源服务器和授权服务器都是<code>github</code>.</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><blockquote>
-<p>根据流程可以看到,要获得<code>access token</code> 必须先得到授权服务器授权(<code>authorization grant</code>).为了得到这个授权,<code>OAuth 2.0</code> 定义了<code>4</code>种类型的授权类型</p>
-<ul>
-<li><code>authorizaiton code</code>:授权码模式,服务器与客户端配合使用.(重点)</li>
-<li><code>implicit</code>:隐式<code>token</code>,主要用于移动应用程序或<code>web</code>应用程序</li>
-<li><code>resource owner password credentials</code> :密码模式,资源所有者和客户端之间具有高度信任时,比如,客户端是操作系统的一部分才使用.</li>
-<li><code>client credentials</code>:客户端模式,用户直接向客户端注册,严格来说,客户端模式不属于<code>OAuth</code>解决的问题.</li>
-</ul>
-</blockquote>
-<h4 id="授权码模式"><a href="#授权码模式" class="headerlink" title="授权码模式"></a>授权码模式</h4><blockquote>
-<p>授权码模式是功能最网站,使用最广泛,流程最严密的授权模式.</p>
-<p>由于这是一个基于重定向的流,所以<code>client</code>客户端必须能够与资源所有者的<code>user agent</code>(浏览器)进行交互,并且能够从授权服务器接收传入的重定向<code>redirect</code>请求.</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599283289954-10273.png" alt="10273"></p>
-<ul>
-<li><code>A</code>:用户访问<code>client</code>客户端,客户端采用第三方登录,并且将用户导向第三方授权服务器,通过用户代理<code>User agent</code>发送包括<code>client</code>的<code>client identifier, requested scope, local state, and a redirection URI </code>一并发送给授权服务器.</li>
-<li><code>B</code>:授权服务器对资源所有者进行身份验证,并确定资源所有者是否授予或拒绝客户端的访问请求</li>
-<li><code>C</code>:如果资源所有者同意授权请求,那么授权服务器将会使用指定的重定向<code>redirection URL</code>.跳转到客户端,并附加一个授权码<code>code</code>和一个本地状态码<code>state</code>,(如果<code>A</code>步骤提供,则会原值返回)</li>
-<li><code>D</code>:客户端收到授权码,附加上<code>redirection URL</code>,向授权服务器申请令牌<code>token</code>. 这一步是在客户端的后台服务器完成的,用户不可见.发出请求后,授权服务器对客户端进行身份验证,请求参数中包含<code>code, client_id,client_secret, redirection URI</code></li>
-<li><code>E</code>:授权服务器对客户端进行身份验证,验证授权代码<code>code</code>,并确保收到的<code>redirection URL</code>与步骤<code>C</code>中的<code>URL</code>匹配.如果有效,授权服务器将发送<code>access token</code>和<code>refresh token</code></li>
-<li><code>client</code>拿到令牌<code>token</code>就可以向第三方的资源服务器请求资源.</li>
-</ul>
-</blockquote>
-<h4 id="OAuth-2-0登录示例"><a href="#OAuth-2-0登录示例" class="headerlink" title="OAuth 2.0登录示例"></a><code>OAuth 2.0</code>登录示例</h4><blockquote>
-<p>以<code>github</code>为例,写一个简单的应用,演示第三方登录.</p>
-</blockquote>
-<h5 id="1-授权码模式登录"><a href="#1-授权码模式登录" class="headerlink" title="1.授权码模式登录"></a>1.授权码模式登录</h5><blockquote>
-<p>自建网站<code>web</code>,<code>web</code>网站让用户提供第三方网站的数据,证明自己的身份.获取第三方网站的数据,使用的是<code>OAuth</code>协议,按照协议,它将满足:</p>
-<ul>
-<li><code>A</code>:资源所有者<code>user</code>,使用<code>client</code>网站<code>web</code>在浏览器(<code>user agent</code>)中登录,客户端将<code>user</code>跳转到<code>github</code>.</li>
-<li><code>B</code>:<code>github</code>要求用户登录,询问<code>web</code>将要获取<code>xx</code>权限,你是否同意?</li>
-<li><code>C</code>:<code>user</code>同意后,<code>github</code>(授权服务器)将会重定向到<code>web</code>站点,同时发回一个授权码<code>code</code></li>
-<li><code>D</code>:<code>web</code>站点(即客户端)使用授权码,向<code>github</code>请求令牌<code>token</code>.</li>
-<li><code>E</code>:<code>Github</code>返回令牌.</li>
-<li><code>web</code>站点使用令牌,向<code>github</code>(资源服务器)请求用户数据.</li>
-</ul>
-<hr>
-<p>此部分实现,参照<code>github</code>官方文档:<code>https://docs.github.com/cn/developers/apps/authorizing-oauth-apps</code></p>
-</blockquote>
-<h5 id="2-OAuth-APP"><a href="#2-OAuth-APP" class="headerlink" title="2.OAuth APP"></a>2.<code>OAuth APP</code></h5><blockquote>
-<p>首先,<code>Github</code>作为一个授权服务器,我们必须先在其服务器上登记并创建一个<code>oauth app</code>程序.</p>
-<p>登录<code>github</code>,点击<code>setting--Developer settings-oauth apps--new oauth app</code></p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599286800968-10274.gif" alt="10274"></p>
-<p>主要参数:</p>
-<ul>
-<li><code>application name</code>:应用名称</li>
-<li><code>homepage url</code>:网站根目录,可以指定<code>127.0.0.1:5000</code>或者其他<code>ip</code>地址.</li>
-<li><code>application description</code>:描述信息</li>
-<li><code>authorization callback url</code>:这个选项比较重要,指定登录成功的回调地址.</li>
-</ul>
-<p>提交后,<code>Github</code>会返回客户端<code>ID</code>(<code>client id</code>)和客户端秘钥(<code>client secret</code>).</p>
-</blockquote>
-<h5 id="3-授权oauth应用程序"><a href="#3-授权oauth应用程序" class="headerlink" title="3.授权oauth应用程序"></a>3.授权<code>oauth</code>应用程序</h5><blockquote>
-<p>这里根据<code>github</code>的<a href="https://docs.github.com/cn/developers/apps/authorizing-oauth-apps" target="_blank" rel="noopener">说明文档</a>使用<code>Flask</code>创建一个基本<code>web</code></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>render_template
-
-
-app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
-app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
-<span class="token string">'DEBUG'</span><span class="token punctuation">:</span><span class="token boolean">True</span><span class="token punctuation">,</span>
-<span class="token string">'TEMPLATES_AUTO_RELOAD'</span> <span class="token punctuation">:</span> <span class="token boolean">True</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span>  render_template<span class="token punctuation">(</span><span class="token string">'index.html'</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>port<span class="token operator">=</span><span class="token number">8080</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们给后台的<code>index.html</code>写一个跳转的<code>url</code>,用于请求用户的<code>github</code>身份.</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># app.py</span>
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/redirect_github/'</span><span class="token punctuation">,</span> methods <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">redirect_github</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-url <span class="token operator">=</span> <span class="token string">'https://github.com/login/oauth/authorize'</span> <span class="token comment" spellcheck="true"># 这是官网给定的地址,且必须使用 get 方法</span>
-params <span class="token operator">=</span> <span class="token punctuation">{</span>
-  <span class="token string">'client_id'</span><span class="token punctuation">:</span> client_id<span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 必填</span>
-  <span class="token string">'scope'</span> <span class="token punctuation">:</span> <span class="token string">'read:user user:email'</span>
-<span class="token punctuation">}</span>
-url <span class="token operator">=</span> furl<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>set<span class="token punctuation">(</span>params<span class="token punctuation">)</span>
-<span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token number">302</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--index.html --></span>
-<span class="token doctype">&lt;!DOCTYPE html></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width<span class="token punctuation">=</span>device-width, initial-scale<span class="token punctuation">=</span>1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ url_for(<span class="token punctuation">'</span>redirect_github<span class="token punctuation">'</span>) }}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Github<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<p>现在一个一个的解释一下,根据官方文档<code>https://docs.github.com/cn/developers/apps/authorizing-oauth-apps</code>:</p>
-<p>请求跳转<code>github</code>的地址为<code>GET https://github.com/login/oauth/authorize</code>,在其中可以指定多个参数.(这里只说明2个)</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>client_id</code></td>
-<td><code>string</code></td>
-<td>必填,是<code>oauth app</code>生成的<code>client_id</code></td>
-</tr>
-<tr>
-<td><code>scope</code></td>
-<td><code>string</code></td>
-<td>以空格分割的作用域列表,用于指定客户端获取的权限</td>
-</tr>
-</tbody></table>
-<p>注:具体的权限,请查看<a href="https://docs.github.com/en/developers/apps/scopes-for-oauth-apps#available-scopes" target="_blank" rel="noopener">官方文档</a></p>
-<hr>
-<p>按照<code>oauth</code>协议</p>
-<ul>
-<li>用户:资源拥有者</li>
-<li><code>127.0.0.1:8080</code>:客户端<code>client</code></li>
-<li><code>github</code>:授权服务器</li>
-<li>浏览器:<code>user agent</code></li>
-</ul>
-<hr>
+<h3 id="3-基本流程"><a href="#3-基本流程" class="headerlink" title="3.基本流程"></a>3.基本流程</h3><blockquote>
 <ol>
-<li>访问<code>127.0.0.1:8080</code>,并使用<code>github</code>第三方登录</li>
+<li>初始化</li>
+<li>修改<code>init</code>配置文件</li>
+<li>修改<code>env.py</code></li>
+<li>创建新的迁移脚本</li>
+<li>变更数据库版本<ol>
+<li>升级数据库版本</li>
+<li>降级数据库版本</li>
 </ol>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290439313-10274.png" alt="10274"></p>
-<ol start="2">
-<li>点击登录跳转到<code>github</code>,<code>github</code>要求登录,并询问授予的权限,这个权限的控制来自于<code>scope</code>字段.</li>
+</li>
 </ol>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290439208-10275.png" alt="10275"></p>
-<ol start="3">
-<li>点击授权后,<code>github</code>重定向到之前设置的<code>callback</code>页面,并返回一个<code>code</code>授权码.到此为止,用户和<code>github</code>的协商就完成了,剩下的就是<code>client</code>和<code>github</code>之间的协商.</li>
-</ol>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290977057-10276.png" alt="10276"></p>
-<ol start="4">
-<li>按照协议,<code>client</code>要使用<code>code</code>授权码去申请<code>token</code>.根据<code>github</code>官方说明申请如下:</li>
-</ol>
-<pre class="line-numbers language-html"><code class="language-html">POST https://github.com/login/oauth/access_token<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>可以衔接如下参数:</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>client_id</code></td>
-<td><code>string</code></td>
-<td><code>oauth app client_id</code>必填</td>
-</tr>
-<tr>
-<td><code>client_secret</code></td>
-<td><code>string</code></td>
-<td><code>oauth app client_secret</code>必填</td>
-</tr>
-<tr>
-<td><code>code</code></td>
-<td><code>string</code></td>
-<td>上一步收到的<code>code</code>必填</td>
-</tr>
-</tbody></table>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># app.py</span>
-<span class="token comment" spellcheck="true"># 定义回环路由</span>
-@app<span class="token punctuation">.</span>rout<span class="token punctuation">(</span><span class="token string">'/oauth2/callback'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">oauth2_callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 获取code</span>
-    code <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'code'</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 根据code 获取 token</span>
-    access_token_url <span class="token operator">=</span> <span class="token string">'https://github.com/login/oauth/access_token'</span>
-    <span class="token comment" spellcheck="true"># 可用参数</span>
-    payload <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token string">'client_id'</span><span class="token punctuation">:</span>client_id<span class="token punctuation">,</span>
-        <span class="token string">'client_secret'</span><span class="token punctuation">:</span>client_secret<span class="token punctuation">,</span>
-        <span class="token string">'code'</span><span class="token punctuation">:</span>code
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true"># 发送 post</span>
-    r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>access_token_url<span class="token punctuation">,</span> json<span class="token operator">=</span>payload<span class="token punctuation">,</span> headers<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'Accept'</span><span class="token punctuation">:</span><span class="token string">'application/json'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 获取token</span>
-    access_toke <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'access_token'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>根据回环路由,更改<code>oauth app</code>的<code>callback</code></p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599293976556-10277.png" alt="10277"></p>
-<ol start="5">
-<li><code>github</code>返回<code>token</code></li>
-<li>使用<code>token</code>访问资源服务器<code>API</code>.对于<code>github</code>来说,类似如下;</li>
-</ol>
-<pre class="line-numbers language-html"><code class="language-html">Authorization: token OAUTH-TOKEN
-GET https://api.github.com/user<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>修改代码如下:</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>render_template
-<span class="token keyword">from</span> furl <span class="token keyword">import</span> furl
-<span class="token keyword">from</span> flask <span class="token keyword">import</span> redirect
-<span class="token keyword">from</span> flask <span class="token keyword">import</span> request
-<span class="token keyword">import</span> requests
-<span class="token keyword">import</span> json
-<span class="token keyword">from</span> flask <span class="token keyword">import</span> jsonify
-
-app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
-app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
-    <span class="token string">'DEBUG'</span><span class="token punctuation">:</span><span class="token boolean">True</span><span class="token punctuation">,</span>
-    <span class="token string">'TEMPLATES_AUTO_RELOAD'</span> <span class="token punctuation">:</span> <span class="token boolean">True</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span>  render_template<span class="token punctuation">(</span><span class="token string">'index.html'</span><span class="token punctuation">)</span>
-
-client_id <span class="token operator">=</span> <span class="token string">'7f8130a3d487dbc'</span>
-client_secret <span class="token operator">=</span> <span class="token string">'d359b42eaa292234fc8ed89d5bae776d'</span>
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/redirect_github/'</span><span class="token punctuation">,</span> methods <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">redirect_github</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    url <span class="token operator">=</span> <span class="token string">'https://github.com/login/oauth/authorize'</span> <span class="token comment" spellcheck="true"># 这是官网给定的地址,且必须使用 get 方法</span>
-    params <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token string">'client_id'</span><span class="token punctuation">:</span> client_id<span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 必填</span>
-        <span class="token string">'scope'</span> <span class="token punctuation">:</span> <span class="token string">'read:user user:email'</span>
-    <span class="token punctuation">}</span>
-    url <span class="token operator">=</span> furl<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>set<span class="token punctuation">(</span>params<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token number">302</span><span class="token punctuation">)</span>
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/oauth2/callback'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">oauth2_callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 获取code</span>
-    code <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'code'</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 根据code 获取 token</span>
-    access_token_url <span class="token operator">=</span> <span class="token string">'https://github.com/login/oauth/access_token'</span>
-    <span class="token comment" spellcheck="true"># 可用参数</span>
-    payload <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token string">'client_id'</span><span class="token punctuation">:</span>client_id<span class="token punctuation">,</span>
-        <span class="token string">'client_secret'</span><span class="token punctuation">:</span>client_secret<span class="token punctuation">,</span>
-        <span class="token string">'code'</span><span class="token punctuation">:</span>code
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true"># 发送 post</span>
-    r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>access_token_url<span class="token punctuation">,</span> json<span class="token operator">=</span>payload<span class="token punctuation">,</span> headers<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'Accept'</span><span class="token punctuation">:</span><span class="token string">'application/json'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">,</span>json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 获取token</span>
-    access_toke <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'access_token'</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'access_token:'</span><span class="token punctuation">,</span> access_toke<span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true"># 获取到token后,访问资源服务器</span>
-    access_user_url <span class="token operator">=</span> <span class="token string">'https://api.github.com/user'</span>
-    <span class="token comment" spellcheck="true"># 注意下方 token 后有一个空格</span>
-    rr <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>access_user_url<span class="token punctuation">,</span> headers<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'Authorization'</span><span class="token punctuation">:</span><span class="token string">'token '</span> <span class="token operator">+</span> access_toke<span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 返回获取到的</span>
-    <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span><span class="token punctuation">{</span>
-        <span class="token string">'status'</span><span class="token punctuation">:</span> <span class="token string">'sucess'</span><span class="token punctuation">,</span>
-        <span class="token string">'data'</span><span class="token punctuation">:</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>rr<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>port<span class="token operator">=</span><span class="token number">8080</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>为了便于观看,使用了<code>jsonfy</code>输出到页面上,正常情况下,这一步是不能让用户看到的,需要再次使用<code>redirect</code>跳转到其他页面.</p>
-<p>拿到用户的信息后,可以基于此信息做进一步的处理.</p>
 </blockquote>
-<h4 id="隐式token"><a href="#隐式token" class="headerlink" title="隐式token"></a>隐式<code>token</code></h4><blockquote>
-<p>请参照协议</p>
+<h4 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1.初始化"></a>1.初始化</h4><blockquote>
+<p>先创建一个<code>sqlalchemy</code> 的<code>ORM</code>映射:</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+存在数据库 alembic_demo
+如果不存在, create database alembic_demo
+"""</span>
+
+<span class="token keyword">from</span> sqlalchemy <span class="token keyword">import</span> Column<span class="token punctuation">,</span>ForeignKey<span class="token punctuation">,</span>Integer<span class="token punctuation">,</span>String
+<span class="token keyword">from</span> sqlalchemy <span class="token keyword">import</span> create_engine
+<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>orm <span class="token keyword">import</span> sessionmaker
+<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>ext<span class="token punctuation">.</span>declarative <span class="token keyword">import</span> declarative_base
+<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>orm <span class="token keyword">import</span>  relationship
+
+<span class="token comment" spellcheck="true"># 1.创建数据库连接</span>
+msg <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/alembic_demo'</span>
+engine <span class="token operator">=</span> create_engine<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 2.创建Session</span>
+Session <span class="token operator">=</span> sessionmaker<span class="token punctuation">(</span>bind<span class="token operator">=</span>engine<span class="token punctuation">)</span>
+session <span class="token operator">=</span> Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 3.创建Model</span>
+<span class="token comment" spellcheck="true"># 创建 Base</span>
+Base <span class="token operator">=</span> declarative_base<span class="token punctuation">(</span>bind<span class="token operator">=</span>engine<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 创建Model</span>
+
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
+ __tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
+
+ id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+ name <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+ addresses <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'Address'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Address</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
+ __tablename__ <span class="token operator">=</span> <span class="token string">'address'</span>
+
+ id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+ email_address <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+ u_id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> ForeignKey<span class="token punctuation">(</span><span class="token string">'user.id'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+ user <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'User'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span>
+
+<span class="token triple-quoted-string string">"""
+真实业务不能删除表,从新创建,必须做好版本控制
+Base.metadata.drop_all(engine)
+Base.metadata.create_all(engine)
+"""</span>
+<span class="token comment" spellcheck="true"># 添加数据</span>
+u1 <span class="token operator">=</span> User<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
+a1 <span class="token operator">=</span> Address<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>email_address<span class="token operator">=</span><span class="token string">'xx@xx.com'</span><span class="token punctuation">,</span>u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+a2 <span class="token operator">=</span> Address<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>email_address<span class="token operator">=</span><span class="token string">'xx1@xx.com'</span><span class="token punctuation">,</span>u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">]</span>
+
+session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
+session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后进行初始化操作,<code>alembic init &lt;YOUR_ALEMBIC_DIR&gt;</code></p>
+<p>这条命令默认会创建一个<code>&lt;YOUR_ALEMBIC_DIR&gt;</code> 的文件夹,所以最好能配置到项目的根目录中.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> kning@kning-pc:$ alembic init alembic
+Creating directory /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+Creating directory /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/versions <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/env.py <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/script.py.mako <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/README <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic.ini <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+Please edit configuration/connection/logging settings <span class="token keyword">in</span>
+<span class="token string">'/home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic.ini'</span> before proceeding.
+
+<span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> kning@kning-pc:$ tree
+<span class="token keyword">.</span>
+├── alembic                                     <span class="token comment" spellcheck="true"># &lt;YOUR_ALEMBIC_DIR> 创建的文件夹名字</span>
+│   ├── env.py                               <span class="token comment" spellcheck="true">#  迁移脚本</span>
+│   ├── README                     
+│   ├── script.py.mako             
+│   └── versions                          <span class="token comment" spellcheck="true"># 数据库对应版本文件夹</span>
+├── alembic.ini                            <span class="token comment" spellcheck="true"># alembic配置文件</span>
+└── sqlalchemy_model.py            <span class="token comment" spellcheck="true"># 项目文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<h4 id="密码模式"><a href="#密码模式" class="headerlink" title="密码模式"></a>密码模式</h4><blockquote>
-<p>请参照协议</p>
+<h4 id="2-修改init-配置文件"><a href="#2-修改init-配置文件" class="headerlink" title="2.修改init 配置文件"></a>2.修改<code>init</code> 配置文件</h4><blockquote>
+<p>默认创建完毕后,<code>alembic</code> 并不知道数据库是如何连接的.所以需要修改它的配置文件.</p>
+<pre class="line-numbers language-ini"><code class="language-ini">$ vim  alembic.ini
+
+...
+# 找到 sqlalchemy.url <span class="token attr-value"><span class="token punctuation">=</span> driver://user:pass@localhost/dbname</span>
+# 修改为和 sqlalchemy 的engine 一样的格式
+<span class="token constant">sqlalchemy.url</span> <span class="token attr-value"><span class="token punctuation">=</span> mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/alembic_demo</span>
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>更多的配置选项参考官网.</p>
 </blockquote>
-<h4 id="客户端模式"><a href="#客户端模式" class="headerlink" title="客户端模式"></a>客户端模式</h4><blockquote>
-<p> 请参照协议</p>
+<h4 id="3-修改env-py"><a href="#3-修改env-py" class="headerlink" title="3.修改env.py"></a>3.修改<code>env.py</code></h4><blockquote>
+<p>在<code>alembic</code> 中调用的是<code>sqlalchemy</code>的元类(<code>Base</code>)去操作,这需要手动的去改动<code>env.py</code> 文件.</p>
+<pre class="line-numbers language-python"><code class="language-python">$ vim  alembic<span class="token operator">/</span>env<span class="token punctuation">.</span>py
+
+<span class="token comment" spellcheck="true"># 找到target_metadata = None 这行,手动指定 metadata 是在哪个文件中.</span>
+<span class="token comment" spellcheck="true"># 比如这里 metadata 是 Base, Base指定在了sqlalchemy_model.py 这个项目文件中</span>
+
+<span class="token triple-quoted-string string">"""
+__file__：当前文档（env.py）
+os.path.dirname(__file__)：获取当前文档的目录
+os.path.dirname(os.path.dirname(__file__))：获取当前文档目录的上一级目录
+sys.path: python寻找导入的包的所有路径
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+"""</span>
+<span class="token keyword">import</span> os<span class="token punctuation">,</span>sys
+sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 导入Base</span>
+<span class="token keyword">import</span> sqlalchemy_model
+
+<span class="token comment" spellcheck="true"># 指定</span>
+target_metadata <span class="token operator">=</span> sqlalchemy_model<span class="token punctuation">.</span>Base<span class="token punctuation">.</span>metadata<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%8E%88%E6%9D%83" target="_blank" rel="noopener">OAuth维基百科</a></p>
-<p><a href="https://oauth.net/2" target="_blank" rel="noopener">OAuth官方</a></p>
-<p><a href="https://tools.ietf.org/html/rfc6749" target="_blank" rel="noopener">rfc6749</a></p>
-<p><a href="https://docs.github.com/cn/developers/apps/authorizing-oauth-apps" target="_blank" rel="noopener">github oauth</a></p>
-<p><a href="https://docs.github.com/en/developers/apps/scopes-for-oauth-apps#available-scopes" target="_blank" rel="noopener">github socpe</a></p>
-<p><a href="https://deepzz.com/post/what-is-oauth2-protocol.html" target="_blank" rel="noopener">参考1</a></p>
-<p><a href="https://gitee.com/api/v5/oauth_doc#/list-item-1" target="_blank" rel="noopener">gitee oauth</a></p>
+<h4 id="4-创建新的迁移脚本"><a href="#4-创建新的迁移脚本" class="headerlink" title="4.创建新的迁移脚本"></a>4.创建新的迁移脚本</h4><blockquote>
+<p>进行创建第一次的<code>ORM</code>对应</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ alembic revision --autogenerate -m <span class="token string">'first commit'</span>
+
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
+INFO  <span class="token punctuation">[</span>alembic.autogenerate.compare<span class="token punctuation">]</span> Detected added table <span class="token string">'user'</span>
+INFO  <span class="token punctuation">[</span>alembic.autogenerate.compare<span class="token punctuation">]</span> Detected added table <span class="token string">'address'</span>
+Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/versions/8eee680c6ffd_first_commit.py <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看<code>mysql</code> </p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> show tables;                                       
++------------------------+
+| Tables_in_alembic_demo |
++------------------------+
+| alembic_version        |
++------------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>它会生成一张纪律当前版本号 的表</p>
+</blockquote>
+<h4 id="5-运行第一次迁移"><a href="#5-运行第一次迁移" class="headerlink" title="5.运行第一次迁移"></a>5.运行第一次迁移</h4><blockquote>
+<p>创建迁移脚本后,并没有创建<code>SQLAlchemy  Model</code> 对应的表结构.这需要执行第一次的迁移</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ alembic upgrade <span class="token function">head</span>
+
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Running upgrade  -<span class="token operator">></span> 8eee680c6ffd, first commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到<code>alembic</code> 指针指向了第一次的版本号.查看<code>mysql</code> 数据库</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> show tables;                                                        
++------------------------+
+| Tables_in_alembic_demo |
++------------------------+
+| address                |
+| alembic_version        |
+| user                   |
++------------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在生成了<code>ORM</code>对应的表结构.</p>
+</blockquote>
+<h4 id="6-变更数据库版本"><a href="#6-变更数据库版本" class="headerlink" title="6.变更数据库版本"></a>6.变更数据库版本</h4><blockquote>
+<p>现在在<code>sqlalchemy_model</code> 中添加新的列</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
+__tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
+
+id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+name <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+age <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">)</span>
+
+addresses <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'Address'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>生成新的数据库迁移脚本,并迁移</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ alembic revision --autogenerate -m <span class="token string">'add User.age'</span>
+
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
+INFO  <span class="token punctuation">[</span>alembic.autogenerate.compare<span class="token punctuation">]</span> Detected added column <span class="token string">'user.age'</span>
+Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/versions/154a8d766856_add_user_age.py <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
+
+$ alembic upgrade <span class="token function">head</span>
+
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Running upgrade 8eee680c6ffd -<span class="token operator">></span> 154a8d766856, add User.age<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看<code>mysql</code></p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> desc user;                                                  
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | <null>  | auto_increment |
+| name  | varchar(25) | NO   |     | <null>  |                |
+| age   | int(11)     | YES  |     | <null>  |                |
++-------+-------------+------+-----+---------+----------------+
+
+mysql root@192.168.101:alembic_demo> select * from alembic_version;                                                                  
++--------------+
+| version_num  |
++--------------+
+| 154a8d766856 |
++--------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到<code>user</code> 表中确实添加了新的列,<code>alembic_version</code> 表中值也指向了最新生成的<code>154a8d766856</code></p>
+<p>可以执行降级,退回到以前的版本</p>
+<pre class="line-numbers language-python"><code class="language-python">$ alembic downgrade <span class="token number">8eee680c6ffd</span> <span class="token comment" spellcheck="true">#&lt;== 版本号码</span>
+
+INFO  <span class="token punctuation">[</span>alembic<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>migration<span class="token punctuation">]</span> Context impl MySQLImpl<span class="token punctuation">.</span>
+INFO  <span class="token punctuation">[</span>alembic<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>migration<span class="token punctuation">]</span> Will assume non<span class="token operator">-</span>transactional DDL<span class="token punctuation">.</span>
+INFO  <span class="token punctuation">[</span>alembic<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>migration<span class="token punctuation">]</span> Running downgrade <span class="token number">154a8d766856</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">8eee680c6ffd</span><span class="token punctuation">,</span> add User<span class="token punctuation">.</span>age<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看<code>mysql</code></p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> desc user;                                              
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | <null>  | auto_increment |
+| name  | varchar(25) | NO   |     | <null>  |                |
++-------+-------------+------+-----+---------+----------------+
+
+
+mysql root@192.168.101:alembic_demo> select * from alembic_version;                                                         
++--------------+
+| version_num  |
++--------------+
+| 8eee680c6ffd |
++--------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到在<code>mysql</code>中表确实回到了以前的状态.<code>upgrade</code>和<code>downgrade</code>都可以指定版本号</p>
+<pre class="line-numbers language-python"><code class="language-python">alembic upgrade <span class="token operator">&lt;</span>version<span class="token operator">></span>
+alembic downgrade <span class="token operator">&lt;</span>version<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>只不过<code>head</code> 参数指向了最新的版本号码,可以使用<code>alembic heads</code> 查看最新的版本号,<code>alembic current</code> 查看当前版本号.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span>$ alembic heads
+154a8d766856 <span class="token punctuation">(</span>head<span class="token punctuation">)</span>
+
+<span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> $ alembic current
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
+INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
+8eee680c6ffd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>需要注意的是,即是数据库中表的版本回到了以前的版本号,但是<code>sqlalchemy_model</code> 中的代码并没有改变.需要手动去修改.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
+__tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
+
+id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+name <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+age <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">)</span>
+
+addresses <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'Address'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="4-alembic-常用参数"><a href="#4-alembic-常用参数" class="headerlink" title="4.alembic 常用参数"></a>4.<code>alembic</code> 常用参数</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ alembic -h
+
+positional arguments:
+<span class="token punctuation">{</span>branches,current,downgrade,edit,heads,history,init,list_templates,merge,revision,show,stamp,upgrade<span class="token punctuation">}</span>
+ branches            Show current branch points.
+ current             Display the current revision <span class="token keyword">for</span> a database.
+ downgrade           Revert to a previous version.
+ edit                Edit revision script<span class="token punctuation">(</span>s<span class="token punctuation">)</span> using <span class="token variable">$EDITOR</span><span class="token keyword">.</span>
+ heads               Show current available heads <span class="token keyword">in</span> the script directory.
+ <span class="token function">history</span>             List changeset scripts <span class="token keyword">in</span> chronological order.
+ init                Initialize a new scripts directory.  创建一个新的alembic 仓库
+ list_templates      List available templates.
+ merge               Merge two revisions together. Creates a new migration
+                     file.
+ revision            Create a new revision file.
+ show                Show the revision<span class="token punctuation">(</span>s<span class="token punctuation">)</span> denoted by the given symbol.
+ stamp               <span class="token string">'stamp'</span> the revision table with the given revision<span class="token punctuation">;</span>
+                     don't run any migrations.
+ upgrade             Upgrade to a later version.
+
+init:创建一个alembic仓库
+revision:创建一个新的版本文件
+--autogenerate:自动将当前模型的修改，生成迁移脚本
+-m:本次迁移做了哪些修改，用户可以指定这个参数，方便回顾
+upgrade:将指定版本的迁移文档映射到数据库中，会执行版本文档中的upgrade函数
+head:代表当前的迁移脚本的版本号
+downgrade:会执行指定版本的迁移文档中的downgrade函数
+heads:展示当前可用的heads脚本文档
+history:列出所有的迁移版本及其信息
+current:展示当前数据库中的版本号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 
             </div>
@@ -817,7 +798,7 @@ client_secret <span class="token operator">=</span> <span class="token string">'
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/05/oauth2-demo-md/">https://www.wenyan.online/2020/09/05/oauth2-demo-md/</a>
+                    <a href="https://www.wenyan.online/2020/09/06/alembic/">https://www.wenyan.online/2020/09/06/alembic/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -855,16 +836,20 @@ client_secret <span class="token operator">=</span> <span class="token string">'
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
+                                </a>
+                            
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
+                                </a>
+                            
                                 <a href="/tags/Flask/">
                                     <span class="chip bg-color">Flask</span>
                                 </a>
                             
-                                <a href="/tags/OAuth2-0/">
-                                    <span class="chip bg-color">OAuth2.0</span>
-                                </a>
-                            
-                                <a href="/tags/Github/">
-                                    <span class="chip bg-color">Github</span>
+                                <a href="/tags/alembic/">
+                                    <span class="chip bg-color">alembic</span>
                                 </a>
                             
                         </div>
@@ -1295,9 +1280,10 @@ client_secret <span class="token operator">=</span> <span class="token string">'
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/06/alembic/">
                     <div class="card-image">
@@ -1314,9 +1300,9 @@ client_secret <span class="token operator">=</span> <span class="token string">'
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1329,6 +1315,7 @@ client_secret <span class="token operator">=</span> <span class="token string">'
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1359,23 +1346,23 @@ client_secret <span class="token operator">=</span> <span class="token string">'
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/02/flaskwebonline-md/">
+                <a href="/2020/09/05/oauth2-demo-md/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599051996097-10247.png" class="responsive-img" alt="Flask在线部署">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290439208-10275.png" class="responsive-img" alt="OAuth2.0协议介绍">
                         
-                        <span class="card-title">Flask在线部署</span>
+                        <span class="card-title">OAuth2.0协议介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在线部署Flask
+                            OAuth2.0 协议介绍和学习
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-05
                             </span>
                         <span class="publish-author">
                             
@@ -1388,16 +1375,16 @@ client_secret <span class="token operator">=</span> <span class="token string">'
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
-                    </a>
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
                     <a href="/tags/Flask/">
                         <span class="chip bg-color">Flask</span>
+                    </a>
+                    
+                    <a href="/tags/OAuth2-0/">
+                        <span class="chip bg-color">OAuth2.0</span>
+                    </a>
+                    
+                    <a href="/tags/Github/">
+                        <span class="chip bg-color">Github</span>
                     </a>
                     
                 </div>
