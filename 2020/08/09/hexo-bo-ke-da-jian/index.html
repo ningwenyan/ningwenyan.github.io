@@ -1550,29 +1550,35 @@ $ vim themes/hexo-theme-matery/_config.yml<span aria-hidden="true" class="line-n
 <h3 id="16-使用脑图工具"><a href="#16-使用脑图工具" class="headerlink" title="16.使用脑图工具"></a>16.使用脑图工具</h3><blockquote>
 <pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> hexo-simple-mindmap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>写新文章时,在需要脑图的地方,如下创建(尺寸有三种规格:<code>mindmap-sm</code>,<code>mindmap-md</code> 和 <code>mindmap-lg</code>)</p>
-<pre><code>{% pullquote mindmap mindmap-md %}
-> - 知识图谱
->   - Scala
->   - Python
->   - java
->       - jvm
->  - 消息队列
->     - kafka
->     - pulsar
-> {% endpullquote %}</code></pre>
+<pre class="line-numbers language-text"><code class="language-text">{% pullquote mindmap mindmap-lg %}
+> 
+> - software
+> 	- 思维导图
+> 		- 百度脑图
+> 	- 输入法
+> 		- 搜狗拼音
+> 		- 百度输入法
+> 	- 个人知识系统
+> 		- 为知笔记
+> 		- Vnote+坚果云
+> 
+> {% endpullquote %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意:不能使用<code>markdown</code>中<code>&gt;</code>缩进显示</p>
 </blockquote>
-<blockquote class="pullquote mindmap mindmap-md"><ul>
-<li>知识图谱<ul>
-<li>Scala</li>
-<li>Python</li>
-<li>java<ul>
-<li>jvm</li>
+<blockquote class="pullquote mindmap mindmap-lg"><ul>
+<li>software<ul>
+<li>思维导图<ul>
+<li>百度脑图</li>
 </ul>
 </li>
-<li>消息队列<ul>
-<li>kafka</li>
-<li>pulsar</li>
+<li>输入法<ul>
+<li>搜狗拼音</li>
+<li>百度输入法</li>
+</ul>
+</li>
+<li>个人知识系统<ul>
+<li>为知笔记</li>
+<li>Vnote+坚果云</li>
 </ul>
 </li>
 </ul>
@@ -1684,7 +1690,7 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-3/1599143132253-10271.png" alt="10271"></p>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
 
