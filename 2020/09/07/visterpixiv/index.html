@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Python Flask MySQL alembic">
+    <meta name="keywords" content="Pixiv Heroku Shadowsocks">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MySQL版本管理工具alembic | 文彦Blog</title>
+    <title>登录浏览P站 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599404990051-84109093-14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MySQL版本管理工具alembic</h1>
+                    <h1 class="description center-align post-title">登录浏览P站</h1>
                 </div>
             </div>
         </div>
@@ -432,20 +432,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Heroku/">
+                                <span class="chip bg-color">Heroku</span>
                             </a>
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/Shadowsocks/">
+                                <span class="chip bg-color">Shadowsocks</span>
                             </a>
                         
-                            <a href="/tags/Flask/">
-                                <span class="chip bg-color">Flask</span>
-                            </a>
-                        
-                            <a href="/tags/alembic/">
-                                <span class="chip bg-color">alembic</span>
+                            <a href="/tags/Pixiv/">
+                                <span class="chip bg-color">Pixiv</span>
                             </a>
                         
                     </div>
@@ -456,8 +452,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SQLAlchemy/" class="post-category">
-                                SQLAlchemy
+                            <a href="/categories/Heroku-Shadowsocks/" class="post-category">
+                                Heroku Shadowsocks
                             </a>
                         
                     </div>
@@ -469,7 +465,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-06
+                    2020-09-07
                 </div>
                 
 
@@ -485,294 +481,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="alembic"><a href="#alembic" class="headerlink" title="alembic"></a><code>alembic</code></h2><h3 id="1-什么是alembic"><a href="#1-什么是alembic" class="headerlink" title="1. 什么是alembic"></a>1. 什么是<code>alembic</code></h3><blockquote>
-<p>随着项目业务需求的不断变更,数据库的表结构修改难以避免,此时就需要对数据库的修改加以记录和控制,便于项目的版本管理和随意升级和降级.</p>
-<p><code>alembic</code> 很好的解决了这个问题,<code>alembic</code> 是<code>SQLAlchemy</code>的作者开发的<code>Python</code>数据库版本管理工具.</p>
-<p><a href="https://alembic.sqlalchemy.org/en/latest/tutorial.html#the-migration-environment" target="_blank" rel="noopener">官网</a></p>
+                <h2 id="部署访问Pivix"><a href="#部署访问Pivix" class="headerlink" title="部署访问Pivix"></a>部署访问<code>Pivix</code></h2><img src="https://tva1.sinaimg.cn/large/a20ab060gy1giif723wstj21o01o0kjo.jpg" alt="4M" style="zoom:50%;">
+
+
+
+<h3 id="使用heroku免费部署shadowsocks"><a href="#使用heroku免费部署shadowsocks" class="headerlink" title="使用heroku免费部署shadowsocks"></a>使用<code>heroku</code>免费部署<code>shadowsocks</code></h3><blockquote>
+<p>访问<a href="https://www.heroku.com/" target="_blank" rel="noopener">heroku</a>,并注册一个账户,需要说明的是最好使用<code>google mail / outlook mail</code>,不要使用<code>qq\163</code>,因为大概率收不到激活邮件.</p>
+<p>免费账户有如下限制:</p>
+<ul>
+<li>能够使用<code>512M </code>内存</li>
+<li><code>30min </code>无人访问后应用休眠</li>
+<li>应用每个月 <code>500h</code> 的免费活动时间</li>
+</ul>
+<p>对于一个轻度应用来说,这应该是足够了.</p>
 </blockquote>
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash">$ conda <span class="token function">install</span> alembic<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>alembic</code> 需要<code>sqlalchemy</code> 和数据库控制工具如<code>pymysql</code> 的支持,确保安装了这两个工具.</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ conda <span class="token function">install</span> sqlalchemy
-$ conda <span class="token function">install</span> pymysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="3-基本流程"><a href="#3-基本流程" class="headerlink" title="3.基本流程"></a>3.基本流程</h3><blockquote>
+<h4 id="创建shadowsocks-APP"><a href="#创建shadowsocks-APP" class="headerlink" title="创建shadowsocks APP"></a>创建<code>shadowsocks APP</code></h4><blockquote>
 <ol>
-<li>初始化</li>
-<li>修改<code>init</code>配置文件</li>
-<li>修改<code>env.py</code></li>
-<li>创建新的迁移脚本</li>
-<li>变更数据库版本<ol>
-<li>升级数据库版本</li>
-<li>降级数据库版本</li>
-</ol>
+<li><p>点击 <a href="https://heroku.com/deploy?template=https://github.com/onplus/shadowsocks-heroku/tree/re" target="_blank" rel="noopener"><img src="https://www.herokucdn.com/deploy/button.svg"></a> , 一键部署到heroku</p>
+</li>
+<li><p>设置 加密算法和app 密码</p>
 </li>
 </ol>
+<p><img src="https://user-images.githubusercontent.com/31188782/31310674-e783c9e4-abce-11e7-87d2-48f328e74169.JPG" alt="default"></p>
+<p>支持的加密算法类型如下<a href="https://github.com/mrluanma/shadowsocks-heroku#supported-ciphers" target="_blank" rel="noopener">https://github.com/mrluanma/shadowsocks-heroku#supported-ciphers</a></p>
+<p>设置完成后点击 <strong>Deploy app</strong>，等待部署完成后，点击最下方的 <strong>View</strong> 按钮，如果在新标签页看到下面的这句话就代表部署成功了</p>
+<pre class="line-numbers language-html"><code class="language-html">Welcome to Heroku https://github.com/onplus/shadowsocks-heroku<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-<h4 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1.初始化"></a>1.初始化</h4><blockquote>
-<p>先创建一个<code>sqlalchemy</code> 的<code>ORM</code>映射:</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
-存在数据库 alembic_demo
-如果不存在, create database alembic_demo
-"""</span>
+<h4 id="启动客户端"><a href="#启动客户端" class="headerlink" title="启动客户端"></a>启动客户端</h4><blockquote>
+<ol>
+<li><p>下载对应版本的客户端:<a href="https://github.com/onplus/shadowsocks-heroku/releases/tag/0.9.10.1.%E7%94%B1%E4%BA%8E%E6%88%91%E4%BD%BF%E7%94%A8%E7%9A%84%60Ubuntu%60,%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%98%AF%E6%BA%90%E7%A0%81%E7%89%88%E6%9C%AC" target="_blank" rel="noopener">https://github.com/onplus/shadowsocks-heroku/releases/tag/0.9.10.1.由于我使用的`Ubuntu`,下载的是源码版本</a>.</p>
+</li>
+<li><p>修改<code>config.json</code>参数,需要注意的是<code>server</code>是创建的<code>app name</code>,密码是<code>app password</code></p>
+</li>
+</ol>
+<pre class="line-numbers language-json"><code class="language-json">  <span class="token property">"server"</span><span class="token operator">:</span> <span class="token string">"ning.herokuapp.com"</span><span class="token punctuation">,</span>
+  <span class="token property">"local_address"</span><span class="token operator">:</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
+  <span class="token property">"scheme"</span><span class="token operator">:</span> <span class="token string">"ws"</span><span class="token punctuation">,</span>
+  <span class="token property">"local_port"</span><span class="token operator">:</span> <span class="token number">1080</span><span class="token punctuation">,</span>
+  <span class="token property">"remote_port"</span><span class="token operator">:</span> <span class="token number">80</span><span class="token punctuation">,</span>
+  <span class="token property">"password"</span><span class="token operator">:</span> <span class="token string">"200"</span><span class="token punctuation">,</span>
+  <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token number">600</span><span class="token punctuation">,</span>
+  <span class="token property">"method"</span><span class="token operator">:</span> <span class="token string">"aes-256-cfb"</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>安装<code>nodejs</code>模块</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> package.json <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="4">
+<li>启动</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash">$ node local.js
+<span class="token comment" spellcheck="true"># 或者</span>
+$ <span class="token function">sudo</span> node local.js
 
-<span class="token keyword">from</span> sqlalchemy <span class="token keyword">import</span> Column<span class="token punctuation">,</span>ForeignKey<span class="token punctuation">,</span>Integer<span class="token punctuation">,</span>String
-<span class="token keyword">from</span> sqlalchemy <span class="token keyword">import</span> create_engine
-<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>orm <span class="token keyword">import</span> sessionmaker
-<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>ext<span class="token punctuation">.</span>declarative <span class="token keyword">import</span> declarative_base
-<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>orm <span class="token keyword">import</span>  relationship
-
-<span class="token comment" spellcheck="true"># 1.创建数据库连接</span>
-msg <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/alembic_demo'</span>
-engine <span class="token operator">=</span> create_engine<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 2.创建Session</span>
-Session <span class="token operator">=</span> sessionmaker<span class="token punctuation">(</span>bind<span class="token operator">=</span>engine<span class="token punctuation">)</span>
-session <span class="token operator">=</span> Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 3.创建Model</span>
-<span class="token comment" spellcheck="true"># 创建 Base</span>
-Base <span class="token operator">=</span> declarative_base<span class="token punctuation">(</span>bind<span class="token operator">=</span>engine<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 创建Model</span>
-
-<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
- __tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
-
- id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
- name <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-
- addresses <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'Address'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Address</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
- __tablename__ <span class="token operator">=</span> <span class="token string">'address'</span>
-
- id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
- email_address <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
- u_id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> ForeignKey<span class="token punctuation">(</span><span class="token string">'user.id'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-
- user <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'User'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span>
-
-<span class="token triple-quoted-string string">"""
-真实业务不能删除表,从新创建,必须做好版本控制
-Base.metadata.drop_all(engine)
-Base.metadata.create_all(engine)
-"""</span>
-<span class="token comment" spellcheck="true"># 添加数据</span>
-u1 <span class="token operator">=</span> User<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
-a1 <span class="token operator">=</span> Address<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>email_address<span class="token operator">=</span><span class="token string">'xx@xx.com'</span><span class="token punctuation">,</span>u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-a2 <span class="token operator">=</span> Address<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>email_address<span class="token operator">=</span><span class="token string">'xx1@xx.com'</span><span class="token punctuation">,</span>u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">]</span>
-
-session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
-session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后进行初始化操作,<code>alembic init &lt;YOUR_ALEMBIC_DIR&gt;</code></p>
-<p>这条命令默认会创建一个<code>&lt;YOUR_ALEMBIC_DIR&gt;</code> 的文件夹,所以最好能配置到项目的根目录中.</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> kning@kning-pc:$ alembic init alembic
-Creating directory /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-Creating directory /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/versions <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/env.py <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/script.py.mako <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/README <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic.ini <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-Please edit configuration/connection/logging settings <span class="token keyword">in</span>
-<span class="token string">'/home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic.ini'</span> before proceeding.
-
-<span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> kning@kning-pc:$ tree
-<span class="token keyword">.</span>
-├── alembic                                     <span class="token comment" spellcheck="true"># &lt;YOUR_ALEMBIC_DIR> 创建的文件夹名字</span>
-│   ├── env.py                               <span class="token comment" spellcheck="true">#  迁移脚本</span>
-│   ├── README                     
-│   ├── script.py.mako             
-│   └── versions                          <span class="token comment" spellcheck="true"># 数据库对应版本文件夹</span>
-├── alembic.ini                            <span class="token comment" spellcheck="true"># alembic配置文件</span>
-└── sqlalchemy_model.py            <span class="token comment" spellcheck="true"># 项目文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+server listening at <span class="token punctuation">{</span> address: <span class="token string">'127.0.0.1'</span>, family: <span class="token string">'IPv4'</span>, port: 1080 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<h4 id="2-修改init-配置文件"><a href="#2-修改init-配置文件" class="headerlink" title="2.修改init 配置文件"></a>2.修改<code>init</code> 配置文件</h4><blockquote>
-<p>默认创建完毕后,<code>alembic</code> 并不知道数据库是如何连接的.所以需要修改它的配置文件.</p>
-<pre class="line-numbers language-ini"><code class="language-ini">$ vim  alembic.ini
-
-...
-# 找到 sqlalchemy.url <span class="token attr-value"><span class="token punctuation">=</span> driver://user:pass@localhost/dbname</span>
-# 修改为和 sqlalchemy 的engine 一样的格式
-<span class="token constant">sqlalchemy.url</span> <span class="token attr-value"><span class="token punctuation">=</span> mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/alembic_demo</span>
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>更多的配置选项参考官网.</p>
+<h4 id="浏览器设置"><a href="#浏览器设置" class="headerlink" title="浏览器设置"></a>浏览器设置</h4><blockquote>
+<p><code>Firefox/Chrome</code>都可以安装<code>Proxy SwitchyOmega</code>:<a href="https://github.com/FelisCatus/SwitchyOmega/releases" target="_blank" rel="noopener">下载</a>:<a href="https://github.com/FelisCatus/SwitchyOmega/releases" target="_blank" rel="noopener">https://github.com/FelisCatus/SwitchyOmega/releases</a></p>
+<p>下载后,设置代理如下:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599381375318-10279.png" alt="10279"></p>
+<p>写入的地址是<code>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</code>,这是一个需要代理的列表总和.</p>
 </blockquote>
-<h4 id="3-修改env-py"><a href="#3-修改env-py" class="headerlink" title="3.修改env.py"></a>3.修改<code>env.py</code></h4><blockquote>
-<p>在<code>alembic</code> 中调用的是<code>sqlalchemy</code>的元类(<code>Base</code>)去操作,这需要手动的去改动<code>env.py</code> 文件.</p>
-<pre class="line-numbers language-python"><code class="language-python">$ vim  alembic<span class="token operator">/</span>env<span class="token punctuation">.</span>py
-
-<span class="token comment" spellcheck="true"># 找到target_metadata = None 这行,手动指定 metadata 是在哪个文件中.</span>
-<span class="token comment" spellcheck="true"># 比如这里 metadata 是 Base, Base指定在了sqlalchemy_model.py 这个项目文件中</span>
-
-<span class="token triple-quoted-string string">"""
-__file__：当前文档（env.py）
-os.path.dirname(__file__)：获取当前文档的目录
-os.path.dirname(os.path.dirname(__file__))：获取当前文档目录的上一级目录
-sys.path: python寻找导入的包的所有路径
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-"""</span>
-<span class="token keyword">import</span> os<span class="token punctuation">,</span>sys
-sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 导入Base</span>
-<span class="token keyword">import</span> sqlalchemy_model
-
-<span class="token comment" spellcheck="true"># 指定</span>
-target_metadata <span class="token operator">=</span> sqlalchemy_model<span class="token punctuation">.</span>Base<span class="token punctuation">.</span>metadata<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="访问pixvix"><a href="#访问pixvix" class="headerlink" title="访问pixvix"></a>访问<code>pixvix</code></h4><blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599381695799-10280.png" alt="10280"></p>
 </blockquote>
-<h4 id="4-创建新的迁移脚本"><a href="#4-创建新的迁移脚本" class="headerlink" title="4.创建新的迁移脚本"></a>4.创建新的迁移脚本</h4><blockquote>
-<p>进行创建第一次的<code>ORM</code>对应</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ alembic revision --autogenerate -m <span class="token string">'first commit'</span>
-
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
-INFO  <span class="token punctuation">[</span>alembic.autogenerate.compare<span class="token punctuation">]</span> Detected added table <span class="token string">'user'</span>
-INFO  <span class="token punctuation">[</span>alembic.autogenerate.compare<span class="token punctuation">]</span> Detected added table <span class="token string">'address'</span>
-Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/versions/8eee680c6ffd_first_commit.py <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>查看<code>mysql</code> </p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> show tables;                                       
-+------------------------+
-| Tables_in_alembic_demo |
-+------------------------+
-| alembic_version        |
-+------------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>它会生成一张纪律当前版本号 的表</p>
+<h3 id="下载图片"><a href="#下载图片" class="headerlink" title="下载图片"></a>下载图片</h3><blockquote>
+<p>使用油猴脚本</p>
 </blockquote>
-<h4 id="5-运行第一次迁移"><a href="#5-运行第一次迁移" class="headerlink" title="5.运行第一次迁移"></a>5.运行第一次迁移</h4><blockquote>
-<p>创建迁移脚本后,并没有创建<code>SQLAlchemy  Model</code> 对应的表结构.这需要执行第一次的迁移</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ alembic upgrade <span class="token function">head</span>
-
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Running upgrade  -<span class="token operator">></span> 8eee680c6ffd, first commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以看到<code>alembic</code> 指针指向了第一次的版本号.查看<code>mysql</code> 数据库</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> show tables;                                                        
-+------------------------+
-| Tables_in_alembic_demo |
-+------------------------+
-| address                |
-| alembic_version        |
-| user                   |
-+------------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在生成了<code>ORM</code>对应的表结构.</p>
+<h4 id="油猴安装"><a href="#油猴安装" class="headerlink" title="油猴安装"></a>油猴安装</h4><blockquote>
+<p>油猴官网安装：<a href="https://tampermonkey.net/" target="_blank" rel="noopener">https://tampermonkey.net/</a></p>
+<p>访问官方商店,在<code>Firefox/chrome</code>商店中安装油猴脚本.</p>
+<p>下载所需脚本:<a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></p>
 </blockquote>
-<h4 id="6-变更数据库版本"><a href="#6-变更数据库版本" class="headerlink" title="6.变更数据库版本"></a>6.变更数据库版本</h4><blockquote>
-<p>现在在<code>sqlalchemy_model</code> 中添加新的列</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
-__tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
-
-id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-name <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-age <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">)</span>
-
-addresses <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'Address'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>生成新的数据库迁移脚本,并迁移</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ alembic revision --autogenerate -m <span class="token string">'add User.age'</span>
-
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
-INFO  <span class="token punctuation">[</span>alembic.autogenerate.compare<span class="token punctuation">]</span> Detected added column <span class="token string">'user.age'</span>
-Generating /home/kning/My_Note/Python3_learn/Flask/code/alembic_demo/alembic/versions/154a8d766856_add_user_age.py <span class="token punctuation">..</span>.  <span class="token keyword">done</span>
-
-$ alembic upgrade <span class="token function">head</span>
-
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Running upgrade 8eee680c6ffd -<span class="token operator">></span> 154a8d766856, add User.age<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>查看<code>mysql</code></p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> desc user;                                                  
-+-------+-------------+------+-----+---------+----------------+
-| Field | Type        | Null | Key | Default | Extra          |
-+-------+-------------+------+-----+---------+----------------+
-| id    | int(11)     | NO   | PRI | <null>  | auto_increment |
-| name  | varchar(25) | NO   |     | <null>  |                |
-| age   | int(11)     | YES  |     | <null>  |                |
-+-------+-------------+------+-----+---------+----------------+
-
-mysql root@192.168.101:alembic_demo> select * from alembic_version;                                                                  
-+--------------+
-| version_num  |
-+--------------+
-| 154a8d766856 |
-+--------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以看到<code>user</code> 表中确实添加了新的列,<code>alembic_version</code> 表中值也指向了最新生成的<code>154a8d766856</code></p>
-<p>可以执行降级,退回到以前的版本</p>
-<pre class="line-numbers language-python"><code class="language-python">$ alembic downgrade <span class="token number">8eee680c6ffd</span> <span class="token comment" spellcheck="true">#&lt;== 版本号码</span>
-
-INFO  <span class="token punctuation">[</span>alembic<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>migration<span class="token punctuation">]</span> Context impl MySQLImpl<span class="token punctuation">.</span>
-INFO  <span class="token punctuation">[</span>alembic<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>migration<span class="token punctuation">]</span> Will assume non<span class="token operator">-</span>transactional DDL<span class="token punctuation">.</span>
-INFO  <span class="token punctuation">[</span>alembic<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>migration<span class="token punctuation">]</span> Running downgrade <span class="token number">154a8d766856</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">8eee680c6ffd</span><span class="token punctuation">,</span> add User<span class="token punctuation">.</span>age<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>查看<code>mysql</code></p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:alembic_demo> desc user;                                              
-+-------+-------------+------+-----+---------+----------------+
-| Field | Type        | Null | Key | Default | Extra          |
-+-------+-------------+------+-----+---------+----------------+
-| id    | int(11)     | NO   | PRI | <null>  | auto_increment |
-| name  | varchar(25) | NO   |     | <null>  |                |
-+-------+-------------+------+-----+---------+----------------+
-
-
-mysql root@192.168.101:alembic_demo> select * from alembic_version;                                                         
-+--------------+
-| version_num  |
-+--------------+
-| 8eee680c6ffd |
-+--------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以看到在<code>mysql</code>中表确实回到了以前的状态.<code>upgrade</code>和<code>downgrade</code>都可以指定版本号</p>
-<pre class="line-numbers language-python"><code class="language-python">alembic upgrade <span class="token operator">&lt;</span>version<span class="token operator">></span>
-alembic downgrade <span class="token operator">&lt;</span>version<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>只不过<code>head</code> 参数指向了最新的版本号码,可以使用<code>alembic heads</code> 查看最新的版本号,<code>alembic current</code> 查看当前版本号.</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span>$ alembic heads
-154a8d766856 <span class="token punctuation">(</span>head<span class="token punctuation">)</span>
-
-<span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> $ alembic current
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Context impl MySQLImpl.
-INFO  <span class="token punctuation">[</span>alembic.runtime.migration<span class="token punctuation">]</span> Will assume non-transactional DDL.
-8eee680c6ffd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>需要注意的是,即是数据库中表的版本回到了以前的版本号,但是<code>sqlalchemy_model</code> 中的代码并没有改变.需要手动去修改.</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span>
-__tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
-
-id <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-name <span class="token operator">=</span> Column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-age <span class="token operator">=</span> Column<span class="token punctuation">(</span>Integer<span class="token punctuation">)</span>
-
-addresses <span class="token operator">=</span> relationship<span class="token punctuation">(</span><span class="token string">'Address'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="pixvix增强脚本"><a href="#pixvix增强脚本" class="headerlink" title="pixvix增强脚本"></a><code>pixvix</code>增强脚本</h4><blockquote>
+<p>访问<a href="https://greasyfork.org/zh-CN,%E6%89%BE%E5%88%B0%60pixvix%E5%A2%9E%E5%BC%BA%E8%84%9A%E6%9C%AC%60%E5%B9%B6%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85,%E6%8C%89%E7%85%A7%E5%AE%8C%E6%AF%95%E5%90%8E,%E5%8F%AF%E4%BB%A5%E8%A7%82%E7%9C%8B%E6%95%88%E6%9E%9C" target="_blank" rel="noopener">https://greasyfork.org/zh-CN,找到`pixvix增强脚本`并下载安装,按照完毕后,可以观看效果</a></p>
 </blockquote>
-<h3 id="4-alembic-常用参数"><a href="#4-alembic-常用参数" class="headerlink" title="4.alembic 常用参数"></a>4.<code>alembic</code> 常用参数</h3><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash">$ alembic -h
-
-positional arguments:
-<span class="token punctuation">{</span>branches,current,downgrade,edit,heads,history,init,list_templates,merge,revision,show,stamp,upgrade<span class="token punctuation">}</span>
- branches            Show current branch points.
- current             Display the current revision <span class="token keyword">for</span> a database.
- downgrade           Revert to a previous version.
- edit                Edit revision script<span class="token punctuation">(</span>s<span class="token punctuation">)</span> using <span class="token variable">$EDITOR</span><span class="token keyword">.</span>
- heads               Show current available heads <span class="token keyword">in</span> the script directory.
- <span class="token function">history</span>             List changeset scripts <span class="token keyword">in</span> chronological order.
- init                Initialize a new scripts directory.  创建一个新的alembic 仓库
- list_templates      List available templates.
- merge               Merge two revisions together. Creates a new migration
-                     file.
- revision            Create a new revision file.
- show                Show the revision<span class="token punctuation">(</span>s<span class="token punctuation">)</span> denoted by the given symbol.
- stamp               <span class="token string">'stamp'</span> the revision table with the given revision<span class="token punctuation">;</span>
-                     don't run any migrations.
- upgrade             Upgrade to a later version.
-
-init:创建一个alembic仓库
-revision:创建一个新的版本文件
---autogenerate:自动将当前模型的修改，生成迁移脚本
--m:本次迁移做了哪些修改，用户可以指定这个参数，方便回顾
-upgrade:将指定版本的迁移文档映射到数据库中，会执行版本文档中的upgrade函数
-head:代表当前的迁移脚本的版本号
-downgrade:会执行指定版本的迁移文档中的downgrade函数
-heads:展示当前可用的heads脚本文档
-history:列出所有的迁移版本及其信息
-current:展示当前数据库中的版本号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="常用下载"><a href="#常用下载" class="headerlink" title="常用下载"></a>常用下载</h3><blockquote>
+<p>自己常用的<code>pivix</code>图片下载<code>https://pixiviz.pwp.app/</code></p>
+<ul>
+<li><code>https://pixivic.com</code></li>
+</ul>
 </blockquote>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://github.com/onplus/shadowsocks-heroku" target="_blank" rel="noopener">项目地址</a></p>
+<p><a href="https://biu.tls.moe/#/" target="_blank" rel="noopener">pixivbiu</a></p>
+</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 
             </div>
             <hr/>
@@ -798,7 +592,7 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/06/alembic/">https://www.wenyan.online/2020/09/06/alembic/</a>
+                    <a href="https://www.wenyan.online/2020/09/07/visterpixiv/">https://www.wenyan.online/2020/09/07/visterpixiv/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -836,20 +630,16 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Heroku/">
+                                    <span class="chip bg-color">Heroku</span>
                                 </a>
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/Shadowsocks/">
+                                    <span class="chip bg-color">Shadowsocks</span>
                                 </a>
                             
-                                <a href="/tags/Flask/">
-                                    <span class="chip bg-color">Flask</span>
-                                </a>
-                            
-                                <a href="/tags/alembic/">
-                                    <span class="chip bg-color">alembic</span>
+                                <a href="/tags/Pixiv/">
+                                    <span class="chip bg-color">Pixiv</span>
                                 </a>
                             
                         </div>
@@ -1280,9 +1070,10 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/07/visterpixiv/">
                     <div class="card-image">
@@ -1300,9 +1091,9 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1315,6 +1106,7 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1341,28 +1133,32 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/05/oauth2-demo-md/">
+                <a href="/2020/09/06/alembic/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290439208-10275.png" class="responsive-img" alt="OAuth2.0协议介绍">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599404990051-84109093-14.jpg" class="responsive-img" alt="MySQL版本管理工具alembic">
                         
-                        <span class="card-title">OAuth2.0协议介绍</span>
+                        <span class="card-title">MySQL版本管理工具alembic</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OAuth2.0 协议介绍和学习
+                            MySQL版本管理工具alembic
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            文彦
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SQLAlchemy/" class="post-category">
+                                    SQLAlchemy
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1370,16 +1166,20 @@ current:展示当前数据库中的版本号<span aria-hidden="true" class="line
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
                     <a href="/tags/Flask/">
                         <span class="chip bg-color">Flask</span>
                     </a>
                     
-                    <a href="/tags/OAuth2-0/">
-                        <span class="chip bg-color">OAuth2.0</span>
-                    </a>
-                    
-                    <a href="/tags/Github/">
-                        <span class="chip bg-color">Github</span>
+                    <a href="/tags/alembic/">
+                        <span class="chip bg-color">alembic</span>
                     </a>
                     
                 </div>

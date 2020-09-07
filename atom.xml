@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-06T15:10:41.458Z</updated>
+  <updated>2020-09-07T13:50:37.457Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>登录浏览P站</title>
+    <link href="https://www.wenyan.online/2020/09/07/visterpixiv/"/>
+    <id>https://www.wenyan.online/2020/09/07/visterpixiv/</id>
+    <published>2020-09-07T13:28:55.000Z</published>
+    <updated>2020-09-07T13:50:37.457Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;部署访问Pivix&quot;&gt;&lt;a href=&quot;#部署访问Pivix&quot; class=&quot;headerlink&quot; title=&quot;部署访问Pivix&quot;&gt;&lt;/a&gt;部署访问&lt;code&gt;Pivix&lt;/code&gt;&lt;/h2&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Heroku Shadowsocks" scheme="https://www.wenyan.online/categories/Heroku-Shadowsocks/"/>
+    
+    
+      <category term="Heroku" scheme="https://www.wenyan.online/tags/Heroku/"/>
+    
+      <category term="Shadowsocks" scheme="https://www.wenyan.online/tags/Shadowsocks/"/>
+    
+      <category term="Pixiv" scheme="https://www.wenyan.online/tags/Pixiv/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL版本管理工具alembic</title>
