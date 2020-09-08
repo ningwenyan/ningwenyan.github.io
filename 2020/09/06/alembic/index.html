@@ -557,15 +557,7 @@ Base <span class="token operator">=</span> declarative_base<span class="token pu
 真实业务不能删除表,从新创建,必须做好版本控制
 Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
-"""</span>
-<span class="token comment" spellcheck="true"># 添加数据</span>
-u1 <span class="token operator">=</span> User<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
-a1 <span class="token operator">=</span> Address<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>email_address<span class="token operator">=</span><span class="token string">'xx@xx.com'</span><span class="token punctuation">,</span>u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-a2 <span class="token operator">=</span> Address<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>email_address<span class="token operator">=</span><span class="token string">'xx1@xx.com'</span><span class="token punctuation">,</span>u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">]</span>
-
-session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
-session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后进行初始化操作,<code>alembic init &lt;YOUR_ALEMBIC_DIR&gt;</code></p>
 <p>这条命令默认会创建一个<code>&lt;YOUR_ALEMBIC_DIR&gt;</code> 的文件夹,所以最好能配置到项目的根目录中.</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>learnpy<span class="token punctuation">)</span> kning@kning-pc:$ alembic init alembic
@@ -773,7 +765,108 @@ heads:展示当前可用的heads脚本文档
 history:列出所有的迁移版本及其信息
 current:展示当前数据库中的版本号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<h3 id="5-alembic在Flask中的应用"><a href="#5-alembic在Flask中的应用" class="headerlink" title="5.alembic在Flask中的应用"></a>5.<code>alembic</code>在<code>Flask</code>中的应用</h3><blockquote>
+<p>如果在<code>flask</code> 中使用的是<code>sqlalchemy-flask</code> ,而不是<code>sqlalchemy</code> 的话,<code>alembic</code> 中的元类也会有不同的映射.</p>
+<p>比如,新建一个<code>flask</code> 项目,项目目录如下:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">─ flask_sqlalchemy_alembic
+├── app.py
+├── static
+└── templates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对这个目录进行<code>alembic</code>数据库版本控制</p>
+</blockquote>
+<h4 id="1-创建flask-配置文件"><a href="#1-创建flask-配置文件" class="headerlink" title="1.创建flask 配置文件"></a>1.创建<code>flask</code> 配置文件</h4><blockquote>
+<p>首先对<code>flask</code> 生成一个配置文件,把默认的配置都放置在配置文件中</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ vim config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment" spellcheck="true"># 开启Debug</span>
+TEMPLATES_AUTO_RELOAD <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment" spellcheck="true"># 模板自动加载</span>
+DB_URI <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/flask_alembic_demo'</span> <span class="token comment" spellcheck="true"># 确保数据库存在 # 确保数据库存在</span>
+<span class="token comment" spellcheck="true"># 指定数据库连接</span>
+SQLALCHEMY_DATABASE_URI <span class="token operator">=</span> DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-修改app-py"><a href="#2-修改app-py" class="headerlink" title="2.修改app.py"></a>2.修改<code>app.py</code></h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
 
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span><span class="token string">'config'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 指定配置文件</span>
+
+<span class="token comment" spellcheck="true"># 创建Model</span>
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+ __tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
+
+ id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+ user <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+ <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+ app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-初始化alembic"><a href="#3-初始化alembic" class="headerlink" title="3.初始化alembic"></a>3.初始化<code>alembic</code></h4><blockquote>
+<p>进入到根目录初始化<code>alembic</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cd</span> flask_sqlalchemy_alembic
+$ alembic init alembic<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="4-修改init-配置文件"><a href="#4-修改init-配置文件" class="headerlink" title="4.修改init 配置文件"></a>4.修改<code>init</code> 配置文件</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ vim  ./alembic.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-ini"><code class="language-ini"># 找到并修改为 和 engine 一样的字段
+<span class="token constant">sqlalchemy.url</span> <span class="token attr-value"><span class="token punctuation">=</span> mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/flask_alembic_demo</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="5-修改env-py"><a href="#5-修改env-py" class="headerlink" title="5.修改env.py"></a>5.修改<code>env.py</code></h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ vim ./alembic/env.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 加入系统查找路径</span>
+<span class="token keyword">import</span> os<span class="token punctuation">,</span>sys
+sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">import</span> app
+
+<span class="token comment" spellcheck="true"># 找到并修改</span>
+target_metadata <span class="token operator">=</span> app<span class="token punctuation">.</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">.</span>metadata<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="6-创建迁移脚本"><a href="#6-创建迁移脚本" class="headerlink" title="6.创建迁移脚本"></a>6.创建迁移脚本</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ alembic revision --autogenerate -m <span class="token string">'first commit'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h4 id="7-切换数据库版本"><a href="#7-切换数据库版本" class="headerlink" title="7.切换数据库版本"></a>7.切换数据库版本</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ alembic upgrade <span class="token function">head</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看<code>mysql</code>:</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:flask_alembic_demo> show tables;                                            
++------------------------------+
+| Tables_in_flask_alembic_demo |
++------------------------------+
+| alembic_version              |
+| user                         |
++------------------------------+
+
+mysql root@192.168.101:flask_alembic_demo> desc user;                    
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | <null>  | auto_increment |
+| user  | varchar(20) | NO   |     | <null>  |                |
++-------+-------------+------+-----+---------+----------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ tree
+flask_sqlalchemy_alembic
+├── alembic
+│   ├── env.py
+│   ├── __pycache__
+│   │   └── env.cpython-37.pyc
+│   ├── README
+│   ├── script.py.mako
+│   └── versions
+│       ├── a8a6381cf539_first_commit.py
+│       └── __pycache__
+│           └── a8a6381cf539_first_commit.cpython-37.pyc
+├── alembic.ini
+├── app.py
+├── config.py
+├── static
+└── templates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
 

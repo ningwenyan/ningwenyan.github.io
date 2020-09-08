@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-07T15:33:03.620Z</updated>
+  <updated>2020-09-08T14:59:03.287Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu软件推荐</title>
+    <link href="https://www.wenyan.online/2020/09/08/ubuntusoftware/"/>
+    <id>https://www.wenyan.online/2020/09/08/ubuntusoftware/</id>
+    <published>2020-09-08T14:52:56.000Z</published>
+    <updated>2020-09-08T14:59:03.287Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote class=&quot;pullquote mindmap
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Ubuntu" scheme="https://www.wenyan.online/categories/Ubuntu/"/>
+    
+    
+      <category term="Ubuntu" scheme="https://www.wenyan.online/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>登录浏览P站</title>
@@ -52,7 +79,7 @@
     <link href="https://www.wenyan.online/2020/09/06/alembic/"/>
     <id>https://www.wenyan.online/2020/09/06/alembic/</id>
     <published>2020-09-06T15:04:48.000Z</published>
-    <updated>2020-09-06T15:10:41.458Z</updated>
+    <updated>2020-09-08T14:17:30.224Z</updated>
     
     <summary type="html">
     
@@ -106,6 +133,33 @@
       <category term="OAuth2.0" scheme="https://www.wenyan.online/tags/OAuth2-0/"/>
     
       <category term="Github" scheme="https://www.wenyan.online/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客更新评论系统</title>
+    <link href="https://www.wenyan.online/2020/09/05/hexoupdatetalk/"/>
+    <id>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</id>
+    <published>2020-09-05T13:41:02.000Z</published>
+    <updated>2020-09-08T14:53:00.807Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Hexo更换留言系统&quot;&gt;&lt;a href=&quot;#Hexo更换留言系统&quot; class=&quot;headerlink&quot; title=&quot;Hexo更换留言系统&quot;&gt;&lt;/a&gt;&lt;code&gt;Hexo&lt;/code&gt;更换留言系统&lt;/h2&gt;&lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="hexo" scheme="https://www.wenyan.online/tags/hexo/"/>
+    
+      <category term="valine" scheme="https://www.wenyan.online/tags/valine/"/>
     
   </entry>
   

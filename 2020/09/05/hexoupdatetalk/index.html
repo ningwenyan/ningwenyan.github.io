@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Pixiv Heroku Shadowsocks">
+    <meta name="keywords" content="Hexo valine">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>登录浏览P站 | 文彦Blog</title>
+    <title>博客更新评论系统 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://tva1.sinaimg.cn/large/a20ab060ly1gij70iu9q8j20rl0f574j.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">登录浏览P站</h1>
+                    <h1 class="description center-align post-title">博客更新评论系统</h1>
                 </div>
             </div>
         </div>
@@ -432,31 +432,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Heroku/">
-                                <span class="chip bg-color">Heroku</span>
+                            <a href="/tags/hexo/">
+                                <span class="chip bg-color">hexo</span>
                             </a>
                         
-                            <a href="/tags/Shadowsocks/">
-                                <span class="chip bg-color">Shadowsocks</span>
-                            </a>
-                        
-                            <a href="/tags/Pixiv/">
-                                <span class="chip bg-color">Pixiv</span>
+                            <a href="/tags/valine/">
+                                <span class="chip bg-color">valine</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Heroku-Shadowsocks/" class="post-category">
-                                Heroku Shadowsocks
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -465,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-07
+                    2020-09-05
                 </div>
                 
 
@@ -481,92 +468,100 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="部署访问Pivix"><a href="#部署访问Pivix" class="headerlink" title="部署访问Pivix"></a>部署访问<code>Pivix</code></h2><img src="https://tva1.sinaimg.cn/large/a20ab060gy1giif723wstj21o01o0kjo.jpg" alt="4M" style="zoom:50%;">
-
-
-
-<h3 id="使用heroku免费部署shadowsocks"><a href="#使用heroku免费部署shadowsocks" class="headerlink" title="使用heroku免费部署shadowsocks"></a>使用<code>heroku</code>免费部署<code>shadowsocks</code></h3><blockquote>
-<p>访问<a href="https://www.heroku.com/" target="_blank" rel="noopener">heroku</a>,并注册一个账户,需要说明的是最好使用<code>google mail / outlook mail</code>,不要使用<code>qq\163</code>,因为大概率收不到激活邮件.</p>
-<p>免费账户有如下限制:</p>
+                <h2 id="Hexo更换留言系统"><a href="#Hexo更换留言系统" class="headerlink" title="Hexo更换留言系统"></a><code>Hexo</code>更换留言系统</h2><h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><blockquote>
+<p><code>Github</code>访问慢<br><code>Github</code>的注册账户才能留言<br>每次都会跳转页面<br>etc</p>
+</blockquote>
+<h3 id="Valine"><a href="#Valine" class="headerlink" title="Valine"></a><code>Valine</code></h3><blockquote>
+<p>项目地址:<code>https://valine.js.org/</code><br><code>https://github.com/DesertsP/Valine-Admin</code></p>
+</blockquote>
+<h4 id="cleancloud"><a href="#cleancloud" class="headerlink" title="cleancloud"></a><code>cleancloud</code></h4><blockquote>
 <ul>
-<li>能够使用<code>512M </code>内存</li>
-<li><code>30min </code>无人访问后应用休眠</li>
-<li>应用每个月 <code>500h</code> 的免费活动时间</li>
+<li>登录<code>cleancloud</code>国际版(注意一定是国际版),<a href="https://console.leancloud.app/" target="_blank" rel="noopener">注册</a>一个账户</li>
+<li>进入控制台并创建一个应用,选择使用开发版<br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij70iu9q8j20rl0f574j.jpg" alt="img"><br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij70iu3r7j20gx0cl3yt.jpg" alt="img"></li>
+<li>应用创建完毕后,选择使用<code>git</code>部署,地址为:<code>https://github.com/DesertsP/Valine-Admin.git</code><br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij7d6yuv0j20x50piqc9.jpg" alt="img"></li>
+<li>点击设置,添加环境变量</li>
 </ul>
-<p>对于一个轻度应用来说,这应该是足够了.</p>
-</blockquote>
-<h4 id="创建shadowsocks-APP"><a href="#创建shadowsocks-APP" class="headerlink" title="创建shadowsocks APP"></a>创建<code>shadowsocks APP</code></h4><blockquote>
-<ol>
-<li><p>点击 <a href="https://heroku.com/deploy?template=https://github.com/onplus/shadowsocks-heroku/tree/re" target="_blank" rel="noopener"><img src="https://www.herokucdn.com/deploy/button.svg"></a> , 一键部署到heroku</p>
-</li>
-<li><p>设置 加密算法和app 密码</p>
-</li>
-</ol>
-<p><img src="https://user-images.githubusercontent.com/31188782/31310674-e783c9e4-abce-11e7-87d2-48f328e74169.JPG" alt="default"></p>
-<p>支持的加密算法类型如下<a href="https://github.com/mrluanma/shadowsocks-heroku#supported-ciphers" target="_blank" rel="noopener">https://github.com/mrluanma/shadowsocks-heroku#supported-ciphers</a></p>
-<p>设置完成后点击 <strong>Deploy app</strong>，等待部署完成后，点击最下方的 <strong>View</strong> 按钮，如果在新标签页看到下面的这句话就代表部署成功了</p>
-<pre class="line-numbers language-html"><code class="language-html">Welcome to Heroku https://github.com/onplus/shadowsocks-heroku<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h4 id="启动客户端"><a href="#启动客户端" class="headerlink" title="启动客户端"></a>启动客户端</h4><blockquote>
-<ol>
-<li><p>下载对应版本的客户端:<a href="https://github.com/onplus/shadowsocks-heroku/releases/tag/0.9.10.1.%E7%94%B1%E4%BA%8E%E6%88%91%E4%BD%BF%E7%94%A8%E7%9A%84%60Ubuntu%60,%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%98%AF%E6%BA%90%E7%A0%81%E7%89%88%E6%9C%AC" target="_blank" rel="noopener">https://github.com/onplus/shadowsocks-heroku/releases/tag/0.9.10.1.由于我使用的`Ubuntu`,下载的是源码版本</a>.</p>
-</li>
-<li><p>修改<code>config.json</code>参数,需要注意的是<code>server</code>是创建的<code>app name</code>,密码是<code>app password</code></p>
-</li>
-</ol>
-<pre class="line-numbers language-json"><code class="language-json">  <span class="token property">"server"</span><span class="token operator">:</span> <span class="token string">"ning.herokuapp.com"</span><span class="token punctuation">,</span>
-  <span class="token property">"local_address"</span><span class="token operator">:</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
-  <span class="token property">"scheme"</span><span class="token operator">:</span> <span class="token string">"ws"</span><span class="token punctuation">,</span>
-  <span class="token property">"local_port"</span><span class="token operator">:</span> <span class="token number">1080</span><span class="token punctuation">,</span>
-  <span class="token property">"remote_port"</span><span class="token operator">:</span> <span class="token number">80</span><span class="token punctuation">,</span>
-  <span class="token property">"password"</span><span class="token operator">:</span> <span class="token string">"200"</span><span class="token punctuation">,</span>
-  <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token number">600</span><span class="token punctuation">,</span>
-  <span class="token property">"method"</span><span class="token operator">:</span> <span class="token string">"aes-256-cfb"</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="3">
-<li>安装<code>nodejs</code>模块</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> package.json <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="4">
-<li>启动</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash">$ node local.js
-<span class="token comment" spellcheck="true"># 或者</span>
-$ <span class="token function">sudo</span> node local.js
-
-server listening at <span class="token punctuation">{</span> address: <span class="token string">'127.0.0.1'</span>, family: <span class="token string">'IPv4'</span>, port: 1080 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="浏览器设置"><a href="#浏览器设置" class="headerlink" title="浏览器设置"></a>浏览器设置</h4><blockquote>
-<p><code>Firefox/Chrome</code>都可以安装<code>Proxy SwitchyOmega</code>:<a href="https://github.com/ningwenyan/demo_code/tree/master/chrome%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">https://github.com/ningwenyan/demo_code/tree/master/chrome%E6%8F%92%E4%BB%B6</a></p>
-<p>下载后,设置代理如下:</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599381375318-10279.png" alt="10279"></p>
-<p>写入的地址是<code>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</code>,这是一个需要代理的列表总和.</p>
-</blockquote>
-<h4 id="访问pixvix"><a href="#访问pixvix" class="headerlink" title="访问pixvix"></a>访问<code>pixvix</code></h4><blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599381695799-10280.png" alt="10280"></p>
-</blockquote>
-<h3 id="下载图片"><a href="#下载图片" class="headerlink" title="下载图片"></a>下载图片</h3><blockquote>
-<p>使用油猴脚本</p>
-</blockquote>
-<h4 id="油猴安装"><a href="#油猴安装" class="headerlink" title="油猴安装"></a>油猴安装</h4><blockquote>
-<p>油猴官网安装：<a href="https://tampermonkey.net/" target="_blank" rel="noopener">https://tampermonkey.net/</a></p>
-<p>访问官方商店,在<code>Firefox/chrome</code>商店中安装油猴脚本.</p>
-<p>下载所需脚本:<a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></p>
-</blockquote>
-<h4 id="pixvix增强脚本"><a href="#pixvix增强脚本" class="headerlink" title="pixvix增强脚本"></a><code>pixvix</code>增强脚本</h4><blockquote>
-<p>访问<a href="https://greasyfork.org/zh-CN,%E6%89%BE%E5%88%B0%60pixvix%E5%A2%9E%E5%BC%BA%E8%84%9A%E6%9C%AC%60%E5%B9%B6%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85,%E6%8C%89%E7%85%A7%E5%AE%8C%E6%AF%95%E5%90%8E,%E5%8F%AF%E4%BB%A5%E8%A7%82%E7%9C%8B%E6%95%88%E6%9E%9C" target="_blank" rel="noopener">https://greasyfork.org/zh-CN,找到`pixvix增强脚本`并下载安装,按照完毕后,可以观看效果</a></p>
-</blockquote>
-<h3 id="常用下载"><a href="#常用下载" class="headerlink" title="常用下载"></a>常用下载</h3><blockquote>
-<p>自己常用的<code>pivix</code>图片下载<code>https://pixiviz.pwp.app/</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">示例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>SITE_NAME</code></td>
+<td align="left"><code>MyBlog</code></td>
+<td align="left">[必填]博客名称</td>
+</tr>
+<tr>
+<td align="left"><code>SITE_URL</code></td>
+<td align="left"><a href="https://wenyan.online/" target="_blank" rel="noopener">https://wenyan.online</a></td>
+<td align="left">[必填]博客首页</td>
+</tr>
+<tr>
+<td align="left"><code>SMTP_SERVICE</code></td>
+<td align="left">163</td>
+<td align="left">支持<code>qq\163\126\Gmail\outlook</code> 等邮箱</td>
+</tr>
+<tr>
+<td align="left"><code>SMTP_USER</code></td>
+<td align="left"><a href="mailto:&#x58;&#88;&#x58;&#x58;&#x58;&#64;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;">&#x58;&#88;&#x58;&#x58;&#x58;&#64;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;</a></td>
+<td align="left">[必填]SMTP登录用户</td>
+</tr>
+<tr>
+<td align="left"><code>SMTP_PASS</code></td>
+<td align="left">XXXXXXX</td>
+<td align="left">[必填]SMTP登录密码（QQ邮箱需要获取独立密码）</td>
+</tr>
+<tr>
+<td align="left"><code>SENDER_NAME</code></td>
+<td align="left">WenYan</td>
+<td align="left">[必填]发件人</td>
+</tr>
+<tr>
+<td align="left"><code>SENDER_EMAIL</code></td>
+<td align="left"><a href="mailto:&#88;&#88;&#x58;&#x58;&#88;&#x58;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#x6d;">&#88;&#88;&#x58;&#x58;&#88;&#x58;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="left">[必填]发件邮箱</td>
+</tr>
+<tr>
+<td align="left"><code>ADMIN_URL</code></td>
+<td align="left"><code>xx.xx.com</code></td>
+<td align="left">[必填]]Web主机二级域名,用于自动唤醒</td>
+</tr>
+<tr>
+<td align="left"><code>BLOGGER_EMAIL</code></td>
+<td align="left"><a href="mailto:&#120;&#x78;&#120;&#x40;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;">&#120;&#x78;&#120;&#x40;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;</a></td>
+<td align="left">[可选]博主通知收件地址，默认使用SENDER_EMAIL</td>
+</tr>
+<tr>
+<td align="left"><code>AKISMET_KEY</code></td>
+<td align="left">xxxx</td>
+<td align="left">用于垃圾评论检测,为空是不使用反垃圾邮件</td>
+</tr>
+</tbody></table>
 <ul>
-<li><code>https://pixivic.com</code></li>
+<li>设置定时任务,点击定时任务,<ul>
+<li>自动唤醒,定时访问<code>Web APP</code>二级域名防止云引擎休眠.选择<code>self-wake</code>云函数,Cron表达式为<code>0 */30 7-23 * * ?</code>,表示每天早7点到晚23点每隔30分钟访问云引擎,<code>ADMIN_URL</code>环境变量务必设置正确：</li>
+<li>每天定时检查24小时内漏发的邮件通知;选择<code>resend-mails</code>云函数,Cron表达式为<code>0 0 8 * * ?</code>,表示每天早8点检查过去24小时内漏发的通知邮件并补发.<br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij7w3gbqkj20tu07j3yw.jpg" alt="img"></li>
+</ul>
+</li>
+<li>二级域名用于评论后台管理(需要有自己的域名,如果没有,则需要使用系统给予的二级域名)<br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij7zw7vkgj20wz0fvmy1.jpg" alt="img"></li>
+<li>评论管理,访问设置的二级域名<code>https://二级域名/sign-up</code>,注册管理员登录信息(如果不显示直接跳转至登录页,需要手动删除存储<code>_User</code>表中内容)</li>
+</ul>
+<hr>
+<ul>
+<li>垃圾评论检测:访问<code>https://akismet.com/development/</code> 注册账户.最后会生成一个<code>key</code>,要保存好.<br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij8999topj20q60bbt8x.jpg" alt="img"><br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij8999qzgj20y90hqgmh.jpg" alt="img"><br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij899aaqlj212r0k43zy.jpg" alt="img"></li>
+<li>把自己的网站加入安全中心,如下:<br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij8d2uwdjj212e0kjq4f.jpg" alt="img"></li>
+<li>获取应用<code>key</code>:<br>  <img src="https://tva1.sinaimg.cn/large/a20ab060ly1gij8eo2ct2j211v0cuwfo.jpg" alt="img"></li>
 </ul>
 </blockquote>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://github.com/onplus/shadowsocks-heroku" target="_blank" rel="noopener">项目地址</a></p>
-<p><a href="https://biu.tls.moe/#/" target="_blank" rel="noopener">pixivbiu</a></p>
+<h4 id="应用key"><a href="#应用key" class="headerlink" title="应用key"></a>应用<code>key</code></h4><blockquote>
+<p>如果你用的是<code>hexo-theme-matery</code> 主题,他已经集成了评论创建,只需要开启即可.</p>
 </blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
+<h4 id="头像问题"><a href="#头像问题" class="headerlink" title="头像问题"></a>头像问题</h4><blockquote>
+<p>评论留言想要拥有自己的头像.<br>请自行登录或注册<a href="http://cn.gravatar.com/" target="_blank" rel="noopener">Gravatar</a>，然后修改自己的头像。评论的时候，留下在Gravatar注册时所使用的邮箱即可。</p>
+</blockquote>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
@@ -592,7 +587,7 @@ server listening at <span class="token punctuation">{</span> address: <span clas
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/07/visterpixiv/">https://www.wenyan.online/2020/09/07/visterpixiv/</a>
+                    <a href="https://www.wenyan.online/2020/09/05/hexoupdatetalk/">https://www.wenyan.online/2020/09/05/hexoupdatetalk/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -630,16 +625,12 @@ server listening at <span class="token punctuation">{</span> address: <span clas
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Heroku/">
-                                    <span class="chip bg-color">Heroku</span>
+                                <a href="/tags/hexo/">
+                                    <span class="chip bg-color">hexo</span>
                                 </a>
                             
-                                <a href="/tags/Shadowsocks/">
-                                    <span class="chip bg-color">Shadowsocks</span>
-                                </a>
-                            
-                                <a href="/tags/Pixiv/">
-                                    <span class="chip bg-color">Pixiv</span>
+                                <a href="/tags/valine/">
+                                    <span class="chip bg-color">valine</span>
                                 </a>
                             
                         </div>
@@ -1074,32 +1065,28 @@ server listening at <span class="token punctuation">{</span> address: <span clas
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/08/ubuntusoftware/">
+                <a href="/2020/09/05/oauth2-demo-md/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10107.png" class="responsive-img" alt="Ubuntu软件推荐">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-5/1599290439208-10275.png" class="responsive-img" alt="OAuth2.0协议介绍">
                         
-                        <span class="card-title">Ubuntu软件推荐</span>
+                        <span class="card-title">OAuth2.0协议介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Ubuntu软件推荐安装
+                            OAuth2.0 协议介绍和学习
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-05
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Ubuntu/" class="post-category">
-                                    Ubuntu
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            文彦
                             
                         </span>
                     </div>
@@ -1107,8 +1094,16 @@ server listening at <span class="token punctuation">{</span> address: <span clas
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Ubuntu/">
-                        <span class="chip bg-color">Ubuntu</span>
+                    <a href="/tags/Flask/">
+                        <span class="chip bg-color">Flask</span>
+                    </a>
+                    
+                    <a href="/tags/OAuth2-0/">
+                        <span class="chip bg-color">OAuth2.0</span>
+                    </a>
+                    
+                    <a href="/tags/Github/">
+                        <span class="chip bg-color">Github</span>
                     </a>
                     
                 </div>
@@ -1122,32 +1117,28 @@ server listening at <span class="token punctuation">{</span> address: <span clas
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/06/alembic/">
+                <a href="/2020/09/02/flaskwebonline-md/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-6/1599404990051-84109093-14.jpg" class="responsive-img" alt="MySQL版本管理工具alembic">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-2/1599051996097-10247.png" class="responsive-img" alt="Flask在线部署">
                         
-                        <span class="card-title">MySQL版本管理工具alembic</span>
+                        <span class="card-title">Flask在线部署</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MySQL版本管理工具alembic
+                            在线部署Flask
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-02
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/SQLAlchemy/" class="post-category">
-                                    SQLAlchemy
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            文彦
                             
                         </span>
                     </div>
@@ -1165,10 +1156,6 @@ server listening at <span class="token punctuation">{</span> address: <span clas
                     
                     <a href="/tags/Flask/">
                         <span class="chip bg-color">Flask</span>
-                    </a>
-                    
-                    <a href="/tags/alembic/">
-                        <span class="chip bg-color">alembic</span>
                     </a>
                     
                 </div>

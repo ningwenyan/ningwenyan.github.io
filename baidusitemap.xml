@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.wenyan.online/2020/09/08/ubuntusoftware/</loc>
+    <lastmod>2020-09-08</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</loc>
+    <lastmod>2020-09-08</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/06/alembic/</loc>
+    <lastmod>2020-09-08</lastmod>
+  </url>
+  <url>
     <loc>https://www.wenyan.online/2020/08/09/hexo-bo-ke-da-jian/</loc>
     <lastmod>2020-09-07</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/07/visterpixiv/</loc>
     <lastmod>2020-09-07</lastmod>
-  </url>
-  <url>
-    <loc>https://www.wenyan.online/2020/09/06/alembic/</loc>
-    <lastmod>2020-09-06</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/05/oauth2-demo-md/</loc>
