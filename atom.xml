@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-08T14:59:03.287Z</updated>
+  <updated>2020-09-09T15:52:31.704Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -17,11 +17,71 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>解决Flask-SQLAlchemy循环引用</title>
+    <link href="https://www.wenyan.online/2020/09/09/dbcularrefr/"/>
+    <id>https://www.wenyan.online/2020/09/09/dbcularrefr/</id>
+    <published>2020-09-09T15:35:12.000Z</published>
+    <updated>2020-09-09T15:52:31.704Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png&quot; alt=&quot;10290&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SQLAlchemy Flask" scheme="https://www.wenyan.online/categories/SQLAlchemy-Flask/"/>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+      <category term="Flask_SQLAlchemy" scheme="https://www.wenyan.online/tags/Flask-SQLAlchemy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>创建漂亮的Flask命令行界面</title>
+    <link href="https://www.wenyan.online/2020/09/09/createcliflask/"/>
+    <id>https://www.wenyan.online/2020/09/09/createcliflask/</id>
+    <published>2020-09-09T15:16:09.000Z</published>
+    <updated>2020-09-09T15:31:58.706Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599665192366-10287.png&quot; alt=&quot;10287&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Flask插件" scheme="https://www.wenyan.online/categories/Flask%E6%8F%92%E4%BB%B6/"/>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+      <category term="Click" scheme="https://www.wenyan.online/tags/Click/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu软件推荐</title>
     <link href="https://www.wenyan.online/2020/09/08/ubuntusoftware/"/>
     <id>https://www.wenyan.online/2020/09/08/ubuntusoftware/</id>
     <published>2020-09-08T14:52:56.000Z</published>
-    <updated>2020-09-08T14:59:03.287Z</updated>
+    <updated>2020-09-09T11:53:16.048Z</updated>
     
     <summary type="html">
     
@@ -494,29 +554,6 @@
         
           &lt;p&gt;&lt;code&gt;python&lt;/code&gt;&lt;/p&gt;
 &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://www.wenyan.online/2020/08/05/hello-world/"/>
-    <id>https://www.wenyan.online/2020/08/05/hello-world/</id>
-    <published>2020-08-05T15:59:08.292Z</published>
-    <updated>2020-08-05T15:59:08.292Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
         
       
     

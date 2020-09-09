@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Ubuntu">
+    <meta name="keywords" content="Flask_SQLAlchemy">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Ubuntu软件推荐 | 文彦Blog</title>
+    <title>解决Flask-SQLAlchemy循环引用 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10107.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Ubuntu软件推荐</h1>
+                    <h1 class="description center-align post-title">解决Flask-SQLAlchemy循环引用</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Ubuntu/">
-                                <span class="chip bg-color">Ubuntu</span>
+                            <a href="/tags/Flask/">
+                                <span class="chip bg-color">Flask</span>
+                            </a>
+                        
+                            <a href="/tags/Flask-SQLAlchemy/">
+                                <span class="chip bg-color">Flask_SQLAlchemy</span>
                             </a>
                         
                     </div>
@@ -444,8 +448,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Ubuntu/" class="post-category">
-                                Ubuntu
+                            <a href="/categories/SQLAlchemy-Flask/" class="post-category">
+                                SQLAlchemy Flask
                             </a>
                         
                     </div>
@@ -457,7 +461,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-08
+                    2020-09-09
                 </div>
                 
 
@@ -473,424 +477,207 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote class="pullquote mindmap mindmap-lg"><ul>
-<li>software<ul>
-<li>思维导图<ul>
-<li>百度脑图</li>
-</ul>
-</li>
-<li>输入法<ul>
-<li>搜狗拼音</li>
-<li>百度输入法</li>
-</ul>
-</li>
-<li>个人知识系统<ul>
-<li>为知笔记</li>
-<li>Vnote+坚果云</li>
-</ul>
-</li>
-<li>mysql<ul>
-<li>mysql workbench</li>
-</ul>
-</li>
-<li>通讯工具<ul>
-<li>QQ</li>
-<li>飞鸽</li>
-</ul>
-</li>
-<li>终端监控工具<ul>
-<li>htop</li>
-</ul>
-</li>
-<li>办公套件<ul>
-<li>libreoffice</li>
-<li>wps</li>
-</ul>
-</li>
-<li>视频工具<ul>
-<li>kazam 录屏</li>
-<li>kdenlive 编辑</li>
-</ul>
-</li>
-<li>gif工具<ul>
-<li>peek</li>
-</ul>
-</li>
-<li>截图工具<ul>
-<li>deepin截图</li>
-<li>shutter</li>
-</ul>
-</li>
-<li>浏览器<ul>
-<li>chrome</li>
-</ul>
-</li>
-<li>图片工具<ul>
-<li>gimp</li>
-</ul>
-</li>
-<li>安装anaconda</li>
-<li>安装剪切板<ul>
-<li>clipman</li>
-</ul>
-</li>
-<li>系统显示conky </li>
-<li>FTP<ul>
-<li>gftp</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png" alt="10290"></p>
+<h2 id="解决Flask-SQLAlchemy循环引用"><a href="#解决Flask-SQLAlchemy循环引用" class="headerlink" title="解决Flask-SQLAlchemy循环引用"></a>解决Flask-SQLAlchemy循环引用</h2><h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h3><blockquote>
+<p>新建一个<code>flask</code>项目,它的初始化项目为:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ tree
+circular_references
+├── app.py                    <span class="token comment" spellcheck="true"># 主 app 文件</span>
+├── static                        <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
+└── templates              <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为了项目的健壮性,可以把<code>flask</code>的配置文件写入一个文件中<code>config.py</code></p>
+<p>此时实现一个如下的文件结构</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ tree
+circular_references
+├── app.py                          <span class="token comment" spellcheck="true"># 主 app 文件</span>
+├── config.py                        <span class="token comment" spellcheck="true"># Flask 配置文件</span>
+├── static                              <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
+└── templates                     <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>config.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python">DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment" spellcheck="true"># 开启Debug</span>
+TEMPLATES_AUTO_RELOAD <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment" spellcheck="true"># 模板自动加载</span>
+DB_URI <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/flask_alembic_demo'</span> <span class="token comment" spellcheck="true"># 确保数据库存在</span>
+<span class="token comment" spellcheck="true"># 指定数据库连接</span>
+SQLALCHEMY_DATABASE_URI <span class="token operator">=</span> DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>app.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
 
 
-<h3 id="1-安装百度脑图离线版"><a href="#1-安装百度脑图离线版" class="headerlink" title="1.安装百度脑图离线版"></a>1.安装百度脑图离线版</h3><blockquote>
-<p><code>github</code>地址:<code>https://github.com/NaoTu/DesktopNaotu</code>,目前最新版是3.2.3</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 解压安装包</span>
-$ unzip DesktopNaotu-linux-x64.zip 
-$ <span class="token function">cd</span> DesktopNaotu-linux-x64/
-$ <span class="token function">chmod</span> +x  DesktopNaotu
-<span class="token comment" spellcheck="true"># 测试使用性</span>
-$./DesktopNaotu <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>创建桌面快捷方式:(图标也添加一下)</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> mousepad /usr/share/applications/naotu.desktop
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
 
-<span class="token punctuation">[</span>Desktop Entry<span class="token punctuation">]</span>
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
 
-Type <span class="token operator">=</span> Application
-Version <span class="token operator">=</span> 3.2.3
-Name <span class="token operator">=</span> naotu
-GenericName <span class="token operator">=</span> BaiduNaotu
-Comment <span class="token operator">=</span> BaiduNaotu
-Icon<span class="token operator">=</span>/home/zning/icon/naotu.png
-Terminal  <span class="token operator">=</span> <span class="token boolean">false</span>
-Exec <span class="token operator">=</span> /home/zning/software/DesktopNaotu-linux-x64/DesktopNaotu %F<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>新建一个文件夹,用来存放脑图文件</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> NaotuFile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将其添加到收藏夹</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10083.png" alt="10083"></p>
-</blockquote>
-<h3 id="2-安装输入法"><a href="#2-安装输入法" class="headerlink" title="2.安装输入法"></a>2.安装输入法</h3><blockquote>
-<p>安装搜狗拼音输入法:</p>
-<ul>
-<li><p>网址:<code>https://pinyin.sogou.com/linux/</code></p>
-</li>
-<li><p>直接下载最新版本,要注意下面的版本支持到1910,而不是ubuntu20.04</p>
-</li>
-<li><pre class="line-numbers language-bash"><code class="language-bash">  <span class="token comment" spellcheck="true"># 安装</span>
-  $ <span class="token function">sudo</span> dpkg -i sogoupinyin_2.3.1.0112_amd64.deb 
-  <span class="token comment" spellcheck="true"># 强制安装依赖</span>
-  $ <span class="token function">sudo</span> apt <span class="token function">install</span> -f
-  <span class="token comment" spellcheck="true"># 重启输入法 fcitx</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>如果重启输入法不生效,需要重启系统</p>
-</li>
-</ul>
-<p>安装百度<code>linux</code>输入法</p>
-<ul>
-<li><p>网址:<code>https://srf.baidu.com/site/guanwang_linux/index.html</code></p>
-</li>
-<li><p>直接下载最新版本,要注意下面的版本支持到1910,而不是ubuntu20.04</p>
-</li>
-<li><pre class="line-numbers language-bash"><code class="language-bash">  $ <span class="token function">sudo</span> dpkg -i fcitx-baidupinyin.deb 
-  $ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li><p>如果重启输入法不生效,需要重启系统</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="3-构造个人知识系统"><a href="#3-构造个人知识系统" class="headerlink" title="3.构造个人知识系统"></a>3.构造个人知识系统</h3><blockquote>
-<p>使用为知笔记在线同步(需要会员)</p>
-<p>使用<code>vnote+坚果云</code> 每月使用免费流量同步</p>
-</blockquote>
-<h4 id="1-安装为知笔记"><a href="#1-安装为知笔记" class="headerlink" title="1.安装为知笔记"></a>1.安装为知笔记</h4><blockquote>
-<p>在这里使用的不是官网的客户端,使用的是个人做得一个<code>plus</code> 版,添加了一些<code>windows</code> 上才有的功能</p>
-<p>地址:<a href="https://github.com/altairwei/WizNotePlus" target="_blank" rel="noopener">https://github.com/altairwei/WizNotePlus</a></p>
-<p>直接下载最新的版本,并运行就可以了(后缀是<code>appimage</code>)</p>
-</blockquote>
-<h4 id="2-安装typora"><a href="#2-安装typora" class="headerlink" title="2.安装typora"></a>2.安装<code>typora</code></h4><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># or run:</span>
-<span class="token comment" spellcheck="true"># sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE</span>
+<span class="token keyword">class</span> <span class="token class-name">User2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    __tablename__ <span class="token operator">=</span> <span class="token string">'user2'</span>
 
-<span class="token function">wget</span> -qO - https://typora.io/linux/public-key.asc <span class="token operator">|</span> <span class="token function">sudo</span> apt-key add -
-
-<span class="token comment" spellcheck="true"># add Typora's repository</span>
-
-<span class="token function">sudo</span> add-apt-repository <span class="token string">'deb https://typora.io/linux ./'</span>
-
-<span class="token function">sudo</span> <span class="token function">apt-get</span> update
-
-<span class="token comment" spellcheck="true"># install typora</span>
-
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> typora<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果同步下载不了,则需要手动下载.(或者在软件商店中下载)</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10084.png" alt="10084"></p>
-</blockquote>
-<h4 id="3-安装Vnote"><a href="#3-安装Vnote" class="headerlink" title="3.安装Vnote"></a>3.安装<code>Vnote</code></h4><blockquote>
-<p>地址:<a href="https://github.com/tamlok/vnote" target="_blank" rel="noopener">https://github.com/tamlok/vnote</a></p>
-<p>在根文件夹中创建一个<code>note</code>文件夹</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> mynote<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>可以配置各种主题,这里主要配置编辑工具是<code>typora</code></p>
-<ol>
-<li><p>新建一个<code>.md</code>后缀的测试文件,并且右键选择其他打开方式,添加外部程序:</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 按照说明文档,添加扩展程序</span>
-
-<span class="token comment" spellcheck="true"># 需要先找到Typora程序位置</span>
-$ <span class="token function">whereis</span> typora
-typora: /snap/bin/typora
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ol>
-<pre><code># 添加
-[external_editors]
-typora=/snap/bin/typora \&quot;%0\&quot;
-```</code></pre>
-<p><img src="/2020/09/08/ubuntusoftware/picture/10085.png" alt="10085"></p>
-<p><img src="/2020/09/08/ubuntusoftware/picture/10086.png" alt="10086"></p>
-<p><img src="/2020/09/08/ubuntusoftware/picture/10087.png" alt="10087"></p>
-<p>如果在系统中找不到<code>vnote</code> 的启动图标,可以自己创建一个桌面快捷方式</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">touch</span> /usr/share/applications/vnote.desktop
-$ <span class="token function">sudo</span> mousepad /usr/share/applications/vnote.desktop 
-
-<span class="token punctuation">[</span>Desktop Entry<span class="token punctuation">]</span>
-Type<span class="token operator">=</span>Application
-Version<span class="token operator">=</span>2.7
-Name<span class="token operator">=</span>VNote
-GenericName<span class="token operator">=</span>Markdown Note
-Comment<span class="token operator">=</span>Note-taking application <span class="token keyword">for</span> pleasant Markdown
-Icon<span class="token operator">=</span>/home/zning/icon/vnote.png
-Terminal<span class="token operator">=</span>false
-Exec<span class="token operator">=</span>/home/zning/software/VNote-2.7.2-x86_64.AppImage %F<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="4-安装坚果云"><a href="#4-安装坚果云" class="headerlink" title="4.安装坚果云"></a>4.安装坚果云</h4><blockquote>
-<p>如果你想同步你的<code>vnote</code>内的数据到不同的设备上,可以使用坚果云,在坚果云中只需要设置你的<code>vnote</code>根目录是要同步的目录即可.</p>
-<p>地址:<code>https://www.jianguoyun.com/s/downloads</code></p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10088.png" alt="10088"></p>
-</blockquote>
-<h4 id="5-安装workbench"><a href="#5-安装workbench" class="headerlink" title="5.安装workbench"></a>5.安装<code>workbench</code></h4><blockquote>
-<p>官网:<code>https://dev.mysql.com/downloads/workbench/</code></p>
-<p>安装:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">dpkg -i workbench<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>连接:</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/10097.png" alt="10097"></p>
-<p>点击加号按钮,输入服务器的<code>ip</code>用户名和密码即可.</p>
-</blockquote>
-<h4 id="6-通讯工具"><a href="#6-通讯工具" class="headerlink" title="6.通讯工具"></a>6.通讯工具</h4><blockquote>
-<p>腾讯QQ,局域网工具可以使用飞鸽传书.</p>
-<p><code>QQ for linux</code>:<code>https://im.qq.com/linuxqq/index.html</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ dpkg -i <span class="token function">install</span> qq*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>飞鸽传书:<code>http://www.ipmsg.org.cn/</code> </p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">tar</span> zxvf Feige*
-<span class="token comment" spellcheck="true"># 直接运行</span>
-$ ./QIpmsg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="7-安装终端监控工具"><a href="#7-安装终端监控工具" class="headerlink" title="7.安装终端监控工具"></a>7.安装终端监控工具</h3><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> apt <span class="token function">install</span> <span class="token function">htop</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/100106.png" alt="100106"></p>
-</blockquote>
-<h4 id="8-安装办公套件"><a href="#8-安装办公套件" class="headerlink" title="8.安装办公套件"></a>8.安装办公套件</h4><blockquote>
-<p>可以使用系统字典的<code>libreoffice</code></p>
-<p>可以安装使用<code>wps</code>:<code>https://www.wps.cn/product/wpslinux</code>.直接下载适用于自己电脑的版本,这里下载64位的deb包.</p>
-<p>安装:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> dpkg -i wps-office_11.1.0.9615_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装缺失字体:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> apt <span class="token function">install</span> <span class="token function">git</span>
-$ <span class="token function">sudo</span> <span class="token function">git</span> clone https://github.com/jiaxiaochu/font.git <span class="token operator">&amp;&amp;</span> <span class="token function">cd</span> font <span class="token operator">&amp;&amp;</span> ./install.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>我这里已经下载.</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>视频3件套</p>
-<p>1.录屏:<code>kazam</code></p>
-<p>2.编辑:<code>kdenlive\shotcut</code></p>
-<p>3.观看:<code>vlc\mpv</code></p>
-</blockquote>
-<h4 id="9-安装录屏工具kazam"><a href="#9-安装录屏工具kazam" class="headerlink" title="9.安装录屏工具kazam"></a>9.安装录屏工具<code>kazam</code></h4><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> kazam<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h4 id="10-安装kdenlive"><a href="#10-安装kdenlive" class="headerlink" title="10.安装kdenlive"></a>10.安装<code>kdenlive</code></h4><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> kdenlive<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>有一定的学习成本,请在真实机器上安装,最好是有<code>N</code> 卡的机器上安装.</p>
-</blockquote>
-<h4 id="11-安装shotcut"><a href="#11-安装shotcut" class="headerlink" title="11.安装shotcut"></a>11.安装<code>shotcut</code></h4><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> snap <span class="token function">install</span> shotcut --classic<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h4 id="12-安装播放器"><a href="#12-安装播放器" class="headerlink" title="12.安装播放器"></a>12.安装播放器</h4><blockquote>
-<p><code>mpv</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> add-apt-repository ppa:mc3man/mpv-tests
-$ <span class="token function">sudo</span> apt <span class="token function">install</span> mpv<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><code>vlc</code></p>
-<p>应用商店安装</p>
-</blockquote>
-<h4 id="13-安装gif-开源工具peek"><a href="#13-安装gif-开源工具peek" class="headerlink" title="13.安装gif 开源工具peek"></a>13.安装<code>gif</code> 开源工具<code>peek</code></h4><blockquote>
-<p>还可以录制<code>mp4</code>格式的视频</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> add-apt-repository ppa:peek-developers/stable
-<span class="token function">sudo</span> apt update
-<span class="token function">sudo</span> apt <span class="token function">install</span> peek<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="14-安装截图工具"><a href="#14-安装截图工具" class="headerlink" title="14.安装截图工具"></a>14.安装截图工具</h4><h5 id="1-deepin截图"><a href="#1-deepin截图" class="headerlink" title="1.deepin截图"></a>1.<code>deepin</code>截图</h5><blockquote>
-<p><strong>针对Ubuntu18.04版本</strong></p>
-<p><code>深度截图</code>对系统有所要求,截止到新安装的系统18.04版本,系统自己所带的软件中新就可以直接安装</p>
-</blockquote>
-<blockquote>
-<p><img src="/2020/09/08/ubuntusoftware/../My_Note/Ubuntu/Pictures/img_2.png" alt="img_2"></p>
-<p>在xubuntu中设置出发快捷键.</p>
-<p>1.找到系统的<code>键盘</code></p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/img_3.png" alt="img_3"></p>
-<p>2.点击添加,然后点击打开</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/img_4.png" alt="img_4"></p>
-<p>3.找到<code>/usr/bin/deepin</code>截图工具,点击确定后在设置自己想要的快捷键就可以了</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/img_5.png" alt="img_5"></p>
-</blockquote>
-<h5 id="2-hotshots"><a href="#2-hotshots" class="headerlink" title="2.hotshots"></a>2.<code>hotshots</code></h5><blockquote>
-<p>安装可以完全按照主页上的说明进行安装</p>
-<p>1.加载安装源</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> add-apt-repository ppa:ubuntuhandbook1/apps
-<span class="token function">sudo</span> add-apt-repository ppa:dhor/myway<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>2.更新</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>3.安装</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> hotshots``<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>4.移除</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> remove hotshots<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h5 id="3-shutter"><a href="#3-shutter" class="headerlink" title="3.shutter"></a>3.<code>shutter</code></h5><blockquote>
-<p>如果需要其他的截图工具,可以使用<code>shutter</code>,他有一些小的特效.,可以导出为<code>pdf</code>等文件.功能更多.也可以设置快捷键.</p>
-</blockquote>
-<blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> add-apt-repository ppa:shutter/ppa
-<span class="token function">sudo</span> <span class="token function">apt-get</span> update
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> shutter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="15-图片编辑gimp"><a href="#15-图片编辑gimp" class="headerlink" title="15.图片编辑gimp"></a>15.图片编辑<code>gimp</code></h4><blockquote>
-<p>提示<code>/var/cache/apt/archives/</code> 空间不足,</p>
-<p>这个目录是存放<code>apt install</code> 的文件的,可以使用<code>apt-get clean</code> 来清除缓存</p>
-</blockquote>
-<blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> gimp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h4 id="16-Anaconda-miniconda"><a href="#16-Anaconda-miniconda" class="headerlink" title="16.Anaconda\miniconda"></a>16.<code>Anaconda\miniconda</code></h4><h5 id="1-下载安装"><a href="#1-下载安装" class="headerlink" title="1.下载安装"></a>1.下载安装</h5><blockquote>
-<p>官方下载<code>https://www.anaconda.com/</code> ,也可以通过清华大学镜像源安装<code>https://mirror.tuna.tsinghua.edu.cn/help/anaconda/</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#</span>
-<span class="token variable">$chmod</span> +x Anaconda3-2019.07-Linux-x86_64.sh 
-<span class="token comment" spellcheck="true"># 安装</span>
-$./Anaconda3-2019.07-Linux-x86_64.sh <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h5 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2.配置环境变量"></a>2.配置环境变量</h5><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 打开个人环境变量</span>
-$ <span class="token function">sudo</span> vim ~/.bashrc
-
-<span class="token comment" spellcheck="true"># 在文件的末尾添加数据</span>
-<span class="token function">export</span> PATH<span class="token operator">=</span>~/anaconda3/bin:<span class="token variable">$PATH</span>
-
-<span class="token comment" spellcheck="true"># 重启环境变量</span>
-
-$ <span class="token function">source</span> ~/.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后可以看到加载了anaconda的终端效果</p>
-<p>关于命令行前的<code>base</code></p>
-<p>查看自己的环境变量中关于<code>conda</code> 的字段</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># >>> conda initialize >>></span>
-<span class="token comment" spellcheck="true"># !! Contents within this block are managed by 'conda init' !!</span>
-__conda_setup<span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>'/home/kning/anaconda3/bin/conda' 'shell.bash' 'hook' 2<span class="token operator">></span> /dev/null<span class="token variable">)</span></span>"</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> -eq 0 <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-<span class="token function">eval</span> <span class="token string">"<span class="token variable">$__conda_setup</span>"</span>
-<span class="token keyword">else</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -f <span class="token string">"/home/kning/anaconda3/etc/profile.d/conda.sh"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-  <span class="token keyword">.</span> <span class="token string">"/home/kning/anaconda3/etc/profile.d/conda.sh"</span>
-<span class="token keyword">else</span>
-  <span class="token function">export</span> PATH<span class="token operator">=</span><span class="token string">"/home/kning/anaconda3/bin:<span class="token variable">$PATH</span>"</span>
-<span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-unset __conda_setup
-<span class="token comment" spellcheck="true"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这个是anoconda 自动安装添加的,即打开终端的时候会自动执行<code>conda  activate base </code> 命令,可以执行</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 退出anaconda 环境</span>
-conda deactivate  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>来退出 base 环境,这应该是一个保护系统python 的一个措施.</p>
-</blockquote>
-<h5 id="3-修改镜像源"><a href="#3-修改镜像源" class="headerlink" title="3.修改镜像源"></a>3.修改镜像源</h5><blockquote>
-<p>修改为清华大学数据源<code>https://mirror.tuna.tsinghua.edu.cn/help/anaconda/</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#创建或者 修改用户目录下的 .condarc 文件:</span>
-$ vim ~/.condarc
+    id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
+    addresses <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'Address2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
 
 
-<span class="token comment" spellcheck="true"># 添加</span>
+<span class="token keyword">class</span> <span class="token class-name">Address2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    __tablename__ <span class="token operator">=</span> <span class="token string">'address2'</span>
 
-channels:
-  - defaults
-show_channel_urls: <span class="token boolean">true</span>
-default_channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
-custom_channels:
-  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>即可添加 <code>Anaconda Python</code> 免费仓库.可以运行<code>conda install xxx</code> 来测试验证.</p>
+    id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    email_address <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    u_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> db<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">'user2.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
+    user <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'User2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span>
+
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>随着项目的不断壮大,不可能把所有的<code>SQLAlchemy Model</code> 都写入到<code>app.py</code> 主<code>app</code> 文件中,这时候就需要独立出一个文件专门存放<code>Model</code> 类<code>models.py</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">circular_references
+├── app.py                          <span class="token comment" spellcheck="true"># 主 app 文件</span>
+├── config.py                        <span class="token comment" spellcheck="true"># Flask 配置文件</span>
+├── models.py                    <span class="token comment" spellcheck="true"># 存放flask-sqlalchemy.Model 类</span>
+├── static                              <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
+└── templates                     <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这时候需要修改<code>app.py</code>和新建<code>models.py</code>文件.</p>
+<p><code>models.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># models.py</span>
+
+<span class="token keyword">from</span> app <span class="token keyword">import</span> app
+<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
+db <span class="token operator">=</span> SQlAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">User2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       __tablename__ <span class="token operator">=</span> <span class="token string">'user2'</span>
+
+       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+       name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
+       addresses <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'Address2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Address2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       __tablename__ <span class="token operator">=</span> <span class="token string">'address2'</span>
+
+       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+       email_address <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+       u_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> db<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">'user2.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
+       user <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'User2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># app.py</span>
+
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
+<span class="token comment" spellcheck="true"># 引入 User2,Address2</span>
+<span class="token keyword">from</span> models <span class="token keyword">import</span> User2<span class="token punctuation">,</span>Address2
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
+
+<span class="token comment" spellcheck="true"># 假设需要一个与数据库交互的模板文件</span>
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/add_user/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">add_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+       <span class="token triple-quoted-string string">"""引用ORM交互"""</span>
+       u1 <span class="token operator">=</span> User2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
+       a1 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jackxxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+       a2 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack2xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+       a3 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack3xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">,</span> a3<span class="token punctuation">]</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+       app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果执行运行<code>app.py</code> 文件,会产生一个<strong>循环引用</strong> 的报错</p>
+<pre class="line-numbers language-python"><code class="language-python">ImportError<span class="token punctuation">:</span> cannot <span class="token keyword">import</span> name <span class="token string">'db'</span> <span class="token keyword">from</span> <span class="token string">'app'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>产生的原因很简单,<code>python</code> 代码是自上而下依次执行的.<code>from models import user2</code> 文件<code>models.py</code> 会先从<code>app.py</code> 中引入<code>db</code> ,才能生成<code>User2</code> ,这就是循环引入</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666288241-10288.png" alt="10288"></p>
 </blockquote>
-<h4 id="17-安装vmware"><a href="#17-安装vmware" class="headerlink" title="17.安装vmware"></a>17.安装<code>vmware</code></h4><h5 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h5><blockquote>
-<p>上vmware的英文官方网站下载,可以不用注册直接下载适用于linux的版本</p>
-<pre class="line-numbers language-bash"><code class="language-bash">VMware-Workstation-Full-15.1.0-13591040.x86_64.bundle <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-解决循环引入"><a href="#2-解决循环引入" class="headerlink" title="2.解决循环引入"></a>2.解决循环引入</h3><blockquote>
+<p>为了解决他们之间的循环引入,这里需要引入第三个文件.</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666288237-10289.png" alt="10289"></p>
+<p>此时的目录结构如下</p>
+<pre class="line-numbers language-bash"><code class="language-bash">circular_references
+├── app.py                          <span class="token comment" spellcheck="true"># 主 app 文件</span>
+├── config.py                        <span class="token comment" spellcheck="true"># Flask 配置文件</span>
+├── models.py                    <span class="token comment" spellcheck="true"># 存放flask-sqlalchemy.Model 类</span>
+├── ext.py                                <span class="token comment" spellcheck="true"># 存放 db </span>
+├── static                              <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
+└── templates                     <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>ext.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 不用绑定app,由 app.py 中绑定 app</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><code>models.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 从ext 中导入db</span>
+<span class="token keyword">from</span> ext <span class="token keyword">import</span> db
+
+<span class="token keyword">class</span> <span class="token class-name">User2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       __tablename__ <span class="token operator">=</span> <span class="token string">'user2'</span>
+
+       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+       name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
+       addresses <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'Address2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Address2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       __tablename__ <span class="token operator">=</span> <span class="token string">'address2'</span>
+
+       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+       email_address <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+       u_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> db<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">'user2.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
+       user <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'User2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>app.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token comment" spellcheck="true"># 引入db</span>
+<span class="token keyword">from</span> ext <span class="token keyword">import</span> db
+<span class="token comment" spellcheck="true"># 引入 User2,Address2</span>
+<span class="token keyword">from</span> models <span class="token keyword">import</span> User2<span class="token punctuation">,</span>Address2
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 利用init_app()方法绑定app</span>
+db<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+         <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
+
+<span class="token comment" spellcheck="true"># 假设需要一个与数据库交互的模板文件</span>
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/add_user/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">add_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+       <span class="token triple-quoted-string string">"""引用ORM交互"""</span>
+       u1 <span class="token operator">=</span> User2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
+       a1 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jackxxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+       a2 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack2xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+       a3 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack3xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+       u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">,</span> a3<span class="token punctuation">]</span>
+       db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+       app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于<code>python</code>自上而下执行,到执行<code>User2()</code> 函数时,它执行的是绑定<code>app</code>的<code>db</code> .</p>
 </blockquote>
-<h5 id="2-安装vmware-workstation"><a href="#2-安装vmware-workstation" class="headerlink" title="2.安装vmware workstation"></a>2.安装vmware workstation</h5><blockquote>
-<p>系统内核,vmware版本</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 内核</span>
-kning@kning-pc:~/software$ <span class="token function">uname</span> -a 
-Linux kning-pc 5.0.0-27-generic <span class="token comment" spellcheck="true">#28~18.04.1-Ubuntu SMP Thu Aug 22 03:00:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span>
-
-<span class="token comment" spellcheck="true"># vmware</span>
-15.1.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>安装</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加执行权限</span>
-kning@kning-pc:~/software$ <span class="token function">chmod</span> +x VMware-Workstation-Full-15.1.0-13591040.x86_64.bundle 
-<span class="token comment" spellcheck="true"># 执行安装</span>
-kning@kning-pc:~/software$ <span class="token function">sudo</span> ./VMware-Workstation-Full-15.1.0-13591040.x86_64.bundle 
-<span class="token comment" spellcheck="true"># 运行</span>
-kning@kning-pc:~/software$ vmware<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h5 id="3-安装报错"><a href="#3-安装报错" class="headerlink" title="3.安装报错"></a>3.安装报错</h5><blockquote>
-<p>一般最新的vmware都会安装在最新的内核上,如果不行的话,访问从新编译内核的地址</p>
-<p><code>https://github.com/mkubecek/vmware-host-modules</code> 这里有针对各种版本的从新编译的vmware内核,需要从新编译安装.</p>
-</blockquote>
-<h5 id="4-vmware-15-pro-key"><a href="#4-vmware-15-pro-key" class="headerlink" title="4.vmware 15 pro key"></a>4.vmware 15 pro key</h5><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash">ZC10K-8EF57-084QZ-VXYXE-ZF2XF
-
-UF71K-2TW5J-M88QZ-8WMNT-WKUY4
-
-AZ7MK-44Y1J-H819Z-WMYNC-N7ATF
-
-CU702-DRD1M-H89GP-JFW5E-YL8X6
-
-YY5EA-00XDJ-480RP-35QQV-XY8F6
-
-VA510-23F57-M85PY-7FN7C-MCRG0
-
-UZ792-DHF8J-M81XP-MGM5T-MCAF2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h5 id="5-卸载bundle格式的vmware"><a href="#5-卸载bundle格式的vmware" class="headerlink" title="5.卸载bundle格式的vmware"></a>5.卸载bundle格式的vmware</h5><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 卸载</span>
-
-<span class="token function">sudo</span> vmware-installer -u vmware-workstation<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h5 id="6-安装unlocker"><a href="#6-安装unlocker" class="headerlink" title="6.安装unlocker"></a>6.安装<code>unlocker</code></h5><blockquote>
-<p>解开vmware对macos等系统的限制</p>
-<p>项目主页<code>https://github.com/DrDonk/unlocker</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看安装说明</span>
-<span class="token variable">$notepadqq</span> readme.txt <span class="token operator">>></span> null
-<span class="token comment" spellcheck="true">#</span>
-<span class="token variable">$chmod</span> +x lnx-install.sh 
-
-<span class="token comment" spellcheck="true"># 安装</span>
-<span class="token variable">$sudo</span> sh lnx-install.sh <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="18-gftp"><a href="#18-gftp" class="headerlink" title="18.gftp"></a>18.<code>gftp</code></h4><blockquote>
-<p>小型的<code>FTP</code>客户端</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> apt <span class="token function">install</span> gftp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
@@ -916,7 +703,7 @@ UZ792-DHF8J-M81XP-MGM5T-MCAF2<span aria-hidden="true" class="line-numbers-rows">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/08/ubuntusoftware/">https://www.wenyan.online/2020/09/08/ubuntusoftware/</a>
+                    <a href="https://www.wenyan.online/2020/09/09/dbcularrefr/">https://www.wenyan.online/2020/09/09/dbcularrefr/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -954,8 +741,12 @@ UZ792-DHF8J-M81XP-MGM5T-MCAF2<span aria-hidden="true" class="line-numbers-rows">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Ubuntu/">
-                                    <span class="chip bg-color">Ubuntu</span>
+                                <a href="/tags/Flask/">
+                                    <span class="chip bg-color">Flask</span>
+                                </a>
+                            
+                                <a href="/tags/Flask-SQLAlchemy/">
+                                    <span class="chip bg-color">Flask_SQLAlchemy</span>
                                 </a>
                             
                         </div>
@@ -1386,9 +1177,64 @@ UZ792-DHF8J-M81XP-MGM5T-MCAF2<span aria-hidden="true" class="line-numbers-rows">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/09/09/dbcularrefr/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/5.jpg" class="responsive-img" alt="解决Flask-SQLAlchemy循环引用">
+                        
+                        <span class="card-title">解决Flask-SQLAlchemy循环引用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            解决Flask-SQLAlchemy循环引用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SQLAlchemy-Flask/" class="post-category">
+                                    SQLAlchemy Flask
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Flask/">
+                        <span class="chip bg-color">Flask</span>
+                    </a>
+                    
+                    <a href="/tags/Flask-SQLAlchemy/">
+                        <span class="chip bg-color">Flask_SQLAlchemy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/09/09/createcliflask/">
                     <div class="card-image">
@@ -1406,9 +1252,9 @@ UZ792-DHF8J-M81XP-MGM5T-MCAF2<span aria-hidden="true" class="line-numbers-rows">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1430,63 +1276,6 @@ UZ792-DHF8J-M81XP-MGM5T-MCAF2<span aria-hidden="true" class="line-numbers-rows">
                     
                     <a href="/tags/Click/">
                         <span class="chip bg-color">Click</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/09/07/visterpixiv/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/4.jpg" class="responsive-img" alt="登录浏览P站">
-                        
-                        <span class="card-title">登录浏览P站</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            部署浏览Pixiv
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Heroku-Shadowsocks/" class="post-category">
-                                    Heroku Shadowsocks
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Heroku/">
-                        <span class="chip bg-color">Heroku</span>
-                    </a>
-                    
-                    <a href="/tags/Shadowsocks/">
-                        <span class="chip bg-color">Shadowsocks</span>
-                    </a>
-                    
-                    <a href="/tags/Pixiv/">
-                        <span class="chip bg-color">Pixiv</span>
                     </a>
                     
                 </div>
