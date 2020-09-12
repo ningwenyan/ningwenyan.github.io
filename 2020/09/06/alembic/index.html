@@ -128,6 +128,17 @@
     
   </li>
   
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Navigate" class="waves-effect waves-light">
+      
+      <i class="fas fa-rocket" style="zoom: 0.6;"></i>
+      
+      <span>WenYan导航</span>
+    </a>
+    
+  </li>
+  
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
@@ -227,6 +238,17 @@
 			    <i class="fa-fw fas fa-address-book"></i>
 			
 			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Navigate" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-rocket"></i>
+			
+			Navigate
 		</a>
           
         </li>
@@ -866,6 +888,190 @@ flask_sqlalchemy_alembic
 ├── static
 └── templates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<hr>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-10/1599749828166-10291.png" alt="10291"></p>
+<h2 id="Flask-migrate"><a href="#Flask-migrate" class="headerlink" title="Flask-migrate"></a><code>Flask-migrate</code></h2><h3 id="1-什么是Flask-migrate"><a href="#1-什么是Flask-migrate" class="headerlink" title="1.什么是Flask-migrate"></a>1.什么是<code>Flask-migrate</code></h3><blockquote>
+<p><code>Flask-Migrate</code> 是基于<code>Alembic</code> 处理<code>SQLAlchemy</code> 数据库迁移的扩展.</p>
+<p>在使用<code>Alembic</code>时,需要配置<code>ini</code> 配置文件和<code>env.py</code> 文件,在<code>Flask-Migrate</code> 中会自动的配置这些文件.它支持<code>Alembic</code> 的所有命令.可以使用<code>Flask</code> 命令行和<code>Flask-Script</code> 来操作数据库.</p>
+<p><a href="https://flask-migrate.readthedocs.io/en/latest/" target="_blank" rel="noopener">官网</a></p>
+<p>官网有很多的用法,这里只扩展和<code>Flask-Script</code> 一起使用.</p>
+</blockquote>
+<h3 id="2-安装-1"><a href="#2-安装-1" class="headerlink" title="2.安装"></a>2.安装</h3><blockquote>
+<pre class="line-numbers language-shell"><code class="language-shell">$ pip install flask-migrate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="3-和flask-script-一起使用"><a href="#3-和flask-script-一起使用" class="headerlink" title="3.和flask-script 一起使用"></a>3.和<code>flask-script</code> 一起使用</h3><blockquote>
+<p>基于<a href="./10038.md">circular_references</a>项目,项目目录为</p>
+<pre class="line-numbers language-shell"><code class="language-shell">$ tree
+circular_references
+├── app.py                          # 主 app 文件
+├── config.py                        # Flask 配置文件
+├── models.py                    # 存放flask-sqlalchemy.Model 类
+├── ext.py                                # 存放 db 
+├── static                              #  css,js 文件目录
+└── templates                     # 模板文件目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>修改<code>config.py</code> 文件,指定一个新的数据库(如果<code>mysql</code> 中没有,需要新建一个数据库)</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">create database flask_migrate_demo;
+use flask_migrate_demo;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><code>config.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python">DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment" spellcheck="true"># 开启Debug</span>
+TEMPLATES_AUTO_RELOAD <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment" spellcheck="true"># 模板自动加载</span>
+DB_URI <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/flask_migrate_demo'</span> <span class="token comment" spellcheck="true"># 确保数据库存在</span>
+<span class="token comment" spellcheck="true"># 指定数据库连接</span>
+SQLALCHEMY_DATABASE_URI <span class="token operator">=</span> DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>创建<code>flask-script</code> 管理文件<code>manager.py</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask_script <span class="token keyword">import</span> Manager
+<span class="token keyword">from</span> app <span class="token keyword">import</span> app
+<span class="token keyword">from</span> flask_migrate <span class="token keyword">import</span> Migrate<span class="token punctuation">,</span>MigrateCommand
+<span class="token keyword">from</span> ext <span class="token keyword">import</span> db
+<span class="token comment" spellcheck="true"># 导入migrate=Alembic 操作的Model</span>
+<span class="token keyword">from</span> models <span class="token keyword">import</span> User2<span class="token punctuation">,</span>Address2
+
+<span class="token comment" spellcheck="true"># 绑定app</span>
+manager <span class="token operator">=</span> Manager<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 导入 flask-migrate</span>
+<span class="token comment" spellcheck="true"># 导入的Migrate类 可以绑定app ,db到 migrate 中</span>
+<span class="token comment" spellcheck="true"># 导入的MigrateCommand 类可以使用 Alembic 中所有的命令</span>
+Migrate<span class="token punctuation">(</span>app<span class="token punctuation">,</span>db<span class="token punctuation">)</span>
+manager<span class="token punctuation">.</span>add_command<span class="token punctuation">(</span><span class="token string">'db'</span><span class="token punctuation">,</span> MigrateCommand<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 起一个别名</span>
+
+<span class="token comment" spellcheck="true"># 需要导入 Alembic 操作的 Model</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+manager<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在执行<code>manager.py</code> 之前,先看下<code>mysql</code>数据库中信息.</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">>  use flask_migrate_demo 
+> show tables;                                            ;     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>查看帮助信息</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># 可以看到命令参数和 Alembic 一样,有的命令还设置了简化
+$ python manager.py db --help
+usage: Perform database migrations
+
+Perform database migrations
+
+positional arguments:
+{init,revision,migrate,edit,merge,upgrade,downgrade,show,history,heads,branches,current,stamp}
+ init                Creates a new migration repository
+ revision            Create a new revision file.
+ migrate             Alias for 'revision --autogenerate'
+ edit                Edit current revision.
+ merge               Merge two revisions together. Creates a new migration
+                     file
+ upgrade             Upgrade to a later version
+ downgrade           Revert to a previous version
+ show                Show the revision denoted by the given symbol.
+ history             List changeset scripts in chronological order.
+ heads               Show current available heads in the script directory
+ branches            Show current branch points
+ current             Display the current revision for each database.
+ stamp               'stamp' the revision table with the given revision;
+                     don't run any migrations
+
+optional arguments:
+-?, --help            show this help message and exit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在<code>alembic</code> 中基本的数据库版本控制包括</p>
+<ol>
+<li>初始化</li>
+<li>修改<code>init</code>配置文件</li>
+<li>修改<code>env.py</code></li>
+<li>创建新的迁移脚本</li>
+<li>变更数据库版本<ol>
+<li>升级数据库版本</li>
+<li>降级数据库版本</li>
+</ol>
+</li>
+</ol>
+<p>而<code>migrate</code> 设置了简化,只需要</p>
+<ol>
+<li>初始化</li>
+<li>创建新的迁移脚本</li>
+<li>变更数据库版本<ol>
+<li>升级数据库版本</li>
+<li>降级数据库版本</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h4 id="1-初始化-1"><a href="#1-初始化-1" class="headerlink" title="1.初始化"></a>1.初始化</h4><blockquote>
+<p><code>alembic</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">alembic init alembic<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>migrate</code></p>
+<pre class="line-numbers language-shell"><code class="language-shell">$ python manager.py db init<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此时查看目录结构</p>
+<pre class="line-numbers language-shell"><code class="language-shell">circular_references
+├── app.py                          # 主 app 文件
+├── config.py                        # Flask 配置文件
+├── manager.py                    # Flask-script 脚本文件
+├── migrations                    # 自动生成的文件夹名称
+│   ├── alembic.ini                       # alembic配置文件
+│   ├── env.py                               # alembic 的使用文件
+│   ├── README
+│   ├── script.py.mako
+│   └── versions                          # 版本目录
+├── models.py                    # 存放flask-sqlalchemy.Model 类
+├── ext.py                                # 存放 db 
+├── static                              #  css,js 文件目录
+└── templates                     # 模板文件目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-创建新的迁移脚本"><a href="#2-创建新的迁移脚本" class="headerlink" title="2.创建新的迁移脚本"></a>2.创建新的迁移脚本</h4><blockquote>
+<p>查看帮助可以看到</p>
+<pre class="line-numbers language-bash"><code class="language-bash">migrate             Alias <span class="token keyword">for</span> <span class="token string">'revision --autogenerate'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>migrate</code>参数默认使用了<code>--autogenerate</code> 命令</p>
+<p>可以如下创建迁移脚本</p>
+<pre class="line-numbers language-shell"><code class="language-shell">$ python manager.py db migrate
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'user2'
+INFO  [alembic.autogenerate.compare] Detected added table 'address2'
+Generating circular_refrences/migrations/versions/b296ac4287bd_.py ...  done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看<code>mysql</code></p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:flask_migrate_demo> show tables;                                                 
++------------------------------+
+| Tables_in_flask_migrate_demo |
++------------------------------+
+| alembic_version              |
++------------------------------+
+1 row in set
+Time: 0.013s
+mysql root@192.168.101:flask_migrate_demo> select * from alembic_version;              
++-------------+
+| version_num |
++-------------+
+0 rows in set
+Time: 0.015s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-变更数据库版本"><a href="#3-变更数据库版本" class="headerlink" title="3.变更数据库版本"></a>3.变更数据库版本</h4><blockquote>
+<p>现在记录下数据库的初始状态</p>
+<pre class="line-numbers language-shell"><code class="language-shell">$ python manager.py db upgrade
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> b296ac4287bd, empty messag<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看数据库:</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql root@192.168.101:flask_migrate_demo> show tables;                                                          
++------------------------------+
+| Tables_in_flask_migrate_demo |
++------------------------------+
+| address2                     |
+| alembic_version              |
+| user2                        |
++------------------------------+
+3 rows in set
+Time: 0.015s
+mysql root@192.168.101:flask_migrate_demo> select * from alembic_version;            
++--------------+
+| version_num  |
++--------------+
+| b296ac4287bd |
++--------------+
+1 row in set
+Time: 0.020s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到<code>mysql</code> 中确实创建了表.</p>
+<p>当然可以对<code>Model</code> 添加字段做修改,然后从新创建新的迁移脚本,并升级或降级数据库版本.</p>
+<p>需要注意的是:</p>
+<p><code>Alembic</code> 对表名的更改,列名的更改,匿名约束等检测的不够准确,有时候是需要去<code>versions</code> 文件夹中找到相关的字段做修改的.</p>
+</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
