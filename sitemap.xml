@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.wenyan.online/2020/09/13/javascript/</loc>
-    
-    <lastmod>2020-09-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.wenyan.online/2020/09/13/hexonavigate/</loc>
     
     <lastmod>2020-09-13</lastmod>
@@ -388,13 +381,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://www.wenyan.online/tags/JavaScript/</loc>
-    <lastmod>2020-09-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
@@ -434,13 +420,6 @@
   
   <url>
     <loc>https://www.wenyan.online/categories/Flask%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2020-09-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.wenyan.online/categories/JavaScript/</loc>
     <lastmod>2020-09-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
