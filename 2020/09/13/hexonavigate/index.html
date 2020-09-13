@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Flask_SQLAlchemy">
+    <meta name="keywords" content="Hexo CSS JavaScript">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>解决Flask-SQLAlchemy循环引用 | 文彦Blog</title>
+    <title>Hexo添加导航书签 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -332,12 +332,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://tva1.sinaimg.cn/large/a20ab060gy1gip7idxvdsj21ee0onacl.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">解决Flask-SQLAlchemy循环引用</h1>
+                    <h1 class="description center-align post-title">Hexo添加导航书签</h1>
                 </div>
             </div>
         </div>
@@ -454,12 +454,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Flask/">
-                                <span class="chip bg-color">Flask</span>
-                            </a>
-                        
-                            <a href="/tags/Flask-SQLAlchemy/">
-                                <span class="chip bg-color">Flask_SQLAlchemy</span>
+                            <a href="/tags/Hexo/">
+                                <span class="chip bg-color">Hexo</span>
                             </a>
                         
                     </div>
@@ -470,8 +466,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SQLAlchemy-Flask/" class="post-category">
-                                SQLAlchemy Flask
+                            <a href="/categories/Hexo/" class="post-category">
+                                Hexo
                             </a>
                         
                     </div>
@@ -483,7 +479,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-09
+                    2020-09-13
                 </div>
                 
 
@@ -499,205 +495,62 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png" alt="10290"></p>
-<h2 id="解决Flask-SQLAlchemy循环引用"><a href="#解决Flask-SQLAlchemy循环引用" class="headerlink" title="解决Flask-SQLAlchemy循环引用"></a>解决Flask-SQLAlchemy循环引用</h2><h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h3><blockquote>
-<p>新建一个<code>flask</code>项目,它的初始化项目为:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ tree
-circular_references
-├── app.py                    <span class="token comment" spellcheck="true"># 主 app 文件</span>
-├── static                        <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
-└── templates              <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>为了项目的健壮性,可以把<code>flask</code>的配置文件写入一个文件中<code>config.py</code></p>
-<p>此时实现一个如下的文件结构</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ tree
-circular_references
-├── app.py                          <span class="token comment" spellcheck="true"># 主 app 文件</span>
-├── config.py                        <span class="token comment" spellcheck="true"># Flask 配置文件</span>
-├── static                              <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
-└── templates                     <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>config.py</code></p>
-<pre class="line-numbers language-python"><code class="language-python">DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment" spellcheck="true"># 开启Debug</span>
-TEMPLATES_AUTO_RELOAD <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment" spellcheck="true"># 模板自动加载</span>
-DB_URI <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/flask_alembic_demo'</span> <span class="token comment" spellcheck="true"># 确保数据库存在</span>
-<span class="token comment" spellcheck="true"># 指定数据库连接</span>
-SQLALCHEMY_DATABASE_URI <span class="token operator">=</span> DB_URI
-SQLALCHEMY_TRACK_MODIFICATIONS <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>app.py</code></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
-<span class="token keyword">import</span> config
-<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
-
-
-app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
-app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
-
-db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
-
-<span class="token keyword">class</span> <span class="token class-name">User2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    __tablename__ <span class="token operator">=</span> <span class="token string">'user2'</span>
-
-    id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-    name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
-    addresses <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'Address2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">Address2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    __tablename__ <span class="token operator">=</span> <span class="token string">'address2'</span>
-
-    id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-    email_address <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-    u_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> db<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">'user2.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
-    user <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'User2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span>
-
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>随着项目的不断壮大,不可能把所有的<code>SQLAlchemy Model</code> 都写入到<code>app.py</code> 主<code>app</code> 文件中,这时候就需要独立出一个文件专门存放<code>Model</code> 类<code>models.py</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash">circular_references
-├── app.py                          <span class="token comment" spellcheck="true"># 主 app 文件</span>
-├── config.py                        <span class="token comment" spellcheck="true"># Flask 配置文件</span>
-├── models.py                    <span class="token comment" spellcheck="true"># 存放flask-sqlalchemy.Model 类</span>
-├── static                              <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
-└── templates                     <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这时候需要修改<code>app.py</code>和新建<code>models.py</code>文件.</p>
-<p><code>models.py</code></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># models.py</span>
-
-<span class="token keyword">from</span> app <span class="token keyword">import</span> app
-<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
-db <span class="token operator">=</span> SQlAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
-
-<span class="token keyword">class</span> <span class="token class-name">User2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       __tablename__ <span class="token operator">=</span> <span class="token string">'user2'</span>
-
-       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-       name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
-       addresses <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'Address2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">Address2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       __tablename__ <span class="token operator">=</span> <span class="token string">'address2'</span>
-
-       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-       email_address <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-       u_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> db<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">'user2.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
-       user <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'User2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># app.py</span>
-
-<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
-<span class="token keyword">import</span> config
-<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
-<span class="token comment" spellcheck="true"># 引入 User2,Address2</span>
-<span class="token keyword">from</span> models <span class="token keyword">import</span> User2<span class="token punctuation">,</span>Address2
-
-app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
-app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
-
-db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
-
-<span class="token comment" spellcheck="true"># 假设需要一个与数据库交互的模板文件</span>
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/add_user/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">add_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-       <span class="token triple-quoted-string string">"""引用ORM交互"""</span>
-       u1 <span class="token operator">=</span> User2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
-       a1 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jackxxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-       a2 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack2xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-       a3 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack3xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">,</span> a3<span class="token punctuation">]</span>
-db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-       app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果执行运行<code>app.py</code> 文件,会产生一个<strong>循环引用</strong> 的报错</p>
-<pre class="line-numbers language-python"><code class="language-python">ImportError<span class="token punctuation">:</span> cannot <span class="token keyword">import</span> name <span class="token string">'db'</span> <span class="token keyword">from</span> <span class="token string">'app'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>产生的原因很简单,<code>python</code> 代码是自上而下依次执行的.<code>from models import user2</code> 文件<code>models.py</code> 会先从<code>app.py</code> 中引入<code>db</code> ,才能生成<code>User2</code> ,这就是循环引入</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666288241-10288.png" alt="10288"></p>
+                <h2 id="添加书签导航"><a href="#添加书签导航" class="headerlink" title="添加书签导航"></a>添加书签导航</h2><h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><blockquote>
+<p>  虽然浏览器中能保存各种各样的书签,但是同步是一个问题,展现又是另外一个问题,所以顺便在<code>hexo</code>中创建一个类书签导航.</p>
+<p>  访问:<a href="https://wenyan.online/navigate/" target="_blank" rel="noopener">https://wenyan.online/navigate/</a> 查看效果</p>
 </blockquote>
-<h3 id="2-解决循环引入"><a href="#2-解决循环引入" class="headerlink" title="2.解决循环引入"></a>2.解决循环引入</h3><blockquote>
-<p>为了解决他们之间的循环引入,这里需要引入第三个文件.</p>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666288237-10289.png" alt="10289"></p>
-<p>此时的目录结构如下</p>
-<pre class="line-numbers language-bash"><code class="language-bash">circular_references
-├── app.py                          <span class="token comment" spellcheck="true"># 主 app 文件</span>
-├── config.py                        <span class="token comment" spellcheck="true"># Flask 配置文件</span>
-├── models.py                    <span class="token comment" spellcheck="true"># 存放flask-sqlalchemy.Model 类</span>
-├── ext.py                                <span class="token comment" spellcheck="true"># 存放 db </span>
-├── static                              <span class="token comment" spellcheck="true">#  css,js 文件目录</span>
-└── templates                     <span class="token comment" spellcheck="true"># 模板文件目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>ext.py</code></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
-db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 不用绑定app,由 app.py 中绑定 app</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><code>models.py</code></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 从ext 中导入db</span>
-<span class="token keyword">from</span> ext <span class="token keyword">import</span> db
-
-<span class="token keyword">class</span> <span class="token class-name">User2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       __tablename__ <span class="token operator">=</span> <span class="token string">'user2'</span>
-
-       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-       name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
-       addresses <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'Address2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'user'</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">Address2</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       __tablename__ <span class="token operator">=</span> <span class="token string">'address2'</span>
-
-       id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-       email_address <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-       u_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> db<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">'user2.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token comment" spellcheck="true"># 创建数据库关系, 双向联系</span>
-       user <span class="token operator">=</span> db<span class="token punctuation">.</span>relationship<span class="token punctuation">(</span><span class="token string">'User2'</span><span class="token punctuation">,</span> back_populates<span class="token operator">=</span><span class="token string">'addresses'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>app.py</code></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
-<span class="token keyword">import</span> config
-<span class="token comment" spellcheck="true"># 引入db</span>
-<span class="token keyword">from</span> ext <span class="token keyword">import</span> db
-<span class="token comment" spellcheck="true"># 引入 User2,Address2</span>
-<span class="token keyword">from</span> models <span class="token keyword">import</span> User2<span class="token punctuation">,</span>Address2
-
-app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
-app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 利用init_app()方法绑定app</span>
-db<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
-
-
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-         <span class="token keyword">return</span> <span class="token string">'Hello World!'</span>
-
-<span class="token comment" spellcheck="true"># 假设需要一个与数据库交互的模板文件</span>
-@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/add_user/'</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">add_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-       <span class="token triple-quoted-string string">"""引用ORM交互"""</span>
-       u1 <span class="token operator">=</span> User2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'Jack'</span><span class="token punctuation">)</span>
-       a1 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jackxxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-       a2 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack2xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-       a3 <span class="token operator">=</span> Address2<span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> email_address<span class="token operator">=</span><span class="token string">'Jack3xxx@xx.com'</span><span class="token punctuation">,</span> u_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-       u1<span class="token punctuation">.</span>addresses <span class="token operator">=</span> <span class="token punctuation">[</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">,</span> a3<span class="token punctuation">]</span>
-       db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span>
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-       app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>由于<code>python</code>自上而下执行,到执行<code>User2()</code> 函数时,它执行的是绑定<code>app</code>的<code>db</code> .</p>
+<h3 id="1-创建资源文件夹"><a href="#1-创建资源文件夹" class="headerlink" title="1.创建资源文件夹"></a>1.创建资源文件夹</h3><blockquote>
+<p>  按照<a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">官网</a>的说明,<code>source</code>文件存放了除去文章之外所有的资源(<code>css\js\images</code>),所以我们的文件要创建在这里.</p>
+<p>  新建一个 <code>navigate</code>目录</p>
+<pre class="line-numbers language-bash"><code class="language-bash">❯ <span class="token function">mkdir</span> source/navigate/
+❯ <span class="token function">cd</span> source/navigate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>  创建好之后,可以直接放入开源的<a href="https://github.com/WebStackPage/WebStackPage.github.io" target="_blank" rel="noopener">webstack</a>,也可以根据它创建自己想要的<code>html</code>页面.</p>
+<p>  这里我修改过一些文件,加入一个多重搜索引擎的快捷方式,如果你要使用,可以参考<a href="https://github.com/ningwenyan/demo_code#javascript%E6%8E%A7%E5%88%B6%E5%8F%AF%E5%88%87%E6%8D%A2%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%90%9C%E7%B4%A2%E6%A1%86" target="_blank" rel="noopener">我的github示例代码</a></p>
+</blockquote>
+<h3 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2.修改配置文件"></a>2.修改配置文件</h3><blockquote>
+<ul>
+<li><p>修改根目录下的<code>_config.yml</code>.因为<code>hexo </code>编译会对主题模板进行渲染之后生成静态页面,但是这个导航的网站本身就是 <code>html</code>文件,因此不需要渲染,那么跳过渲染就需要配置 <code>skip_render</code> 项.</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">skip_render</span><span class="token punctuation">:</span> 
+<span class="token punctuation">-</span> <span class="token string">'navigate/**'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>修改主题下的配置文件<code>_config.yml</code>.添加一级菜单如下:</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">Friends</span><span class="token punctuation">:</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span> /friends
+<span class="token key atrule">icon</span><span class="token punctuation">:</span> fas fa<span class="token punctuation">-</span>address<span class="token punctuation">-</span>book
+<span class="token key atrule">Navigate</span><span class="token punctuation">:</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span> /navigate
+<span class="token key atrule">icon</span><span class="token punctuation">:</span> fas fa<span class="token punctuation">-</span>rocket <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>修改语言页面<code>languages/zh-CN.yml</code>:</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">Navigate</span><span class="token punctuation">:</span> WenYan导航<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>修改<code>ejs</code>渲染文件(<code>layout/_partial_navigation.ejs</code>).</p>
+<pre class="line-numbers language-ejs"><code class="language-ejs">menuMap.set("Navigate", "WenYan导航")<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</blockquote>
+<h3 id="3-压缩css-js以及cdn加速"><a href="#3-压缩css-js以及cdn加速" class="headerlink" title="3.压缩css/js以及cdn加速"></a>3.压缩<code>css/js</code>以及<code>cdn</code>加速</h3><blockquote>
+<p>  如果你使用的是<code>vs code</code>,建议安装<code>js css minifier</code>,然后使用快捷键<code>F1</code>,压缩<code>css/js</code>文件.</p>
+<p>  然后就是<code>html</code>文档中所有使用到的<code>js/css/images</code>,建议全部使用<code>jsdelivr</code>加速访问.</p>
+</blockquote>
+<h3 id="4-编译文件"><a href="#4-编译文件" class="headerlink" title="4.编译文件"></a>4.编译文件</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ hexo g
+$ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="5-效果展示"><a href="#5-效果展示" class="headerlink" title="5.效果展示"></a>5.效果展示</h3><blockquote>
+<p>  <img src="https://tva1.sinaimg.cn/large/a20ab060gy1gip7idxvdsj21ee0onacl.jpg" alt="10292.png"></p>
+</blockquote>
+<h3 id="6-添加网页"><a href="#6-添加网页" class="headerlink" title="6.添加网页"></a>6.添加网页</h3><blockquote>
+<p>  由于定位类书签的缘故,它收录的地址并不是完全的,是需要去实时更新添加的.但是它的结构非常简单,这里简单的说下</p>
+<ul>
+<li><p>侧边栏,主要更新 <code>main-menu</code></p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main-menu<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main-menu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>展示栏,主要更新<code>row</code>中的内容.</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text-gray<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>linecons-tag<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">margin-right</span><span class="token punctuation">:</span> <span class="token number">7</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>常用推荐<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>常用推荐<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
@@ -725,7 +578,7 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/09/dbcularrefr/">https://www.wenyan.online/2020/09/09/dbcularrefr/</a>
+                    <a href="https://www.wenyan.online/2020/09/13/hexonavigate/">https://www.wenyan.online/2020/09/13/hexonavigate/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -763,12 +616,8 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Flask/">
-                                    <span class="chip bg-color">Flask</span>
-                                </a>
-                            
-                                <a href="/tags/Flask-SQLAlchemy/">
-                                    <span class="chip bg-color">Flask_SQLAlchemy</span>
+                                <a href="/tags/Hexo/">
+                                    <span class="chip bg-color">Hexo</span>
                                 </a>
                             
                         </div>
@@ -1203,18 +1052,19 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/13/hexonavigate/">
+                <a href="/2020/09/13/javascript/">
                     <div class="card-image">
                         
-                        <img src="https://tva1.sinaimg.cn/large/a20ab060gy1gip7idxvdsj21ee0onacl.jpg" class="responsive-img" alt="Hexo添加导航书签">
                         
-                        <span class="card-title">Hexo添加导航书签</span>
+                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/23.jpg" class="responsive-img" alt="JavaScript介绍">
+                        
+                        <span class="card-title">JavaScript介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            导航书签
+                            原生JavaScript
                         
                     </div>
                     <div class="publish-info">
@@ -1225,8 +1075,8 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hexo/" class="post-category">
-                                    Hexo
+                            <a href="/categories/JavaScript/" class="post-category">
+                                    JavaScript
                                 </a>
                             
                             
@@ -1236,8 +1086,8 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
                     </a>
                     
                 </div>
@@ -1251,18 +1101,18 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/09/createcliflask/">
+                <a href="/2020/09/09/dbcularrefr/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599665192366-10287.png" class="responsive-img" alt="创建漂亮的Flask命令行界面">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png" class="responsive-img" alt="解决Flask-SQLAlchemy循环引用">
                         
-                        <span class="card-title">创建漂亮的Flask命令行界面</span>
+                        <span class="card-title">解决Flask-SQLAlchemy循环引用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            创建漂亮的Flask命令行界面
+                            解决Flask-SQLAlchemy循环引用
                         
                     </div>
                     <div class="publish-info">
@@ -1273,8 +1123,8 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Flask%E6%8F%92%E4%BB%B6/" class="post-category">
-                                    Flask插件
+                            <a href="/categories/SQLAlchemy-Flask/" class="post-category">
+                                    SQLAlchemy Flask
                                 </a>
                             
                             
@@ -1288,8 +1138,8 @@ db<span class="token punctuation">.</span>init_app<span class="token punctuation
                         <span class="chip bg-color">Flask</span>
                     </a>
                     
-                    <a href="/tags/Click/">
-                        <span class="chip bg-color">Click</span>
+                    <a href="/tags/Flask-SQLAlchemy/">
+                        <span class="chip bg-color">Flask_SQLAlchemy</span>
                     </a>
                     
                 </div>

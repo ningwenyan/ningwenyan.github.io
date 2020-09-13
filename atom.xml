@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-09T16:00:25.645Z</updated>
+  <updated>2020-09-13T13:56:45.143Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript介绍</title>
+    <link href="https://www.wenyan.online/2020/09/13/javascript/"/>
+    <id>https://www.wenyan.online/2020/09/13/javascript/</id>
+    <published>2020-09-13T13:55:00.000Z</published>
+    <updated>2020-09-13T13:56:45.143Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;JavaScript介绍&quot;&gt;&lt;a href=&quot;#JavaScript介绍&quot; class=&quot;headerlink&quot; title=&quot;JavaScript介绍&quot;&gt;&lt;/a&gt;JavaScript介绍&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt; 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://www.wenyan.online/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://www.wenyan.online/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo添加导航书签</title>
+    <link href="https://www.wenyan.online/2020/09/13/hexonavigate/"/>
+    <id>https://www.wenyan.online/2020/09/13/hexonavigate/</id>
+    <published>2020-09-13T13:51:13.000Z</published>
+    <updated>2020-09-13T13:54:47.064Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;添加书签导航&quot;&gt;&lt;a href=&quot;#添加书签导航&quot; class=&quot;headerlink&quot; title=&quot;添加书签导航&quot;&gt;&lt;/a&gt;添加书签导航&lt;/h2&gt;&lt;h3 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://www.wenyan.online/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://www.wenyan.online/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>解决Flask-SQLAlchemy循环引用</title>
@@ -521,45 +576,6 @@
     
     
       <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>about</title>
-    <link href="https://www.wenyan.online/2020/08/06/about/"/>
-    <id>https://www.wenyan.online/2020/08/06/about/</id>
-    <published>2020-08-06T12:14:42.000Z</published>
-    <updated>2020-08-06T12:14:42.534Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="https://www.wenyan.online/2020/08/06/test/"/>
-    <id>https://www.wenyan.online/2020/08/06/test/</id>
-    <published>2020-08-06T09:55:15.000Z</published>
-    <updated>2020-08-07T16:48:58.031Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;code&gt;python&lt;/code&gt;&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token
-        
-      
-    
-    </summary>
-    
-    
     
   </entry>
   
