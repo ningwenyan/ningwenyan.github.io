@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Hexo CSS JavaScript">
+    <meta name="keywords" content="bug 系统漏洞">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo添加导航书签 | 文彦Blog</title>
+    <title>2020年9月漏洞 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -332,12 +332,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://tva1.sinaimg.cn/large/a20ab060gy1gip7idxvdsj21ee0onacl.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo添加导航书签</h1>
+                    <h1 class="description center-align post-title">2020年9月漏洞</h1>
                 </div>
             </div>
         </div>
@@ -454,8 +454,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
@@ -466,8 +466,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Hexo/" class="post-category">
-                                Hexo
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                系统漏洞
                             </a>
                         
                     </div>
@@ -479,7 +479,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-13
+                    2020-09-15
                 </div>
                 
 
@@ -495,64 +495,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="添加书签导航"><a href="#添加书签导航" class="headerlink" title="添加书签导航"></a>添加书签导航</h2><h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><blockquote>
-<p>  虽然浏览器中能保存各种各样的书签,但是同步是一个问题,展现又是另外一个问题,所以顺便在<code>hexo</code>中创建一个类书签导航.</p>
-<p>  访问:<a href="https://wenyan.online/navigate/" target="_blank" rel="noopener">https://wenyan.online/navigate/</a> 查看效果</p>
-</blockquote>
-<h3 id="1-创建资源文件夹"><a href="#1-创建资源文件夹" class="headerlink" title="1.创建资源文件夹"></a>1.创建资源文件夹</h3><blockquote>
-<p>  按照<a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">官网</a>的说明,<code>source</code>文件存放了除去文章之外所有的资源(<code>css\js\images</code>),所以我们的文件要创建在这里.</p>
-<p>  新建一个 <code>navigate</code>目录</p>
-<pre class="line-numbers language-bash"><code class="language-bash">❯ <span class="token function">mkdir</span> source/navigate/
-❯ <span class="token function">cd</span> source/navigate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>  创建好之后,可以直接放入开源的<a href="https://github.com/WebStackPage/WebStackPage.github.io" target="_blank" rel="noopener">webstack</a>,也可以根据它创建自己想要的<code>html</code>页面.</p>
-<p>  这里我修改过一些文件,加入一个多重搜索引擎的快捷方式,如果你要使用,可以参考<a href="https://github.com/ningwenyan/demo_code#javascript%E6%8E%A7%E5%88%B6%E5%8F%AF%E5%88%87%E6%8D%A2%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%90%9C%E7%B4%A2%E6%A1%86" target="_blank" rel="noopener">我的github示例代码</a></p>
-</blockquote>
-<h3 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2.修改配置文件"></a>2.修改配置文件</h3><blockquote>
-<ul>
-<li><p>修改根目录下的<code>_config.yml</code>.因为<code>hexo </code>编译会对主题模板进行渲染之后生成静态页面,但是这个导航的网站本身就是 <code>html</code>文件,因此不需要渲染,那么跳过渲染就需要配置 <code>skip_render</code> 项.</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">skip_render</span><span class="token punctuation">:</span> 
-<span class="token punctuation">-</span> <span class="token string">'navigate/**'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li><p>修改主题下的配置文件<code>_config.yml</code>.添加一级菜单如下:</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">Friends</span><span class="token punctuation">:</span>
-<span class="token key atrule">url</span><span class="token punctuation">:</span> /friends
-<span class="token key atrule">icon</span><span class="token punctuation">:</span> fas fa<span class="token punctuation">-</span>address<span class="token punctuation">-</span>book
-<span class="token key atrule">Navigate</span><span class="token punctuation">:</span>
-<span class="token key atrule">url</span><span class="token punctuation">:</span> /navigate
-<span class="token key atrule">icon</span><span class="token punctuation">:</span> fas fa<span class="token punctuation">-</span>rocket <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>修改语言页面<code>languages/zh-CN.yml</code>:</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">Navigate</span><span class="token punctuation">:</span> WenYan导航<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li><p>修改<code>ejs</code>渲染文件(<code>layout/_partial_navigation.ejs</code>).</p>
-<pre class="line-numbers language-ejs"><code class="language-ejs">menuMap.set("Navigate", "WenYan导航")<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-</blockquote>
-<h3 id="3-压缩css-js以及cdn加速"><a href="#3-压缩css-js以及cdn加速" class="headerlink" title="3.压缩css/js以及cdn加速"></a>3.压缩<code>css/js</code>以及<code>cdn</code>加速</h3><blockquote>
-<p>  如果你使用的是<code>vs code</code>,建议安装<code>js css minifier</code>,然后使用快捷键<code>F1</code>,压缩<code>css/js</code>文件.</p>
-<p>  然后就是<code>html</code>文档中所有使用到的<code>js/css/images</code>,建议全部使用<code>jsdelivr</code>加速访问.</p>
-</blockquote>
-<h3 id="4-编译文件"><a href="#4-编译文件" class="headerlink" title="4.编译文件"></a>4.编译文件</h3><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash">$ hexo g
-$ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="5-效果展示"><a href="#5-效果展示" class="headerlink" title="5.效果展示"></a>5.效果展示</h3><blockquote>
-<p>  <img src="https://tva1.sinaimg.cn/large/a20ab060gy1gip7idxvdsj21ee0onacl.jpg" alt="10292.png"></p>
-</blockquote>
-<h3 id="6-添加网页"><a href="#6-添加网页" class="headerlink" title="6.添加网页"></a>6.添加网页</h3><blockquote>
-<p>  由于定位类书签的缘故,它收录的地址并不是完全的,是需要去实时更新添加的.但是它的结构非常简单,这里简单的说下</p>
-<ul>
-<li><p>侧边栏,主要更新 <code>main-menu</code></p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main-menu<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main-menu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li><p>展示栏,主要更新<code>row</code>中的内容.</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text-gray<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>linecons-tag<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">margin-right</span><span class="token punctuation">:</span> <span class="token number">7</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>常用推荐<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>常用推荐<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-</ul>
-</blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
+                <table>
+<thead>
+<tr>
+<th>时间</th>
+<th>漏洞信息</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>2020-9</code></td>
+<td><code>IE</code>远程代码执行漏洞</td>
+<td><a href="https://portal.msrc.microsoft.com/zh-CN/security-guidance/advisory/CVE-2020-1092" target="_blank" rel="noopener">https://portal.msrc.microsoft.com/zh-CN/security-guidance/advisory/CVE-2020-1092</a></td>
+</tr>
+<tr>
+<td><code>2020-9</code></td>
+<td><code>fastjson</code>反序列漏洞</td>
+<td><a href="https://github.com/alibaba/fastjson" target="_blank" rel="noopener">https://github.com/alibaba/fastjson</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
@@ -578,7 +544,7 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/13/hexonavigate/">https://www.wenyan.online/2020/09/13/hexonavigate/</a>
+                    <a href="https://www.wenyan.online/2020/09/15/20209loophole/">https://www.wenyan.online/2020/09/15/20209loophole/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -616,8 +582,8 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -1048,9 +1014,10 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/15/20209loophole/">
                     <div class="card-image">
@@ -1068,9 +1035,9 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1083,6 +1050,7 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1101,30 +1069,30 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/09/dbcularrefr/">
+                <a href="/2020/09/13/hexonavigate/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png" class="responsive-img" alt="解决Flask-SQLAlchemy循环引用">
+                        <img src="https://tva1.sinaimg.cn/large/a20ab060gy1gip7idxvdsj21ee0onacl.jpg" class="responsive-img" alt="Hexo添加导航书签">
                         
-                        <span class="card-title">解决Flask-SQLAlchemy循环引用</span>
+                        <span class="card-title">Hexo添加导航书签</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            解决Flask-SQLAlchemy循环引用
+                            导航书签
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SQLAlchemy-Flask/" class="post-category">
-                                    SQLAlchemy Flask
+                            <a href="/categories/Hexo/" class="post-category">
+                                    Hexo
                                 </a>
                             
                             
@@ -1134,12 +1102,8 @@ $ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Flask/">
-                        <span class="chip bg-color">Flask</span>
-                    </a>
-                    
-                    <a href="/tags/Flask-SQLAlchemy/">
-                        <span class="chip bg-color">Flask_SQLAlchemy</span>
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
                     </a>
                     
                 </div>

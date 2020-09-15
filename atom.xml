@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-13T13:54:47.064Z</updated>
+  <updated>2020-09-15T14:50:59.301Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020年9月漏洞</title>
+    <link href="https://www.wenyan.online/2020/09/15/20209loophole/"/>
+    <id>https://www.wenyan.online/2020/09/15/20209loophole/</id>
+    <published>2020-09-15T14:44:28.000Z</published>
+    <updated>2020-09-15T14:50:59.301Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;时间&lt;/th&gt;
+&lt;th&gt;漏洞信息&lt;/th&gt;
+&lt;th&gt;解决方案&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;2020-9&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;IE&lt;/code&gt;远程代码
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统漏洞" scheme="https://www.wenyan.online/categories/%E7%B3%BB%E7%BB%9F%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+      <category term="linux" scheme="https://www.wenyan.online/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo添加导航书签</title>
@@ -548,21 +585,6 @@
     
     
       <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>about</title>
-    <link href="https://www.wenyan.online/2020/08/06/about/"/>
-    <id>https://www.wenyan.online/2020/08/06/about/</id>
-    <published>2020-08-06T12:14:42.000Z</published>
-    <updated>2020-08-06T12:14:42.534Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
     
   </entry>
   
