@@ -336,8 +336,8 @@ footer {
     position: absolute;
     left: 0;
     /* top: 135px; */
-    background: url("../images/pickup-area.png")/*tpa=https://one-piece.cn/templets/default/images/pickup-area.png*/
-    repeat-x top center;
+    /* background: url("../images/pickup-area.png") repeat-x top center; */
+    background: url('https://tva1.sinaimg.cn/large/a20ab060ly1givd46rykxj216i09qjy4.jpg') repeat-x top center;
 }
 
 .level3-menu {
@@ -362,8 +362,8 @@ footer {
 ----------------------------------------------------------- */
 
 header {
-    background: url("../images/head-share-bg.png")/*tpa=https://one-piece.cn/templets/default/images/head-share-bg.png*/
-    repeat 0 0;
+    /* background: url("../images/head-share-bg.png") repeat 0 0; */
+    background: url('https://tva1.sinaimg.cn/large/a20ab060ly1givcwuv93lj216i09qjy4.jp') repeat 0 0;
     width: 100%;
 }
 
@@ -387,8 +387,8 @@ header #header-wrap #header-logo a {
     text-indent: 110%;
     white-space: nowrap;
     overflow: hidden;
-    background: url("../images/header-logo.png")/*tpa=https://one-piece.cn/templets/default/images/header-logo.png*/
-    no-repeat 0 0;
+    /* background: url("../images/header-logo.png") no-repeat 0 0; */
+    background: url('https://tva1.sinaimg.cn/large/a20ab060ly1givd1frnacj203r00vwec.jpg') no-repeat 0 0;
 }
 
 
@@ -590,8 +590,8 @@ article {
 
 #main-area h2 {
     position: relative;
-    background: url("../images/contents-title.png")/*tpa=https://one-piece.cn/templets/default/images/contents-title.png*/
-    no-repeat 0 0;
+    /* background: url("../images/contents-title.png") no-repeat 0 0; */
+    background: url('https://tva1.sinaimg.cn/large/a20ab060ly1givd5kchlpj20k604ejwh.jpg') no-repeat 0 0;
     background-size: cover;
     min-height: 69px;
     border-bottom: #520000 1px solid;
