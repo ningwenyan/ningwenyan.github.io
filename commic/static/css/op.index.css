@@ -835,7 +835,7 @@ article {
     padding-left: 0;
     background: none;
     display: block;
-    /* background: url("data:image/gif;base64,R0lGODlhZAAUAIAAAAD//wAAACH5BAEAAAAALAAAAABkABQAAAIshI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKZwUAOw==") repeat 0 0; */
+    background: url("data:image/gif;base64,R0lGODlhZAAUAIAAAAD//wAAACH5BAEAAAAALAAAAABkABQAAAIshI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKZwUAOw==") repeat 0 0;
     overflow: hidden;
     *zoom: 1;
 }
