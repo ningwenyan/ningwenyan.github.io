@@ -320,8 +320,7 @@ header #header-wrap #header-logo a {
 #sub-area .submenu-area .submenu-wrap {
     border-left: #927a56 4px solid;
     border-right: #927a56 4px solid;
-    background: #830000 url("../images/subarea-title-bg.png")/*tpa=https://one-piece.cn/templets/default/images/subarea-title-bg.png*/
-    no-repeat 0 0;
+    /* background: #830000 url("../images/subarea-title-bg.png") no-repeat 0 0; */
     /** カテゴリ兆?┘ぅ瓸`ジ?? */
     /** リンク */
 }
