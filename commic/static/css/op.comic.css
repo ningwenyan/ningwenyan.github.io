@@ -326,7 +326,7 @@ header #header-wrap #header-logo a {
 }
 
 #sub-area .submenu-area .submenu-wrap .submenu-title {
-    line-height: 0;
+    /* line-height: 0; */
     margin: 0 auto;
     text-align: center;
     position: relative;
