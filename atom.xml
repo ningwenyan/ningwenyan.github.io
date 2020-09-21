@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-15T14:50:59.301Z</updated>
+  <updated>2020-09-21T15:29:33.010Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jQuery学习</title>
+    <link href="https://www.wenyan.online/2020/09/21/jquerylearn/"/>
+    <id>https://www.wenyan.online/2020/09/21/jquerylearn/</id>
+    <published>2020-09-21T15:27:49.000Z</published>
+    <updated>2020-09-21T15:29:33.010Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-21/1600701881479-10296.png&quot; alt=&quot;10296&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;jQuery基础&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="jQuery" scheme="https://www.wenyan.online/categories/jQuery/"/>
+    
+    
+      <category term="Javascript" scheme="https://www.wenyan.online/tags/Javascript/"/>
+    
+      <category term="jquery" scheme="https://www.wenyan.online/tags/jquery/"/>
+    
+      <category term="前端" scheme="https://www.wenyan.online/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>插画推荐v0001</title>
+    <link href="https://www.wenyan.online/2020/09/21/psitev0001/"/>
+    <id>https://www.wenyan.online/2020/09/21/psitev0001/</id>
+    <published>2020-09-21T15:09:30.000Z</published>
+    <updated>2020-09-21T15:12:05.172Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;个人向插画推荐&quot;&gt;&lt;a href=&quot;#个人向插画推荐&quot; class=&quot;headerlink&quot; title=&quot;个人向插画推荐&quot;&gt;&lt;/a&gt;个人向插画推荐&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;昵称:惠子&lt;br&gt;UID:
+        
+      
+    
+    </summary>
+    
+    
+      <category term="插画" scheme="https://www.wenyan.online/categories/%E6%8F%92%E7%94%BB/"/>
+    
+    
+      <category term="Pivix" scheme="https://www.wenyan.online/tags/Pivix/"/>
+    
+      <category term="插画" scheme="https://www.wenyan.online/tags/%E6%8F%92%E7%94%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>2020年9月漏洞</title>
@@ -533,58 +595,6 @@
     
     
       <category term="markdown" scheme="https://www.wenyan.online/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客搭建</title>
-    <link href="https://www.wenyan.online/2020/08/09/hexo-bo-ke-da-jian/"/>
-    <id>https://www.wenyan.online/2020/08/09/hexo-bo-ke-da-jian/</id>
-    <published>2020-08-09T06:40:25.000Z</published>
-    <updated>2020-09-07T15:49:20.276Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;Hexo-Blog&quot;&gt;&lt;a href=&quot;#Hexo-Blog&quot; class=&quot;headerlink&quot; title=&quot;Hexo Blog&quot;&gt;&lt;/a&gt;&lt;code&gt;Hexo Blog&lt;/code&gt;&lt;/h1&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="https://www.wenyan.online/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="https://www.wenyan.online/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL事务</title>
-    <link href="https://www.wenyan.online/2020/08/06/sql-shi-wu/"/>
-    <id>https://www.wenyan.online/2020/08/06/sql-shi-wu/</id>
-    <published>2020-08-06T14:07:36.000Z</published>
-    <updated>2020-08-21T13:37:31.798Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;SQL事务&quot;&gt;&lt;a href=&quot;#SQL事务&quot; class=&quot;headerlink&quot; title=&quot;SQL事务&quot;&gt;&lt;/a&gt;&lt;code&gt;SQL&lt;/code&gt;事务&lt;/h2&gt;&lt;h3 id=&quot;1-什么是事务&quot;&gt;&lt;a href=&quot;#1-什么是事务&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
     
   </entry>
   
