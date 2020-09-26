@@ -684,6 +684,287 @@ app<span class="token punctuation">.</span>config<span class="token punctuation"
 <p>虽然<code>Flask</code> 实现了<code>session</code> ,但是还是不能支持存储在数据库中.为什么要存储在数据库中,因为这样会更加安全.</p>
 <p>这就需要一个新的插件<code>Flask-Session</code></p>
 </blockquote>
+<h2 id="Flask-Session"><a href="#Flask-Session" class="headerlink" title="Flask-Session"></a>Flask-Session</h2><blockquote>
+<p>虽然<code>Flask</code> 自带的<code>session</code> 能够设置基本的信息,但是还是不能保存在服务器上,而且类似<code>cookie</code> 的作用域,和路径等等都不能设置.</p>
+<p>这时候就需要使用<code>Flask</code> 的另外一个插件<code>Flask-Session</code>.</p>
+</blockquote>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ pip <span class="token function">install</span> flask-session<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="2-基本配置"><a href="#2-基本配置" class="headerlink" title="2.基本配置"></a>2.基本配置</h3><blockquote>
+<p><code>flask_session</code> 初始化后,会从<code>app.config</code> 中读取参数,它基本包括如下:</p>
+<table>
+<thead>
+<tr>
+<th><code>SESSION_COOKIE_NAME</code></th>
+<th>设置返回给客户端的<code>cookie</code> 的名称,默认是<code>session</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SESSION_COOKIE_DOMAIN</code></td>
+<td>设置<code>cookie</code>域.如果没有设置,默认对所有子域生效.</td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE_PATH</code></td>
+<td>设置<code>cookie</code> 路径,如果不设置,默认是<code>/</code></td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE_HTTPONLY</code></td>
+<td>默认为<code>True</code></td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE_SECURE</code></td>
+<td>默认为<code>False</code></td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE_LIFETIME</code></td>
+<td>生存期,值为<code>datetime.timedelta</code> 对象,需要设置<code>session.permanent =True</code></td>
+</tr>
+<tr>
+<td><code>SESSION_TYPE</code></td>
+<td>设置<code>session</code> 保存的位置:<br><code>=null</code> :使用<code>flask</code> 中默认<code>session</code><br><code>=redis</code> :保存在<code>redis</code><br><code>=memcache</code>:保存在<code>memcache</code>中<br><code>=filesystem</code>:保存在文件中<br><code>=mogodb</code>:保存在数据库中<br><code>=sqlalchemy</code>:保存在关系型数据库中</td>
+</tr>
+<tr>
+<td><code>SESSION_PERMANENT</code></td>
+<td>使用永久性会话,默认为<code>True</code></td>
+</tr>
+<tr>
+<td><code>SESSION_USE_SIGNER</code></td>
+<td>加密<code>session</code>,默认为<code>False</code>,设置为<code>True</code>,需要设置<code>SECRET_KEY</code></td>
+</tr>
+<tr>
+<td><code>SESSION_KEY_PREFIX</code></td>
+<td>在所有的会话键之前添加前缀,对于不同的应用程序可以使用不同的前缀.默认是<code>session</code>,即保存在<code>redis</code>中的键的名称都是以<code>session</code> 开头.</td>
+</tr>
+<tr>
+<td><code>SESSION_REDIS</code></td>
+<td><code>redis</code> 实例,默认为<code>127.0.0.1:6379</code></td>
+</tr>
+<tr>
+<td><code>SESSION_MEMCACHED</code></td>
+<td><code>memcache</code> 实例,默认为<code>127.0.0.1:11211</code></td>
+</tr>
+<tr>
+<td><code>SESSION_FILE_DIR</code></td>
+<td>文件存储目录.默认使用当前目录下的<code>flask_session</code>目录</td>
+</tr>
+<tr>
+<td><code>SESSION_FILE_THRESHOLD</code></td>
+<td>存储的最大项目数,默认为500</td>
+</tr>
+<tr>
+<td><code>SESSION_FILE_MODE</code></td>
+<td>文件模式,默认为<code>0600</code></td>
+</tr>
+<tr>
+<td><code>SESSION_MONGODB</code></td>
+<td><code>mongodb</code>实例,默认为<code>127.0.0.1:27017</code></td>
+</tr>
+<tr>
+<td><code>SESSION_MONGODB_DB</code></td>
+<td><code>mongodb</code>数据库的<code>SCHEME</code>,默认是<code>flask_session</code></td>
+</tr>
+<tr>
+<td><code>SESSION_MONGODB_COLLECT</code></td>
+<td><code>mongodb</code>集合,默认是<code>sessions</code></td>
+</tr>
+<tr>
+<td><code>SESSION_SQLALCHEMY</code></td>
+<td>一个<code>flask.ext.sqlalchemy.SQLAlchemy</code>实例，其实例使用<code>SQLALCHEMY_DATABASE_URI</code>参数配置了数据库连接<code>URI</code></td>
+</tr>
+<tr>
+<td><code>SESSION_SQLALCHEMY_TABLE</code></td>
+<td>要使用的<code>SQL</code>表的名称,默认是<code>sessions</code></td>
+</tr>
+</tbody></table>
+<p>基本上只需要配置<code>SESSION_TYPE</code></p>
+</blockquote>
+<h3 id="3-使用SQLAlchemy"><a href="#3-使用SQLAlchemy" class="headerlink" title="3.使用SQLAlchemy"></a>3.使用SQLAlchemy</h3><blockquote>
+<p>  结合以前的知识,做一个汇总.</p>
+<p>  参考<code>https://github.com/ningwenyan/demo_code/tree/master/flask_demo_code/T20</code></p>
+</blockquote>
+<h4 id="1-创建exts"><a href="#1-创建exts" class="headerlink" title="1.创建exts"></a>1.创建<code>exts</code></h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># exts</span>
+<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
+
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-创建login-html-register-html"><a href="#2-创建login-html-register-html" class="headerlink" title="2.创建login.html\register.html"></a>2.创建<code>login.html\register.html</code></h4><blockquote>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width<span class="token punctuation">=</span>device-width, initial-scale<span class="token punctuation">=</span>1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>username:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span>username</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>password:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>30 days remember me<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>remember<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>username:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span>username</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>password:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>repeat password:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>reppassword<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        {{ msg }}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-创建Form表单验证"><a href="#3-创建Form表单验证" class="headerlink" title="3.创建Form表单验证"></a>3.创建<code>Form</code>表单验证</h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># formModel.py</span>
+<span class="token keyword">from</span> flask_wtf <span class="token keyword">import</span> FlaskForm
+<span class="token keyword">from</span> wtforms <span class="token keyword">import</span> StringField<span class="token punctuation">,</span> BooleanField<span class="token punctuation">,</span>IntegerField<span class="token punctuation">,</span>PasswordField
+<span class="token keyword">from</span> wtforms<span class="token punctuation">.</span>validators <span class="token keyword">import</span> Length<span class="token punctuation">,</span>EqualTo
+
+<span class="token keyword">class</span> <span class="token class-name">LoginForm</span><span class="token punctuation">(</span>FlaskForm<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> StringField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Length<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    password <span class="token operator">=</span> PasswordField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Length<span class="token punctuation">(</span><span class="token number">6.12</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    remember <span class="token operator">=</span> BooleanField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">class</span> <span class="token class-name">RegisterForm</span><span class="token punctuation">(</span>FlaskForm<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> StringField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Length<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    password <span class="token operator">=</span> PasswordField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Length<span class="token punctuation">(</span><span class="token number">6.12</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    reppassword <span class="token operator">=</span> PasswordField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>EqualTo<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="4-创建数据库映射"><a href="#4-创建数据库映射" class="headerlink" title="4.创建数据库映射"></a>4.创建数据库映射</h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># dbModel.py</span>
+<span class="token keyword">from</span> exts <span class="token keyword">import</span> db
+
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    __tablename__ <span class="token operator">=</span> <span class="token string">'user'</span>
+
+    id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    username <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    password <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    remember <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Boolean<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="5-创建app-py"><a href="#5-创建app-py" class="headerlink" title="5.创建app.py"></a>5.创建<code>app.py</code></h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token keyword">from</span> exts <span class="token keyword">import</span> db
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> render_template<span class="token punctuation">,</span>redirect<span class="token punctuation">,</span>url_for<span class="token punctuation">,</span>session
+<span class="token keyword">from</span> formModel <span class="token keyword">import</span> LoginForm<span class="token punctuation">,</span>RegisterForm
+<span class="token keyword">from</span> dbModel <span class="token keyword">import</span> User
+<span class="token keyword">from</span> flask_session <span class="token keyword">import</span> Session <span class="token keyword">as</span> Fsession
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime<span class="token punctuation">,</span> timedelta
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 初始化db</span>
+db<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+Fsession<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">'You are not log in &lt;a href="/login/">Login&lt;a>'</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">,</span> methods <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    form <span class="token operator">=</span> LoginForm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> form<span class="token punctuation">.</span>validate_on_submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        user <span class="token operator">=</span> form<span class="token punctuation">.</span>username<span class="token punctuation">.</span>data
+        passwd <span class="token operator">=</span> form<span class="token punctuation">.</span>password<span class="token punctuation">.</span>data
+        remember <span class="token operator">=</span> form<span class="token punctuation">.</span>remember<span class="token punctuation">.</span>data
+        <span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span> passwd<span class="token punctuation">,</span> remember<span class="token punctuation">,</span> type<span class="token punctuation">(</span>remember<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        patt <span class="token operator">=</span> db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>User<span class="token punctuation">.</span>password<span class="token punctuation">)</span><span class="token punctuation">.</span>filter<span class="token punctuation">(</span>User<span class="token punctuation">.</span>username <span class="token operator">==</span> user<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+        dpaassword <span class="token operator">=</span> <span class="token string">""</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> patt<span class="token punctuation">:</span>
+            dpaassword <span class="token operator">=</span> i
+        <span class="token keyword">if</span> patt <span class="token operator">and</span> dpaassword <span class="token operator">==</span> passwd<span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 设置session</span>
+            session<span class="token punctuation">[</span><span class="token string">'username'</span><span class="token punctuation">]</span> <span class="token operator">=</span> user
+
+            <span class="token keyword">if</span> remember<span class="token punctuation">:</span>
+                session<span class="token punctuation">.</span>permanent <span class="token operator">=</span> <span class="token boolean">True</span>
+                app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+                    <span class="token string">'PERMANENT_SESSION_LIFETIME'</span><span class="token punctuation">:</span> timedelta<span class="token punctuation">(</span>days<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>User<span class="token punctuation">)</span><span class="token punctuation">.</span>filter<span class="token punctuation">(</span>User<span class="token punctuation">.</span>username <span class="token operator">==</span> user<span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span> User<span class="token punctuation">.</span>remember<span class="token punctuation">:</span> remember<span class="token punctuation">}</span><span class="token punctuation">)</span>
+                db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>User<span class="token punctuation">)</span><span class="token punctuation">.</span>filter<span class="token punctuation">(</span>User<span class="token punctuation">.</span>username <span class="token operator">==</span> user<span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span> User<span class="token punctuation">.</span>remember<span class="token punctuation">:</span> remember<span class="token punctuation">}</span><span class="token punctuation">)</span>
+                db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>   
+        <span class="token keyword">return</span> <span class="token string">'success'</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'login.html'</span><span class="token punctuation">)</span>
+
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/register/'</span><span class="token punctuation">,</span> methods <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    form <span class="token operator">=</span> RegisterForm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> form<span class="token punctuation">.</span>validate_on_submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># post请求,并验证通过</span>
+        user <span class="token operator">=</span> form<span class="token punctuation">.</span>username<span class="token punctuation">.</span>data
+        passwd <span class="token operator">=</span> form<span class="token punctuation">.</span>password<span class="token punctuation">.</span>data
+        user1 <span class="token operator">=</span> User<span class="token punctuation">(</span>username<span class="token operator">=</span>user<span class="token punctuation">,</span> password<span class="token operator">=</span>passwd<span class="token punctuation">,</span> remember<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>user1<span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url_for<span class="token punctuation">(</span><span class="token string">'login'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>form<span class="token punctuation">.</span>errors<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'register.html'</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/logout/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    session<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url_for<span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="6-创建脚本控制文件"><a href="#6-创建脚本控制文件" class="headerlink" title="6.创建脚本控制文件"></a>6.创建脚本控制文件</h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># appmanager.py</span>
+<span class="token keyword">from</span> flask_script <span class="token keyword">import</span> Manager
+<span class="token keyword">from</span> app <span class="token keyword">import</span> app
+<span class="token keyword">from</span> exts <span class="token keyword">import</span> db
+<span class="token keyword">from</span> flask_migrate <span class="token keyword">import</span> MigrateCommand<span class="token punctuation">,</span>Migrate
+<span class="token keyword">from</span> dbModel <span class="token keyword">import</span> User
+
+
+<span class="token comment" spellcheck="true"># 绑定Flask app</span>
+manager <span class="token operator">=</span> Manager<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 导入 flask-migrate</span>
+<span class="token comment" spellcheck="true"># migrate绑定app, db</span>
+<span class="token comment" spellcheck="true"># MigrateCommand 可以使用Alembic所有的命令</span>
+<span class="token comment" spellcheck="true"># 导入所需要的 ORM</span>
+Migrate<span class="token punctuation">(</span>app<span class="token punctuation">,</span> db<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 使用命令行创建数据库</span>
+manager<span class="token punctuation">.</span>add_command<span class="token punctuation">(</span><span class="token string">'db'</span><span class="token punctuation">,</span> MigrateCommand<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 起一个别名</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    manager<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="7-根据脚本初始化"><a href="#7-根据脚本初始化" class="headerlink" title="7.根据脚本初始化"></a>7.根据脚本初始化</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ python appmanager.py db init
+$ python appmanager.py db migrate
+$ python appmanager.py db  upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>  需要注意的是数据库中的<code>session</code>表是<code>flask-session</code>创建的,并不需要我们去手动映射这张表,但是一定要去创建表.</p>
+</blockquote>
+<h4 id="8-运行"><a href="#8-运行" class="headerlink" title="8.运行"></a>8.运行</h4><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ python app.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>  运行程序后观察<code>session</code>的创建.</p>
+</blockquote>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
