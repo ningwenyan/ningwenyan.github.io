@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.wenyan.online/2020/09/27/flaskmemcache/</loc>
+    
+    <lastmod>2020-09-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/</loc>
     
     <lastmod>2020-09-26</lastmod>
@@ -537,6 +544,13 @@
   
   <url>
     <loc>https://www.wenyan.online/tags/process/</loc>
+    <lastmod>2020-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/tags/Memcache/</loc>
     <lastmod>2020-09-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
