@@ -965,6 +965,168 @@ $ python appmanager.py db  upgrade<span aria-hidden="true" class="line-numbers-r
 <pre class="line-numbers language-bash"><code class="language-bash">$ python app.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>  运行程序后观察<code>session</code>的创建.</p>
 </blockquote>
+<h3 id="4-使用Memcache存储"><a href="#4-使用Memcache存储" class="headerlink" title="4.使用Memcache存储"></a>4.使用Memcache存储</h3><blockquote>
+<p>  前期也讲解过<code>Memcache</code>的基本概念,已经如何使用<code>Python</code>操作<code>Memcache</code>.</p>
+<p>  如果你有所遗忘,请再次阅读一遍<code>https://wenyan.online/2020/09/27/flaskmemcache/</code></p>
+<p>  接下来,讨论如何将<code>session</code>信息写入到<code>memcache</code>中</p>
+</blockquote>
+<h4 id="1-login-html"><a href="#1-login-html" class="headerlink" title="1.login.html"></a>1.<code>login.html</code></h4><blockquote>
+<p>  像<code>SQlalchemy</code>一样,有一些文件是不要变动的.这里我们只需要一个能<code>post</code>的文件</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width<span class="token punctuation">=</span>device-width, initial-scale<span class="token punctuation">=</span>1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>username:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span>username</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>password:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>30 days remember me<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>remember<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+
+&lt;/html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-memecacheModel-py"><a href="#2-memecacheModel-py" class="headerlink" title="2.memecacheModel.py"></a>2.<code>memecacheModel.py</code></h4><blockquote>
+<p>  为了构造的合理,这里把<code>Memcache</code>相关的都存放在同一个文件中.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> pymemcache<span class="token punctuation">.</span>client <span class="token keyword">import</span> Client
+client <span class="token operator">=</span> Client<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'192.168.0.101'</span><span class="token punctuation">,</span> <span class="token number">11211</span><span class="token punctuation">)</span><span class="token punctuation">,</span> allow_unicode_keys<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf8'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>  注意: 你需要先启动自己的<code>memcache</code>,然后才能正常的连接.</p>
+</blockquote>
+<h4 id="3-config-py"><a href="#3-config-py" class="headerlink" title="3.config.py"></a>3.<code>config.py</code></h4><blockquote>
+<p>  配置文件是重中之重,要在这个文件中指定保存的类型.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 导入memcache</span>
+<span class="token keyword">from</span> memecacheModel <span class="token keyword">import</span> client
+<span class="token keyword">import</span> os
+
+DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>
+TEMPLATES_AUTO_RELOAD <span class="token operator">=</span> <span class="token boolean">True</span>
+<span class="token comment" spellcheck="true"># 显式关闭CSRF</span>
+WTF_CSRF_ENABLED <span class="token operator">=</span> <span class="token boolean">False</span>
+
+<span class="token comment" spellcheck="true"># flask-session</span>
+SESSION_TYPE <span class="token operator">=</span> <span class="token string">'memcached'</span> <span class="token comment" spellcheck="true"># 指定类型</span>
+SESSION_MEMCACHED <span class="token operator">=</span> client <span class="token comment" spellcheck="true"># memcached实例</span>
+SESSION_USE_SIGNER <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment" spellcheck="true"># 设定加密</span>
+SECRET_KEY <span class="token operator">=</span> os<span class="token punctuation">.</span>urandom<span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 设定加密秘钥</span>
+SESSION_KEY_PREFIX <span class="token operator">=</span> <span class="token string">'session'</span> <span class="token comment" spellcheck="true"># 设定值的前缀</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  注意:上面的<code>client</code>实例,是需要导入到文件中的.</p>
+</blockquote>
+<h4 id="4-formModel-py"><a href="#4-formModel-py" class="headerlink" title="4.formModel.py"></a>4.<code>formModel.py</code></h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask_wtf <span class="token keyword">import</span> FlaskForm
+<span class="token keyword">from</span> wtforms <span class="token keyword">import</span> StringField<span class="token punctuation">,</span> BooleanField<span class="token punctuation">,</span>IntegerField<span class="token punctuation">,</span>PasswordField
+<span class="token keyword">from</span> wtforms<span class="token punctuation">.</span>validators <span class="token keyword">import</span> Length<span class="token punctuation">,</span>EqualTo
+
+<span class="token keyword">class</span> <span class="token class-name">LoginForm</span><span class="token punctuation">(</span>FlaskForm<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> StringField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Length<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    password <span class="token operator">=</span> PasswordField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Length<span class="token punctuation">(</span><span class="token number">6.12</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    remember <span class="token operator">=</span> BooleanField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  注意:<code>remember</code>也就是<code>html redio</code>点选框,这里使用的是<code>boolean</code>值判断,如果点选就是<code>True</code>,没有点选就是<code>False</code></p>
+</blockquote>
+<h4 id="5-app-py"><a href="#5-app-py" class="headerlink" title="5.app.py"></a>5.<code>app.py</code></h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> render_template<span class="token punctuation">,</span> redirect<span class="token punctuation">,</span>url_for<span class="token punctuation">,</span> session<span class="token punctuation">,</span>escape
+<span class="token keyword">from</span> formModel <span class="token keyword">import</span> LoginForm
+<span class="token keyword">from</span> flask_session <span class="token keyword">import</span> Session <span class="token keyword">as</span> Fsession
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> timedelta
+<span class="token keyword">from</span> memecacheModel <span class="token keyword">import</span> client
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+Fsession<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token string">'username'</span> <span class="token keyword">in</span> session<span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># escape 用来替换html中的16进制特殊符号</span>
+        <span class="token keyword">return</span> <span class="token string">'Logged in as {}.&lt;a href="/logout/">Logout&lt;/a>'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>escape<span class="token punctuation">(</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'You are not log in &lt;a href="/login/">Login&lt;a>'</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    form <span class="token operator">=</span> LoginForm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> form<span class="token punctuation">.</span>validate_on_submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true">#  假设数据库验证通过, 添加 session</span>
+        user <span class="token operator">=</span> form<span class="token punctuation">.</span>username<span class="token punctuation">.</span>data
+        remember <span class="token operator">=</span> form<span class="token punctuation">.</span>remember<span class="token punctuation">.</span>data
+        session<span class="token punctuation">[</span><span class="token string">'username'</span><span class="token punctuation">]</span> <span class="token operator">=</span> user
+        <span class="token keyword">print</span><span class="token punctuation">(</span>remember<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> remember<span class="token punctuation">:</span>
+            session<span class="token punctuation">.</span>permanent <span class="token operator">=</span> <span class="token boolean">True</span>
+            app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'SESSION_COOKIE_LIFETIME'</span><span class="token punctuation">:</span> timedelta<span class="token punctuation">(</span>days<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            session<span class="token punctuation">.</span>permanent <span class="token operator">=</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> <span class="token string">'success'</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'login.html'</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/logout/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    session<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url_for<span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  注意:<code>if remember:</code>判断,点选后,设置永久保存,已经过期时间.</p>
+</blockquote>
+<h4 id="6-运行文件"><a href="#6-运行文件" class="headerlink" title="6.运行文件"></a>6.运行文件</h4><blockquote>
+<p>  首先运行程序文件</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ python app.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>  为了观察方便,这里连接到了<code>memcache</code>,并清空了所有的<code>key/value</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ telenet 192.168.0.101 11211
+
+
+ flush_all  <span class="token comment" spellcheck="true"># 清空所有key</span>
+OK
+stats items  <span class="token comment" spellcheck="true"># 查看所有的key,为空</span>
+END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  尝试在浏览器中访问<code>127.0.0.1:5000</code>并登录,如果你点选了<code>radio</code>,将会看到过期时间.</p>
+<p>  <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601217202962-10302.png" alt="10302"></p>
+<p>  然后,去查看<code>memcache</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">stats items
+STAT items:3:number 1
+STAT items:3:number_hot 0
+STAT items:3:number_warm 0
+STAT items:3:number_cold 1
+STAT items:3:age_hot 0
+STAT items:3:age_warm 0
+STAT items:3:age 116
+STAT items:3:mem_requested 152
+STAT items:3:evicted 0
+STAT items:3:evicted_nonzero 0
+STAT items:3:evicted_time 0
+STAT items:3:outofmemory 0
+STAT items:3:tailrepairs 0
+STAT items:3:reclaimed 9
+STAT items:3:expired_unfetched 8
+STAT items:3:evicted_unfetched 0
+STAT items:3:evicted_active 0
+STAT items:3:crawler_reclaimed 0
+STAT items:3:crawler_items_checked 21
+STAT items:3:lrutail_reflocked 0
+STAT items:3:moves_to_cold 24
+STAT items:3:moves_to_warm 0
+STAT items:3:moves_within_lru 0
+STAT items:3:direct_reclaims 0
+STAT items:3:hits_to_hot 1
+STAT items:3:hits_to_warm 0
+STAT items:3:hits_to_cold 15
+STAT items:3:hits_to_temp 0
+END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  可以看到已经被创建了一个<code>id =3</code>的缓存.查看它的具体内容</p>
+<pre class="line-numbers language-bash"><code class="language-bash">stats cachedump 3 0    <span class="token comment" spellcheck="true"># 3表示id 0 表示所有的内容</span>
+ITEM session19a0d005-8469-475f-a465-bffa9716a8f5 <span class="token punctuation">[</span>50 b<span class="token punctuation">;</span> 1603895548 s<span class="token punctuation">]</span>
+END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>  以<code>session</code>打头的就是我们的<code>key</code>,因为<code>config.py</code>中指定了<code>SESSION_KEY_PREFIX = &#39;session&#39; </code>,使用<code>get</code> 命令可以查看到<code>value</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">get session19a0d005-8469-475f-a465-bffa9716a8f5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>

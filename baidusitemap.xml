@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.wenyan.online/2020/09/27/flaskmemcache/</loc>
+    <loc>https://www.wenyan.online/2020/09/27/radis1/</loc>
+    <lastmod>2020-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
+    <lastmod>2020-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/24/flask-session/</loc>
+    <lastmod>2020-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/21/jquerylearn/</loc>
     <lastmod>2020-09-27</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/</loc>
-    <lastmod>2020-09-26</lastmod>
-  </url>
-  <url>
-    <loc>https://www.wenyan.online/2020/09/24/flask-session/</loc>
-    <lastmod>2020-09-26</lastmod>
+    <lastmod>2020-09-27</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/24/psitev0002-md/</loc>
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-09-27</lastmod>
   </url>
   <url>
-    <loc>https://www.wenyan.online/2020/09/24/flask-cookie/</loc>
-    <lastmod>2020-09-24</lastmod>
+    <loc>https://www.wenyan.online/2020/09/05/oauth2-demo-md/</loc>
+    <lastmod>2020-09-27</lastmod>
   </url>
   <url>
-    <loc>https://www.wenyan.online/2020/09/21/jquerylearn/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <loc>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</loc>
+    <lastmod>2020-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/27/flaskmemcache/</loc>
+    <lastmod>2020-09-27</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/23/flaskform/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/24/flask-cookie/</loc>
+    <lastmod>2020-09-27</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/21/psitev0001/</loc>
@@ -57,20 +73,12 @@
     <lastmod>2020-09-09</lastmod>
   </url>
   <url>
-    <loc>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</loc>
-    <lastmod>2020-09-08</lastmod>
-  </url>
-  <url>
     <loc>https://www.wenyan.online/2020/08/09/hexo-bo-ke-da-jian/</loc>
     <lastmod>2020-09-07</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/07/visterpixiv/</loc>
     <lastmod>2020-09-07</lastmod>
-  </url>
-  <url>
-    <loc>https://www.wenyan.online/2020/09/05/oauth2-demo-md/</loc>
-    <lastmod>2020-09-05</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/09/01/login-demo-md/</loc>

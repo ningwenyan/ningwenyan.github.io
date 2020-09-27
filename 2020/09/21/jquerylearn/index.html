@@ -1765,6 +1765,106 @@ $(document).scrollLeft();<span aria-hidden="true" class="line-numbers-rows"><spa
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<h2 id="选择器遍历"><a href="#选择器遍历" class="headerlink" title="选择器遍历"></a>选择器遍历</h2><blockquote>
+<p>遍历的意思是根据其相对于其他元素的关系来查找其他<code>HTML</code> 元素.用在选择器中,选取其他的<code>HTML</code> 元素.</p>
+<p>比如如下树型结构:</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601216035085-10301.png" alt="10301"></p>
+<p>比如<code>li</code> ,既有父级元素<code>ul,div</code> ,又有同级元素<code>li</code>,还有子集别元素<code>span</code>.</p>
+</blockquote>
+<h3 id="1-选择父级别元素"><a href="#1-选择父级别元素" class="headerlink" title="1.选择父级别元素"></a>1.选择父级别元素</h3><blockquote>
+<p>方法:</p>
+<ul>
+<li><code>parent()</code>:只会向上一级遍历,返回被选元素的直接父元素</li>
+<li><code>parents()</code>:一路向上直到文档的根元素<code>HTML</code> ,返回被选元素的所有祖先元素</li>
+<li><code>parentsUntil(param)</code>:返回介于给定两个元素之间的所有祖先元素. </li>
+</ul>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+<span class="token selector"><span class="token class">.ancestors</span> *
+</span><span class="token punctuation">{</span> 
+    <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">2</span>px solid lightgrey<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> lightgrey<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">15</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"span"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parentsUntil</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"color"</span><span class="token punctuation">:</span><span class="token string">"red"</span><span class="token punctuation">,</span><span class="token string">"border"</span><span class="token punctuation">:</span><span class="token string">"2px solid red"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ancestors<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> body (曾曾祖父元素)
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">500</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>div (曾祖父元素)
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>ul (祖父元素)  
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>li (父元素)
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>span<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>   
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="2-选择子元素"><a href="#2-选择子元素" class="headerlink" title="2.选择子元素"></a>2.选择子元素</h3><blockquote>
+<p>方法:</p>
+<ul>
+<li><code>children()</code>:返回被选元素的所有直接子元素,只会寻找一级.</li>
+<li><code>find()</code>:返回被选元素的后代元素,一直到最后一个后代</li>
+</ul>
+</blockquote>
+<h3 id="3-同级别元素"><a href="#3-同级别元素" class="headerlink" title="3.同级别元素"></a>3.同级别元素</h3><blockquote>
+<p>方法:</p>
+<ul>
+<li><code>siblings()</code>:返回被选元素的所有同级别元素</li>
+<li><code>next()</code>:只返回一个元素,返回被选元素的下一个同级别元素</li>
+<li><code>nextAll()</code>:返回被选元素后方的所有同级别元素</li>
+<li><code>nextUntil()</code> :返回介于两个给定参数之间的所有跟随的同胞元素</li>
+<li><code>prev(),prevAll(),prevUntil()</code> :返回之前的元素,与<code>next</code>方向相反.</li>
+</ul>
+</blockquote>
+<h3 id="4-过滤"><a href="#4-过滤" class="headerlink" title="4.过滤"></a>4.过滤</h3><blockquote>
+<ul>
+<li><code>first(),last(),eq()</code>:基于其在一组元素中的位置来选择一个特定的元素</li>
+<li><code>filter(),not()</code>:选取匹配或不匹配某项指定标准的元素</li>
+</ul>
+</blockquote>
+<h3 id="5-循环each"><a href="#5-循环each" class="headerlink" title="5.循环each()"></a>5.循环<code>each()</code></h3><blockquote>
+<p>方法(为每个匹配元素规定要运行的函数):</p>
+<pre class="line-numbers language-JavaScript"><code class="language-JavaScript">$(selector).each(function(index,element))
+// index 选择器的index位置
+// element 当前的元素,也可以使用 $(this) 选择器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="6-index-方法"><a href="#6-index-方法" class="headerlink" title="6.index() 方法"></a>6.<code>index()</code> 方法</h3><blockquote>
+<p>返回指定元素相对于其他指定元素的<code>index</code> 值,这些元素可以通过<code>jQuery</code> 选择器或<code>DOM</code> 元素来指定,如果没有找到元素,返回<code>-1</code>.</p>
+<ol>
+<li>返回元素相对于同级别元素的<code>index</code>.</li>
+</ol>
+<pre class="line-numbers language-html"><code class="language-html">$(function(){
+    $('li').click(()=>{
+        $(this).index()
+    })
+})
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Milk<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token punctuation">></span></span>Tea<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token punctuation">></span></span>Coffee<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>元素相对于选择器的<code>index</code></li>
+</ol>
+<pre class="line-numbers language-JavaScript"><code class="language-JavaScript">$(selector).index(element)
+// 指定要获得 index 位置的元素<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>

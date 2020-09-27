@@ -2,7 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.wenyan.online/2020/09/27/flaskmemcache/</loc>
+    <loc>https://www.wenyan.online/2020/09/27/radis1/</loc>
+    
+    <lastmod>2020-09-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
+    
+    <lastmod>2020-09-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/09/24/flask-session/</loc>
+    
+    <lastmod>2020-09-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/09/21/jquerylearn/</loc>
     
     <lastmod>2020-09-27</lastmod>
     
@@ -11,42 +32,49 @@
   <url>
     <loc>https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/</loc>
     
-    <lastmod>2020-09-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.wenyan.online/2020/09/24/flask-session/</loc>
-    
-    <lastmod>2020-09-26</lastmod>
+    <lastmod>2020-09-27</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.wenyan.online/2020/09/24/psitev0002-md/</loc>
     
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-09-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.wenyan.online/2020/09/24/flask-cookie/</loc>
+    <loc>https://www.wenyan.online/2020/09/05/oauth2-demo-md/</loc>
     
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-09-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.wenyan.online/2020/09/21/jquerylearn/</loc>
+    <loc>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</loc>
     
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/09/27/flaskmemcache/</loc>
+    
+    <lastmod>2020-09-27</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.wenyan.online/2020/09/23/flaskform/</loc>
     
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/09/24/flask-cookie/</loc>
+    
+    <lastmod>2020-09-27</lastmod>
     
   </url>
   
@@ -100,13 +128,6 @@
   </url>
   
   <url>
-    <loc>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</loc>
-    
-    <lastmod>2020-09-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.wenyan.online/2020/08/09/hexo-bo-ke-da-jian/</loc>
     
     <lastmod>2020-09-07</lastmod>
@@ -124,13 +145,6 @@
     <loc>https://www.wenyan.online/404.html</loc>
     
     <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.wenyan.online/2020/09/05/oauth2-demo-md/</loc>
-    
-    <lastmod>2020-09-05</lastmod>
     
   </url>
   
@@ -556,6 +570,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://www.wenyan.online/tags/redis/</loc>
+    <lastmod>2020-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -651,6 +672,20 @@
   
   <url>
     <loc>https://www.wenyan.online/categories/Python/</loc>
+    <lastmod>2020-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/categories/%E6%9C%AC%E7%AB%99%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88/</loc>
+    <lastmod>2020-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/categories/redis/</loc>
     <lastmod>2020-09-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

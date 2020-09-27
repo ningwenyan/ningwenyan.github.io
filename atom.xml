@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-27T13:44:11.963Z</updated>
+  <updated>2020-09-27T15:09:59.823Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -17,11 +17,71 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>radis安装配置</title>
+    <link href="https://www.wenyan.online/2020/09/27/radis1/"/>
+    <id>https://www.wenyan.online/2020/09/27/radis1/</id>
+    <published>2020-09-27T14:57:01.000Z</published>
+    <updated>2020-09-27T15:09:59.823Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>置顶! 如何阅读本站</title>
+    <link href="https://www.wenyan.online/2020/09/27/readme/"/>
+    <id>https://www.wenyan.online/2020/09/27/readme/</id>
+    <published>2020-09-27T13:47:11.000Z</published>
+    <updated>2020-09-27T15:09:09.600Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;  所有的插件,官网请&lt;a href=&quot;https://wenyan.online/navigate/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="本站文章集合" scheme="https://www.wenyan.online/categories/%E6%9C%AC%E7%AB%99%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+      <category term="Memcache" scheme="https://www.wenyan.online/tags/Memcache/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Memecache及Python操作Memcache</title>
     <link href="https://www.wenyan.online/2020/09/27/flaskmemcache/"/>
     <id>https://www.wenyan.online/2020/09/27/flaskmemcache/</id>
     <published>2020-09-27T13:40:44.000Z</published>
-    <updated>2020-09-27T13:44:11.963Z</updated>
+    <updated>2020-09-27T13:51:12.019Z</updated>
     
     <summary type="html">
     
@@ -49,7 +109,7 @@
     <link href="https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/"/>
     <id>https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/</id>
     <published>2020-09-26T14:40:16.000Z</published>
-    <updated>2020-09-26T14:44:17.956Z</updated>
+    <updated>2020-09-27T13:52:42.574Z</updated>
     
     <summary type="html">
     
@@ -81,7 +141,7 @@
     <link href="https://www.wenyan.online/2020/09/24/psitev0002-md/"/>
     <id>https://www.wenyan.online/2020/09/24/psitev0002-md/</id>
     <published>2020-09-24T14:48:23.000Z</published>
-    <updated>2020-09-24T15:00:37.034Z</updated>
+    <updated>2020-09-27T13:52:25.953Z</updated>
     
     <summary type="html">
     
@@ -108,7 +168,7 @@
     <link href="https://www.wenyan.online/2020/09/24/flask-session/"/>
     <id>https://www.wenyan.online/2020/09/24/flask-session/</id>
     <published>2020-09-24T14:33:04.000Z</published>
-    <updated>2020-09-26T14:21:10.492Z</updated>
+    <updated>2020-09-27T14:40:26.087Z</updated>
     
     <summary type="html">
     
@@ -138,7 +198,7 @@
     <link href="https://www.wenyan.online/2020/09/24/flask-cookie/"/>
     <id>https://www.wenyan.online/2020/09/24/flask-cookie/</id>
     <published>2020-09-24T14:32:47.000Z</published>
-    <updated>2020-09-24T14:39:27.030Z</updated>
+    <updated>2020-09-27T13:50:48.098Z</updated>
     
     <summary type="html">
     
@@ -168,7 +228,7 @@
     <link href="https://www.wenyan.online/2020/09/23/flaskform/"/>
     <id>https://www.wenyan.online/2020/09/23/flaskform/</id>
     <published>2020-09-23T14:30:23.000Z</published>
-    <updated>2020-09-23T14:32:05.221Z</updated>
+    <updated>2020-09-27T13:51:03.738Z</updated>
     
     <summary type="html">
     
@@ -200,7 +260,7 @@
     <link href="https://www.wenyan.online/2020/09/21/jquerylearn/"/>
     <id>https://www.wenyan.online/2020/09/21/jquerylearn/</id>
     <published>2020-09-21T15:27:49.000Z</published>
-    <updated>2020-09-23T14:40:11.318Z</updated>
+    <updated>2020-09-27T14:17:05.266Z</updated>
     
     <summary type="html">
     
@@ -477,7 +537,7 @@
     <link href="https://www.wenyan.online/2020/09/05/oauth2-demo-md/"/>
     <id>https://www.wenyan.online/2020/09/05/oauth2-demo-md/</id>
     <published>2020-09-05T13:41:02.000Z</published>
-    <updated>2020-09-05T13:56:30.320Z</updated>
+    <updated>2020-09-27T13:52:18.861Z</updated>
     
     <summary type="html">
     
@@ -506,7 +566,7 @@
     <link href="https://www.wenyan.online/2020/09/05/hexoupdatetalk/"/>
     <id>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</id>
     <published>2020-09-05T13:41:02.000Z</published>
-    <updated>2020-09-08T14:53:00.807Z</updated>
+    <updated>2020-09-27T13:51:52.364Z</updated>
     
     <summary type="html">
     
@@ -554,66 +614,6 @@
       <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
     
       <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单登录页面</title>
-    <link href="https://www.wenyan.online/2020/09/01/login-demo-md/"/>
-    <id>https://www.wenyan.online/2020/09/01/login-demo-md/</id>
-    <published>2020-09-01T14:41:17.000Z</published>
-    <updated>2020-09-05T13:55:27.979Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;简单登录页面&quot;&gt;&lt;a href=&quot;#简单登录页面&quot; class=&quot;headerlink&quot; title=&quot;简单登录页面&quot;&gt;&lt;/a&gt;简单登录页面&lt;/h2&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-      <category term="Pillow" scheme="https://www.wenyan.online/tags/Pillow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>免费在线云数据库</title>
-    <link href="https://www.wenyan.online/2020/09/01/free-online-database-md/"/>
-    <id>https://www.wenyan.online/2020/09/01/free-online-database-md/</id>
-    <published>2020-09-01T14:37:55.000Z</published>
-    <updated>2020-09-01T14:40:38.023Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;免费在线云数据库&quot;&gt;&lt;a href=&quot;#免费在线云数据库&quot; class=&quot;headerlink&quot; title=&quot;免费在线云数据库&quot;&gt;&lt;/a&gt;免费在线云数据库&lt;/h2&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
-    
-      <category term="MongoDB" scheme="https://www.wenyan.online/tags/MongoDB/"/>
-    
-      <category term="Redis" scheme="https://www.wenyan.online/tags/Redis/"/>
-    
-      <category term="PostgreSQL" scheme="https://www.wenyan.online/tags/PostgreSQL/"/>
     
   </entry>
   
