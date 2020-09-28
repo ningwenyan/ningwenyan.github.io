@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Flask, Python">
+    <meta name="keywords" content="flask redis">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>置顶! 如何阅读本站 | 文彦Blog</title>
+    <title>redis客户端配置 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">置顶! 如何阅读本站</h1>
+                    <h1 class="description center-align post-title">redis客户端配置</h1>
                 </div>
             </div>
         </div>
@@ -475,16 +475,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/flask/">
+                                <span class="chip bg-color">flask</span>
                             </a>
                         
-                            <a href="/tags/Flask/">
-                                <span class="chip bg-color">Flask</span>
-                            </a>
-                        
-                            <a href="/tags/Memcache/">
-                                <span class="chip bg-color">Memcache</span>
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
                     </div>
@@ -495,8 +491,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%AC%E7%AB%99%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88/" class="post-category">
-                                本站文章集合
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -508,7 +504,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-27
+                    2020-09-28
                 </div>
                 
 
@@ -524,29 +520,74 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>  所有的插件,官网请<a href="https://wenyan.online/navigate/" target="_blank" rel="noopener">访问</a><code>https://wenyan.online/navigate/</code></p>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" alt="10303"></p>
+<h2 id="Redis客户端配置"><a href="#Redis客户端配置" class="headerlink" title="Redis客户端配置"></a><code>Redis</code>客户端配置</h2><blockquote>
+<p>  我们已经安装了<code>redis</code>,现在就启动服务,并尝试使用客户端连接</p>
 </blockquote>
-<h2 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h2><h3 id="Flask视图和URL"><a href="#Flask视图和URL" class="headerlink" title="Flask视图和URL"></a>Flask视图和URL</h3><h3 id="Jinja2模板"><a href="#Jinja2模板" class="headerlink" title="Jinja2模板"></a>Jinja2模板</h3><blockquote>
-<p>  <a href="https://wenyan.online/2020/09/21/jquerylearn/" target="_blank" rel="noopener">jQuery学习</a></p>
+<h3 id="1-开启ssh"><a href="#1-开启ssh" class="headerlink" title="1.开启ssh"></a>1.开启<code>ssh</code></h3><blockquote>
+<p>  这一步不是必须的,只是<code>redis</code>安装在了远程服务器上,所以需要一个远程<code>ssh</code>的环境.</p>
+<ul>
+<li><p>安装<code>ssh server</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> apt <span class="token function">install</span> openssh-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>开启<code>root</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">passwd</span> root
+$ <span class="token function">su</span> root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>生成<code>kegen</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#  ssh-keygen -A</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>配置<code>config</code>,打开以下几项.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vim /etc/ssh/sshd.conf</span>
+<span class="token punctuation">..</span>.
+PubkeyAuthentication <span class="token function">yes</span>
+AuthorizedKeysFile    .ssh/authorized_keys .ssh/authorized_keys2
+PermitRootLogin <span class="token function">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>启动服务</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># /etc/init.d/ssh start</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>远程登录</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">ssh</span> root@192.168.0.101 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
 </blockquote>
-<h3 id="Flask高级视图"><a href="#Flask高级视图" class="headerlink" title="Flask高级视图"></a>Flask高级视图</h3><h3 id="Flask数据库"><a href="#Flask数据库" class="headerlink" title="Flask数据库"></a>Flask数据库</h3><h3 id="Flask进阶"><a href="#Flask进阶" class="headerlink" title="Flask进阶"></a>Flask进阶</h3><blockquote>
-<p>  <a href>1.WTForms</a></p>
-<p>  <a href>2.上传文件</a></p>
-<p>  <a href="https://wenyan.online/2020/09/23/flaskform/" target="_blank" rel="noopener">3.Flask表单验证</a></p>
-<p>  <a href="https://wenyan.online/2020/09/24/flask-cookie/" target="_blank" rel="noopener">4.Cookie</a></p>
-<p>  <a href="https://wenyan.online/2020/09/24/flask-session/" target="_blank" rel="noopener">5.Session</a></p>
+<h3 id="2-启动redis"><a href="#2-启动redis" class="headerlink" title="2.启动redis"></a>2.启动<code>redis</code></h3><blockquote>
+<p>  进入到<code>redis</code>文件夹,并修改<code>redis.config</code>文件,允许其他机器远程访问<code>redis</code>服务器.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># cd redis-5.0.7/src/</span>
+<span class="token comment" spellcheck="true"># vim ../redis.config       注意redis.config 文件位于redis-5.0.7 中</span>
+<span class="token punctuation">..</span>.
+<span class="token comment" spellcheck="true"># 127.0.0.1    注销127.0.0.1 或者修改为0.0.0.0 表示允许所有</span>
+protected-mode no   <span class="token comment" spellcheck="true"># 修改为no,允许没有密码远程访问</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"> ./redis-server  /home/wenyan/redis/redis-5.0.7/redis.conf  <span class="token comment" spellcheck="true"># 注意运行的时候加载刚才配置的 config 文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
+<h3 id="3-使用redis自带的客户端"><a href="#3-使用redis自带的客户端" class="headerlink" title="3.使用redis自带的客户端"></a>3.使用<code>redis</code>自带的客户端</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">./redis-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>  验证远程访问</p>
+<pre class="line-numbers language-bash"><code class="language-bash">/redis-5.0.7/src<span class="token comment" spellcheck="true"># ./redis-cli  -h 192.168.0.101 -p 6379</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <hr>
-<h2 id="Memcache"><a href="#Memcache" class="headerlink" title="Memcache"></a>Memcache</h2><blockquote>
-<p>  <a href="https://wenyan.online/2020/09/27/flaskmemcache/" target="_blank" rel="noopener">Python操作Memecache</a></p>
+<p>查看语法: 获取<code>redis</code> 服务器的配置参数.</p>
+<pre class="line-numbers language-redis"><code class="language-redis">> config get <pattern><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>可以使用<code>*</code> 号来列出所有的参数.</li>
+<li>可以指定某个特定的参数名称</li>
+<li>可以指定类似<code>config get s*</code> ,列出所有的<code>s</code> 开头的配置参数和值.</li>
+</ul>
+<p>设置语法:动态的调整<code>redis</code> 服务器的配置而不需要重启.</p>
+<pre class="line-numbers language-redis"><code class="language-redis">> config set <parameter> <value><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>所有被<code>config set</code> 支持的配置参数都可以在配置文件<code>redis.conf</code> 中找到.</li>
+<li><code>config set \config get</code> 的格式和<code>redis.conf</code> 使用的格式不一样.<ul>
+<li>类似<code>2gb</code>  这样的在配置文件中有单位缩写,不能用在<code>config</code> 命令中.<code>config set</code> 只能显式的设定.像 <code>CONFIG SET xxx 1k</code> 这样的命令是错误的,正确的格式是 <code>CONFIG SET xxx 1000</code> .</li>
+<li><code>save</code> 选项在<code>redis.conf</code> 中是多行存储的,但在<code>config set</code> 中,只会打印一行.</li>
+</ul>
+</li>
+</ul>
 </blockquote>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><blockquote>
-<p>  <a href="https://wenyan.online/2020/09/27/radis1/" target="_blank" rel="noopener">1.redis安装配置</a></p>
-<p>  <a href="https://wenyan.online/2020/09/28/radis2/" target="_blank" rel="noopener">2.redis客户端配置</a></p>
-</blockquote>
-<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><blockquote>
-<p>  <a href="https://wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/" target="_blank" rel="noopener">1.基本概念</a></p>
+<h3 id="4-使用图形界面客户端"><a href="#4-使用图形界面客户端" class="headerlink" title="4.使用图形界面客户端"></a>4.使用图形界面客户端</h3><blockquote>
+<p>  <code>redis</code>的客户端有很多,这里就使用一种<code>https://github.com/qishibo/AnotherRedisDesktopManager</code></p>
+<p>  下载相应的系统版本后,点击运行连接即可.界面如下,可以添加\删除<code>key\value</code></p>
+<p>  <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302357593-10304.png" alt="10304"></p>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
@@ -574,7 +615,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/27/readme/">https://www.wenyan.online/2020/09/27/readme/</a>
+                    <a href="https://www.wenyan.online/2020/09/28/redis2/">https://www.wenyan.online/2020/09/28/redis2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -612,16 +653,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/flask/">
+                                    <span class="chip bg-color">flask</span>
                                 </a>
                             
-                                <a href="/tags/Flask/">
-                                    <span class="chip bg-color">Flask</span>
-                                </a>
-                            
-                                <a href="/tags/Memcache/">
-                                    <span class="chip bg-color">Memcache</span>
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
                         </div>
@@ -1056,6 +1093,54 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/09/28/python-jin-cheng-xian-cheng-2/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" class="responsive-img" alt="进程的创建">
+                        
+                        <span class="card-title">进程的创建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            进程的创建
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/09/27/radis1/">
                     <div class="card-image">
                         
@@ -1071,9 +1156,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1091,54 +1176,6 @@
                     
                     <a href="/tags/redis/">
                         <span class="chip bg-color">redis</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/09/27/flaskmemcache/">
-                    <div class="card-image">
-                        
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-14/1600096765838-10294.png" class="responsive-img" alt="Memecache及Python操作Memcache">
-                        
-                        <span class="card-title">Memecache及Python操作Memcache</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Memecache及Python操作Memcache
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            文彦
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/Memcache/">
-                        <span class="chip bg-color">Memcache</span>
                     </a>
                     
                 </div>

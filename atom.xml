@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-27T15:09:59.823Z</updated>
+  <updated>2020-09-28T14:30:28.895Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>进程的创建</title>
+    <link href="https://www.wenyan.online/2020/09/28/python-jin-cheng-xian-cheng-2/"/>
+    <id>https://www.wenyan.online/2020/09/28/python-jin-cheng-xian-cheng-2/</id>
+    <published>2020-09-28T14:20:33.000Z</published>
+    <updated>2020-09-28T14:30:28.895Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;进程的创建&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis客户端配置</title>
+    <link href="https://www.wenyan.online/2020/09/28/redis2/"/>
+    <id>https://www.wenyan.online/2020/09/28/redis2/</id>
+    <published>2020-09-28T13:47:54.000Z</published>
+    <updated>2020-09-28T14:14:33.076Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>radis安装配置</title>
@@ -49,7 +107,7 @@
     <link href="https://www.wenyan.online/2020/09/27/readme/"/>
     <id>https://www.wenyan.online/2020/09/27/readme/</id>
     <published>2020-09-27T13:47:11.000Z</published>
-    <updated>2020-09-27T15:16:13.534Z</updated>
+    <updated>2020-09-28T13:46:36.993Z</updated>
     
     <summary type="html">
     
@@ -109,7 +167,7 @@
     <link href="https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/"/>
     <id>https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/</id>
     <published>2020-09-26T14:40:16.000Z</published>
-    <updated>2020-09-27T13:52:42.574Z</updated>
+    <updated>2020-09-28T14:23:36.886Z</updated>
     
     <summary type="html">
     
@@ -117,8 +175,8 @@
       
         
         
-          &lt;h2 id=&quot;进程和线程基本概念&quot;&gt;&lt;a href=&quot;#进程和线程基本概念&quot; class=&quot;headerlink&quot; title=&quot;进程和线程基本概念&quot;&gt;&lt;/a&gt;进程和线程基本概念&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;这只是简单的了解&lt;code&gt;linux&lt;/code&gt;
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2
         
       
     
@@ -558,62 +616,6 @@
       <category term="OAuth2.0" scheme="https://www.wenyan.online/tags/OAuth2-0/"/>
     
       <category term="Github" scheme="https://www.wenyan.online/tags/Github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客更新评论系统</title>
-    <link href="https://www.wenyan.online/2020/09/05/hexoupdatetalk/"/>
-    <id>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</id>
-    <published>2020-09-05T13:41:02.000Z</published>
-    <updated>2020-09-27T13:51:52.364Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Hexo更换留言系统&quot;&gt;&lt;a href=&quot;#Hexo更换留言系统&quot; class=&quot;headerlink&quot; title=&quot;Hexo更换留言系统&quot;&gt;&lt;/a&gt;&lt;code&gt;Hexo&lt;/code&gt;更换留言系统&lt;/h2&gt;&lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="hexo" scheme="https://www.wenyan.online/tags/hexo/"/>
-    
-      <category term="valine" scheme="https://www.wenyan.online/tags/valine/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flask在线部署</title>
-    <link href="https://www.wenyan.online/2020/09/02/flaskwebonline-md/"/>
-    <id>https://www.wenyan.online/2020/09/02/flaskwebonline-md/</id>
-    <published>2020-09-02T14:22:48.000Z</published>
-    <updated>2020-09-02T14:30:06.090Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Flask在线部署&quot;&gt;&lt;a href=&quot;#Flask在线部署&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="MySQL" scheme="https://www.wenyan.online/tags/MySQL/"/>
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
     
   </entry>
   
