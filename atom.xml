@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-29T13:51:07.153Z</updated>
+  <updated>2020-09-29T14:00:39.327Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>python进程线程4</title>
+    <title>杀死进程</title>
     <link href="https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-4/"/>
     <id>https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-4/</id>
     <published>2020-09-29T13:49:13.000Z</published>
-    <updated>2020-09-29T13:51:07.153Z</updated>
+    <updated>2020-09-29T14:00:39.327Z</updated>
     
     <summary type="html">
     
@@ -45,11 +45,11 @@
   </entry>
   
   <entry>
-    <title>python进程线程3</title>
+    <title>后台子进程</title>
     <link href="https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-3/"/>
     <id>https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-3/</id>
     <published>2020-09-29T13:48:41.000Z</published>
-    <updated>2020-09-29T13:50:57.585Z</updated>
+    <updated>2020-09-29T14:00:50.380Z</updated>
     
     <summary type="html">
     
@@ -167,7 +167,7 @@
     <link href="https://www.wenyan.online/2020/09/28/python-jin-cheng-xian-cheng-2/"/>
     <id>https://www.wenyan.online/2020/09/28/python-jin-cheng-xian-cheng-2/</id>
     <published>2020-09-28T14:20:33.000Z</published>
-    <updated>2020-09-28T14:30:28.895Z</updated>
+    <updated>2020-09-29T14:01:11.736Z</updated>
     
     <summary type="html">
     
@@ -253,7 +253,7 @@
     <link href="https://www.wenyan.online/2020/09/27/readme/"/>
     <id>https://www.wenyan.online/2020/09/27/readme/</id>
     <published>2020-09-27T13:47:11.000Z</published>
-    <updated>2020-09-28T13:46:36.993Z</updated>
+    <updated>2020-09-29T14:06:25.423Z</updated>
     
     <summary type="html">
     
