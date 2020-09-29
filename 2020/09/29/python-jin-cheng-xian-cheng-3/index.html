@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="flask redis">
+    <meta name="keywords" content="Python">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>redis类型string | 文彦Blog</title>
+    <title>python进程线程3 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">redis类型string</h1>
+                    <h1 class="description center-align post-title">python进程线程3</h1>
                 </div>
             </div>
         </div>
@@ -475,12 +475,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/flask/">
-                                <span class="chip bg-color">flask</span>
-                            </a>
-                        
-                            <a href="/tags/redis/">
-                                <span class="chip bg-color">redis</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
                     </div>
@@ -491,8 +487,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/redis/" class="post-category">
-                                redis
+                            <a href="/categories/Python/" class="post-category">
+                                Python
                             </a>
                         
                     </div>
@@ -520,309 +516,38 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" alt="10303"></p>
-<h2 id="String数据类型"><a href="#String数据类型" class="headerlink" title="String数据类型"></a><code>String</code>数据类型</h2><blockquote>
-<p>字符串数据类型的相关命令.</p>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" alt="10305"></p>
+<h2 id="后台子进程"><a href="#后台子进程" class="headerlink" title="后台子进程"></a>后台子进程</h2><h3 id="1-简述"><a href="#1-简述" class="headerlink" title="1.简述"></a>1.简述</h3><blockquote>
+<p>如果需要处理比较巨大的任务,又不需要人为干涉,将其作为后台进程执行是个非常常用的编程模型.此进程又可以和其他进程并发执行.</p>
+<p>主进程执行完毕后,子进程也会结束.</p>
+<p>需要注意的是:后台进程不能创建子进程,否则,当后台进程随着父进程退出的时候,子进程会变成孤儿进程.</p>
 </blockquote>
-<h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h3><blockquote>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>append key value</code></td>
-<td>如果<code>key</code> 存在并且是一个字符串,<code>append</code> <br>将追加<code>value</code> 到末尾.</td>
-</tr>
-<tr>
-<td><code>bitcount key [start] [stop]</code></td>
-<td>计算给定字符串中被设置为<code>1</code> 的比特位的数量</td>
-</tr>
-<tr>
-<td><code>bitop operation destkey key</code></td>
-<td>对一个或多个二进制的字符串进行位元操作<br>将结果保存在<code>destkey</code> 上.</td>
-</tr>
-<tr>
-<td><code>decr key</code></td>
-<td>将<code>key</code> 中存储的数字值减<code>1</code></td>
-</tr>
-<tr>
-<td><code>decrby key decrement</code></td>
-<td>将<code>key</code> 中存储的数字值减去给定的<code>decrement</code> 值</td>
-</tr>
-<tr>
-<td><code>get key</code></td>
-<td>获取<code>key</code> 的值</td>
-</tr>
-<tr>
-<td><code>getbit key offset</code></td>
-<td>对<code>key</code>的字符串值,获取指定偏移量(单位<code>bit</code>)</td>
-</tr>
-<tr>
-<td><code>getrange key start end</code></td>
-<td>获取<code>key</code>的字符串值的子值</td>
-</tr>
-<tr>
-<td><code>getset  key value</code></td>
-<td>给定<code>key</code>的值设置为<code>value</code>,返回<code>key</code> 的旧值.</td>
-</tr>
-<tr>
-<td><code>incr key</code></td>
-<td>将<code>key</code> 存储的数字值加<code>1</code></td>
-</tr>
-<tr>
-<td><code>incrby key increment</code></td>
-<td>将<code>key</code> 中存储的数字值加上给定的<code>decrement</code> 值</td>
-</tr>
-<tr>
-<td><code>incrbyfloat key increment</code></td>
-<td>将<code>key</code> 中存储的数字值加上给定的<code>decrement</code> 值<br>给定的浮动数</td>
-</tr>
-<tr>
-<td><code>mget key1 [key2 ...]</code></td>
-<td>获取一个或多个给定的<code>key</code> 的值</td>
-</tr>
-<tr>
-<td><code>mset key value [key value]</code></td>
-<td>同时设置一个或多个键值对</td>
-</tr>
-<tr>
-<td><code>msetnx key value [key value]</code></td>
-<td>当<code>key</code> 不存在时,设置一个或多个键值对</td>
-</tr>
-<tr>
-<td><code>psetex key milliseconds value</code></td>
-<td>设置键值对,并设置单位为毫秒的生存时间</td>
-</tr>
-<tr>
-<td><code>set key value</code></td>
-<td>设置一个键值对</td>
-</tr>
-<tr>
-<td><code>setbit key offset value</code></td>
-<td>对<code>key</code> 的字符串值,设置或清除偏移量(单位:<code>bit</code>)</td>
-</tr>
-<tr>
-<td><code>setex key seconds value</code></td>
-<td>设置键值对,生存时间单位是秒</td>
-</tr>
-<tr>
-<td><code>setnx key miliseconds vlaue</code></td>
-<td>设置键值对,生存时间单位是毫秒</td>
-</tr>
-<tr>
-<td><code>setrange key offset value</code></td>
-<td>用<code>value</code>参数覆盖给定<code>key</code> 存储的字符串值,从<br>偏移量<code>offset</code> 开始</td>
-</tr>
-<tr>
-<td><code>strlen key</code></td>
-<td>返回<code>key</code> 存储的字符串长度.</td>
-</tr>
-</tbody></table>
+<h3 id="2-设置后台子进程"><a href="#2-设置后台子进程" class="headerlink" title="2.设置后台子进程"></a>2.设置后台子进程</h3><blockquote>
+<p>未来后台运行进程,需要把<code>daemon</code>(守护程序) 设置为<code>True</code> </p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>time
+
+<span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+ <span class="token comment" spellcheck="true"># 如果子进程需要知道父进程的名字,需要显示声明</span>
+ name <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>current_process<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token comment" spellcheck="true"># multiprocessing.current_process().name</span>
+ <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Start {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+ time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+ <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Exiting {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+ <span class="token triple-quoted-string string">"""主进程"""</span>
+ <span class="token comment" spellcheck="true"># 后台子进程</span>
+ background_process <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'后台子进程'</span><span class="token punctuation">)</span>
+ background_process<span class="token punctuation">.</span>daemon <span class="token operator">=</span><span class="token boolean">True</span>
+ background_process<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ no_background_process <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"子进程"</span><span class="token punctuation">)</span>
+ no_background_process<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行结果:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">Start <span class="token operator">&lt;</span>Process<span class="token punctuation">(</span>子进程, started<span class="token punctuation">)</span><span class="token operator">></span>
+Exiting <span class="token operator">&lt;</span>Process<span class="token punctuation">(</span>子进程, started<span class="token punctuation">)</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>非后台子进程会看到一个输出结果,而后台进程不会输出,后台进程在主进程结束之后会自动结束.</p>
 </blockquote>
-<h3 id="2-基本设置"><a href="#2-基本设置" class="headerlink" title="2.基本设置"></a>2.基本设置</h3><blockquote>
-<ol>
-<li><code>set</code>:生成一个键值对</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash">SET key value <span class="token punctuation">[</span>EX seconds<span class="token punctuation">]</span> <span class="token punctuation">[</span>PX milliseconds<span class="token punctuation">]</span> <span class="token punctuation">[</span>NX<span class="token operator">|</span>XX<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># 将字符串值 value 关联到 key</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>如果<code>key</code> 已经有其他值,<code>set</code> 会覆盖新值,无视类型.<code>ttl</code> 被清除,并重新开始.</li>
-<li><code>EX second</code> :设置过期时间,单位秒. <code>SET key value EX second</code> 效果等同于 <code>SETEX key second value</code>.</li>
-<li><code>PX millsecond</code>:设置过期时间,单位毫秒.<code>SET key value PX millisecond</code> 效果等同于 <code>PSETEX key millisecond value</code> .</li>
-<li><code>NX</code> :只有键不存在时,才对键进行设置操作.<code>SET key value NX = SETNX key value</code></li>
-<li><code>XX</code>:只有键存在时,才对键进行操作.</li>
-</ul>
-<ol start="2">
-<li><code>get</code> :获取键的值</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell">get key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 对不存在的键设值</span>
-127.0.0.1:6379<span class="token operator">></span> get key
-<span class="token string">"value"</span>
-127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key new-value
-OK
-<span class="token comment" spellcheck="true"># 对存在的键设值</span>
-127.0.0.1:6379<span class="token operator">></span> get key
-<span class="token string">"new-value"</span>
-<span class="token comment" spellcheck="true"># 设置超时时间</span>
-127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key-with-expire-time hello ex 10
-OK
-127.0.0.1:6379<span class="token operator">></span> get key-with-expire-time
-<span class="token string">"hello"</span>
-<span class="token comment" spellcheck="true"># 10秒之后获取</span>
-127.0.0.1:6379<span class="token operator">></span> get key-with-expire-time
-<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 如果服务器返回OK,那么客户端获取锁</span>
-<span class="token comment" spellcheck="true"># 如果服务器返回 NIL,客户端获取锁失败</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="3-bitmap-位图设置"><a href="#3-bitmap-位图设置" class="headerlink" title="3.bitmap 位图设置"></a>3.<code>bitmap</code> 位图设置</h3><blockquote>
-<p>位图是指对数据的最小单位<code>bit</code> 位进行操作.比如,字符串<code>big</code></p>
-<pre class="line-numbers language-bash"><code class="language-bash">b --<span class="token operator">></span> ASCII码 98 --<span class="token operator">></span> 二进制是 01100010
-i --<span class="token operator">></span> ASCII码105 --<span class="token operator">></span> 二进制为 01101001
-g --<span class="token operator">></span> ASCII码103 --<span class="token operator">></span> 二进制为 01100111<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>在<code>redis</code> 中,可以获取到<code>big</code> 的<code>ASCII</code> 码的每一位对应的值,也就是<code>0</code> 或<code>1</code> .</p>
-<pre class="line-numbers language-shell"><code class="language-shell">127.0.0.1:6379> set key-big big
-OK
-127.0.0.1:6379> get key-big
-"big"
-127.0.0.1:6379> getbit key-big 0
-(integer) 0
-127.0.0.1:6379> getbit key-big 1
-(integer) 1
-127.0.0.1:6379> getbit key-big 2
-(integer) 1
-127.0.0.1:6379> getbit key-big 3
-(integer) 0
-# 对比字母 b 的二进制 01100010 可以看到获取二进制的一致
-# 从0 位开始获取.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>常用的命令是:</p>
-<ol>
-<li><code>setbit key offset value</code> :对<code>key</code> 所存储的字符串值,设置或清除指定偏移量上的位<code>bit</code>.<code>offset</code> 从<code>0</code> 开始,小于2的32次方.(字符串最大可存储<code>512M</code>)</li>
-<li><code>getbit key offset</code> :对<code>key</code> 所存储的字符串,获取指定偏移量上的位<code>bit</code></li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell">127.0.0.1:6379> get key-big
-"big"
-127.0.0.1:6379> setbit key-big 7 1    # 因为是从0开始,指定的是第8位上变成1,也就是 01100011=> c
-(integer) 0
-127.0.0.1:6379> get key-big
-"cig"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="3">
-<li><code>bitcount key [start] [stop]</code> :计算给定的字符串中,被设置为<code>1</code> 的比特位的数量.</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell">127.0.0.1:6379> bitcount key-big
-(integer) 13<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ol start="4">
-<li><code>bittop operation destkey key [key...]</code> : 做多个bitmap的<code>and(交集)or(并集)not(非)or(异或)</code>操作并将结果保存在<code>destkey</code>中 .</li>
-</ol>
-<hr>
-<p><code>bitmap</code> 位图应用:假如一个网站有1亿用户,<code>user_id</code> 用的是整型,长度为32位,每天有5千万独立用户访问,如何判断哪些用户访问了网站.</p>
-<ol>
-<li>用<code>set</code> 来保存数据,运行一天占用的内存为:</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell">32bit * 50000000 = (4bytes * 50000000) / 1024 /1024  大约占用200MB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="2">
-<li>使用<code>bitmap</code> 保存数据.在<code>user_id</code> 的索引上设置为<code>1</code> ,没有访问的<code>user_id</code> 索引位置为<code>0</code>,运行一天占用的内存为:</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell">1bit * 100000000 = 100000000 / 1024 /1024/ 8  约为12.5MB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>使用<code>bitmap</code> 可以节省大量的内存资源.</p>
-</blockquote>
-<h3 id="4-setrange-getrange"><a href="#4-setrange-getrange" class="headerlink" title="4.setrange\getrange"></a>4.<code>setrange\getrange</code></h3><blockquote>
-<ol>
-<li><code>setrange key offset value</code> :用<code>value</code>参数覆盖给定<code>key</code> 存储的字符串值,从偏移量<code>offset</code> 开始.不存在的<code>key</code> 被当做空白字符串处理.如果给定的字符串比偏移量小,中间的空白会用零字节(<code>\x00</code>) 填充.(<code>offset</code>从0开始)</li>
-<li><code>getrange key start end</code> :返回<code>key</code> 中字符串的子字符串,可以给定负数,<code>-1</code> 表示最后一个.</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell">127.0.0.1:6379> set greeting 'hello world'
-OK
-127.0.0.1:6379> get greeting
-"hello world"
-127.0.0.1:6379> SETRANGE greeting 6 'redis'
-(integer) 11
-127.0.0.1:6379> get greeting
-"hello redis"
-
-127.0.0.1:6379> get greeting
-"hello redis"
-127.0.0.1:6379> getrange greeting 1 5
-"ello "
-127.0.0.1:6379> getrange greeting 0 5
-"hello "
-
-127.0.0.1:6379> getrange greeting -3 -1
-"dis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="5-getset"><a href="#5-getset" class="headerlink" title="5.getset"></a>5.<code>getset</code></h3><blockquote>
-<pre class="line-numbers language-shell"><code class="language-shell">getset key value<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将给定的<code>key</code> 的值设置为<code>value</code> ,并返回<code>key</code> 的旧值.</p>
-<pre class="line-numbers language-shell"><code class="language-shell">127.0.0.1:6379> get greeting
-"hello redis"
-127.0.0.1:6379> getset greeting 'test'
-"hello redis"
-127.0.0.1:6379> get greeting
-"test"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="6-递减"><a href="#6-递减" class="headerlink" title="6.递减"></a>6.递减</h3><blockquote>
-<ol>
-<li><code>decr key </code> :<code>key</code> 存储的数字值减<code>1</code>,如果<code>key</code> 不存在,<code>key</code> 的值会先初始化为<code>0</code>,然后再执行,如果值包含错误的类型,或字符串的值不能表示为数字,那么返回一个错误.</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell"># 对存在的 key 操作
-127.0.0.1:6379> set failure_times 10
-OK
-127.0.0.1:6379> get failure_times
-"10"
-127.0.0.1:6379> decr failure_times
-(integer) 9
-127.0.0.1:6379> decr failure_times
-(integer) 8
-127.0.0.1:6379> decr failure_times
-(integer) 7
-
-# 对不存在的值操作
-127.0.0.1:6379> EXISTS count
-(integer) 0
-127.0.0.1:6379> decr count
-(integer) -1
-127.0.0.1:6379> decr count
-(integer) -2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li><code>decrby key decrement</code> :对<code>key</code> 存储的值减去<code>decrement</code> .如果<code>key</code> 不存在,那么<code>key</code> 先被初始化为<code>0</code> ,然后再执行.如果值包含错误的类型,或字符串的值不能表示为数字,那么返回一个错误.</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell"># 对存在的 key 操作
-127.0.0.1:6379> set count 100
-OK
-127.0.0.1:6379> get count 
-"100"
-127.0.0.1:6379> decrby count 20
-(integer) 80
-127.0.0.1:6379
-
-# 对不存在的key 操作
-127.0.0.1:6379> EXISTS pages
-(integer) 0
-127.0.0.1:6379<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="7-递增"><a href="#7-递增" class="headerlink" title="7.递增"></a>7.递增</h3><blockquote>
-<ol>
-<li><code>incr key </code> :<code>key</code> 存储的数字值加<code>1</code>,如果<code>key</code> 不存在,<code>key</code> 的值会先初始化为<code>0</code>,然后在执行,如果值包含错误的类型,或字符串的值不能表示为数字,那么返回一个错误.</li>
-<li><code>incrby key increment</code> :对<code>key</code> 存储的值加上<code>decrement</code> .如果<code>key</code> 不存在,那么<code>key</code> 先被初始化为<code>0</code> ,然后再执行.如果值包含错误的类型,或字符串的值不能表示为数字,那么返回一个错误.</li>
-<li><code>incrbyfloat key increment</code>:对<code>key</code> 存储的值加上浮点数<code>decrement</code> .如果<code>key</code> 不存在,那么<code>key</code> 先被初始化为<code>0</code> ,然后再执行.<code>key increment</code> 可以使用指数符号. <code>INCRBYFLOAT </code>的计算结果也最多只能表示小数点的后十七位 .</li>
-</ol>
-<pre class="line-numbers language-shell"><code class="language-shell"># 值和增量都不是指数符号
-
-redis> SET mykey 10.50
-OK
-redis> INCRBYFLOAT mykey 0.1
-"10.6"
-
-
-# 值和增量都是指数符号
-redis> SET mykey 314e-2
-OK
-redis> GET mykey                # 用 SET 设置的值可以是指数符号
-"314e-2"
-redis> INCRBYFLOAT mykey 0      # 但执行 INCRBYFLOAT 之后格式会被改成非指数符号
-"3.14"
-
-# 可以对整数类型执行
-redis> SET mykey 3
-OK
-redis> INCRBYFLOAT mykey 1.1
-"4.1"
-
-# 后跟的 0 会被移除
-redis> SET mykey 3.0
-OK
-redis> GET mykey                                    # SET 设置的值小数部分可以是 0
-"3.0"
-redis> INCRBYFLOAT mykey 1.000000000000000000000    # 但 INCRBYFLOAT 会将无用的 0 忽略掉，有需要的话，将浮点变为整数
-"4"
-redis> GET mykey
-"4"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat">’</p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
@@ -848,7 +573,7 @@ redis> GET mykey
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/29/redis5/">https://www.wenyan.online/2020/09/29/redis5/</a>
+                    <a href="https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-3/">https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -886,12 +611,8 @@ redis> GET mykey
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/flask/">
-                                    <span class="chip bg-color">flask</span>
-                                </a>
-                            
-                                <a href="/tags/redis/">
-                                    <span class="chip bg-color">redis</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
                         </div>
@@ -1326,12 +1047,12 @@ redis> GET mykey
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/29/python-jin-cheng-xian-cheng-3/">
+                <a href="/2020/09/29/python-jin-cheng-xian-cheng-4/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" class="responsive-img" alt="python进程线程3">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" class="responsive-img" alt="python进程线程4">
                         
-                        <span class="card-title">python进程线程3</span>
+                        <span class="card-title">python进程线程4</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1374,12 +1095,12 @@ redis> GET mykey
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/29/redis4/">
+                <a href="/2020/09/29/redis5/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis关键字key">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis类型string">
                         
-                        <span class="card-title">redis关键字key</span>
+                        <span class="card-title">redis类型string</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

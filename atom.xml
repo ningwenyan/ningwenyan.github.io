@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-29T13:11:44.534Z</updated>
+  <updated>2020-09-29T13:51:07.153Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python进程线程4</title>
+    <link href="https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-4/"/>
+    <id>https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-4/</id>
+    <published>2020-09-29T13:49:13.000Z</published>
+    <updated>2020-09-29T13:51:07.153Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;杀死进程&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程3</title>
+    <link href="https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-3/"/>
+    <id>https://www.wenyan.online/2020/09/29/python-jin-cheng-xian-cheng-3/</id>
+    <published>2020-09-29T13:48:41.000Z</published>
+    <updated>2020-09-29T13:50:57.585Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;后台子进程&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>redis类型string</title>
@@ -408,7 +464,7 @@
     <link href="https://www.wenyan.online/2020/09/21/jquerylearn/"/>
     <id>https://www.wenyan.online/2020/09/21/jquerylearn/</id>
     <published>2020-09-21T15:27:49.000Z</published>
-    <updated>2020-09-27T14:17:05.266Z</updated>
+    <updated>2020-09-29T13:54:56.509Z</updated>
     
     <summary type="html">
     
@@ -556,63 +612,6 @@
       <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
     
       <category term="Flask_SQLAlchemy" scheme="https://www.wenyan.online/tags/Flask-SQLAlchemy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>创建漂亮的Flask命令行界面</title>
-    <link href="https://www.wenyan.online/2020/09/09/createcliflask/"/>
-    <id>https://www.wenyan.online/2020/09/09/createcliflask/</id>
-    <published>2020-09-09T15:16:09.000Z</published>
-    <updated>2020-09-09T16:00:47.166Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599665192366-10287.png&quot; alt=&quot;10287&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Flask插件" scheme="https://www.wenyan.online/categories/Flask%E6%8F%92%E4%BB%B6/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-      <category term="Click" scheme="https://www.wenyan.online/tags/Click/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu软件推荐</title>
-    <link href="https://www.wenyan.online/2020/09/08/ubuntusoftware/"/>
-    <id>https://www.wenyan.online/2020/09/08/ubuntusoftware/</id>
-    <published>2020-09-08T14:52:56.000Z</published>
-    <updated>2020-09-13T07:43:18.976Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote class=&quot;pullquote mindmap
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Ubuntu" scheme="https://www.wenyan.online/categories/Ubuntu/"/>
-    
-    
-      <category term="Ubuntu" scheme="https://www.wenyan.online/tags/Ubuntu/"/>
     
   </entry>
   
