@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-09-29T14:00:39.327Z</updated>
+  <updated>2020-09-30T12:31:31.491Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pillow作图</title>
+    <link href="https://www.wenyan.online/2020/09/30/learnpillow/"/>
+    <id>https://www.wenyan.online/2020/09/30/learnpillow/</id>
+    <published>2020-09-30T12:24:04.000Z</published>
+    <updated>2020-09-30T12:31:31.491Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-30/1601468958824-pillow.png&quot; alt=&quot;pillow&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Pillow&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python Pillow" scheme="https://www.wenyan.online/categories/Python-Pillow/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+      <category term="Pillow" scheme="https://www.wenyan.online/tags/Pillow/"/>
+    
+  </entry>
   
   <entry>
     <title>杀死进程</title>
@@ -582,36 +612,6 @@
     
     
       <category term="Hexo" scheme="https://www.wenyan.online/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决Flask-SQLAlchemy循环引用</title>
-    <link href="https://www.wenyan.online/2020/09/09/dbcularrefr/"/>
-    <id>https://www.wenyan.online/2020/09/09/dbcularrefr/</id>
-    <published>2020-09-09T15:35:12.000Z</published>
-    <updated>2020-09-09T16:00:25.645Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-9/1599666568728-10290.png&quot; alt=&quot;10290&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="SQLAlchemy Flask" scheme="https://www.wenyan.online/categories/SQLAlchemy-Flask/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-      <category term="Flask_SQLAlchemy" scheme="https://www.wenyan.online/tags/Flask-SQLAlchemy/"/>
     
   </entry>
   
