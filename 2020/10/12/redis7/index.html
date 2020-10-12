@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Python Pillow">
+    <meta name="keywords" content="flask redis">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Pillow作图 | 文彦Blog</title>
+    <title>redis数据类型list | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-30/1601468958824-pillow.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Pillow作图</h1>
+                    <h1 class="description center-align post-title">redis数据类型list</h1>
                 </div>
             </div>
         </div>
@@ -475,12 +475,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/flask/">
+                                <span class="chip bg-color">flask</span>
                             </a>
                         
-                            <a href="/tags/Pillow/">
-                                <span class="chip bg-color">Pillow</span>
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
                     </div>
@@ -491,8 +491,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Python-Pillow/" class="post-category">
-                                Python Pillow
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -504,7 +504,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-30
+                    2020-10-12
                 </div>
                 
 
@@ -520,209 +520,287 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-30/1601468958824-pillow.png" alt="pillow"></p>
-<h2 id="Pillow"><a href="#Pillow" class="headerlink" title="Pillow"></a><code>Pillow</code></h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><blockquote>
-<p><code>PIL：Python Imaging Library</code>，已经是Python平台事实上的图像处理标准库了。PIL功能非常强大，但API却非常简单易用.</p>
-<p>入口:<code>https://wenyan.online/navigate/</code></p>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" alt="10303"></p>
+<h2 id="数据类型list"><a href="#数据类型list" class="headerlink" title="数据类型list"></a>数据类型<code>list</code></h2><blockquote>
+<p><code>redis list</code> 是字符串列表,按照插入顺序排序.可以添加一个元素到列表的头部和尾部.</p>
+<p>一个列表最多可以包含$2^{32}-1$ 个元素.</p>
 </blockquote>
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash">$ pip <span class="token function">install</span> pillow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>验证版本</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">import</span> PIL
-<span class="token operator">>></span><span class="token operator">></span> PIL<span class="token punctuation">.</span>__version
-<span class="token string">'7.2.0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>blpop key1 [key2] timeout</code></td>
+<td>移出并获取列表的第一个元素,如果列表<br>没有元素会阻塞列表直到等待超时或发现可弹出元素为止</td>
+</tr>
+<tr>
+<td><code>brpop key1 [key2] timeout</code></td>
+<td>移出并获取列表的最后一个元素,如果列表<br>没有元素会阻塞列表直到等待超时或发现可弹出元素为止</td>
+</tr>
+<tr>
+<td><code>brpoplpush source destination timeout</code></td>
+<td>从列表中弹出一个值，将弹出的元素插入到<br>另外一个列表中并返回它； 如果列表没有元素会<br>阻塞列表直到等待超时或发现可弹出元素为止。</td>
+</tr>
+<tr>
+<td><code>lindex key index</code></td>
+<td>通过索引获取列表中的元素</td>
+</tr>
+<tr>
+<td>`linsert key before</td>
+<td>after pivot value`</td>
+</tr>
+<tr>
+<td><code>llen key </code></td>
+<td>获取列表长度</td>
+</tr>
+<tr>
+<td><code>lpop key</code></td>
+<td>移出并获取列表的第一个元素</td>
+</tr>
+<tr>
+<td><code>lpush key value1 [value2]</code></td>
+<td>将一个或多个值插入到列表头部</td>
+</tr>
+<tr>
+<td><code>lpushx key value</code></td>
+<td>将一个值插入到已存在的列表头部</td>
+</tr>
+<tr>
+<td><code>lrange key start stop</code></td>
+<td>获取列表指定范围类的元素</td>
+</tr>
+<tr>
+<td><code>lrem key count value</code></td>
+<td>移出列表元素.</td>
+</tr>
+<tr>
+<td><code>lset key index value</code></td>
+<td>通过索引设置列表元素的值</td>
+</tr>
+<tr>
+<td><code>ltrim key start stop</code></td>
+<td>对一个列表进行修剪(trim)，就是说，让列表<br>只保留指定区间内的元素，不在指定区间之内的元素都将被删除</td>
+</tr>
+<tr>
+<td><code>rpop key</code></td>
+<td>移除并获取列表的最后一个元素</td>
+</tr>
+<tr>
+<td><code>rpoplpush source destination</code></td>
+<td>移除列表的最后一个元素，并将该元素添加到另一个列表并返回</td>
+</tr>
+<tr>
+<td><code>rpush key value1 [value2]</code></td>
+<td>在列表末尾添加一个或多个值</td>
+</tr>
+<tr>
+<td><code>rpushx key value </code></td>
+<td>对已存在的列表末尾添加值.</td>
+</tr>
+</tbody></table>
 </blockquote>
-<h3 id="3-基本操作"><a href="#3-基本操作" class="headerlink" title="3.基本操作"></a>3.基本操作</h3><h4 id="1-使用Image类"><a href="#1-使用Image类" class="headerlink" title="1.使用Image类"></a>1.使用<code>Image</code>类</h4><blockquote>
-<p>PIL最重要的是<code>Image class</code>，可以通过多种方法创建这个类的实例：可以从文件加载图像，或者处理其他图像，或者从<code>sratck</code>创建<br>从文件中加载图像，可以使用<code>open()</code>函数</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-<span class="token comment" spellcheck="true"># 10001.jpg 存在于同目录下</span>
-img <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'10001.jpg'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>加载成功后，将返回一个图像对象，可以通过使用示例属性查看文件内容：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>img<span class="token punctuation">.</span>format<span class="token punctuation">,</span> img<span class="token punctuation">.</span>size<span class="token punctuation">,</span> img<span class="token punctuation">.</span>mode<span class="token punctuation">)</span>
-JPEG <span class="token punctuation">(</span><span class="token number">1920</span><span class="token punctuation">,</span> <span class="token number">1080</span><span class="token punctuation">)</span> RGB
-
-<span class="token comment" spellcheck="true">#format：格式，这个属性标识了图像来源</span>
-<span class="token comment" spellcheck="true">#size：尺寸，如果图像不是从文件读取，他的值没有大小，返回结果是一个二元组(宽度，高度)单位是像素</span>
-<span class="token comment" spellcheck="true">#mode:模式属性定了图像带的数量和名称，以及像素类型和深度。常见的模式有'L'(亮度)表示灰度图像，'RGB'标识真彩色图像，'CMYK'表示出版图像</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>显示图像(会调用系统的图片查看器)：</p>
-<pre class="line-numbers language-python"><code class="language-python">img<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h4 id="2-读写图像"><a href="#2-读写图像" class="headerlink" title="2.读写图像"></a>2.读写图像</h4><blockquote>
-<p>PIL模块支持大量图片格式。使用在图像模块的open()函数从磁盘读取文件。你不需要知道文件格式就绪打开它，这个库能够根据文件内容自动确定文件格式。要保存文件，使用Image类的save()方法。保存文件的时候文件名变得重要了。除非你指定格式，否则这个库将会以文件名的扩展名作为格式保存。<br>加载文件，并转换为png格式</p>
-<p><code>save()</code>的第二个参数可以指定文件格式。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># coding=utf-8</span>
-
-<span class="token keyword">from</span>  PIL <span class="token keyword">import</span> Image
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> sys
-
-<span class="token keyword">for</span> infile <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
- f<span class="token punctuation">,</span>e <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splitext<span class="token punctuation">(</span>infile<span class="token punctuation">)</span>
- outfile <span class="token operator">=</span> f <span class="token operator">+</span> <span class="token string">'.png'</span>
- <span class="token keyword">if</span> infile <span class="token operator">!=</span> outfile<span class="token punctuation">:</span>
-     <span class="token keyword">try</span><span class="token punctuation">:</span>
-         Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>infile<span class="token punctuation">)</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span>outfile<span class="token punctuation">)</span>
-     <span class="token keyword">except</span> IOError<span class="token punctuation">:</span>
-         <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not convert'</span><span class="token punctuation">,</span> infile<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>执行:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">❯ <span class="token function">ls</span>
-10001.jpg  1图片格式转换.py
-❯ python 1图片格式转换.py 10001.jpg
-❯ <span class="token function">ls</span>
-10001.jpg  10001.png  1图片格式转换.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="3-创建缩略图"><a href="#3-创建缩略图" class="headerlink" title="3.创建缩略图"></a>3.创建缩略图</h4><blockquote>
-<p>缩略图是网络开发或图像软件预览常用的一种基本技术，使用Python的Pillow图像库可以很方便的建立缩略图</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> __future__ <span class="token keyword">import</span> print_function
-<span class="token keyword">import</span> os<span class="token punctuation">,</span> sys
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-
-size <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span>
-
-<span class="token keyword">for</span> infile <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
- outfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splitext<span class="token punctuation">(</span>infile<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">".thumbnail"</span>
- <span class="token keyword">if</span> infile <span class="token operator">!=</span> outfile<span class="token punctuation">:</span>
-     <span class="token keyword">try</span><span class="token punctuation">:</span>
-         im <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>infile<span class="token punctuation">)</span>
-         im<span class="token punctuation">.</span>thumbnail<span class="token punctuation">(</span>size<span class="token punctuation">)</span>
-         im<span class="token punctuation">.</span>save<span class="token punctuation">(</span>outfile<span class="token punctuation">,</span> <span class="token string">"JPEG"</span><span class="token punctuation">)</span>
-     <span class="token keyword">except</span> IOError<span class="token punctuation">:</span>
-         <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"cannot create thumbnail for"</span><span class="token punctuation">,</span> infile<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>很重要的一点是这个库不会直接解码或者加载图像栅格数据。当你打开一个文件，只会读取文件头信息用来确定格式，颜色模式，大小等等，文件的剩余部分不会主动处理。这意味着打开一个图像文件的操作十分快速，跟图片大小和压缩方式无关。下面是一个简单的脚本用来快速验证大量图片。</p>
-</blockquote>
-<h4 id="4-验证图像文件"><a href="#4-验证图像文件" class="headerlink" title="4.验证图像文件"></a>4.验证图像文件</h4><blockquote>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> __future__ <span class="token keyword">import</span> print_function
-<span class="token keyword">import</span> sys
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-
-<span class="token keyword">for</span> infile <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
- <span class="token keyword">try</span><span class="token punctuation">:</span>
-     <span class="token keyword">with</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>infile<span class="token punctuation">)</span> <span class="token keyword">as</span> im<span class="token punctuation">:</span>
-         <span class="token keyword">print</span><span class="token punctuation">(</span>infile<span class="token punctuation">,</span> im<span class="token punctuation">.</span>format<span class="token punctuation">,</span> <span class="token string">"%dx%d"</span> <span class="token operator">%</span> im<span class="token punctuation">.</span>size<span class="token punctuation">,</span> im<span class="token punctuation">.</span>mode<span class="token punctuation">)</span>
- <span class="token keyword">except</span> IOError<span class="token punctuation">:</span>
-     <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="5-图像剪切粘贴与合并"><a href="#5-图像剪切粘贴与合并" class="headerlink" title="5.图像剪切粘贴与合并"></a>5.图像剪切粘贴与合并</h4><blockquote>
-<p>Image类包含的方法允许操作图像部分选区，PIL.Image.crop方法获取图像的一个矩形选区</p>
-<p>创建一个矩形选区</p>
-<pre class="line-numbers language-python"><code class="language-python">box <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span>
-region <span class="token operator">=</span> im<span class="token punctuation">.</span>crop<span class="token punctuation">(</span>box<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>矩形选区有一个4元元组定义，分别表示左、上、右、下的坐标。这个库以左上角为坐标原点，单位是px，所以上诉代码复制了一个 300x300 pixels 的矩形选区。这个选区现在可以被处理并且粘贴到原图。</p>
-<p>处理复制的矩形选区并粘贴到原图</p>
-<pre class="line-numbers language-python"><code class="language-python">region <span class="token operator">=</span> region<span class="token punctuation">.</span>transpose<span class="token punctuation">(</span>Image<span class="token punctuation">.</span>ROTATE_180<span class="token punctuation">)</span>
-im<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>region<span class="token punctuation">,</span> box<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>当你粘贴矩形选区的时候必须保证尺寸一致。此外，矩形选区不能在图像外。然而你不必保证矩形选区和原图的颜色模式一致，因为矩形选区会被自动转换颜色.</p>
-</blockquote>
-<h4 id="6-图像过滤"><a href="#6-图像过滤" class="headerlink" title="6.图像过滤"></a>6.图像过滤</h4><blockquote>
-<p>图像滤镜在 ImageFilter() 模块中，在该模块中，预先定义了很多的增强滤镜，可以通过filter()函数使用，其中包括:</p>
+<h3 id="1-添加"><a href="#1-添加" class="headerlink" title="1.添加"></a>1.添加</h3><blockquote>
+<p>添加列表元素</p>
+<p>左添加</p>
 <ul>
-<li>BLUR—&gt;模糊滤镜</li>
-<li>CONTOUR—&gt;轮廓</li>
-<li>DETAIL—&gt;细节滤镜</li>
-<li>EDGE_ENHANCE —–&gt;边界加强</li>
-<li>EDGE_ENHANCE_MORE—-&gt;边界加强(阈值更大)</li>
-<li>EMBOSS ——–&gt;浮雕滤镜</li>
-<li>FIND_EDGES——-&gt;边界滤镜</li>
-<li>SMOOTH ——–&gt;平滑滤镜</li>
-<li>SMOOTH_MORE——–&gt;平滑滤镜(阈值更大)</li>
-<li>SHARPEN —–锐化滤镜</li>
-</ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#示例</span>
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> ImageFilter  
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-
-imgF <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">"10001.png"</span><span class="token punctuation">)</span>  
-outF <span class="token operator">=</span> imgF<span class="token punctuation">.</span>filter<span class="token punctuation">(</span>ImageFilter<span class="token punctuation">.</span>DETAIL<span class="token punctuation">)</span>  
-conF <span class="token operator">=</span> imgF<span class="token punctuation">.</span>filter<span class="token punctuation">(</span>ImageFilter<span class="token punctuation">.</span>CONTOUR<span class="token punctuation">)</span>  
-edgeF <span class="token operator">=</span> imgF<span class="token punctuation">.</span>filter<span class="token punctuation">(</span>ImageFilter<span class="token punctuation">.</span>FIND_EDGES<span class="token punctuation">)</span>  
-imgF<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>  
-outF<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>  
-conF<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>  
-edgeF<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="4-利用Pillow生成验证码"><a href="#4-利用Pillow生成验证码" class="headerlink" title="4.利用Pillow生成验证码"></a>4.利用<code>Pillow</code>生成验证码</h3><blockquote>
-<p>主要使用到 <code>ImageDraw</code> 生成文字和绘制干扰线</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span>  Image<span class="token punctuation">,</span>ImageDraw<span class="token punctuation">,</span> ImageFont<span class="token punctuation">,</span> ImageFilter
-<span class="token keyword">import</span> random
-
-<span class="token comment" spellcheck="true"># 生成随机字母,根据ASCII 表得到的数据 65-90 为A-Z的大写字母</span>
-<span class="token keyword">def</span>  <span class="token function">rndChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token keyword">return</span>  chr<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">65</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 生成随机颜色</span>
-<span class="token keyword">def</span>  <span class="token function">rndColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token keyword">return</span>  <span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 生成随机颜色2</span>
-<span class="token keyword">def</span> <span class="token function">rndColor2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token keyword">return</span> <span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span><span class="token punctuation">,</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span><span class="token punctuation">,</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 图片大小</span>
-width <span class="token operator">=</span> <span class="token number">60</span> <span class="token operator">*</span><span class="token number">4</span>
-height <span class="token operator">=</span> <span class="token number">60</span>
-<span class="token comment" spellcheck="true"># 创建图片</span>
-img <span class="token operator">=</span> Image<span class="token punctuation">.</span>new<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 创建Font对象</span>
-font <span class="token operator">=</span> ImageFont<span class="token punctuation">.</span>truetype<span class="token punctuation">(</span>font<span class="token operator">=</span><span class="token string">'C:\Windows\Fonts\Gabriola.ttf'</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">36</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建draw对象,生成图</span>
-draw <span class="token operator">=</span> ImageDraw<span class="token punctuation">.</span>Draw<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 填充像素</span>
-<span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span>width<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token keyword">for</span> y <span class="token keyword">in</span> range<span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  draw<span class="token punctuation">.</span>point<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span> fill<span class="token operator">=</span>rndColor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 输出文字</span>
-verify <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-<span class="token keyword">for</span> t <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-temp <span class="token operator">=</span> rndChar<span class="token punctuation">(</span><span class="token punctuation">)</span>
-verify<span class="token punctuation">.</span>append<span class="token punctuation">(</span>temp<span class="token punctuation">)</span>
-draw<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token operator">*</span>t <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span> temp<span class="token punctuation">,</span> font<span class="token operator">=</span>font<span class="token punctuation">,</span> fill<span class="token operator">=</span>rndColor2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token keyword">print</span><span class="token punctuation">(</span>verify<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 模糊</span>
-img <span class="token operator">=</span> img<span class="token punctuation">.</span>filter<span class="token punctuation">(</span>ImageFilter<span class="token punctuation">.</span>BLUR<span class="token punctuation">)</span>
-img<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">'code.png'</span><span class="token punctuation">,</span> <span class="token string">'png'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li><code>Image</code>: 负责处理图片</li>
-<li><code>ImageDraw </code>: 负责处理画笔 </li>
-<li><code>ImageFont</code>:  负责处理文字 </li>
-<li><code>ImageFilter</code>负责处理路径</li>
-</ul>
-<hr>
-<p><code>Image.new()</code>:主要用来生成画布.<code>Image.new(mode,size,color=0)</code></p>
-<ul>
-<li><p>mode可以是彩色图片用到的RGB模式，也可以是计算机处理常用的灰度图片的L模式。如果是RGB模式，所有的颜色都是三元素元组，如果是L模式，所有的颜色都是单值</p>
+<li><p><code>lpush</code></p>
 </li>
-<li><p>size是一个二元元组，分别是pixel为单位的宽和高。需要注意计算机中的坐标都是以左上角为原点，左边为x，下面为y</p>
-</li>
-<li><p>color是画布的背景色，根据前面的mode进行设置</p>
-<p><code>ImageDraw.Draw(im, mode=None)</code> 用于生成画笔</p>
-</li>
-<li><p>im是一个Image对象，画笔必须要和画布绑定才能操作</p>
-</li>
-<li><p>mode填一个和画布一样的模式即可</p>
+<li><p><code>lpushx</code></p>
 </li>
 </ul>
-<hr>
-<pre class="line-numbers language-python"><code class="language-python">mageFont<span class="token punctuation">.</span>truetype<span class="token punctuation">(</span>
-  <span class="token punctuation">[</span><span class="token string">'font=None'</span><span class="token punctuation">,</span> <span class="token string">'size=10'</span><span class="token punctuation">,</span> <span class="token string">'index=0'</span><span class="token punctuation">,</span> <span class="token string">"encoding=''"</span><span class="token punctuation">,</span> <span class="token string">'layout_engine=None'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>通常指定字体和大小即可，而且实际赋值的时候不用写为list</p>
+<p>右添加</p>
 <ul>
-<li>font是一个文件或类文件对象，格式为TrueType Font(.ttf)</li>
-<li>size是字体的大小</li>
+<li><p><code>rpush</code></p>
+</li>
+<li><p><code>prushx</code></p>
+</li>
 </ul>
-<hr>
-<p><code> draw.text(xy,text,fill=None,font=None)</code>添加文字</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 左添加,</span>
+<span class="token comment" spellcheck="true"># 添加单个元素</span>
+127.0.0.1:6379<span class="token operator">></span> lpush languages python
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+<span class="token comment" spellcheck="true"># 添加重复元素</span>
+127.0.0.1:6379<span class="token operator">></span> lpush languages python
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+<span class="token comment" spellcheck="true"># 测量长度</span>
+127.0.0.1:6379<span class="token operator">></span> llen languages
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+<span class="token comment" spellcheck="true"># 按照索引输出</span>
+127.0.0.1:6379<span class="token operator">></span> lindex languages 0
+<span class="token string">"python"</span>
+127.0.0.1:6379<span class="token operator">></span> lindex languages 1
+<span class="token string">"python"</span>
+<span class="token comment" spellcheck="true"># 按照范围输出</span>
+127.0.0.1:6379<span class="token operator">></span> lrange languages 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"python"</span>
+2<span class="token punctuation">)</span> <span class="token string">"python"</span>
+
+<span class="token comment" spellcheck="true"># 添加多个值</span>
+127.0.0.1:6379<span class="token operator">></span> lpush mylist a b c
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+127.0.0.1:6379<span class="token operator">></span> lrange mylist 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"c"</span>
+2<span class="token punctuation">)</span> <span class="token string">"b"</span>
+3<span class="token punctuation">)</span> <span class="token string">"a"</span>
+
+<span class="token comment" spellcheck="true"># 右添加</span>
+127.0.0.1:6379<span class="token operator">></span> lrange languages 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"python"</span>
+2<span class="token punctuation">)</span> <span class="token string">"python"</span>
+127.0.0.1:6379<span class="token operator">></span> rpush languages radis
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+127.0.0.1:6379<span class="token operator">></span> lrange languages 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"python"</span>
+2<span class="token punctuation">)</span> <span class="token string">"python"</span>
+3<span class="token punctuation">)</span> <span class="token string">"radis"</span>
+127.0.0.1:6379<span class="token operator">></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="2-删除"><a href="#2-删除" class="headerlink" title="2.删除"></a>2.删除</h3><blockquote>
+<p>删除列表元素</p>
+<p>左删除</p>
 <ul>
-<li>xy是一个二元元组，是文字的左上角坐标</li>
-<li>text是文字内容，字符串对象</li>
-<li>fill是文字颜色，根据画笔的mode设定，如果是RGB就是三元元组</li>
-<li>font就是<code>ImageFont</code>对象</li>
+<li><p><code>lpop</code></p>
+</li>
+<li><p><code>blpop</code></p>
+</li>
 </ul>
+<p>右删除</p>
+<ul>
+<li><p><code>rpop</code></p>
+</li>
+<li><p><code>brpop</code></p>
+</li>
+<li><p><code>rpoplpush</code> </p>
+</li>
+<li><p><code>brpoplpush</code></p>
+</li>
+</ul>
+<p>综合</p>
+<ul>
+<li><code>lrem key count value</code> :<ul>
+<li><code>count&gt;0</code>:从头部开始搜索,移除与<code>value</code> 相等的元素,数量为<code>count</code> </li>
+<li><code>count&lt;0</code>:从尾部开始搜索,移除与<code>value</code> 相等的元素,数量为<code>count</code> 的绝对值.</li>
+<li><code>count=0</code>:移除表中所有与<code>value</code>相等的元素</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看列表所有元素</span>
+127.0.0.1:6379<span class="token operator">></span> lrange languages 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"python"</span>
+2<span class="token punctuation">)</span> <span class="token string">"python"</span>
+3<span class="token punctuation">)</span> <span class="token string">"radis"</span>
+<span class="token comment" spellcheck="true"># 从头部移除第一个元素</span>
+127.0.0.1:6379<span class="token operator">></span> lpop languages
+<span class="token string">"python"</span>
+127.0.0.1:6379<span class="token operator">></span> lrange languages 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"python"</span>
+2<span class="token punctuation">)</span> <span class="token string">"radis"</span>
+<span class="token comment" spellcheck="true"># 阻塞式移除头部的第一个元素,timeout=3(秒)</span>
+127.0.0.1:6379<span class="token operator">></span> blpop languages 3
+1<span class="token punctuation">)</span> <span class="token string">"languages"</span>
+2<span class="token punctuation">)</span> <span class="token string">"python"</span>
+<span class="token comment" spellcheck="true"># 查看最后的元素.</span>
+127.0.0.1:6379<span class="token operator">></span> llen languages 
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> lrange languages 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"radis"</span>
+
+
+<span class="token comment" spellcheck="true"># lrem </span>
+<span class="token comment" spellcheck="true"># 新生成一个列表</span>
+127.0.0.1:6379<span class="token operator">></span> lpush vip <span class="token string">'Jack'</span> <span class="token string">'Bob'</span> <span class="token string">'Parry'</span> <span class="token string">'Jack'</span> <span class="token string">'Bob'</span> <span class="token string">'Hary'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+127.0.0.1:6379<span class="token operator">></span> llen vip
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+127.0.0.1:6379<span class="token operator">></span> lrange vip 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"Hary"</span>
+2<span class="token punctuation">)</span> <span class="token string">"Bob"</span>
+3<span class="token punctuation">)</span> <span class="token string">"Jack"</span>
+4<span class="token punctuation">)</span> <span class="token string">"Parry"</span>
+5<span class="token punctuation">)</span> <span class="token string">"Bob"</span>
+6<span class="token punctuation">)</span> <span class="token string">"Jack"</span>
+
+<span class="token comment" spellcheck="true"># 从头部开始移除 1 个 Jack</span>
+127.0.0.1:6379<span class="token operator">></span> lrem vip 1 Jack
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> lrange vip 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"Hary"</span>
+2<span class="token punctuation">)</span> <span class="token string">"Bob"</span>
+3<span class="token punctuation">)</span> <span class="token string">"Parry"</span>
+4<span class="token punctuation">)</span> <span class="token string">"Bob"</span>
+5<span class="token punctuation">)</span> <span class="token string">"Jack"</span>
+
+<span class="token comment" spellcheck="true"># 从尾部开始移除 1 个Jack</span>
+127.0.0.1:6379<span class="token operator">></span> lrem vip -1 Jack
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> lrange vip 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"Hary"</span>
+2<span class="token punctuation">)</span> <span class="token string">"Bob"</span>
+3<span class="token punctuation">)</span> <span class="token string">"Parry"</span>
+4<span class="token punctuation">)</span> <span class="token string">"Bob"</span>
+
+<span class="token comment" spellcheck="true"># 移除所有的 Bob</span>
+127.0.0.1:6379<span class="token operator">></span> lrem vip 0 Bob
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+127.0.0.1:6379<span class="token operator">></span> lrange vip 0 -1 
+1<span class="token punctuation">)</span> <span class="token string">"Hary"</span>
+2<span class="token punctuation">)</span> <span class="token string">"Parry"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="3-插入"><a href="#3-插入" class="headerlink" title="3. 插入"></a>3. 插入</h3><blockquote>
+<p><code>linsert key before/after pivot value</code>:将<code>value</code> 插入到列表<code>key</code> 中,位于值<code>pivot</code> 之前或之后.</p>
+<pre class="line-numbers language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> del mylist
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> rpush mylist <span class="token string">'hello'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> rpush mylist <span class="token string">'world'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+127.0.0.1:6379<span class="token operator">></span> lrange mylist 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"hello"</span>
+2<span class="token punctuation">)</span> <span class="token string">"world"</span>
+127.0.0.1:6379<span class="token operator">></span> linsert mylist before <span class="token string">'world'</span> <span class="token string">'there'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+127.0.0.1:6379<span class="token operator">></span> lrange mylist 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"hello"</span>
+2<span class="token punctuation">)</span> <span class="token string">"there"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="4-索引"><a href="#4-索引" class="headerlink" title="4.索引"></a>4.索引</h3><blockquote>
+<p>长度:<code>llen</code> </p>
+<p>索引获取值:<code>lindex</code></p>
+<p>替换索引值:<code>lset key index value</code></p>
+<p>索引获取子值(生成新列表):<code>ltrim</code></p>
+<p>索引获取子值(不改变原列表):<code>lrange</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># mylist 列表</span>
+127.0.0.1:6379<span class="token operator">></span> lrange mylist 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"hello"</span>
+2<span class="token punctuation">)</span> <span class="token string">"there"</span>
+3<span class="token punctuation">)</span> <span class="token string">"world"</span>
+
+<span class="token comment" spellcheck="true"># 通过索引获取值</span>
+127.0.0.1:6379<span class="token operator">></span> lindex mylist 0
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> lindex mylist 1
+<span class="token string">"there"</span>
+127.0.0.1:6379<span class="token operator">></span> lindex mylist 2
+<span class="token string">"world"</span>
+
+<span class="token comment" spellcheck="true"># 通过索引替换值</span>
+127.0.0.1:6379<span class="token operator">></span> lset mylist 1 replace
+OK
+127.0.0.1:6379<span class="token operator">></span> lrange mylist 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"hello"</span>
+2<span class="token punctuation">)</span> <span class="token string">"replace"</span>
+3<span class="token punctuation">)</span> <span class="token string">"world"</span>
+
+<span class="token comment" spellcheck="true"># 通过索引生成新的子列表.</span>
+127.0.0.1:6379<span class="token operator">></span> ltrim mylist 0 1
+OK
+127.0.0.1:6379<span class="token operator">></span> lrange mylist 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"hello"</span>
+2<span class="token punctuation">)</span> <span class="token string">"replace"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
@@ -750,7 +828,7 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/09/30/learnpillow/">https://www.wenyan.online/2020/09/30/learnpillow/</a>
+                    <a href="https://www.wenyan.online/2020/10/12/redis7/">https://www.wenyan.online/2020/10/12/redis7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -788,12 +866,12 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/flask/">
+                                    <span class="chip bg-color">flask</span>
                                 </a>
                             
-                                <a href="/tags/Pillow/">
-                                    <span class="chip bg-color">Pillow</span>
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
                         </div>
@@ -1224,16 +1302,17 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/12/redis6/">
+                <a href="/2020/10/12/redis7/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis类型Hash">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型list">
                         
-                        <span class="card-title">redis类型Hash</span>
+                        <span class="card-title">redis数据类型list</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1243,9 +1322,9 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1258,6 +1337,7 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1280,30 +1360,30 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/29/python-jin-cheng-xian-cheng-4/">
+                <a href="/2020/10/12/redis6/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" class="responsive-img" alt="杀死进程">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis类型Hash">
                         
-                        <span class="card-title">杀死进程</span>
+                        <span class="card-title">redis类型Hash</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python进程线程
+                            redis数据类型
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/redis/" class="post-category">
+                                    redis
                                 </a>
                             
                             
@@ -1313,8 +1393,12 @@ img<span class="token punctuation">.</span>save<span class="token punctuation">(
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/flask/">
+                        <span class="chip bg-color">flask</span>
+                    </a>
+                    
+                    <a href="/tags/redis/">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
