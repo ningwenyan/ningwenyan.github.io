@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>自定义进程子类</title>
+      <link href="/2020/10/12/python-jin-cheng-xian-cheng-5/"/>
+      <url>/2020/10/12/python-jin-cheng-xian-cheng-5/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" alt="10305"></p><h2 id="自定义进程子类"><a href="#自定义进程子类" class="headerlink" title="自定义进程子类"></a>自定义进程子类</h2><blockquote><p>实现一个自定义进程子类,需要三步:</p><ul><li>定义<code>Process</code> 子类</li><li>覆盖<code>__init__()</code> 方法来添加额外的参数,也可以使用父类的<code>__init__</code></li><li>覆盖<code>run(self)</code> 方法来实现<code>Process</code> 启动的时候执行的任务</li></ul><p>创建<code>Process</code>子类后,可以通过创建它的实例并通过<code>start</code> 方法来启动,启动时自动调用<code>run()</code> 方法</p></blockquote><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><blockquote><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>time<span class="token punctuation">,</span>os<span class="token keyword">class</span> <span class="token class-name">MyProcess</span><span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> mytime<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>     self<span class="token punctuation">.</span>mytime <span class="token operator">=</span> mytime     super<span class="token punctuation">(</span>MyProcess<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程启动'</span><span class="token punctuation">)</span>     info <span class="token operator">=</span> <span class="token string">'子进程PID:{},子进程秘钥:{},父进程PID{},子进程名:{}'</span><span class="token punctuation">.</span>format\         <span class="token punctuation">(</span>self<span class="token punctuation">.</span>pid<span class="token punctuation">,</span> self<span class="token punctuation">.</span>authkey<span class="token punctuation">,</span> os<span class="token punctuation">.</span>getppid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>name<span class="token punctuation">)</span>     <span class="token keyword">print</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span>     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mytime<span class="token punctuation">)</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程结束'</span><span class="token punctuation">)</span><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span> <span class="token triple-quoted-string string">"""主程序"""</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'主程序启动'</span><span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>     p <span class="token operator">=</span> MyProcess<span class="token punctuation">(</span>mytime<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>     p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>     p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'主程序结束'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><code>join()</code> 函数可以让主进程登台其他进程结束最后退出.</p></blockquote><p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis数据类型list</title>
       <link href="/2020/10/12/redis7/"/>
       <url>/2020/10/12/redis7/</url>

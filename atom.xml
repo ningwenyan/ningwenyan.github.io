@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-12T11:50:36.362Z</updated>
+  <updated>2020-10-12T12:08:30.986Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自定义进程子类</title>
+    <link href="https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/"/>
+    <id>https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/</id>
+    <published>2020-10-12T12:07:24.000Z</published>
+    <updated>2020-10-12T12:08:30.986Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;自定义进程子类&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>redis数据类型list</title>
@@ -578,36 +606,6 @@
       <category term="jquery" scheme="https://www.wenyan.online/tags/jquery/"/>
     
       <category term="前端" scheme="https://www.wenyan.online/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>插画推荐v0001</title>
-    <link href="https://www.wenyan.online/2020/09/21/psitev0001/"/>
-    <id>https://www.wenyan.online/2020/09/21/psitev0001/</id>
-    <published>2020-09-21T15:09:30.000Z</published>
-    <updated>2020-09-21T15:12:05.172Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;个人向插画推荐&quot;&gt;&lt;a href=&quot;#个人向插画推荐&quot; class=&quot;headerlink&quot; title=&quot;个人向插画推荐&quot;&gt;&lt;/a&gt;个人向插画推荐&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;昵称:惠子&lt;br&gt;UID:
-        
-      
-    
-    </summary>
-    
-    
-      <category term="插画" scheme="https://www.wenyan.online/categories/%E6%8F%92%E7%94%BB/"/>
-    
-    
-      <category term="Pivix" scheme="https://www.wenyan.online/tags/Pivix/"/>
-    
-      <category term="插画" scheme="https://www.wenyan.online/tags/%E6%8F%92%E7%94%BB/"/>
     
   </entry>
   
