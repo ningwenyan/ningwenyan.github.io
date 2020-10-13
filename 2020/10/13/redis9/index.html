@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Python">
+    <meta name="keywords" content="flask redis">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>自定义进程子类 | 文彦Blog</title>
+    <title>redis数据类型zset | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">自定义进程子类</h1>
+                    <h1 class="description center-align post-title">redis数据类型zset</h1>
                 </div>
             </div>
         </div>
@@ -475,8 +475,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/flask/">
+                                <span class="chip bg-color">flask</span>
+                            </a>
+                        
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
                     </div>
@@ -487,8 +491,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Python/" class="post-category">
-                                Python
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -500,7 +504,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-12
+                    2020-10-13
                 </div>
                 
 
@@ -516,42 +520,147 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" alt="10305"></p>
-<h2 id="自定义进程子类"><a href="#自定义进程子类" class="headerlink" title="自定义进程子类"></a>自定义进程子类</h2><blockquote>
-<p>实现一个自定义进程子类,需要三步:</p>
-<ul>
-<li>定义<code>Process</code> 子类</li>
-<li>覆盖<code>__init__()</code> 方法来添加额外的参数,也可以使用父类的<code>__init__</code></li>
-<li>覆盖<code>run(self)</code> 方法来实现<code>Process</code> 启动的时候执行的任务</li>
-</ul>
-<p>创建<code>Process</code>子类后,可以通过创建它的实例并通过<code>start</code> 方法来启动,启动时自动调用<code>run()</code> 方法</p>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" alt="10303"></p>
+<h2 id="数据类型zset"><a href="#数据类型zset" class="headerlink" title="数据类型zset"></a>数据类型<code>zset</code></h2><blockquote>
+<p><code>redis zset</code> :有序集合是<code>string</code>类型元素的集合,且不允许重复的成员.</p>
+<p>每个元素都会关联一个<code>double</code>类型的分数,<code>redis</code>正是通过分数来为集合中的成员进行从小到大的排序.有序集合的成员是唯一的,但分数(<code>score</code>)却可以重复.</p>
+<p>比如排行榜:一个班级的成绩,一个论坛的帖子热度等,有序集合中,每个 元素都有权重<code>score</code>,依次来对元素进行排序.</p>
 </blockquote>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><blockquote>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>time<span class="token punctuation">,</span>os
+<h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>zadd key score1 member1 [score2 member2]</code></td>
+<td>向有序集合添加一个或多个成员<br>或者更新已存在成员的<code>score</code></td>
+</tr>
+<tr>
+<td><code>zcard key</code></td>
+<td>获取有序集合的成员数</td>
+</tr>
+<tr>
+<td><code>zcount key min max</code></td>
+<td>计算有序集合指定区间的成员数</td>
+</tr>
+<tr>
+<td><code>zincrby key increment member</code></td>
+<td>指定成员的分数加上增量</td>
+</tr>
+<tr>
+<td><code>zrange key start stop withscores</code></td>
+<td>通过索引返回指定区间的成员</td>
+</tr>
+<tr>
+<td><code>zrangebyscore key min max [withscores] [limit]</code></td>
+<td>通过分数返回指定区间的成员</td>
+</tr>
+<tr>
+<td><code>zrank key member</code></td>
+<td>返回指定成员的索引</td>
+</tr>
+<tr>
+<td><code>zrem key member1 [member2]</code></td>
+<td>移除一个或多个成员</td>
+</tr>
+<tr>
+<td><code>zremrangebyrank  key start stop</code></td>
+<td>移除指定索引区间的成员</td>
+</tr>
+<tr>
+<td><code>zremrangebyscore key max min </code></td>
+<td>移除指定分数区间的成员</td>
+</tr>
+<tr>
+<td><code>zrevrange key start stop</code></td>
+<td>返回指定区间的成员,通过索引,<br>分数从低到高.</td>
+</tr>
+<tr>
+<td><code>zrevrangebyscore key max min </code></td>
+<td>返回指定区间的成员,分数从高到低</td>
+</tr>
+<tr>
+<td><code>zrevrank key member</code></td>
+<td>返回指定成员的排名,按分数递减排序</td>
+</tr>
+<tr>
+<td><code>zscore key member</code></td>
+<td>返回有序集合成员分数值</td>
+</tr>
+<tr>
+<td><code>zunionstore destination number key </code></td>
+<td>计算交集,并存储在新<code>key</code> 中.</td>
+</tr>
+<tr>
+<td><code>zinterstore</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>zscan</code></td>
+<td>迭代</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
+<h3 id="2-基础操作"><a href="#2-基础操作" class="headerlink" title="2.基础操作"></a>2.基础操作</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加单个元素</span>
+127.0.0.1:6379<span class="token operator">></span> zadd page_rank 10 google.com
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
 
+<span class="token comment" spellcheck="true"># 添加多个元素</span>
+127.0.0.1:6379<span class="token operator">></span> zadd page_rank 9 baidu.com 8 bing.com
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
 
-<span class="token keyword">class</span> <span class="token class-name">MyProcess</span><span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">)</span><span class="token punctuation">:</span>
- <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> mytime<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
-     self<span class="token punctuation">.</span>mytime <span class="token operator">=</span> mytime
-     super<span class="token punctuation">(</span>MyProcess<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 根据索引获取元素</span>
+127.0.0.1:6379<span class="token operator">></span> zrange page_rank 0 -1 withscores
+1<span class="token punctuation">)</span> <span class="token string">"bing.com"</span>
+2<span class="token punctuation">)</span> <span class="token string">"8"</span>
+3<span class="token punctuation">)</span> <span class="token string">"baidu.com"</span>
+4<span class="token punctuation">)</span> <span class="token string">"9"</span>
+5<span class="token punctuation">)</span> <span class="token string">"google.com"</span>
+6<span class="token punctuation">)</span> <span class="token string">"10"</span>
 
- <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程启动'</span><span class="token punctuation">)</span>
-     info <span class="token operator">=</span> <span class="token string">'子进程PID:{},子进程秘钥:{},父进程PID{},子进程名:{}'</span><span class="token punctuation">.</span>format\
-         <span class="token punctuation">(</span>self<span class="token punctuation">.</span>pid<span class="token punctuation">,</span> self<span class="token punctuation">.</span>authkey<span class="token punctuation">,</span> os<span class="token punctuation">.</span>getppid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-     <span class="token keyword">print</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span>
-     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mytime<span class="token punctuation">)</span>
-     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程结束'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 添加重复元素</span>
+127.0.0.1:6379<span class="token operator">></span> zadd page_rank 10 google.com
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+<span class="token comment" spellcheck="true"># sort set 中 score可以重复,但是member不可以重复,sortset 不变</span>
+127.0.0.1:6379<span class="token operator">></span> zrange page_rank 0 -1 withscores
+1<span class="token punctuation">)</span> <span class="token string">"bing.com"</span>
+2<span class="token punctuation">)</span> <span class="token string">"8"</span>
+3<span class="token punctuation">)</span> <span class="token string">"baidu.com"</span>
+4<span class="token punctuation">)</span> <span class="token string">"9"</span>
+5<span class="token punctuation">)</span> <span class="token string">"google.com"</span>
+6<span class="token punctuation">)</span> <span class="token string">"10"</span>
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
- <span class="token triple-quoted-string string">"""主程序"""</span>
- <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'主程序启动'</span><span class="token punctuation">)</span>
- <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-     p <span class="token operator">=</span> MyProcess<span class="token punctuation">(</span>mytime<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
-     p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-     p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
- <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'主程序结束'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>join()</code> 函数可以让主进程登台其他进程结束最后退出.</p>
+<span class="token comment" spellcheck="true"># sort set 中 score可以重复,但是member不可以重复,sortset 不变</span>
+<span class="token comment" spellcheck="true"># google.com的score发生改变</span>
+127.0.0.1:6379<span class="token operator">></span> zadd page_rank 7 google.com
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> zrange page_rank 0 -1 withscores
+1<span class="token punctuation">)</span> <span class="token string">"google.com"</span>
+2<span class="token punctuation">)</span> <span class="token string">"7"</span>
+3<span class="token punctuation">)</span> <span class="token string">"bing.com"</span>
+4<span class="token punctuation">)</span> <span class="token string">"8"</span>
+5<span class="token punctuation">)</span> <span class="token string">"baidu.com"</span>
+6<span class="token punctuation">)</span> <span class="token string">"9"</span>
+
+<span class="token comment" spellcheck="true"># 统计信息</span>
+127.0.0.1:6379<span class="token operator">></span> zcard page_rank
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="3-交集并集"><a href="#3-交集并集" class="headerlink" title="3.交集并集"></a>3.交集并集</h3><blockquote>
+<p>交集:<code>zinterstore</code></p>
+<p>并集:<code>zunionstore</code> </p>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
@@ -579,7 +688,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/">https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/</a>
+                    <a href="https://www.wenyan.online/2020/10/13/redis9/">https://www.wenyan.online/2020/10/13/redis9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -617,8 +726,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/flask/">
+                                    <span class="chip bg-color">flask</span>
+                                </a>
+                            
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
                         </div>
@@ -1053,12 +1166,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/13/redis8/">
+                <a href="/2020/10/13/redis10/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型set">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis10">
                         
-                        <span class="card-title">redis数据类型set</span>
+                        <span class="card-title">redis10</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1105,12 +1218,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/12/redis7/">
+                <a href="/2020/10/13/redis8/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型list">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型set">
                         
-                        <span class="card-title">redis数据类型list</span>
+                        <span class="card-title">redis数据类型set</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1121,7 +1234,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-13
                             </span>
                         <span class="publish-author">
                             

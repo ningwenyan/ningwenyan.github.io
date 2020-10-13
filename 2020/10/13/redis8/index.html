@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Python">
+    <meta name="keywords" content="flask redis">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>自定义进程子类 | 文彦Blog</title>
+    <title>redis数据类型set | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">自定义进程子类</h1>
+                    <h1 class="description center-align post-title">redis数据类型set</h1>
                 </div>
             </div>
         </div>
@@ -475,8 +475,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/flask/">
+                                <span class="chip bg-color">flask</span>
+                            </a>
+                        
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
                     </div>
@@ -487,8 +491,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Python/" class="post-category">
-                                Python
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -500,7 +504,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-12
+                    2020-10-13
                 </div>
                 
 
@@ -516,42 +520,225 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" alt="10305"></p>
-<h2 id="自定义进程子类"><a href="#自定义进程子类" class="headerlink" title="自定义进程子类"></a>自定义进程子类</h2><blockquote>
-<p>实现一个自定义进程子类,需要三步:</p>
-<ul>
-<li>定义<code>Process</code> 子类</li>
-<li>覆盖<code>__init__()</code> 方法来添加额外的参数,也可以使用父类的<code>__init__</code></li>
-<li>覆盖<code>run(self)</code> 方法来实现<code>Process</code> 启动的时候执行的任务</li>
-</ul>
-<p>创建<code>Process</code>子类后,可以通过创建它的实例并通过<code>start</code> 方法来启动,启动时自动调用<code>run()</code> 方法</p>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" alt="10303"></p>
+<h2 id="数据类型set"><a href="#数据类型set" class="headerlink" title="数据类型set"></a>数据类型<code>set</code></h2><blockquote>
+<p><code>redis set</code> 是<code>string</code>类型的无序集合.集合的成员是唯一的,不会出现重复数据.</p>
+<p><code>redis set</code> 是通过哈希表实现的,所以添加,删除,查找的复杂度是<code>O(1)</code></p>
+<p><code>redis set</code> 最大成员数是$2^{32} -1$ </p>
 </blockquote>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><blockquote>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>time<span class="token punctuation">,</span>os
+<h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sadd key member1 [member2]</code></td>
+<td>向集合中添加一个或多个成员</td>
+</tr>
+<tr>
+<td><code>scard key </code></td>
+<td>获取集合的成员数</td>
+</tr>
+<tr>
+<td><code>sdiff key1 [key2]</code></td>
+<td>求差集</td>
+</tr>
+<tr>
+<td><code>sdiffstore destionation key1 [key2]</code></td>
+<td>求差集并存储在<code>destination</code> 中</td>
+</tr>
+<tr>
+<td><code>sinter key 1 [key2]</code></td>
+<td>求交集</td>
+</tr>
+<tr>
+<td><code>sinterstrore destionation key1 [key2]</code></td>
+<td>求交集并存储在<code>destination</code> 中</td>
+</tr>
+<tr>
+<td><code>sismember key member</code></td>
+<td>判断<code>member</code> 是否是<code>key</code> 的成员</td>
+</tr>
+<tr>
+<td><code>smembers key</code></td>
+<td>返回集合中所有成员</td>
+</tr>
+<tr>
+<td><code>smove source destination member</code></td>
+<td>将元素从一个移动到另外一个</td>
+</tr>
+<tr>
+<td><code>spop key </code></td>
+<td>移除并返回集合中的一个随机元素</td>
+</tr>
+<tr>
+<td><code>srandmember key [count]</code></td>
+<td>返回集合中的一个或多个随机数</td>
+</tr>
+<tr>
+<td><code>srem key member1 [member2]</code></td>
+<td>移除集合 中一个或多个成员</td>
+</tr>
+<tr>
+<td><code>sunion  key1 [key2]</code></td>
+<td>求并集</td>
+</tr>
+<tr>
+<td><code>sunionstore destionation key1 [key2]</code></td>
+<td>求并集并存储在<code>destination</code> 中</td>
+</tr>
+<tr>
+<td><code>sscan key cursor </code></td>
+<td>迭代集合中的元素</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h3 id="2-创建集合"><a href="#2-创建集合" class="headerlink" title="2.创建集合"></a>2.创建集合</h3><blockquote>
+<ol>
+<li>创建<code>sadd</code> </li>
+<li>获取集合成员数<code>scard</code></li>
+<li>获取集合中所有成员<code>smembers</code> </li>
+<li>判断集合中成员<code>sismember</code> </li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加单个元素</span>
+127.0.0.1:6379<span class="token operator">></span> sadd bbs <span class="token string">'discuz.net'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> smembers bbs
+1<span class="token punctuation">)</span> <span class="token string">"discuz.net"</span>
 
+<span class="token comment" spellcheck="true"># 添加重复元素</span>
+127.0.0.1:6379<span class="token operator">></span> sadd bbs <span class="token string">'discuz.net'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> smembers bbs
+1<span class="token punctuation">)</span> <span class="token string">"discuz.net"</span>
 
-<span class="token keyword">class</span> <span class="token class-name">MyProcess</span><span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">)</span><span class="token punctuation">:</span>
- <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> mytime<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
-     self<span class="token punctuation">.</span>mytime <span class="token operator">=</span> mytime
-     super<span class="token punctuation">(</span>MyProcess<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 添加多个元素</span>
+127.0.0.1:6379<span class="token operator">></span> sadd bbs <span class="token string">'tianya.cn'</span>  <span class="token string">'xxx.cn'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> smembers bbs
+1<span class="token punctuation">)</span> <span class="token string">"tianya.cn"</span>
+2<span class="token punctuation">)</span> <span class="token string">"discuz.net"</span>
+3<span class="token punctuation">)</span> <span class="token string">'xxx.cn'</span>
 
- <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程启动'</span><span class="token punctuation">)</span>
-     info <span class="token operator">=</span> <span class="token string">'子进程PID:{},子进程秘钥:{},父进程PID{},子进程名:{}'</span><span class="token punctuation">.</span>format\
-         <span class="token punctuation">(</span>self<span class="token punctuation">.</span>pid<span class="token punctuation">,</span> self<span class="token punctuation">.</span>authkey<span class="token punctuation">,</span> os<span class="token punctuation">.</span>getppid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-     <span class="token keyword">print</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span>
-     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mytime<span class="token punctuation">)</span>
-     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程结束'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 统计成员</span>
+127.0.0.1:6379<span class="token operator">></span> scard bbs
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
- <span class="token triple-quoted-string string">"""主程序"""</span>
- <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'主程序启动'</span><span class="token punctuation">)</span>
- <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-     p <span class="token operator">=</span> MyProcess<span class="token punctuation">(</span>mytime<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
-     p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-     p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
- <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'主程序结束'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>join()</code> 函数可以让主进程登台其他进程结束最后退出.</p>
+<span class="token comment" spellcheck="true"># 判断成员</span>
+127.0.0.1:6379<span class="token operator">></span> sismember bbs <span class="token string">'tianya.cn'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="3-差集-交集-并集"><a href="#3-差集-交集-并集" class="headerlink" title="3.差集,交集,并集"></a>3.差集,交集,并集</h3><blockquote>
+<p>差集:</p>
+<ul>
+<li><code>sdiff key1 [key2 ]</code> :返回一个集合的所有成员,该集合是给定集合的差集</li>
+<li><code>sdiffstore destination key1 [key2] </code> :返回一个集合的所有成员,该集合是给定集合的差集,并保存在<code>destination</code> 中</li>
+</ul>
+<p>交集:</p>
+<ul>
+<li><code>sinter key1 [key2]</code>:返回一个集合的所有成员,该集合是给定集合的交集</li>
+<li><code>sinterstore key1 [key2]</code>:返回一个集合的所有成员,该集合是给定集合的交集,并保存在<code>destination</code> 中.</li>
+</ul>
+<p>并集:</p>
+<ul>
+<li><code>sunion key1 [key2]</code>:返回一个集合的所有成员,该集合是给定集合的b并集</li>
+<li><code>suionstore key1 [key2]</code>:返回一个集合的所有成员,该集合是给定集合的并集,并保存在<code>destination</code> 中</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> sadd JackLang <span class="token string">'Python'</span> <span class="token string">'Java'</span> <span class="token string">'C'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+127.0.0.1:6379<span class="token operator">></span> sadd BobLang <span class="token string">'Python'</span> <span class="token string">'Redis'</span> <span class="token string">'MySQL'</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+127.0.0.1:6379<span class="token operator">></span> <span class="token function">sdiff</span> JackLang BobLang
+1<span class="token punctuation">)</span> <span class="token string">"Java"</span>
+2<span class="token punctuation">)</span> <span class="token string">"C"</span>
+127.0.0.1:6379<span class="token operator">></span> sinter JackLang BobLang
+1<span class="token punctuation">)</span> <span class="token string">"Python"</span>
+127.0.0.1:6379<span class="token operator">></span> sunion JackLang BobLang
+1<span class="token punctuation">)</span> <span class="token string">"Python"</span>
+2<span class="token punctuation">)</span> <span class="token string">"MySQL"</span>
+3<span class="token punctuation">)</span> <span class="token string">"Java"</span>
+4<span class="token punctuation">)</span> <span class="token string">"C"</span>
+5<span class="token punctuation">)</span> <span class="token string">"Redis"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="4-删除并返回"><a href="#4-删除并返回" class="headerlink" title="4. 删除并返回"></a>4. 删除并返回</h3><blockquote>
+<ul>
+<li><code>spop key</code> : 移除并返回集合中的一个随机元素.</li>
+<li><code>smem key member1 [member2]</code> :移除集合<code>key</code> 中的一个或多个元素.\</li>
+<li><code>srangermember key count </code> :返回集合中的一个随机元素.如果<code>count</code> 为正数,且小于集合基数,返回<code>count</code>个元素的数据,数组中的元素各不相同.如果<code>count</code> 大于等于集合基数,返回整个集合.<code>count</code> 为负数,返回一个数组,数组中的元素可能会重复出现.</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加元素</span>
+
+redis<span class="token operator">></span> SADD fruit apple banana cherry
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+
+<span class="token comment" spellcheck="true"># 只给定 key 参数，返回一个随机元素</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit
+<span class="token string">"cherry"</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit
+<span class="token string">"apple"</span>
+
+<span class="token comment" spellcheck="true"># 给定 3 为 count 参数，返回 3 个随机元素</span>
+<span class="token comment" spellcheck="true"># 每个随机元素都不相同</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit 3
+1<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+2<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+3<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+
+<span class="token comment" spellcheck="true"># 给定 -3 为 count 参数，返回 3 个随机元素</span>
+<span class="token comment" spellcheck="true"># 元素可能会重复出现多次</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit -3
+1<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+2<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+3<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit -3
+1<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+2<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+3<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+
+<span class="token comment" spellcheck="true"># 如果 count 是整数，且大于等于集合基数，那么返回整个集合</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit 10
+1<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+2<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+3<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+
+<span class="token comment" spellcheck="true"># 如果 count 是负数，且 count 的绝对值大于集合的基数</span>
+<span class="token comment" spellcheck="true"># 那么返回的数组的长度为 count 的绝对值</span>
+
+redis<span class="token operator">></span> SRANDMEMBER fruit -10
+1<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+2<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+3<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+4<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+5<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+6<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+7<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+8<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+9<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+10<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+
+<span class="token comment" spellcheck="true"># SRANDMEMBER 并不会修改集合内容</span>
+
+redis<span class="token operator">></span> SMEMBERS fruit
+1<span class="token punctuation">)</span> <span class="token string">"apple"</span>
+2<span class="token punctuation">)</span> <span class="token string">"cherry"</span>
+3<span class="token punctuation">)</span> <span class="token string">"banana"</span>
+
+<span class="token comment" spellcheck="true"># 集合为空时返回 nil 或者空数组</span>
+
+redis<span class="token operator">></span> SRANDMEMBER not-exists
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+
+redis<span class="token operator">></span> SRANDMEMBER not-eixsts 10
+<span class="token punctuation">(</span>empty list or set<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
@@ -579,7 +766,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/">https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/</a>
+                    <a href="https://www.wenyan.online/2020/10/13/redis8/">https://www.wenyan.online/2020/10/13/redis8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -617,8 +804,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/flask/">
+                                    <span class="chip bg-color">flask</span>
+                                </a>
+                            
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
                         </div>
@@ -1053,12 +1244,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/13/redis8/">
+                <a href="/2020/10/13/redis9/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型set">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型zset">
                         
-                        <span class="card-title">redis数据类型set</span>
+                        <span class="card-title">redis数据类型zset</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1105,18 +1296,18 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/12/redis7/">
+                <a href="/2020/10/12/python-jin-cheng-xian-cheng-5/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型list">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" class="responsive-img" alt="自定义进程子类">
                         
-                        <span class="card-title">redis数据类型list</span>
+                        <span class="card-title">自定义进程子类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            redis数据类型
+                            Python进程线程
                         
                     </div>
                     <div class="publish-info">
@@ -1127,8 +1318,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/redis/" class="post-category">
-                                    redis
+                            <a href="/categories/Python/" class="post-category">
+                                    Python
                                 </a>
                             
                             
@@ -1138,12 +1329,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/flask/">
-                        <span class="chip bg-color">flask</span>
-                    </a>
-                    
-                    <a href="/tags/redis/">
-                        <span class="chip bg-color">redis</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>

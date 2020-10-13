@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-12T12:08:30.986Z</updated>
+  <updated>2020-10-13T12:03:57.565Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,96 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis10</title>
+    <link href="https://www.wenyan.online/2020/10/13/redis10/"/>
+    <id>https://www.wenyan.online/2020/10/13/redis10/</id>
+    <published>2020-10-13T11:45:42.000Z</published>
+    <updated>2020-10-13T12:03:57.565Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis数据类型zset</title>
+    <link href="https://www.wenyan.online/2020/10/13/redis9/"/>
+    <id>https://www.wenyan.online/2020/10/13/redis9/</id>
+    <published>2020-10-13T11:45:36.000Z</published>
+    <updated>2020-10-13T11:52:48.457Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;数据类型zset&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis数据类型set</title>
+    <link href="https://www.wenyan.online/2020/10/13/redis8/"/>
+    <id>https://www.wenyan.online/2020/10/13/redis8/</id>
+    <published>2020-10-13T11:45:27.000Z</published>
+    <updated>2020-10-13T11:50:56.786Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;数据类型set&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>自定义进程子类</title>
@@ -512,100 +602,6 @@
       <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
     
       <category term="Session" scheme="https://www.wenyan.online/tags/Session/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flask Cookie</title>
-    <link href="https://www.wenyan.online/2020/09/24/flask-cookie/"/>
-    <id>https://www.wenyan.online/2020/09/24/flask-cookie/</id>
-    <published>2020-09-24T14:32:47.000Z</published>
-    <updated>2020-09-27T13:50:48.098Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-24/1600957445722-10298.png&quot; alt=&quot;10298&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Flask cookie" scheme="https://www.wenyan.online/categories/Flask-cookie/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="cookie" scheme="https://www.wenyan.online/tags/cookie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flask表单验证</title>
-    <link href="https://www.wenyan.online/2020/09/23/flaskform/"/>
-    <id>https://www.wenyan.online/2020/09/23/flaskform/</id>
-    <published>2020-09-23T14:30:23.000Z</published>
-    <updated>2020-09-27T13:51:03.738Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-23/1600871187232-10297.png&quot; alt=&quot;10297&quot;&gt;&lt;br&gt;[TOC]&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/categories/Flask/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-      <category term="Flask-WTF" scheme="https://www.wenyan.online/tags/Flask-WTF/"/>
-    
-      <category term="wtforms" scheme="https://www.wenyan.online/tags/wtforms/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jQuery学习</title>
-    <link href="https://www.wenyan.online/2020/09/21/jquerylearn/"/>
-    <id>https://www.wenyan.online/2020/09/21/jquerylearn/</id>
-    <published>2020-09-21T15:27:49.000Z</published>
-    <updated>2020-09-29T13:54:56.509Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-21/1600701881479-10296.png&quot; alt=&quot;10296&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;jQuery基础&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="jQuery" scheme="https://www.wenyan.online/categories/jQuery/"/>
-    
-    
-      <category term="Javascript" scheme="https://www.wenyan.online/tags/Javascript/"/>
-    
-      <category term="jquery" scheme="https://www.wenyan.online/tags/jquery/"/>
-    
-      <category term="前端" scheme="https://www.wenyan.online/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
