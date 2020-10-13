@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.wenyan.online/2020/09/24/flask-session/</loc>
+    <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
     <lastmod>2020-10-13</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/10/13/redis10/</loc>
+    <lastmod>2020-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/24/flask-session/</loc>
     <lastmod>2020-10-13</lastmod>
   </url>
   <url>
@@ -15,10 +19,6 @@
   <url>
     <loc>https://www.wenyan.online/2020/10/13/redis8/</loc>
     <lastmod>2020-10-13</lastmod>
-  </url>
-  <url>
-    <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
-    <lastmod>2020-10-12</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/</loc>
