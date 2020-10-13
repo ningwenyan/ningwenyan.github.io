@@ -1206,6 +1206,85 @@ SESSION_KEY_PREFIX<span class="token operator">=</span> <span class="token strin
 72d690441984324e808ad61897999f8e<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  如果有内容,证明<code>Session</code>已经被保存在文件夹中.</p>
 </blockquote>
+<h3 id="6-保存在redis中"><a href="#6-保存在redis中" class="headerlink" title="6.保存在redis中"></a>6.保存在<code>redis</code>中</h3><blockquote>
+<p>  可以选择保存在<code>redis</code>中,它的可用性更高,占用内存更小</p>
+<p>  代码参考<code>https://github.com/ningwenyan/demo_code/tree/master/flask_demo_code/T22</code></p>
+</blockquote>
+<h4 id="1-app-py-1"><a href="#1-app-py-1" class="headerlink" title="1.app.py"></a>1.<code>app.py</code></h4><blockquote>
+<p>  保持基本内容不变</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token keyword">from</span> flask_session <span class="token keyword">import</span> Session <span class="token keyword">as</span> Fsession
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> session<span class="token punctuation">,</span>redirect<span class="token punctuation">,</span>url_for<span class="token punctuation">,</span>render_template<span class="token punctuation">,</span>escape
+<span class="token keyword">from</span> formModel <span class="token keyword">import</span> LoginForm
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> timedelta
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+Fsession<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token string">'username'</span> <span class="token keyword">in</span> session<span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># escape 用来替换html中的16进制特殊符号</span>
+        <span class="token keyword">return</span> <span class="token string">'Logged in as {}.&lt;a href="/logout/">Logout&lt;/a>'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>escape<span class="token punctuation">(</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'You are not log in &lt;a href="/login/">Login&lt;a>'</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    form <span class="token operator">=</span> LoginForm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> form<span class="token punctuation">.</span>validate_on_submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true">#  假设数据库验证通过, 添加 session</span>
+        user <span class="token operator">=</span> form<span class="token punctuation">.</span>username<span class="token punctuation">.</span>data
+        remember <span class="token operator">=</span> form<span class="token punctuation">.</span>remember<span class="token punctuation">.</span>data
+        session<span class="token punctuation">[</span><span class="token string">'username'</span><span class="token punctuation">]</span> <span class="token operator">=</span> user
+        <span class="token keyword">print</span><span class="token punctuation">(</span>remember<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> remember<span class="token punctuation">:</span>
+            session<span class="token punctuation">.</span>permanent <span class="token operator">=</span> <span class="token boolean">True</span>
+            app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'SESSION_COOKIE_LIFETIME'</span><span class="token punctuation">:</span> timedelta<span class="token punctuation">(</span>days<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            session<span class="token punctuation">.</span>permanent <span class="token operator">=</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> <span class="token string">'success'</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'login.html'</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/logout/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    session<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url_for<span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="2-redisModel-py"><a href="#2-redisModel-py" class="headerlink" title="2.redisModel.py"></a>2.<code>redisModel.py</code></h4><blockquote>
+<p>  引入<code>redis</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> redis <span class="token keyword">import</span> StrictRedis
+
+redis <span class="token operator">=</span> StrictRedis<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'192.168.0.101'</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3-config-py-1"><a href="#3-config-py-1" class="headerlink" title="3.config.py"></a>3.<code>config.py</code></h4><blockquote>
+<p>  主要修改的是<code>config.py</code>,需要指定使用<code>redis</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">from</span> redisModel <span class="token keyword">import</span> redis
+
+DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>
+TEMPLATES_AUTO_RELOAD <span class="token operator">=</span> <span class="token boolean">True</span>
+
+<span class="token comment" spellcheck="true"># 显式关闭CSRF</span>
+WTF_CSRF_ENABLED <span class="token operator">=</span> <span class="token boolean">False</span>
+
+<span class="token comment" spellcheck="true"># 指定Session保存类型</span>
+SESSION_TYPE <span class="token operator">=</span> <span class="token string">'redis'</span>
+SESSION_PERMANENT <span class="token operator">=</span> <span class="token boolean">False</span>
+SESSION_USE_SIGNER <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment" spellcheck="true"># 加密</span>
+SECRET_KEY <span class="token operator">=</span> os<span class="token punctuation">.</span>urandom<span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 设定加密</span>
+SESSION_KEY_PREFIX<span class="token operator">=</span> <span class="token string">'session'</span>
+SESSION_REDIS <span class="token operator">=</span> redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="4-运行验证"><a href="#4-运行验证" class="headerlink" title="4.运行验证"></a>4.运行验证</h4><blockquote>
+<p>  运行整个项目,访问<code>login.html</code>,然后查看<code>redis</code>中的内容.</p>
+<p>  <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-10-13/1602591731884-10311.png" alt="10311"></p>
+<p>  可以很明显的看到有以<code>session</code>开头的<code>key</code>,证明保存成功.</p>
+</blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
