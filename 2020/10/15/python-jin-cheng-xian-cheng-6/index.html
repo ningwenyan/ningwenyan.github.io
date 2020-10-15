@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="flask redis">
+    <meta name="keywords" content="Python">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Python操作redis | 文彦Blog</title>
+    <title>进程使用queue交换对象 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python操作redis</h1>
+                    <h1 class="description center-align post-title">进程使用queue交换对象</h1>
                 </div>
             </div>
         </div>
@@ -475,12 +475,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/flask/">
-                                <span class="chip bg-color">flask</span>
-                            </a>
-                        
-                            <a href="/tags/redis/">
-                                <span class="chip bg-color">redis</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
                     </div>
@@ -491,8 +487,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/redis/" class="post-category">
-                                redis
+                            <a href="/categories/Python/" class="post-category">
+                                Python
                             </a>
                         
                     </div>
@@ -504,7 +500,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-13
+                    2020-10-15
                 </div>
                 
 
@@ -520,633 +516,310 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" alt="10303"></p>
-<h2 id="Python操作redis"><a href="#Python操作redis" class="headerlink" title="Python操作redis"></a>Python操作redis</h2><h3 id="1-安装python支持包"><a href="#1-安装python支持包" class="headerlink" title="1.安装python支持包"></a>1.安装<code>python</code>支持包</h3><blockquote>
-<p>安装<code>redis</code> 的扩展包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ pip <span class="token function">install</span> redis  <span class="token comment" spellcheck="true"># 操作包</span>
-$ pip <span class="token function">install</span> redis-dump   <span class="token comment" spellcheck="true"># 导入导出操作</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" alt="10305"></p>
+<h2 id="进程之间交换对象"><a href="#进程之间交换对象" class="headerlink" title="进程之间交换对象"></a>进程之间交换对象</h2><blockquote>
+<p>并行:同一时刻有多条指令在多个CPU上运行.</p>
+<p>并行时常常需要进程之间交换数据,<code>multiprocessing</code> 模块提供了2个<code>communication channels</code> 来交换数据:队列<code>queue</code> 和管道<code>pipe</code></p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-10-15/1602771182761-communication-channel.png"></p>
+<p>除了上面两种交换数据的方式之外,进程之间也可以使用同步原语进行数据交换,但是要尽可能的避免使用同步原语,例如锁.因为<code>queue</code>和<code>pipe</code>效率上更高,更加安全.</p>
 </blockquote>
-<h3 id="2-打开redis-的ip-连接"><a href="#2-打开redis-的ip-连接" class="headerlink" title="2.打开redis 的ip 连接"></a>2.打开<code>redis</code> 的<code>ip</code> 连接</h3><blockquote>
-<p>默认的<code>redis</code> 的绑定地址是<code>127.0.0.1</code> ,如果要通过其他机器去连接服务器,需要设定服务器的<code>redis.conf</code> 中绑定服务器自己的<code>ip</code> 地址.</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ vim  redis.conf
-<span class="token punctuation">..</span><span class="token punctuation">..</span>
-<span class="token comment" spellcheck="true"># 指定服务器的自己ip地址</span>
-bind 127.0.0.1   192.168.0.101<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>重启服务器</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ ./redis-server redis.conf
-$ <span class="token function">ps</span> -aux <span class="token operator">|</span> <span class="token function">grep</span> redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="3-Python-操作"><a href="#3-Python-操作" class="headerlink" title="3.Python 操作"></a>3.<code>Python</code> 操作</h3><blockquote>
-<p><code>redis</code> 的包提供了2个类(<code>Redis</code>,<code>StrictRedis</code>) 来操作数据库.<code>StrictRedis</code>实现了绝大部分的官方命令,比如<code>set()</code>对应了<code>redis set</code> 方法.而<code>Redis</code> 是<code>StrictRedis</code> 的子类,它的主要功能是用于向后兼容旧版本库的几个方法.为了兼容,有一些方法做了改写.</p>
-<p>官方推荐使用的是<code>StrictRedis</code> .</p>
-</blockquote>
-<h4 id="1-连接redis"><a href="#1-连接redis" class="headerlink" title="1.连接redis"></a>1.连接<code>redis</code></h4><blockquote>
-<p>当前环境:</p>
+<h3 id="1-使用队列queue-来交换数据"><a href="#1-使用队列queue-来交换数据" class="headerlink" title="1.使用队列queue 来交换数据"></a>1.使用队列<code>queue</code> 来交换数据</h3><blockquote>
+<p><code>queue</code> 是多进程安全的队列,可以使用<code>queue</code> 来实现多进程之间的数据传递.</p>
 <ul>
-<li><code>redis</code>服务器 :192.168.0.101,并绑定了<code>IP</code>地址,没有设置密码.</li>
+<li><code>put</code> :此方法用来插入数据队列中,可选参数有两个:<code>blocked\timeout</code> <ul>
+<li>如果<code>blocked=True</code>(默认值),并且<code>timeout</code> 为正数,该方法会阻塞<code>timeout</code> 指定时间.直到该队列有剩余的空间.如果超时,会抛出<code>Queue.Full</code>异常</li>
+<li>如果<code>blocked=False</code>,但是该队列已满,会抛出<code>Queue.Full</code>异常</li>
 </ul>
-<p>客户端的连接:</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> redis <span class="token keyword">import</span> StrictRedis
+</li>
+<li><code>get</code> :此方法可以从队列读取并删除一个元素.可选参数有2个:<code>blocked\timeout</code><ul>
+<li>如果<code>blocked=True</code>(默认值),并且<code>timeout</code> 为正数,那么在等待时间内没有取到任何元素,会抛出<code>Queue.Empty</code>异常</li>
+<li>如果<code>blocked=False</code>,如果<code>queue</code> 有一个值可用,立即返回该值,否则,队列为空,会立即抛出异常<code>Queue.Empty</code> </li>
+</ul>
+</li>
+</ul>
+<p>常用属性和方法:</p>
+<table>
+<thead>
+<tr>
+<th><code>qsize()</code></th>
+<th>返回队列的大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>empty()</code></td>
+<td>返回布尔值,队列是否为空</td>
+</tr>
+<tr>
+<td><code>full()</code></td>
+<td>返回布尔值,队列是否满了</td>
+</tr>
+<tr>
+<td><code>put(item[,block[,timeout]])</code></td>
+<td>在队列中添加元素<code>item</code></td>
+</tr>
+<tr>
+<td><code>put_nowait(item)</code></td>
+<td>等价与<code>put(item, False)</code></td>
+</tr>
+<tr>
+<td><code>get(item[,block[,timeout]])</code></td>
+<td>在队列中删除元素并返回该元素的值</td>
+</tr>
+<tr>
+<td><code>get_nowait()</code></td>
+<td>等价与<code>get(Flase)</code></td>
+</tr>
+<tr>
+<td>close()</td>
+<td>表示该<code>queue</code> 不加入新元素</td>
+</tr>
+<tr>
+<td><code>join_theread()</code></td>
+<td>加入后台线程,只能在调用<code>close()</code> 后使用.它阻塞直到后台线程退出,确保缓冲区所有数据已经刷新到管道.默认情况下,如果进程不是队列的创建者,则退出.它将尝试加入队列的后台线程.</td>
+</tr>
+<tr>
+<td><code>cancle_join_thread()</code></td>
+<td>终止<code>join_thread()</code>防止后台线程在进程退出时被自动连接,可能会导致数据丢失</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h4 id="队列实例"><a href="#队列实例" class="headerlink" title="队列实例"></a>队列实例</h4><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># encoding: utf-8</span>
 
-<span class="token comment" spellcheck="true"># 创建连接</span>
-redis <span class="token operator">=</span> StrictRedis<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'192.168.0.101'</span><span class="token punctuation">,</span>port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这个函数接受很多的参数,可以根据实际的情况指定参数.</p>
-<pre class="line-numbers language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> host<span class="token operator">=</span><span class="token string">'localhost'</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">,</span>
-                 db<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> password<span class="token operator">=</span>None<span class="token punctuation">,</span> socket_timeout<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 socket_connect_timeout<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 socket_keepalive<span class="token operator">=</span>None<span class="token punctuation">,</span> socket_keepalive_options<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 connection_pool<span class="token operator">=</span>None<span class="token punctuation">,</span> unix_socket_path<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">,</span> encoding_errors<span class="token operator">=</span><span class="token string">'strict'</span><span class="token punctuation">,</span>
-                 charset<span class="token operator">=</span>None<span class="token punctuation">,</span> errors<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 decode_responses<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> retry_on_timeout<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
-                 ssl<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> ssl_keyfile<span class="token operator">=</span>None<span class="token punctuation">,</span> ssl_certfile<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 ssl_cert_reqs<span class="token operator">=</span><span class="token string">'required'</span><span class="token punctuation">,</span> ssl_ca_certs<span class="token operator">=</span>None<span class="token punctuation">,</span>
-                 max_connections<span class="token operator">=</span>None<span class="token punctuation">,</span> single_connection_client<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
-                 health_check_interval<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>接下来可以测试连接成功与否:</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> redis <span class="token keyword">import</span> StrictRedis
-
-<span class="token comment" spellcheck="true"># 创建连接</span>
-redis <span class="token operator">=</span> StrictRedis<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'192.168.0.101'</span><span class="token punctuation">,</span>port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">)</span>
-
-redis<span class="token punctuation">.</span>set<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span><span class="token string">'test for redis'</span><span class="token punctuation">)</span>
-
-<span class="token keyword">print</span><span class="token punctuation">(</span>redis<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>time<span class="token punctuation">,</span>os<span class="token punctuation">,</span>random
 
 <span class="token triple-quoted-string string">"""
-运行后打印出
-b'test for redis'
-"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+queue队列
+在队列中,进程是相互独立的.数据的交互,可以使用队列一个写入,一个读取
+"""</span>
+
+<span class="token keyword">def</span> <span class="token function">write_process</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'D'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'put {} to queue ...'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  q<span class="token punctuation">.</span>put<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+  time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>random<span class="token punctuation">.</span>random<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">read_process</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+  <span class="token keyword">if</span> <span class="token operator">not</span> q<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      value <span class="token operator">=</span> q<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'get {} from queue...'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>random<span class="token punctuation">.</span>random<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">else</span><span class="token punctuation">:</span>
+      <span class="token keyword">break</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+<span class="token triple-quoted-string string">"""主进程"""</span>
+<span class="token comment" spellcheck="true"># 使用主进程创建队列</span>
+main_process_queue <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 创建子进程</span>
+write_process_child <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>write_process<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>main_process_queue<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+read_process_child <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>read_process<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>main_process_queue<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 启动并阻塞</span>
+write_process_child<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+write_process_child<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+read_process_child<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+read_process_child<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行结果:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">put A to queue<span class="token punctuation">..</span><span class="token punctuation">..</span>
+put B to queue<span class="token punctuation">..</span><span class="token punctuation">..</span>
+put C to queue<span class="token punctuation">..</span><span class="token punctuation">..</span>
+put D to queue<span class="token punctuation">..</span><span class="token punctuation">..</span>
+Get A from queue
+Get B from queue
+Get C from queue
+Get D from queue<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<h4 id="2-key-操作"><a href="#2-key-操作" class="headerlink" title="2.key 操作"></a>2.<code>key</code> 操作</h4><blockquote>
-<p><code>key</code>操作和<code>redis</code>的原生命令几乎一样:</p>
+<h4 id="生产者-消费者模式"><a href="#生产者-消费者模式" class="headerlink" title="生产者/消费者模式"></a>生产者/消费者模式</h4><blockquote>
+<p>以上就类似于生产者/消费者模式</p>
+<p>它包含两类进程:一种只是用来生产数据,例外一种只是用来消费数据.为了串联他们,通常会采用共享的数据区域,就像一个仓库.生产者产生的数据都放入仓库中并不需要关注消费者的行为,消费者只需要从共享仓库中获取数据,并不需要关心生产者的行为.</p>
+<p>而作为仓库关注的行为是:</p>
+<ul>
+<li>如果仓库共享数据区域已满的状态</li>
+<li>如果共享数据区域已空的状态</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># encoding: utf-8</span>
+
+<span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>os<span class="token punctuation">,</span>time<span class="token punctuation">,</span>random
+
+<span class="token comment" spellcheck="true"># 定义生产者</span>
+<span class="token keyword">class</span> <span class="token class-name">Producer</span><span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>queue <span class="token operator">=</span> queue
+        super<span class="token punctuation">(</span>Producer<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            item <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 添加到队列</span>
+            self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>put<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'生产者进程:{},添加{}到Queue队列中...'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'队列大小:{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>qsize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 定义消费者</span>
+<span class="token keyword">class</span> <span class="token class-name">Cunsumer</span><span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>queue <span class="token operator">=</span> queue
+        super<span class="token punctuation">(</span>Cunsumer<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'队列非空'</span><span class="token punctuation">)</span>
+                item <span class="token operator">=</span> self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'消费者进程:{},从队列中取出:{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'队列为空,退出'</span><span class="token punctuation">)</span>
+                <span class="token keyword">break</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""主进程"""</span>
+    queue <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    producer <span class="token operator">=</span> Producer<span class="token punctuation">(</span>queue<span class="token punctuation">)</span>
+    cunsumer <span class="token operator">=</span> Cunsumer<span class="token punctuation">(</span>queue<span class="token punctuation">)</span>
+    producer<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    producer<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cunsumer<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cunsumer<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行结果</p>
+<pre class="line-numbers language-bash"><code class="language-bash">生产者进程:Producer-1,添加227到Queue队列中<span class="token punctuation">..</span>.
+队列大小:1
+生产者进程:Producer-1,添加114到Queue队列中<span class="token punctuation">..</span>.
+队列大小:2
+生产者进程:Producer-1,添加252到Queue队列中<span class="token punctuation">..</span>.
+队列大小:3
+队列非空
+消费者进程:Cunsumer-2,从队列中取出:227
+队列非空
+消费者进程:Cunsumer-2,从队列中取出:114
+队列非空
+消费者进程:Cunsumer-2,从队列中取出:252
+队列为空,退出<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>Queue</code> 在其中扮演了一个仓库的角色,就是用来处理共享数据的</p>
+</blockquote>
+<h3 id="2-使用pipe-管道"><a href="#2-使用pipe-管道" class="headerlink" title="2.使用pipe 管道"></a>2.使用<code>pipe</code> 管道</h3><blockquote>
+<p><code>Pipe</code> 不是类,是函数,该函数定义在<code>multiprocessing\connection.py</code> 中,返回一对通过管道连接的对象<code>con1</code>和<code>con2</code>,函数的原型是<code>Pipe()duplex=True</code> </p>
+<ul>
+<li><code>dublex=True</code>(默认值):管道是双向的,处于全双工模式,<code>con1\con2 </code> 都可以收发数据</li>
+<li><code>dublex=False</code> ,管道是单向的,<code>con1</code> 只能用于发送,<code>con2</code> 只能用于接受</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">con1<span class="token punctuation">,</span> con2 <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Pipe<span class="token punctuation">(</span><span class="token punctuation">[</span>duplex<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>Pipe()</code> 返回的是管道的两端,两端每个对象都有<code>send()</code>和<code>recv()</code> 方法(还有其他方法),例如在全双工模式下,可以用<code>con1.send()</code> 发送消息,<code>con2.recv()</code>接受消息,如果没有消息可以接受,<code>recv()</code>方法会一直阻塞,如果管道已经关闭,<code>recv()</code> 会抛出<code>EOFError</code> 异常</p>
+<p>常用方法:</p>
 <table>
 <thead>
 <tr>
-<th align="left">方法</th>
-<th align="left">作用</th>
-<th align="left">参数说明</th>
-<th align="left">示例</th>
-<th align="left">示例说明</th>
-<th align="left">示例结果</th>
+<th><code>send(obj)</code></th>
+<th>将一个对象发送到连接的另外一端</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">exists(name)</td>
-<td align="left">判断一个键是否存在</td>
-<td align="left">name：键名</td>
-<td align="left">redis.exists(‘name’)</td>
-<td align="left">是否存在name这个键</td>
-<td align="left">True</td>
+<td><code>recv()</code></td>
+<td>返回一个由另一端<code>send()</code>的对象,该方法会一直阻塞直到接收到对象,如果对端关闭了连接,或者没有东西可以接受,将抛出<code>EOFError</code></td>
 </tr>
 <tr>
-<td align="left">delete(name)</td>
-<td align="left">删除一个键</td>
-<td align="left">name：键名</td>
-<td align="left">redis.delete(‘name’)</td>
-<td align="left">删除name这个键</td>
-<td align="left">1</td>
+<td><code>fileno</code></td>
+<td>返回由连接对象使用的描述符</td>
 </tr>
 <tr>
-<td align="left">type(name)</td>
-<td align="left">判断键类型</td>
-<td align="left">name：键名</td>
-<td align="left">redis.type(‘name’)</td>
-<td align="left">判断name这个键类型</td>
-<td align="left">b’string’</td>
+<td><code>close()</code></td>
+<td>关闭连接对象</td>
 </tr>
 <tr>
-<td align="left">keys(pattern)</td>
-<td align="left">获取所有符合规则的键</td>
-<td align="left">pattern：匹配规则</td>
-<td align="left">redis.keys(‘n*’)</td>
-<td align="left">获取所有以n开头的键</td>
-<td align="left">[b’name’]</td>
-</tr>
-<tr>
-<td align="left">randomkey()</td>
-<td align="left">获取随机的一个键</td>
-<td align="left"></td>
-<td align="left">randomkey()</td>
-<td align="left">获取随机的一个键</td>
-<td align="left">b’name’</td>
-</tr>
-<tr>
-<td align="left">rename(src, dst)</td>
-<td align="left">重命名键</td>
-<td align="left">src：原键名；dst：新键名</td>
-<td align="left">redis.rename(‘name’, ‘nickname’)</td>
-<td align="left">将name重命名为nickname</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">dbsize()</td>
-<td align="left">获取当前数据库中键的数目</td>
-<td align="left"></td>
-<td align="left">dbsize()</td>
-<td align="left">获取当前数据库中键的数目</td>
-<td align="left">100</td>
-</tr>
-<tr>
-<td align="left">expire(name, time)</td>
-<td align="left">设定键的过期时间，单位为秒</td>
-<td align="left">name：键名；time：秒数</td>
-<td align="left">redis.expire(‘name’, 2)</td>
-<td align="left">将name键的过期时间设置为2秒</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">ttl(name)</td>
-<td align="left">获取键的过期时间，单位为秒，-1表示永久不过期</td>
-<td align="left">name：键名</td>
-<td align="left">redis.ttl(‘name’)</td>
-<td align="left">获取name这个键的过期时间</td>
-<td align="left">-1</td>
-</tr>
-<tr>
-<td align="left">move(name, db)</td>
-<td align="left">将键移动到其他数据库</td>
-<td align="left">name：键名；db：数据库代号</td>
-<td align="left">move(‘name’, 2)</td>
-<td align="left">将name移动到2号数据库</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">flushdb()</td>
-<td align="left">删除当前选择数据库中的所有键</td>
-<td align="left"></td>
-<td align="left">flushdb()</td>
-<td align="left">删除当前选择数据库中的所有键</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">flushall()</td>
-<td align="left">删除所有数据库中的所有键</td>
-<td align="left"></td>
-<td align="left">flushall()</td>
-<td align="left">删除所有数据库中的所有键</td>
-<td align="left">True</td>
+<td><code>poll()</code></td>
+<td>返回连接对象是否有可以读取的数据.</td>
 </tr>
 </tbody></table>
 </blockquote>
-<h4 id="3-列表操作"><a href="#3-列表操作" class="headerlink" title="3.列表操作"></a>3.列表操作</h4><blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">方法</th>
-<th align="left">作用</th>
-<th align="left">参数说明</th>
-<th align="left">示例</th>
-<th align="left">示例说明</th>
-<th align="left">示例结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">rpush(name, *values)</td>
-<td align="left">在键为name的列表末尾添加值为value的元素，可以传多个</td>
-<td align="left">name：键名；values：值</td>
-<td align="left">redis.rpush(‘list’, 1, 2, 3)</td>
-<td align="left">向键为list的列表尾添加1、2、3</td>
-<td align="left">3，列表大小</td>
-</tr>
-<tr>
-<td align="left">lpush(name, *values)</td>
-<td align="left">在键为name的列表头添加值为value的元素，可以传多个</td>
-<td align="left">name：键名；values：值</td>
-<td align="left">redis.lpush(‘list’, 0)</td>
-<td align="left">向键为list的列表头部添加0</td>
-<td align="left">4，列表大小</td>
-</tr>
-<tr>
-<td align="left">llen(name)</td>
-<td align="left">返回键为name的列表的长度</td>
-<td align="left">name：键名</td>
-<td align="left">redis.llen(‘list’)</td>
-<td align="left">返回键为list的列表的长度</td>
-<td align="left">4</td>
-</tr>
-<tr>
-<td align="left">lrange(name, start, end)</td>
-<td align="left">返回键为name的列表中start至end之间的元素</td>
-<td align="left">name：键名；start：起始索引；end：终止索引</td>
-<td align="left">redis.lrange(‘list’, 1, 3)</td>
-<td align="left">返回起始索引为1终止索引为3的索引范围对应的列表</td>
-<td align="left">[b’3’, b’2’, b’1’]</td>
-</tr>
-<tr>
-<td align="left">ltrim(name, start, end)</td>
-<td align="left">截取键为name的列表，保留索引为start到end的内容</td>
-<td align="left">name：键名；start：起始索引；end：终止索引</td>
-<td align="left">ltrim(‘list’, 1, 3)</td>
-<td align="left">保留键为list的索引为1到3的元素</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">lindex(name, index)</td>
-<td align="left">返回键为name的列表中index位置的元素</td>
-<td align="left">name：键名；index：索引</td>
-<td align="left">redis.lindex(‘list’, 1)</td>
-<td align="left">返回键为list的列表索引为1的元素</td>
-<td align="left">b’2’</td>
-</tr>
-<tr>
-<td align="left">lset(name, index, value)</td>
-<td align="left">给键为name的列表中index位置的元素赋值，越界则报错</td>
-<td align="left">name：键名；index：索引位置；value：值</td>
-<td align="left">redis.lset(‘list’, 1, 5)</td>
-<td align="left">将键为list的列表中索引为1的位置赋值为5</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">lrem(name, count, value)</td>
-<td align="left">删除count个键的列表中值为value的元素</td>
-<td align="left">name：键名；count：删除个数；value：值</td>
-<td align="left">redis.lrem(‘list’, 2, 3)</td>
-<td align="left">将键为list的列表删除两个3</td>
-<td align="left">1，即删除的个数</td>
-</tr>
-<tr>
-<td align="left">lpop(name)</td>
-<td align="left">返回并删除键为name的列表中的首元素</td>
-<td align="left">name：键名</td>
-<td align="left">redis.lpop(‘list’)</td>
-<td align="left">返回并删除名为list的列表中的第一个元素</td>
-<td align="left">b’5’</td>
-</tr>
-<tr>
-<td align="left">rpop(name)</td>
-<td align="left">返回并删除键为name的列表中的尾元素</td>
-<td align="left">name：键名</td>
-<td align="left">redis.rpop(‘list’)</td>
-<td align="left">返回并删除名为list的列表中的最后一个元素</td>
-<td align="left">b’2’</td>
-</tr>
-<tr>
-<td align="left">blpop(keys, timeout=0)</td>
-<td align="left">返回并删除名称在keys中的list中的首个元素，如果列表为空，则会一直阻塞等待</td>
-<td align="left">keys：键列表；timeout： 超时等待时间，0为一直等待</td>
-<td align="left">redis.blpop(‘list’)</td>
-<td align="left">返回并删除键为list的列表中的第一个元素</td>
-<td align="left">[b’5’]</td>
-</tr>
-<tr>
-<td align="left">brpop(keys, timeout=0)</td>
-<td align="left">返回并删除键为name的列表中的尾元素，如果list为空，则会一直阻塞等待</td>
-<td align="left">keys：键列表；timeout：超时等待时间，0为一直等待</td>
-<td align="left">redis.brpop(‘list’)</td>
-<td align="left">返回并删除名为list的列表中的最后一个元素</td>
-<td align="left">[b’2’]</td>
-</tr>
-<tr>
-<td align="left">rpoplpush(src, dst)</td>
-<td align="left">返回并删除名称为src的列表的尾元素，并将该元素添加到名称为dst的列表头部</td>
-<td align="left">src：源列表的键；dst：目标列表的key</td>
-<td align="left">redis.rpoplpush(‘list’, ‘list2’)</td>
-<td align="left">将键为list的列表尾元素删除并将其添加到键为list2的列表头部，然后返回</td>
-<td align="left">b’2’</td>
-</tr>
-</tbody></table>
+<h4 id="1-主进程和子进程管道通信"><a href="#1-主进程和子进程管道通信" class="headerlink" title="1.主进程和子进程管道通信"></a>1.主进程和子进程管道通信</h4><blockquote>
+<p>需要注意的是,管道在建立的时候自动连接了主进程,不管是使用全双工,还是半双工,都需要对主进程的管道进行处理.</p>
+<p>在全双工模式中,假设主进程是发送端,子进程是接收端</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token triple-quoted-string string">"""全双工管道"""</span>
+<span class="token keyword">import</span> multiprocessing<span class="token punctuation">,</span>time
+
+<span class="token keyword">def</span> <span class="token function">child_process</span><span class="token punctuation">(</span>pipe<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+  <span class="token keyword">try</span><span class="token punctuation">:</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+      num <span class="token operator">=</span> pipe<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'子进程:{},接收:{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>current_process<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'pipe管道状态'</span><span class="token punctuation">,</span> pipe<span class="token punctuation">.</span>poll<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">except</span> Exception<span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'如果一端被关闭,另外一端接收完毕后,会报错'</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+<span class="token triple-quoted-string string">"""主进程"""</span>
+recv_pipe<span class="token punctuation">,</span> send_pipe <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Pipe<span class="token punctuation">(</span>duplex<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 主进程即是发送端,也是接收端</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  send_pipe<span class="token punctuation">.</span>send<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"主进程Pipe发送:{}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 发送完毕后,关闭通道</span>
+send_pipe<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+child_process_pipe <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>child_process<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>recv_pipe<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+child_process_pipe<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+child_process_pipe<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行结果:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">主进程Pipe发送:0
+主进程Pipe发送:1
+主进程Pipe发送:2
+主进程Pipe发送:3
+主进程Pipe发送:4
+子进程:Process-1,接收:0
+pipe管道状态 True
+子进程:Process-1,接收:1
+pipe管道状态 True
+子进程:Process-1,接收:2
+pipe管道状态 True
+子进程:Process-1,接收:3
+pipe管道状态 True
+子进程:Process-1,接收:4
+pipe管道状态 True
+如果一端被关闭,另外一端接收完毕后,会报错<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>反之,主进程也能当接收端,子进程当发送端.</p>
+<p>关闭管道后,<code>try</code> 语句用于处理产生的<code>EOFError</code> 异常</p>
 </blockquote>
-<h4 id="4-集合操作"><a href="#4-集合操作" class="headerlink" title="4.集合操作"></a>4.集合操作</h4><blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">方法</th>
-<th align="left">作用</th>
-<th align="left">参数说明</th>
-<th align="left">示例</th>
-<th align="left">示例说明</th>
-<th align="left">示例结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">sadd(name, *values)</td>
-<td align="left">向键为name的集合中添加元素</td>
-<td align="left">name：键名；values：值，可为多个</td>
-<td align="left">redis.sadd(‘tags’, ‘Book’, ‘Tea’, ‘Coffee’)</td>
-<td align="left">向键为tags的集合中添加Book、Tea和Coffee这3个内容</td>
-<td align="left">3，即插入的数据个数</td>
-</tr>
-<tr>
-<td align="left">srem(name, *values)</td>
-<td align="left">从键为name的集合中删除元素</td>
-<td align="left">name：键名；values：值，可为多个</td>
-<td align="left">redis.srem(‘tags’, ‘Book’)</td>
-<td align="left">从键为tags的集合中删除Book</td>
-<td align="left">1，即删除的数据个数</td>
-</tr>
-<tr>
-<td align="left">spop(name)</td>
-<td align="left">随机返回并删除键为name的集合中的一个元素</td>
-<td align="left">name：键名</td>
-<td align="left">redis.spop(‘tags’)</td>
-<td align="left">从键为tags的集合中随机删除并返回该元素</td>
-<td align="left">b’Tea’</td>
-</tr>
-<tr>
-<td align="left">smove(src, dst, value)</td>
-<td align="left">从src对应的集合中移除元素并将其添加到dst对应的集合中</td>
-<td align="left">src：源集合；dst：目标集合；value：元素值</td>
-<td align="left">redis.smove(‘tags’, ‘tags2’, ‘Coffee’)</td>
-<td align="left">从键为tags的集合中删除元素Coffee并将其添加到键为tags2的集合</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">scard(name)</td>
-<td align="left">返回键为name的集合的元素个数</td>
-<td align="left">name：键名</td>
-<td align="left">redis.scard(‘tags’)</td>
-<td align="left">获取键为tags的集合中的元素个数</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">sismember(name, value)</td>
-<td align="left">测试member是否是键为name的集合的元素</td>
-<td align="left">name：键值</td>
-<td align="left">redis.sismember(‘tags’, ‘Book’)</td>
-<td align="left">判断Book是否是键为tags的集合元素</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">sinter(keys, *args)</td>
-<td align="left">返回所有给定键的集合的交集</td>
-<td align="left">keys：键列表</td>
-<td align="left">redis.sinter([‘tags’, ‘tags2’])</td>
-<td align="left">返回键为tags的集合和键为tags2的集合的交集</td>
-<td align="left">{b’Coffee’}</td>
-</tr>
-<tr>
-<td align="left">sinterstore(dest, keys, *args)</td>
-<td align="left">求交集并将交集保存到dest的集合</td>
-<td align="left">dest：结果集合；keys：键列表</td>
-<td align="left">redis.sinterstore(‘inttag’, [‘tags’, ‘tags2’])</td>
-<td align="left">求键为tags的集合和键为tags2的集合的交集并将其保存为inttag</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">sunion(keys, *args)</td>
-<td align="left">返回所有给定键的集合的并集</td>
-<td align="left">keys：键列表</td>
-<td align="left">redis.sunion([‘tags’, ‘tags2’])</td>
-<td align="left">返回键为tags的集合和键为tags2的集合的并集</td>
-<td align="left">{b’Coffee’, b’Book’, b’Pen’}</td>
-</tr>
-<tr>
-<td align="left">sunionstore(dest, keys, *args)</td>
-<td align="left">求并集并将并集保存到dest的集合</td>
-<td align="left">dest：结果集合；keys：键列表</td>
-<td align="left">redis.sunionstore(‘inttag’, [‘tags’, ‘tags2’])</td>
-<td align="left">求键为tags的集合和键为tags2的集合的并集并将其保存为inttag</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">sdiff(keys, *args)</td>
-<td align="left">返回所有给定键的集合的差集</td>
-<td align="left">keys：键列表</td>
-<td align="left">redis.sdiff([‘tags’, ‘tags2’])</td>
-<td align="left">返回键为tags的集合和键为tags2的集合的差集</td>
-<td align="left">{b’Book’, b’Pen’}</td>
-</tr>
-<tr>
-<td align="left">sdiffstore(dest, keys, *args)</td>
-<td align="left">求差集并将差集保存到dest集合</td>
-<td align="left">dest：结果集合；keys：键列表</td>
-<td align="left">redis.sdiffstore(‘inttag’, [‘tags’, ‘tags2’])</td>
-<td align="left">求键为tags的集合和键为tags2的集合的差集并将其保存为inttag`</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">smembers(name)</td>
-<td align="left">返回键为name的集合的所有元素</td>
-<td align="left">name：键名</td>
-<td align="left">redis.smembers(‘tags’)</td>
-<td align="left">返回键为tags的集合的所有元素</td>
-<td align="left">{b’Pen’, b’Book’, b’Coffee’}</td>
-</tr>
-<tr>
-<td align="left">srandmember(name)</td>
-<td align="left">随机返回键为name的集合中的一个元素，但不删除元素</td>
-<td align="left">name：键值</td>
-<td align="left">redis.srandmember(‘tags’)</td>
-<td align="left">随机返回键为tags的集合中的一个元素</td>
-<td align="left"></td>
-</tr>
-</tbody></table>
+<h4 id="2-主进程闲置-2个子进程一发一收"><a href="#2-主进程闲置-2个子进程一发一收" class="headerlink" title="2.主进程闲置,2个子进程一发一收"></a>2.主进程闲置,2个子进程一发一收</h4><blockquote>
+<p>在全双工模式下,就算主进程闲置,主进程也连接在管道的一端,既可以在接收端,也可以在发送端.需要自己去选择把握.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> multiprocessing
+<span class="token keyword">import</span> time
+
+
+<span class="token keyword">def</span> <span class="token function">proc1</span><span class="token punctuation">(</span>pipe<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'send: %s'</span> <span class="token operator">%</span> i<span class="token punctuation">)</span>
+  pipe<span class="token punctuation">.</span>send<span class="token punctuation">(</span>i<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># pipe.send 发送数据</span>
+  time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+pipe<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">proc2</span><span class="token punctuation">(</span>pipe<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+  <span class="token keyword">try</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'proc2 recv:'</span><span class="token punctuation">,</span> pipe<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># pipe.recv 用与接收数据</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+   <span class="token keyword">except</span> Exception<span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'exit'</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+pipe1<span class="token punctuation">,</span> pipe2 <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Pipe<span class="token punctuation">(</span><span class="token punctuation">)</span>
+p1 <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>proc1<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>pipe1<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+p2 <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>proc2<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>pipe2<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+p1<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+p1<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 在主进程端把发送pipe关闭</span>
+pipe1<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+p2<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+p2<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>关闭管道后,<code>try</code> 语句用于处理产生的<code>EOFError</code> 异常</p>
 </blockquote>
-<h4 id="5-有序集合操作"><a href="#5-有序集合操作" class="headerlink" title="5.有序集合操作"></a>5.有序集合操作</h4><blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">方法</th>
-<th align="left">作用</th>
-<th align="left">参数说明</th>
-<th align="left">示例</th>
-<th align="left">示例说明</th>
-<th align="left">示例结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">zadd(name, *args, **kwargs)</td>
-<td align="left">向键为name的zset中添加元素member，score用于排序。如果该元素存在，则更新其顺序</td>
-<td align="left">name： 键名；args：可变参数</td>
-<td align="left">redis.zadd(‘grade’, 100, ‘Bob’, 98, ‘Mike’)</td>
-<td align="left">向键为grade的zset中添加Bob（其score为100），并添加Mike（其score为98）</td>
-<td align="left">2，即添加的元素个数</td>
-</tr>
-<tr>
-<td align="left">zrem(name, *values)</td>
-<td align="left">删除键为name的zset中的元素</td>
-<td align="left">name：键名；values：元素</td>
-<td align="left">redis.zrem(‘grade’, ‘Mike’)</td>
-<td align="left">从键为grade的zset中删除Mike</td>
-<td align="left">1，即删除的元素个数</td>
-</tr>
-<tr>
-<td align="left">zincrby(name, value, amount=1)</td>
-<td align="left">如果在键为name的zset中已经存在元素value，则将该元素的score增加amount；否则向该集合中添加该元素，其score的值为amount</td>
-<td align="left">name：key名；value：元素；amount：增长的score值</td>
-<td align="left">redis.zincrby(‘grade’, ‘Bob’, -2)</td>
-<td align="left">键为grade的zset中Bob的score减2</td>
-<td align="left">98.0，即修改后的值</td>
-</tr>
-<tr>
-<td align="left">zrank(name, value)</td>
-<td align="left">返回键为name的zset中元素的排名，按score从小到大排序，即名次</td>
-<td align="left">name：键名；value：元素值</td>
-<td align="left">redis.zrank(‘grade’, ‘Amy’)</td>
-<td align="left">得到键为grade的zset中Amy的排名</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">zrevrank(name, value)</td>
-<td align="left">返回键为name的zset中元素的倒数排名（按score从大到小排序），即名次</td>
-<td align="left">name：键名；value：元素值</td>
-<td align="left">redis.zrevrank(‘grade’, ‘Amy’)</td>
-<td align="left">得到键为grade的zset中Amy的倒数排名</td>
-<td align="left">2</td>
-</tr>
-<tr>
-<td align="left">zrevrange(name, start, end, withscores=False)</td>
-<td align="left">返回键为name的zset（按score从大到小排序）中index从start到end的所有元素</td>
-<td align="left">name：键值；start：开始索引；end：结束索引；withscores：是否带score</td>
-<td align="left">redis.zrevrange(‘grade’, 0, 3)</td>
-<td align="left">返回键为grade的zset中前四名元素</td>
-<td align="left">[b’Bob’, b’Mike’, b’Amy’, b’James’]</td>
-</tr>
-<tr>
-<td align="left">zrangebyscore(name, min, max, start=None, num=None, withscores=False)</td>
-<td align="left">返回键为name的zset中score在给定区间的元素</td>
-<td align="left">name：键名；min：最低score；max：最高score； start：起始索引；num：个数；withscores：是否带score</td>
-<td align="left">redis.zrangebyscore(‘grade’, 80, 95)</td>
-<td align="left">返回键为grade的zset中score在80和95之间的元素</td>
-<td align="left">[b’Bob’, b’Mike’, b’Amy’, b’James’]</td>
-</tr>
-<tr>
-<td align="left">zcount(name, min, max)</td>
-<td align="left">返回键为name的zset中score在给定区间的数量</td>
-<td align="left">name：键名；min：最低score；max：最高score</td>
-<td align="left">redis.zcount(‘grade’, 80, 95)</td>
-<td align="left">返回键为grade的zset中score在80到95的元素个数</td>
-<td align="left">2</td>
-</tr>
-<tr>
-<td align="left">zcard(name)</td>
-<td align="left">返回键为name的zset的元素个数</td>
-<td align="left">name：键名</td>
-<td align="left">redis.zcard(‘grade’)</td>
-<td align="left">获取键为grade的zset中元素的个数</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">zremrangebyrank(name, min, max)</td>
-<td align="left">删除键为name的zset中排名在给定区间的元素</td>
-<td align="left">name：键名；min：最低位次；max：最高位次</td>
-<td align="left">redis.zremrangebyrank(‘grade’, 0, 0)</td>
-<td align="left">删除键为grade的zset中排名第一的元素</td>
-<td align="left">1，即删除的元素个数</td>
-</tr>
-<tr>
-<td align="left">zremrangebyscore(name, min, max)</td>
-<td align="left">删除键为name的zset中score在给定区间的元素</td>
-<td align="left">name：键名；min：最低score；max：最高score</td>
-<td align="left">redis.zremrangebyscore(‘grade’, 80, 90)</td>
-<td align="left">删除score在80到90之间的元素</td>
-<td align="left">1，即删除的元素个数</td>
-</tr>
-</tbody></table>
-</blockquote>
-<h4 id="6-hash-操作"><a href="#6-hash-操作" class="headerlink" title="6.hash 操作"></a>6.<code>hash</code> 操作</h4><blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">方法</th>
-<th align="left">作用</th>
-<th align="left">参数说明</th>
-<th align="left">示例</th>
-<th align="left">示例说明</th>
-<th align="left">示例结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">hset(name, key, value)</td>
-<td align="left">向键为name的散列表中添加映射</td>
-<td align="left">name：键名；key：映射键名；value：映射键值</td>
-<td align="left">hset(‘price’, ‘cake’, 5)</td>
-<td align="left">向键为price的散列表中添加映射关系，cake的值为5</td>
-<td align="left">1，即添加的映射个数</td>
-</tr>
-<tr>
-<td align="left">hsetnx(name, key, value)</td>
-<td align="left">如果映射键名不存在，则向键为name的散列表中添加映射</td>
-<td align="left">name：键名；key：映射键名；value：映射键值</td>
-<td align="left">hsetnx(‘price’, ‘book’, 6)</td>
-<td align="left">向键为price的散列表中添加映射关系，book的值为6</td>
-<td align="left">1，即添加的映射个数</td>
-</tr>
-<tr>
-<td align="left">hget(name, key)</td>
-<td align="left">返回键为name的散列表中key对应的值</td>
-<td align="left">name：键名；key：映射键名</td>
-<td align="left">redis.hget(‘price’, ‘cake’)</td>
-<td align="left">获取键为price的散列表中键名为cake的值</td>
-<td align="left">5</td>
-</tr>
-<tr>
-<td align="left">hmget(name, keys, *args)</td>
-<td align="left">返回键为name的散列表中各个键对应的值</td>
-<td align="left">name：键名；keys：映射键名列表</td>
-<td align="left">redis.hmget(‘price’, [‘apple’, ‘orange’])</td>
-<td align="left">获取键为price的散列表中apple和orange的值</td>
-<td align="left">[b’3’, b’7’]</td>
-</tr>
-<tr>
-<td align="left">hmset(name, mapping)</td>
-<td align="left">向键为name的散列表中批量添加映射</td>
-<td align="left">name：键名；mapping：映射字典</td>
-<td align="left">redis.hmset(‘price’, {‘banana’: 2, ‘pear’: 6})</td>
-<td align="left">向键为price的散列表中批量添加映射</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">hincrby(name, key, amount=1)</td>
-<td align="left">将键为name的散列表中映射的值增加amount</td>
-<td align="left">name：键名；key：映射键名；amount：增长量</td>
-<td align="left">redis.hincrby(‘price’, ‘apple’, 3)</td>
-<td align="left">key为price的散列表中apple的值增加3</td>
-<td align="left">6，修改后的值</td>
-</tr>
-<tr>
-<td align="left">hexists(name, key)</td>
-<td align="left">键为name的散列表中是否存在键名为键的映射</td>
-<td align="left">name：键名；key：映射键名</td>
-<td align="left">redis.hexists(‘price’, ‘banana’)</td>
-<td align="left">键为price的散列表中banana的值是否存在</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">hdel(name, *keys)</td>
-<td align="left">在键为name的散列表中，删除键名为键的映射</td>
-<td align="left">name：键名；keys：映射键名</td>
-<td align="left">redis.hdel(‘price’, ‘banana’)</td>
-<td align="left">从键为price的散列表中删除键名为banana的映射</td>
-<td align="left">True</td>
-</tr>
-<tr>
-<td align="left">hlen(name)</td>
-<td align="left">从键为name的散列表中获取映射个数</td>
-<td align="left">name： 键名</td>
-<td align="left">redis.hlen(‘price’)</td>
-<td align="left">从键为price的散列表中获取映射个数</td>
-<td align="left">6</td>
-</tr>
-<tr>
-<td align="left">hkeys(name)</td>
-<td align="left">从键为name的散列表中获取所有映射键名</td>
-<td align="left">name：键名</td>
-<td align="left">redis.hkeys(‘price’)</td>
-<td align="left">从键为price的散列表中获取所有映射键名</td>
-<td align="left">[b’cake’, b’book’, b’banana’, b’pear’]</td>
-</tr>
-<tr>
-<td align="left">hvals(name)</td>
-<td align="left">从键为name的散列表中获取所有映射键值</td>
-<td align="left">name：键名</td>
-<td align="left">redis.hvals(‘price’)</td>
-<td align="left">从键为price的散列表中获取所有映射键值</td>
-<td align="left">[b’5’, b’6’, b’2’, b’6’]</td>
-</tr>
-<tr>
-<td align="left">hgetall(name)</td>
-<td align="left">从键为name的散列表中获取所有映射键值对</td>
-<td align="left">name：键名</td>
-<td align="left">redis.hgetall(‘price’)</td>
-<td align="left">从键为price的散列表中获取所有映射键值对</td>
-<td align="left">{b’cake’: b’5’, b’book’: b’6’, b’orange’: b’7’, b’pear’: b’6’}</td>
-</tr>
-</tbody></table>
-</blockquote>
-<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
@@ -1172,7 +845,7 @@ b'test for redis'
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/2020/10/13/redis10/">https://www.wenyan.online/2020/10/13/redis10/</a>
+                    <a href="https://www.wenyan.online/2020/10/15/python-jin-cheng-xian-cheng-6/">https://www.wenyan.online/2020/10/15/python-jin-cheng-xian-cheng-6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1210,12 +883,8 @@ b'test for redis'
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/flask/">
-                                    <span class="chip bg-color">flask</span>
-                                </a>
-                            
-                                <a href="/tags/redis/">
-                                    <span class="chip bg-color">redis</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
                         </div>
@@ -1646,9 +1315,10 @@ b'test for redis'
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/10/15/python-jin-cheng-xian-cheng-6/">
                     <div class="card-image">
@@ -1665,9 +1335,9 @@ b'test for redis'
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1680,6 +1350,7 @@ b'test for redis'
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1698,12 +1369,12 @@ b'test for redis'
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/13/redis9/">
+                <a href="/2020/10/13/redis10/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis数据类型zset">
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="Python操作redis">
                         
-                        <span class="card-title">redis数据类型zset</span>
+                        <span class="card-title">Python操作redis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

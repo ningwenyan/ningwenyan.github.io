@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-13T12:32:31.422Z</updated>
+  <updated>2020-10-15T14:17:27.564Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>进程使用queue交换对象</title>
+    <link href="https://www.wenyan.online/2020/10/15/python-jin-cheng-xian-cheng-6/"/>
+    <id>https://www.wenyan.online/2020/10/15/python-jin-cheng-xian-cheng-6/</id>
+    <published>2020-10-15T14:15:05.000Z</published>
+    <updated>2020-10-15T14:17:27.564Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;进程之间交换对象&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python操作redis</title>
@@ -461,7 +489,7 @@
     <link href="https://www.wenyan.online/2020/09/27/readme/"/>
     <id>https://www.wenyan.online/2020/09/27/readme/</id>
     <published>2020-09-27T13:47:11.000Z</published>
-    <updated>2020-10-13T12:33:59.098Z</updated>
+    <updated>2020-10-15T14:18:06.225Z</updated>
     
     <summary type="html">
     
@@ -572,36 +600,6 @@
     
     
       <category term="pivix" scheme="https://www.wenyan.online/tags/pivix/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flask session学习</title>
-    <link href="https://www.wenyan.online/2020/09/24/flask-session/"/>
-    <id>https://www.wenyan.online/2020/09/24/flask-session/</id>
-    <published>2020-09-24T14:33:04.000Z</published>
-    <updated>2020-10-13T12:29:43.925Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-24/1600958410193-10299.png&quot; alt=&quot;10299&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Flask Session" scheme="https://www.wenyan.online/categories/Flask-Session/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-      <category term="Session" scheme="https://www.wenyan.online/tags/Session/"/>
     
   </entry>
   
