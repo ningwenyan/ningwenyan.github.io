@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-16T14:18:38.087Z</updated>
+  <updated>2020-10-18T11:55:43.142Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,94 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis连接</title>
+    <link href="https://www.wenyan.online/2020/10/18/redis13/"/>
+    <id>https://www.wenyan.online/2020/10/18/redis13/</id>
+    <published>2020-10-18T11:53:16.000Z</published>
+    <updated>2020-10-18T11:55:43.142Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;redis连接&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis事务</title>
+    <link href="https://www.wenyan.online/2020/10/18/redis12/"/>
+    <id>https://www.wenyan.online/2020/10/18/redis12/</id>
+    <published>2020-10-18T11:53:08.000Z</published>
+    <updated>2020-10-18T11:54:58.851Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;redis-事务&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSRF攻击和防护</title>
+    <link href="https://www.wenyan.online/2020/10/18/flask-csrfd/"/>
+    <id>https://www.wenyan.online/2020/10/18/flask-csrfd/</id>
+    <published>2020-10-18T11:48:12.000Z</published>
+    <updated>2020-10-18T11:52:22.194Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CSRF攻击和防护&quot;&gt;&lt;a href=&quot;#CSRF攻击和防护&quot; class=&quot;headerlink&quot; title=&quot;CSRF攻击和防护&quot;&gt;&lt;/a&gt;CSRF攻击和防护&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt; 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CSRF" scheme="https://www.wenyan.online/categories/CSRF/"/>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+  </entry>
   
   <entry>
     <title>redis订阅发布</title>
@@ -511,98 +599,6 @@
     
     
       <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>置顶! 如何阅读本站</title>
-    <link href="https://www.wenyan.online/2020/09/27/readme/"/>
-    <id>https://www.wenyan.online/2020/09/27/readme/</id>
-    <published>2020-09-27T13:47:11.000Z</published>
-    <updated>2020-10-16T14:19:18.429Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;  所有的插件,官网请&lt;a href=&quot;https://wenyan.online/navigate/&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="本站文章集合" scheme="https://www.wenyan.online/categories/%E6%9C%AC%E7%AB%99%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88/"/>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-      <category term="Memcache" scheme="https://www.wenyan.online/tags/Memcache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Memecache及Python操作Memcache</title>
-    <link href="https://www.wenyan.online/2020/09/27/flaskmemcache/"/>
-    <id>https://www.wenyan.online/2020/09/27/flaskmemcache/</id>
-    <published>2020-09-27T13:40:44.000Z</published>
-    <updated>2020-09-27T13:51:12.019Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-14/1600096765838-10294.png&quot; alt=&quot;10294&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Memcache&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-      <category term="Memcache" scheme="https://www.wenyan.online/tags/Memcache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python进程线程</title>
-    <link href="https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/"/>
-    <id>https://www.wenyan.online/2020/09/26/python-jin-cheng-xian-cheng-1/</id>
-    <published>2020-09-26T14:40:16.000Z</published>
-    <updated>2020-09-28T14:23:36.886Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
-    
-    
-      <category term="python" scheme="https://www.wenyan.online/tags/python/"/>
-    
-      <category term="threading" scheme="https://www.wenyan.online/tags/threading/"/>
-    
-      <category term="process" scheme="https://www.wenyan.online/tags/process/"/>
     
   </entry>
   
