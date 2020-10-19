@@ -549,7 +549,7 @@
 </tr>
 <tr>
 <td align="left"><code>SMTP_USER</code></td>
-<td align="left"><a href="mailto:&#88;&#88;&#88;&#88;&#x58;&#64;&#49;&#54;&#x33;&#46;&#99;&#111;&#x6d;">&#88;&#88;&#88;&#88;&#x58;&#64;&#49;&#54;&#x33;&#46;&#99;&#111;&#x6d;</a></td>
+<td align="left"><a href="mailto:&#x58;&#88;&#88;&#88;&#x58;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#111;&#x6d;">&#x58;&#88;&#88;&#88;&#x58;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#111;&#x6d;</a></td>
 <td align="left">[必填]SMTP登录用户</td>
 </tr>
 <tr>
@@ -564,7 +564,7 @@
 </tr>
 <tr>
 <td align="left"><code>SENDER_EMAIL</code></td>
-<td align="left"><a href="mailto:&#x58;&#x58;&#88;&#x58;&#x58;&#88;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#x6d;">&#x58;&#x58;&#88;&#x58;&#x58;&#88;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="left"><a href="mailto:&#88;&#x58;&#x58;&#88;&#88;&#88;&#x40;&#49;&#54;&#51;&#x2e;&#99;&#x6f;&#x6d;">&#88;&#x58;&#x58;&#88;&#88;&#88;&#x40;&#49;&#54;&#51;&#x2e;&#99;&#x6f;&#x6d;</a></td>
 <td align="left">[必填]发件邮箱</td>
 </tr>
 <tr>
@@ -574,7 +574,7 @@
 </tr>
 <tr>
 <td align="left"><code>BLOGGER_EMAIL</code></td>
-<td align="left"><a href="mailto:&#120;&#x78;&#x78;&#64;&#x31;&#54;&#51;&#x2e;&#x63;&#111;&#x6d;">&#120;&#x78;&#x78;&#64;&#x31;&#54;&#51;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="left"><a href="mailto:&#x78;&#120;&#x78;&#x40;&#x31;&#54;&#x33;&#x2e;&#x63;&#111;&#109;">&#x78;&#120;&#x78;&#x40;&#x31;&#54;&#x33;&#x2e;&#x63;&#111;&#109;</a></td>
 <td align="left">[可选]博主通知收件地址，默认使用SENDER_EMAIL</td>
 </tr>
 <tr>
@@ -604,6 +604,35 @@
 </blockquote>
 <h4 id="头像问题"><a href="#头像问题" class="headerlink" title="头像问题"></a>头像问题</h4><blockquote>
 <p>评论留言想要拥有自己的头像.<br>请自行登录或注册<a href="http://cn.gravatar.com/" target="_blank" rel="noopener">Gravatar</a>，然后修改自己的头像。评论的时候，留下在Gravatar注册时所使用的邮箱即可。</p>
+</blockquote>
+<h2 id="Hexo支持流程图"><a href="#Hexo支持流程图" class="headerlink" title="Hexo支持流程图"></a><code>Hexo</code>支持流程图</h2><blockquote>
+<p>  在Markdown中支援使用Mermaid语法来创建流程图，但要能在Hexo部落格呈现图表，仍然需要进行一些设定。这边我使用了<code>hexo-filter-mermaid-diagrams</code>的套件。</p>
+<p>  <code>https://github.com/webappdevelp/hexo-filter-mermaid-diagrams</code></p>
+</blockquote>
+<h3 id="1-安装hexo插件"><a href="#1-安装hexo插件" class="headerlink" title="1.安装hexo插件"></a>1.安装<code>hexo</code>插件</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-filter-mermaid-diagrams<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="2-修改主题"><a href="#2-修改主题" class="headerlink" title="2.修改主题"></a>2.修改主题</h3><blockquote>
+<p>  修改<code>themes/hexo-theme-matery/layout/_partial/footer.ejs</code></p>
+<pre class="line-numbers language-ejs"><code class="language-ejs"><% if (theme.mermaid.enable) { %>
+  <script src='https://unpkg.com/mermaid@<%= theme.mermaid.version %>/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<% } %><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  修改根目录下的<code>_config.yml</code></p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># mermaid chart</span>
+<span class="token key atrule">mermaid</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## mermaid url https://github.com/knsv/mermaid</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true  </span><span class="token comment" spellcheck="true"># default true</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"7.1.2"</span> <span class="token comment" spellcheck="true"># default v7.1.2</span>
+  <span class="token key atrule">options</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js</span>
+    <span class="token comment" spellcheck="true">#startOnload: true  // default true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="3-部署上传"><a href="#3-部署上传" class="headerlink" title="3.部署上传"></a>3.部署上传</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">$ hexo g
+$ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
 <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
@@ -1446,6 +1475,16 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 </footer>
 
 <div class="progress-bar"></div>
+
+    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+    <script>
+        if (window.mermaid) {
+            mermaid.initialize({
+                theme: 'forest'
+            });
+        }
+    </script>
+    
 
                     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
