@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.wenyan.online/2020/10/21/flaskmail/</loc>
+    <lastmod>2020-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
+    <lastmod>2020-10-21</lastmod>
+  </url>
+  <url>
     <loc>https://www.wenyan.online/2020/09/05/hexoupdatetalk/</loc>
     <lastmod>2020-10-19</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/10/19/flask-shang-xia-wen/</loc>
     <lastmod>2020-10-19</lastmod>
-  </url>
-  <url>
-    <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
-    <lastmod>2020-10-18</lastmod>
   </url>
   <url>
     <loc>https://www.wenyan.online/2020/10/18/redis13/</loc>

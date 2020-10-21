@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-19T13:33:03.461Z</updated>
+  <updated>2020-10-21T14:09:05.366Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FlaskMail</title>
+    <link href="https://www.wenyan.online/2020/10/21/flaskmail/"/>
+    <id>https://www.wenyan.online/2020/10/21/flaskmail/</id>
+    <published>2020-10-21T14:06:29.000Z</published>
+    <updated>2020-10-21T14:09:05.366Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-10-21/1603288807365-10322.png&quot; alt=&quot;10322&quot;&gt;&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="FlaskMail" scheme="https://www.wenyan.online/categories/FlaskMail/"/>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+  </entry>
   
   <entry>
     <title>flask上下文</title>
@@ -569,36 +597,6 @@
     
     
       <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis客户端配置</title>
-    <link href="https://www.wenyan.online/2020/09/28/redis2/"/>
-    <id>https://www.wenyan.online/2020/09/28/redis2/</id>
-    <published>2020-09-28T13:47:54.000Z</published>
-    <updated>2020-09-28T14:14:33.076Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
     
   </entry>
   
