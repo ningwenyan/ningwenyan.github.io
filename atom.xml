@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-21T14:09:05.366Z</updated>
+  <updated>2020-10-22T14:12:43.624Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python进程线程:使用PIPE交换数据</title>
+    <link href="https://www.wenyan.online/2020/10/22/python-jin-cheng-xian-cheng-7/"/>
+    <id>https://www.wenyan.online/2020/10/22/python-jin-cheng-xian-cheng-7/</id>
+    <published>2020-10-22T14:10:40.000Z</published>
+    <updated>2020-10-22T14:12:43.624Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;进程之间交换对象&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>FlaskMail</title>
@@ -569,34 +597,6 @@
       <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
     
       <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>进程的创建</title>
-    <link href="https://www.wenyan.online/2020/09/28/python-jin-cheng-xian-cheng-2/"/>
-    <id>https://www.wenyan.online/2020/09/28/python-jin-cheng-xian-cheng-2/</id>
-    <published>2020-09-28T14:20:33.000Z</published>
-    <updated>2020-09-29T14:01:11.736Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;进程的创建&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
     
   </entry>
   
