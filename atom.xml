@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-23T14:00:20.254Z</updated>
+  <updated>2020-10-27T13:53:54.135Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flask邮箱验证</title>
+    <link href="https://www.wenyan.online/2020/10/27/flask-you-xiang-yan-zheng/"/>
+    <id>https://www.wenyan.online/2020/10/27/flask-you-xiang-yan-zheng/</id>
+    <published>2020-10-27T13:52:39.000Z</published>
+    <updated>2020-10-27T13:53:54.135Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Flask发送注册邮件&quot;&gt;&lt;a href=&quot;#Flask发送注册邮件&quot; class=&quot;headerlink&quot; title=&quot;Flask发送注册邮件&quot;&gt;&lt;/a&gt;Flask发送注册邮件&lt;/h2&gt;&lt;h3 id=&quot;1-导读&quot;&gt;&lt;a href=&quot;#1-导读&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="FlaskMail" scheme="https://www.wenyan.online/categories/FlaskMail/"/>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+  </entry>
   
   <entry>
     <title>flask启动流程</title>
@@ -544,36 +571,6 @@
     <id>https://www.wenyan.online/2020/09/29/redis5/</id>
     <published>2020-09-29T13:10:11.000Z</published>
     <updated>2020-09-29T13:11:44.534Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis关键字key</title>
-    <link href="https://www.wenyan.online/2020/09/29/redis4/"/>
-    <id>https://www.wenyan.online/2020/09/29/redis4/</id>
-    <published>2020-09-29T12:50:34.000Z</published>
-    <updated>2020-09-29T12:52:41.946Z</updated>
     
     <summary type="html">
     
