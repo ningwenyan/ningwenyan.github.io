@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-11-03T13:00:45.927Z</updated>
+  <updated>2020-11-03T13:08:25.397Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -17,11 +17,67 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python进程线程:python支持多线程</title>
+    <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-13/"/>
+    <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-13/</id>
+    <published>2020-11-03T13:06:39.000Z</published>
+    <updated>2020-11-03T13:08:25.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Python对多线程的支持&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:多线程介绍</title>
+    <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-12/"/>
+    <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-12/</id>
+    <published>2020-11-03T13:06:34.000Z</published>
+    <updated>2020-11-03T13:07:59.196Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>python进程线程:同步异步</title>
     <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-11/"/>
     <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-11/</id>
     <published>2020-11-03T12:54:51.000Z</published>
-    <updated>2020-11-03T13:00:45.927Z</updated>
+    <updated>2020-11-03T13:03:40.834Z</updated>
     
     <summary type="html">
     
@@ -37,15 +93,19 @@
     </summary>
     
     
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
     
   </entry>
   
   <entry>
-    <title>python进程线程10</title>
+    <title>python进程线程:进程池</title>
     <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-10/"/>
     <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-10/</id>
     <published>2020-11-03T12:54:46.000Z</published>
-    <updated>2020-11-03T12:59:49.296Z</updated>
+    <updated>2020-11-03T13:03:22.121Z</updated>
     
     <summary type="html">
     
@@ -522,64 +582,6 @@
       <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
     
       <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis数据类型set</title>
-    <link href="https://www.wenyan.online/2020/10/13/redis8/"/>
-    <id>https://www.wenyan.online/2020/10/13/redis8/</id>
-    <published>2020-10-13T11:45:27.000Z</published>
-    <updated>2020-10-13T11:50:56.786Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;数据类型set&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自定义进程子类</title>
-    <link href="https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/"/>
-    <id>https://www.wenyan.online/2020/10/12/python-jin-cheng-xian-cheng-5/</id>
-    <published>2020-10-12T12:07:24.000Z</published>
-    <updated>2020-10-12T12:08:30.986Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;自定义进程子类&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
     
   </entry>
   
