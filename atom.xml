@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-10-29T12:28:18.012Z</updated>
+  <updated>2020-11-03T13:00:45.927Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,86 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python进程线程:同步异步</title>
+    <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-11/"/>
+    <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-11/</id>
+    <published>2020-11-03T12:54:51.000Z</published>
+    <updated>2020-11-03T13:00:45.927Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;同步-异步&quot;&gt;&lt;a href=&quot;#同步-异步&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程10</title>
+    <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-10/"/>
+    <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-10/</id>
+    <published>2020-11-03T12:54:46.000Z</published>
+    <updated>2020-11-03T12:59:49.296Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;进程池&quot;&gt;&lt;a href=&quot;#进程池&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:共享内存</title>
+    <link href="https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-9/"/>
+    <id>https://www.wenyan.online/2020/11/03/python-jin-cheng-xian-cheng-9/</id>
+    <published>2020-11-03T12:54:39.000Z</published>
+    <updated>2020-11-03T12:59:40.340Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;共享内存&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Flask信号</title>
@@ -77,7 +157,7 @@
     <link href="https://www.wenyan.online/2020/10/27/python-jin-cheng-xian-cheng-8/"/>
     <id>https://www.wenyan.online/2020/10/27/python-jin-cheng-xian-cheng-8/</id>
     <published>2020-10-27T13:59:40.000Z</published>
-    <updated>2020-10-27T14:00:55.644Z</updated>
+    <updated>2020-11-03T12:59:26.911Z</updated>
     
     <summary type="html">
     
@@ -160,7 +240,7 @@
     <link href="https://www.wenyan.online/2020/10/22/python-jin-cheng-xian-cheng-7/"/>
     <id>https://www.wenyan.online/2020/10/22/python-jin-cheng-xian-cheng-7/</id>
     <published>2020-10-22T14:10:40.000Z</published>
-    <updated>2020-10-22T14:12:43.624Z</updated>
+    <updated>2020-11-03T12:59:20.219Z</updated>
     
     <summary type="html">
     
@@ -362,7 +442,7 @@
     <link href="https://www.wenyan.online/2020/10/15/python-jin-cheng-xian-cheng-6/"/>
     <id>https://www.wenyan.online/2020/10/15/python-jin-cheng-xian-cheng-6/</id>
     <published>2020-10-15T14:15:05.000Z</published>
-    <updated>2020-10-15T14:17:27.564Z</updated>
+    <updated>2020-11-03T12:59:16.747Z</updated>
     
     <summary type="html">
     
@@ -500,96 +580,6 @@
     
     
       <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis数据类型list</title>
-    <link href="https://www.wenyan.online/2020/10/12/redis7/"/>
-    <id>https://www.wenyan.online/2020/10/12/redis7/</id>
-    <published>2020-10-12T11:48:03.000Z</published>
-    <updated>2020-10-12T11:50:36.362Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;数据类型list&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis类型Hash</title>
-    <link href="https://www.wenyan.online/2020/10/12/redis6/"/>
-    <id>https://www.wenyan.online/2020/10/12/redis6/</id>
-    <published>2020-10-12T11:47:55.000Z</published>
-    <updated>2020-10-12T11:49:59.196Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;数据类型Hash&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pillow作图</title>
-    <link href="https://www.wenyan.online/2020/09/30/learnpillow/"/>
-    <id>https://www.wenyan.online/2020/09/30/learnpillow/</id>
-    <published>2020-09-30T12:24:04.000Z</published>
-    <updated>2020-09-30T13:39:36.319Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-30/1601468958824-pillow.png&quot; alt=&quot;pillow&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Pillow&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Python Pillow" scheme="https://www.wenyan.online/categories/Python-Pillow/"/>
-    
-    
-      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-      <category term="Pillow" scheme="https://www.wenyan.online/tags/Pillow/"/>
     
   </entry>
   
