@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-11-03T13:08:25.397Z</updated>
+  <updated>2020-11-05T11:41:26.684Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FlaskRestful</title>
+    <link href="https://www.wenyan.online/2020/11/05/flaskrestful/"/>
+    <id>https://www.wenyan.online/2020/11/05/flaskrestful/</id>
+    <published>2020-11-05T11:33:57.000Z</published>
+    <updated>2020-11-05T11:41:26.684Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-11-5/1604576436084-10328.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Flask-Restful&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/categories/flask/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+  </entry>
   
   <entry>
     <title>python进程线程:python支持多线程</title>
@@ -540,36 +568,6 @@
         
           &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
 &lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis数据类型zset</title>
-    <link href="https://www.wenyan.online/2020/10/13/redis9/"/>
-    <id>https://www.wenyan.online/2020/10/13/redis9/</id>
-    <published>2020-10-13T11:45:36.000Z</published>
-    <updated>2020-10-13T11:52:48.457Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;数据类型zset&quot;&gt;&lt;a
         
       
     
