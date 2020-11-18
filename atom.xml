@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-11-05T11:41:26.684Z</updated>
+  <updated>2020-11-15T12:15:04.672Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python进程线程:使用Rlock 进行线程同步</title>
+    <link href="https://www.wenyan.online/2020/11/15/python-jin-cheng-xian-cheng-14/"/>
+    <id>https://www.wenyan.online/2020/11/15/python-jin-cheng-xian-cheng-14/</id>
+    <published>2020-11-15T12:14:24.000Z</published>
+    <updated>2020-11-15T12:15:04.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>FlaskRestful</title>
@@ -550,36 +578,6 @@
     
     
       <category term="Python" scheme="https://www.wenyan.online/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python操作redis</title>
-    <link href="https://www.wenyan.online/2020/10/13/redis10/"/>
-    <id>https://www.wenyan.online/2020/10/13/redis10/</id>
-    <published>2020-10-13T11:45:42.000Z</published>
-    <updated>2020-10-13T12:32:31.422Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
-    
-    
-      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
-    
-      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
     
   </entry>
   

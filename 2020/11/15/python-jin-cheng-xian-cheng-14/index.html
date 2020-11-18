@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="test, Python Flask MySQL Ubuntu">
+    <meta name="keywords" content="Python">
     <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>test | 文彦Blog</title>
+    <title>python进程线程:使用Rlock 进行线程同步 | 文彦Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
@@ -353,12 +353,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">test</h1>
+                    <h1 class="description center-align post-title">python进程线程:使用Rlock 进行线程同步</h1>
                 </div>
             </div>
         </div>
@@ -473,12 +473,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Python/" class="post-category">
+                                Python
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -487,7 +500,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-07
+                    2020-11-15
                 </div>
                 
 
@@ -503,7 +516,210 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" alt="10305"></p>
+<h2 id="使用Rlock-进行线程同步"><a href="#使用Rlock-进行线程同步" class="headerlink" title="使用Rlock 进行线程同步"></a>使用<code>Rlock</code> 进行线程同步</h2><h3 id="1-死锁"><a href="#1-死锁" class="headerlink" title="1.死锁"></a>1.死锁</h3><blockquote>
+<p>使用<code>Lock</code> 进行线程同步的时候,可能会造成死锁.</p>
+<p>所谓死锁: 是指两个或两个以上的线程在执行过程中,因争夺资源而造成的一种互相等待的现象,若无外力作用,它们都将无法推进下去.此时称系统处于死锁状态或系统产生了死锁,这些永远在互相等待的进程称为死锁进程. 由于资源占用是互斥的,当某个进程提出申请资源后,使得有关进程在无外力协助下,永远分配不到必需的资源而无法继续运行,这就产生了一种特殊现象死锁.</p>
+<p>多个线程获取多个锁,造成死锁</p>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-11-12/1605194173909-10023.png" alt="10023"></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+死锁
+"""</span>
+<span class="token keyword">import</span> threading<span class="token punctuation">,</span>time
+
+<span class="token keyword">class</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>Thread<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lock1<span class="token punctuation">,</span> lock2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  self<span class="token punctuation">.</span>alock <span class="token operator">=</span> lock1
+  self<span class="token punctuation">.</span>block <span class="token operator">=</span> lock2
+  super<span class="token punctuation">(</span>MyThread<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token triple-quoted-string string">"""acquire会返回布尔值"""</span>
+  <span class="token keyword">if</span> self<span class="token punctuation">.</span>alock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' up'</span><span class="token punctuation">)</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token keyword">if</span> self<span class="token punctuation">.</span>block<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token comment" spellcheck="true"># self.block进入阻塞状态,等待self.alock释放锁</span>
+          <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' down'</span><span class="token punctuation">)</span>
+          self<span class="token punctuation">.</span>block<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      self<span class="token punctuation">.</span>alock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyThread1</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>Thread<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lock1<span class="token punctuation">,</span> lock2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  self<span class="token punctuation">.</span>alock <span class="token operator">=</span> lock1
+  self<span class="token punctuation">.</span>block <span class="token operator">=</span> lock2
+  super<span class="token punctuation">(</span>MyThread1<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token triple-quoted-string string">"""acquire会返回布尔值"""</span>
+  <span class="token keyword">if</span> self<span class="token punctuation">.</span>block<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'up'</span><span class="token punctuation">)</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token keyword">if</span> self<span class="token punctuation">.</span>alock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token comment" spellcheck="true"># self.alock进入阻塞状态,等待self.block释放锁</span>
+          <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'down'</span><span class="token punctuation">)</span>
+          self<span class="token punctuation">.</span>alock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      self<span class="token punctuation">.</span>block<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+lock1 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Lock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+lock2 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Lock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t1<span class="token operator">=</span>MyThread<span class="token punctuation">(</span>lock1<span class="token punctuation">,</span> lock2<span class="token punctuation">)</span>
+t2<span class="token operator">=</span>MyThread1<span class="token punctuation">(</span>lock1<span class="token punctuation">,</span> lock2<span class="token punctuation">)</span>
+t1<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t2<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>更简单的情况是,一个线程多次去获取锁,造成死锁</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
+<span class="token keyword">import</span> time
+
+num <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token comment" spellcheck="true"># 创建锁定池</span>
+mutex <span class="token operator">=</span> threading<span class="token punctuation">.</span>Lock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>Thread<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+super<span class="token punctuation">(</span>MyThread<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">global</span> num
+time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 获取锁</span>
+<span class="token keyword">if</span> mutex<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 设置了超时时间</span>
+   num <span class="token operator">+=</span> <span class="token number">1</span>
+   msg <span class="token operator">=</span> <span class="token string">"{} set num to {}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> num<span class="token punctuation">)</span>
+   <span class="token keyword">print</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+   mutex<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># 单一线程重复获取锁,锁没有释放,变成死锁</span>
+   mutex<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+   mutex<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+t <span class="token operator">=</span> MyThread<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为了支持同一线程中,多次请求同一资源,python提供了<code>Rlock</code> 可重入锁.</p>
+</blockquote>
+<h3 id="2-可重入锁-递归锁"><a href="#2-可重入锁-递归锁" class="headerlink" title="2.可重入锁/递归锁"></a>2.可重入锁/递归锁</h3><blockquote>
+<p><code>Rlock</code>()Reentrant Lock:重入锁\递归锁说的都是它.这种锁对比<code>Lock</code> 有以下特点:</p>
+<ul>
+<li>谁拿到谁释放.如果线程A拿到锁,线程B无法释放这个锁,只有A可以</li>
+<li>同一线程可以多次拿到该锁,即可以多次<code>acquire()</code> .</li>
+<li><code>acquire()</code> 多少次就必须<code>release()</code> 多少次,只有最后一次释放锁才会改变锁的状态为<code>Unlocked</code>.</li>
+</ul>
+<p>总结:</p>
+<p><code>RLock</code>内部维护着一个<code>Lock</code>和一个<code>counter</code>变量,<code>counter</code>记录了<code>acquire</code>的次数,从而使得资源可以被多次<code>acquire</code>.直到一个线程所有的<code>acquire</code>都被<code>release</code>，其他的线程才能获得资源.即对于同一线程而言,是可重入锁,而对于其他线程而言,和上面的Lock没有区别.</p>
+<p>上面的例子使用<code>Rlock</code> 来替代,就不会发生死锁</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
+<span class="token keyword">import</span> time
+
+num <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token comment" spellcheck="true"># 创建锁定池,RLock 可以重复的上锁</span>
+mutex <span class="token operator">=</span> threading<span class="token punctuation">.</span>RLock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>Thread<span class="token punctuation">)</span><span class="token punctuation">:</span>
+ <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+     super<span class="token punctuation">(</span>MyThread<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+ <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+     <span class="token keyword">global</span> num
+     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+     <span class="token comment" spellcheck="true"># 获取锁</span>
+     <span class="token keyword">if</span> mutex<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># 设置了超时时间</span>
+         num <span class="token operator">+=</span> <span class="token number">1</span>
+         msg <span class="token operator">=</span> <span class="token string">"{} set num to {}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> num<span class="token punctuation">)</span>
+         <span class="token keyword">print</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+         mutex<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># 单一线程重复获取锁,锁没有释放,变成死锁</span>
+         mutex<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+         mutex<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+ <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+     t <span class="token operator">=</span> MyThread<span class="token punctuation">(</span><span class="token punctuation">)</span>
+     t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+ main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行结果:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">Thread-1 <span class="token keyword">set</span> num to 1
+Thread-4 <span class="token keyword">set</span> num to 2
+Thread-2 <span class="token keyword">set</span> num to 3
+Thread-3 <span class="token keyword">set</span> num to 4
+Thread-5 <span class="token keyword">set</span> num to 5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="3-实例"><a href="#3-实例" class="headerlink" title="3.实例"></a>3.实例</h3><blockquote>
+<p>构造一个<code>Box</code> 类,有<code>add()</code>和<code>remove()</code>方法,提供了进入<code>execute()</code> 方法的入口,<code>execute()</code> 的执行由<code>RLock()</code> 来控制.这样每个函数的内部都实现了加锁和释放锁的操作,虽然获取多次锁,但是只有当一个线程完全释放了锁之后,另外一个线程才会去获取锁.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading<span class="token punctuation">,</span>time
+
+<span class="token keyword">class</span> <span class="token class-name">Box</span><span class="token punctuation">:</span>
+<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> obj_lock<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  self<span class="token punctuation">.</span>total_items <span class="token operator">=</span> <span class="token number">0</span>
+  self<span class="token punctuation">.</span>lock <span class="token operator">=</span> obj_lock
+
+<span class="token keyword">def</span> <span class="token function">execute</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>total_items <span class="token operator">+=</span> n
+  self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">remove</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 两个方法</span>
+<span class="token keyword">def</span> <span class="token function">adder</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> items<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">while</span> items<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'adding 1 item in the box'</span><span class="token punctuation">)</span>
+  box<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  items <span class="token operator">-=</span> <span class="token number">1</span>
+
+<span class="token keyword">def</span> <span class="token function">remover</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> items<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">while</span> items<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'remove 1 item in the box'</span><span class="token punctuation">)</span>
+  box<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  items <span class="token operator">-=</span> <span class="token number">1</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+items <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'putting {} items in the box'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>items<span class="token punctuation">)</span><span class="token punctuation">)</span>
+lock <span class="token operator">=</span> threading<span class="token punctuation">.</span>RLock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+box <span class="token operator">=</span> Box<span class="token punctuation">(</span>lock<span class="token punctuation">)</span>
+t1 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>adder<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> items<span class="token punctuation">)</span><span class="token punctuation">)</span>
+t2 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>remover<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> items<span class="token punctuation">)</span><span class="token punctuation">)</span>
+t1<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t2<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t1<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t2<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{} itesms still remain in the box'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>box<span class="token punctuation">.</span>total_items<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行结果:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">putting 5 items <span class="token keyword">in</span> the box
+adding 1 item <span class="token keyword">in</span> the box
+remove 1 item <span class="token keyword">in</span> the box
+remove 1 item <span class="token keyword">in</span> the box
+adding 1 item <span class="token keyword">in</span> the box
+remove 1 item <span class="token keyword">in</span> the box
+adding 1 item <span class="token keyword">in</span> the box
+remove 1 item <span class="token keyword">in</span> the box
+adding 1 item <span class="token keyword">in</span> the box
+remove 1 item <span class="token keyword">in</span> the box
+adding 1 item <span class="token keyword">in</span> the box
+0 itesms still remain <span class="token keyword">in</span> the box<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
 
@@ -528,7 +744,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wenyan.online/test/index.html">https://www.wenyan.online/test/index.html</a>
+                    <a href="https://www.wenyan.online/2020/11/15/python-jin-cheng-xian-cheng-14/">https://www.wenyan.online/2020/11/15/python-jin-cheng-xian-cheng-14/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,7 +781,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -999,34 +1219,45 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/test/index.html">
+                <a href="/2020/11/15/python-jin-cheng-xian-cheng-14/">
                     <div class="card-image">
                         
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-28/1601302980292-10305.png" class="responsive-img" alt="python进程线程:使用Rlock 进行线程同步">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/10.jpg" class="responsive-img" alt="test">
-                        
-                        <span class="card-title">test</span>
+                        <span class="card-title">python进程线程:使用Rlock 进行线程同步</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Python进程线程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            文彦
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1034,37 +1265,47 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/test/index.html">
+                <a href="/2020/11/05/flaskrestful/">
                     <div class="card-image">
                         
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-11-5/1604576436084-10328.png" class="responsive-img" alt="FlaskRestful">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/featureimages/10.jpg" class="responsive-img" alt="test">
-                        
-                        <span class="card-title">test</span>
+                        <span class="card-title">FlaskRestful</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            flask restful
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            文彦
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/flask/" class="post-category">
+                                    flask
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/flask/">
+                        <span class="chip bg-color">flask</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
