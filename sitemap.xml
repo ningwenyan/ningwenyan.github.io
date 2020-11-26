@@ -2,21 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.wenyan.online/2020/11/15/python-jin-cheng-xian-cheng-14/</loc>
+    <loc>https://www.wenyan.online/2020/11/26/python-jin-cheng-xian-cheng-15/</loc>
     
-    <lastmod>2020-11-15</lastmod>
+    <lastmod>2020-11-26</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.wenyan.online/2020/11/05/flaskrestful/</loc>
+    <loc>https://www.wenyan.online/2020/11/15/python-jin-cheng-xian-cheng-14/</loc>
     
-    <lastmod>2020-11-05</lastmod>
+    <lastmod>2020-11-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/11/26/flask-bootstrap-learn/</loc>
+    
+    <lastmod>2020-11-26</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.wenyan.online/2020/09/27/readme/</loc>
+    
+    <lastmod>2020-11-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/2020/11/05/flaskrestful/</loc>
     
     <lastmod>2020-11-05</lastmod>
     
@@ -522,7 +536,7 @@
 
   <url>
     <loc>https://www.wenyan.online/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -530,287 +544,294 @@
   
   <url>
     <loc>https://www.wenyan.online/tags/github/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/markdown/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/MySQL/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Hexo/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Git/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Python/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Flask/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/SQLAlchemy/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/MongoDB/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Redis/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/PostgreSQL/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Pillow/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/OAuth2-0/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Github/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/alembic/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Heroku/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Shadowsocks/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Pixiv/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Ubuntu/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/hexo/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/valine/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Flask-SQLAlchemy/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Click/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/linux/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Pivix/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/%E6%8F%92%E7%94%BB/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Javascript/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/jquery/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Flask-WTF/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/wtforms/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/flask/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/cookie/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Session/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/pivix/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/python/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/threading/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/process/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/Memcache/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/tags/redis/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/tags/Bootstrap/</loc>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -819,140 +840,147 @@
   
   <url>
     <loc>https://www.wenyan.online/categories/SQLAlchemy/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Heroku-Shadowsocks/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Hexo/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Ubuntu/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/SQLAlchemy-Flask/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Flask%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/%E7%B3%BB%E7%BB%9F%E6%BC%8F%E6%B4%9E/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/%E6%8F%92%E7%94%BB/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/jQuery/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Flask/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Flask-cookie/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Flask-Session/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/%E5%B0%91%E5%A5%B3%E9%9B%A8%E6%BB%B4/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Python/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/%E6%9C%AC%E7%AB%99%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/redis/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/Python-Pillow/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/CSRF/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/FlaskMail/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.wenyan.online/categories/flask/</loc>
-    <lastmod>2020-11-19</lastmod>
+    <lastmod>2020-11-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wenyan.online/categories/Flask-Bootstrap/</loc>
+    <lastmod>2020-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
