@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-11-26T14:31:06.887Z</updated>
+  <updated>2020-12-27T11:29:20.471Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flask Todo项目:创建基本视图</title>
+    <link href="https://www.wenyan.online/2020/12/27/20001-md/"/>
+    <id>https://www.wenyan.online/2020/12/27/20001-md/</id>
+    <published>2020-12-27T10:30:55.000Z</published>
+    <updated>2020-12-27T11:29:20.471Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-12-27/1609065564543-10343.png&quot; alt=&quot;10343&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/categories/Flask/"/>
+    
+    
+      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
+    
+  </entry>
   
   <entry>
     <title>python进程线程:使用条件进行线程同步</title>
@@ -550,34 +578,6 @@
       <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
     
       <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSRF攻击和防护</title>
-    <link href="https://www.wenyan.online/2020/10/18/flask-csrfd/"/>
-    <id>https://www.wenyan.online/2020/10/18/flask-csrfd/</id>
-    <published>2020-10-18T11:48:12.000Z</published>
-    <updated>2020-10-18T11:52:22.194Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;CSRF攻击和防护&quot;&gt;&lt;a href=&quot;#CSRF攻击和防护&quot; class=&quot;headerlink&quot; title=&quot;CSRF攻击和防护&quot;&gt;&lt;/a&gt;CSRF攻击和防护&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt; 
-        
-      
-    
-    </summary>
-    
-    
-      <category term="CSRF" scheme="https://www.wenyan.online/categories/CSRF/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
     
   </entry>
   
