@@ -1,0 +1,2060 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Flask Todo">
+    <meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Flask Todo项目:注册功能 | 文彦Blog</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="文彦Blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">文彦Blog</span>
+                </a>
+            </div>
+            
+
+    <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+    <ul class="right nav-menu">
+        
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-home" style="zoom: 0.6;"></i>
+                            
+                                <span>首页</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-tags" style="zoom: 0.6;"></i>
+                            
+                                <span>标签</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+                            
+                                <span>分类</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-archive" style="zoom: 0.6;"></i>
+                            
+                                <span>归档</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+                            
+                                <span>关于</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-comments" style="zoom: 0.6;"></i>
+                            
+                                <span>留言板</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+                            
+                                <span>友情链接</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/navigate" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-rocket" style="zoom: 0.6;"></i>
+                            
+                                <span>WenYan导航</span>
+                    </a>
+                    
+            </li>
+            
+            <li class="hide-on-med-and-down nav-item">
+                
+                    <a href="/commic" class="waves-effect waves-light">
+                        
+                            <i class="fas fa-book" style="zoom: 0.6;"></i>
+                            
+                                <span>WenYan动漫</span>
+                    </a>
+                    
+            </li>
+            
+                <li>
+                    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+                </li>
+    </ul>
+
+    
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">文彦Blog</div>
+        <div class="logo-desc">
+            
+            Python | Flask |  MySQL | Linux | Ubuntu
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/navigate" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-rocket"></i>
+			
+			Navigate
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/commic" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-book"></i>
+			
+			Commic
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ningwenyan" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ningwenyan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+            
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-12-27/1609065564543-10343.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Flask Todo项目:注册功能</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Flask/">
+                                <span class="chip bg-color">Flask</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Flask/" class="post-category">
+                                Flask
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-12-27/1609065564543-10343.png" alt="10343"></p>
+<h2 id="Flask-Todo代办事项项目"><a href="#Flask-Todo代办事项项目" class="headerlink" title="Flask Todo代办事项项目"></a><code>Flask Todo</code>代办事项项目</h2><blockquote>
+<p>  1.<a href>创建基本视图</a></p>
+<p>  2.<a href>注册功能(1)</a></p>
+</blockquote>
+<h3 id="3-注册功能-Flask-Login"><a href="#3-注册功能-Flask-Login" class="headerlink" title="3.注册功能(Flask-Login)"></a>3.注册功能(Flask-Login)</h3><h4 id="0-代码"><a href="#0-代码" class="headerlink" title="0.代码"></a>0.代码</h4><blockquote>
+<p>  <a href="https://github.com/ningwenyan/Flask_Todo_Demo/tree/v1.02" target="_blank" rel="noopener">https://github.com/ningwenyan/Flask_Todo_Demo/tree/v1.02</a></p>
+</blockquote>
+<h4 id="1-基本注册"><a href="#1-基本注册" class="headerlink" title="1.基本注册"></a>1.基本注册</h4><blockquote>
+<p>  使用<code>Flask-Login</code>进行登录验证.</p>
+<ul>
+<li><p>导入<code>Flask-Login</code>在<code>exts.py</code>中</p>
+</li>
+<li><p>初始化<code>Flask-Login</code></p>
+</li>
+<li><p>指定登录路由</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># app/__init__.py</span>
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">import</span> config
+<span class="token keyword">from</span> <span class="token punctuation">.</span>auth <span class="token keyword">import</span> auth_bp
+<span class="token keyword">from</span> <span class="token punctuation">.</span>main <span class="token keyword">import</span> main_bp
+<span class="token keyword">from</span> <span class="token punctuation">.</span>commons<span class="token punctuation">.</span>exts <span class="token keyword">import</span> bootstrap<span class="token punctuation">,</span> login_manager
+<span class="token keyword">from</span> <span class="token punctuation">.</span>commons <span class="token keyword">import</span>  commons_bp
+login_manager<span class="token punctuation">.</span>login_view <span class="token operator">=</span> <span class="token string">'auth.auth_login'</span>
+login_manager<span class="token punctuation">.</span>login_message <span class="token operator">=</span> <span class="token string">'欢迎来到TodoList'</span>
+<span class="token keyword">def</span> <span class="token function">create_app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">.</span>from_object<span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 初始化插件</span>
+bootstrap<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+login_manager<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 注册蓝图</span>
+app<span class="token punctuation">.</span>register_blueprint<span class="token punctuation">(</span>auth_bp<span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"># 登录</span>
+app<span class="token punctuation">.</span>register_blueprint<span class="token punctuation">(</span>main_bp<span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"># 逻辑</span>
+app<span class="token punctuation">.</span>register_blueprint<span class="token punctuation">(</span>commons_bp<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 公共</span>
+<span class="token keyword">return</span> app<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</blockquote>
+<h5 id="1-设计数据库"><a href="#1-设计数据库" class="headerlink" title="1.设计数据库"></a>1.设计数据库</h5><blockquote>
+<p>  既然涉及到了前台后台数据交换,那么就需要设计数据库.现在,先考虑一下它需要的功能,</p>
+<ul>
+<li><p>用户表</p>
+<table>
+<thead>
+<tr>
+<th><code>id</code></th>
+<th align="left">用户id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>email</code></td>
+<td align="left">用户邮箱</td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td align="left">用户名</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td align="left">用户密码</td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td align="left">激活状态(权限的控制)</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td align="left">头像(保存头像路径,并不真正的保存二进制头像)</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td align="left">居住地</td>
+</tr>
+<tr>
+<td><code>about_me</code></td>
+<td align="left">自我介绍</td>
+</tr>
+<tr>
+<td><code>member_since</code></td>
+<td align="left">起始时间(<code>UTC</code>)</td>
+</tr>
+<tr>
+<td><code>last_seen</code></td>
+<td align="left">最后一次登录时间</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td align="left">手机号码</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td align="left">性别</td>
+</tr>
+<tr>
+<td><code>birthday</code></td>
+<td align="left">生日</td>
+</tr>
+<tr>
+<td>real_name</td>
+<td align="left">真实姓名</td>
+</tr>
+</tbody></table>
+<p>一个系统用户大概涉及到了这些内容,根据以上我们可以涉及<code>ORM</code>.</p>
+</li>
+</ul>
+<p>  <strong>一个重要的信息是:<code>ORM</code>中总会涉及到<code>db.session.add()\db.session.commit()</code> 所以,我们可以把它单独做到一个类中,其他<code>Model</code>来继承这些属性</strong></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># exts.py</span>
+<span class="token keyword">from</span> flask_bootstrap <span class="token keyword">import</span> Bootstrap
+<span class="token keyword">from</span> flask_login <span class="token keyword">import</span> LoginManager
+<span class="token keyword">from</span> flask_sqlalchemy <span class="token keyword">import</span> SQLAlchemy
+
+bootstrap <span class="token operator">=</span> Bootstrap<span class="token punctuation">(</span><span class="token punctuation">)</span>
+login_manager <span class="token operator">=</span> LoginManager<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># app/__init__.py</span>
+<span class="token keyword">from</span> <span class="token punctuation">.</span>commons<span class="token punctuation">.</span>exts <span class="token keyword">import</span> bootstrap<span class="token punctuation">,</span> login_manager<span class="token punctuation">,</span> db
+    <span class="token comment" spellcheck="true"># 初始化插件</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    db<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># config.py</span>
+<span class="token comment" spellcheck="true"># 配置数据库</span>
+<span class="token comment" spellcheck="true"># 数据库连接</span>
+DB_URI <span class="token operator">=</span> <span class="token string">'mysql+pymysql://root:2008.Cn123@192.168.0.101:3306/flask_todo_demo'</span>
+<span class="token comment" spellcheck="true"># 指定数据库连接</span>
+SQLALCHEMY_DATABASE_URI <span class="token operator">=</span> DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 在commons中新建sqlmodel.py</span>
+<span class="token comment" spellcheck="true"># commonts/sqlmodel.py</span>
+
+<span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># coding=utf-8</span>
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>exts <span class="token keyword">import</span> db<span class="token punctuation">,</span> bcrypt
+<span class="token keyword">from</span> flask_login <span class="token keyword">import</span> UserMixin
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime
+<span class="token keyword">import</span> enum
+<span class="token keyword">import</span> re
+
+
+
+<span class="token keyword">class</span> <span class="token class-name">BaseModel</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""所有Model的父模板, 集成 db ORM 保存,删除属性"""</span>
+
+    <span class="token keyword">def</span> <span class="token function">__commit</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># __ 双下划线避免子类覆盖功能</span>
+        <span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>exc <span class="token keyword">import</span> IntegrityError
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> IntegrityError<span class="token punctuation">:</span>
+            db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">delete</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 删除数据</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>__commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">save</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 添加数据</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>__commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self
+
+<span class="token keyword">class</span> <span class="token class-name">GenderEnum</span><span class="token punctuation">(</span>enum<span class="token punctuation">.</span>Enum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    MALE <span class="token operator">=</span> <span class="token number">1</span>
+    FEMAle <span class="token operator">=</span> <span class="token number">2</span>
+    SECRET <span class="token operator">=</span> <span class="token number">3</span>
+
+<span class="token keyword">def</span> <span class="token function">check_length</span><span class="token punctuation">(</span>attribute<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""检查属性值长度"""</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> bool<span class="token punctuation">(</span>attribute<span class="token punctuation">)</span> <span class="token operator">and</span> len<span class="token punctuation">(</span>attribute<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> length
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+EMAIL_REGEX <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">"^\S+@\S+\.\S+$"</span><span class="token punctuation">)</span>
+USERNAME_REGEX <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">"^\S+$"</span><span class="token punctuation">)</span>
+PHONE_REGEX <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">"1[3|4|5|7|8][0-9]{9}"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">,</span> BaseModel<span class="token punctuation">,</span> UserMixin<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    __tablename__ <span class="token operator">=</span> <span class="token string">"user"</span>
+
+    id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Integer<span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    _email <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span> unique<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 匹配正则</span>
+    _username <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span> unique<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 匹配正则</span>
+    _password_hash <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token comment" spellcheck="true"># 密码加密,增强安全性, 隐藏属性值</span>
+    confirmed <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Boolean<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 激活状态</span>
+    location <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">)</span>               <span class="token comment" spellcheck="true"># 位置:北京,河北....</span>
+    about_me <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>TEXT<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>                   <span class="token comment" spellcheck="true"># 自我介绍</span>
+    member_since <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>DateTime<span class="token punctuation">,</span> default<span class="token operator">=</span>datetime<span class="token punctuation">.</span>utcnow<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 创建时间,网站全部采用UTC时间</span>
+    last_seen <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>DateTime<span class="token punctuation">,</span> default<span class="token operator">=</span>datetime<span class="token punctuation">.</span>utcnow<span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"># 最后一次登录时间</span>
+    gender <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Enum<span class="token punctuation">(</span>GenderEnum<span class="token punctuation">)</span><span class="token punctuation">,</span> default<span class="token operator">=</span>GenderEnum<span class="token punctuation">.</span>SECRET<span class="token punctuation">)</span>
+    avatar <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 头像保存地址</span>
+    real_name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 此字段用来验证 网络安全法案中的身份验证,因为是测试,而且要接入API,此处不做验证</span>
+    _phone <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    birthday <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>DateTime<span class="token punctuation">,</span> default<span class="token operator">=</span>None<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> email<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>email <span class="token operator">=</span> email
+        self<span class="token punctuation">.</span>username <span class="token operator">=</span> username
+        self<span class="token punctuation">.</span>password <span class="token operator">=</span> password
+
+    <span class="token comment" spellcheck="true"># -- username 正则匹配,长度约束</span>
+    @property
+    <span class="token keyword">def</span> <span class="token function">username</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span>  self<span class="token punctuation">.</span>_username
+
+    @username<span class="token punctuation">.</span>setter
+    <span class="token keyword">def</span> <span class="token function">username</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> raw_username<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""检查有效长度"""</span>
+        is_valid_length <span class="token operator">=</span> check_length<span class="token punctuation">(</span>raw_username<span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> is_valid_length <span class="token operator">or</span> <span class="token operator">not</span> bool<span class="token punctuation">(</span>USERNAME_REGEX<span class="token punctuation">.</span>match<span class="token punctuation">(</span>raw_username<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">'{} 不是有效的用户名,不允许超过24位字符'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>raw_username<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_username <span class="token operator">=</span> raw_username
+
+    <span class="token comment" spellcheck="true"># -- email 正则匹配</span>
+    @property
+    <span class="token keyword">def</span> <span class="token function">email</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_email
+
+    @email<span class="token punctuation">.</span>setter
+    <span class="token keyword">def</span> <span class="token function">email</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> raw_email<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> check_length<span class="token punctuation">(</span>raw_email<span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token operator">not</span> bool<span class="token punctuation">(</span>EMAIL_REGEX<span class="token punctuation">.</span>match<span class="token punctuation">(</span>raw_email<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"{} 不是有效的邮箱"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>raw_email<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_email <span class="token operator">=</span> raw_email
+
+    <span class="token comment" spellcheck="true"># -- 密码加密/解密</span>
+    @property
+    <span class="token keyword">def</span> <span class="token function">password</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_password_hash
+
+    @password<span class="token punctuation">.</span>setter
+    <span class="token keyword">def</span> <span class="token function">password</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> raw_password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""加密密码"""</span>
+        self<span class="token punctuation">.</span>_password_hash <span class="token operator">=</span> bcrypt<span class="token punctuation">.</span>generate_password_hash<span class="token punctuation">(</span>raw_password<span class="token punctuation">)</span>
+
+    @password<span class="token punctuation">.</span>deleter
+    <span class="token keyword">def</span> <span class="token function">password</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">del</span> self<span class="token punctuation">.</span>_password_hash
+
+    <span class="token keyword">def</span> <span class="token function">check_password</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""如果原始密码和加密后的密码相同,返回True"""</span>
+        <span class="token keyword">return</span> bcrypt<span class="token punctuation">.</span>check_password_hash<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_password_hash<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># -- phone</span>
+    @property
+    <span class="token keyword">def</span> <span class="token function">phone</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_phone
+
+    @phone<span class="token punctuation">.</span>setter
+    <span class="token keyword">def</span> <span class="token function">phone</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> raw_phone<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> check_length<span class="token punctuation">(</span>raw_phone<span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token operator">not</span> bool<span class="token punctuation">(</span>PHONE_REGEX<span class="token punctuation">.</span>match<span class="token punctuation">(</span>raw_phone<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"{} 不匹配手机号"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>raw_phone<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_phone <span class="token operator">=</span> raw_phone
+
+    <span class="token comment" spellcheck="true"># -- 记录最后一次登录时间</span>
+    <span class="token keyword">def</span> <span class="token function">seen</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>last_seen <span class="token operator">=</span> datetime<span class="token punctuation">.</span>utcnow<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"&lt;User %r>"</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>username<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>为了处理<code>db</code>数据库的操作,我们创建了一个<code>BaseModel</code>,用它附加给每个<code>Model</code>保存\删除的功能.</li>
+<li>不要相信用户输入的任何内容,这里对4个特殊的字段做了特殊的处理.<ul>
+<li><code>_email</code>:限制长度,并符合<code>xx@xx.xx</code>的格式要求</li>
+<li><code>_username</code>:限制用户名长度,不能有任何的空白字符串</li>
+<li><code>_password_hash</code>: 这个主要是用来保密用户秘密,防止用户密码泄露,这里使用了<code>Flask-Bcrypt</code></li>
+<li><code>_phone</code>:同样限制长度,匹配正则规则,使用的是国内手机号要求.</li>
+</ul>
+</li>
+<li>对于用户性别来说,这里使用了<code>db.Enum()</code>方法.</li>
+<li>对于注册来讲,要求很简单,只需要提供:邮箱,用户名,密码即可.其他内容需要在个人主页进行完善.</li>
+</ul>
+<p>  基于以上,我们可以创建自己的管理脚本<code>manager.py</code>创建对应的数据库.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># manger.py</span>
+<span class="token keyword">from</span> flask_script <span class="token keyword">import</span> Manager
+<span class="token keyword">from</span> commons<span class="token punctuation">.</span>exts <span class="token keyword">import</span> db
+<span class="token keyword">from</span> flask_migrate <span class="token keyword">import</span> MigrateCommand<span class="token punctuation">,</span> Migrate
+<span class="token keyword">from</span> app <span class="token keyword">import</span> create_app
+
+app <span class="token operator">=</span> create_app<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 导入Manager并绑定app</span>
+manager <span class="token operator">=</span> Manager<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 导入flaks_migrate</span>
+<span class="token comment" spellcheck="true"># Migrate 绑定app,db</span>
+Migrate<span class="token punctuation">(</span>app<span class="token punctuation">,</span> db<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># MigrateCommand 可以使用Alembic的命令</span>
+<span class="token comment" spellcheck="true">#</span>
+
+manager<span class="token punctuation">.</span>add_command<span class="token punctuation">(</span><span class="token string">'db'</span><span class="token punctuation">,</span> MigrateCommand<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># db是别名</span>
+
+
+
+<span class="token keyword">if</span> __name__  <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    manager<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  由于我们缺少<code>CMS</code>管理平台的支持,可以在脚本中创建一个测试账户,添加.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># manager.py</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token comment" spellcheck="true"># 添加开发测试账户</span>
+@manager<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">'-e'</span><span class="token punctuation">,</span> <span class="token string">'--email'</span><span class="token punctuation">,</span> dest<span class="token operator">=</span><span class="token string">'email'</span><span class="token punctuation">)</span>
+@manager<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">'-u'</span><span class="token punctuation">,</span> <span class="token string">'--username'</span><span class="token punctuation">,</span> dest<span class="token operator">=</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+@manager<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">'-p'</span><span class="token punctuation">,</span> <span class="token string">'--password'</span><span class="token punctuation">,</span> dest<span class="token operator">=</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">CMS_user</span><span class="token punctuation">(</span>email<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user <span class="token operator">=</span> User<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>email<span class="token operator">=</span>email<span class="token punctuation">)</span><span class="token punctuation">.</span>fitler_by<span class="token punctuation">(</span>password<span class="token operator">=</span>password<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> user <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'已有账户'</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        real_user <span class="token operator">=</span> User<span class="token punctuation">(</span>email<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
+        real_user<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'账户已创建'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  <code>migrate</code>初始化项目</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$  python manager.py db --help
+$  python manager.py db init
+$  python manager.py db migrate -m <span class="token string">"创建User Model"</span>
+$  python manager.py db upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  尝试创建测试账户</p>
+<pre class="line-numbers language-python"><code class="language-python">$  python manager<span class="token punctuation">.</span>py CMS_user <span class="token operator">-</span>e <span class="token string">'admin@wenyan.online'</span> <span class="token operator">-</span>u <span class="token string">'admin'</span> <span class="token operator">-</span>p <span class="token string">'123456'</span>
+账户已创建<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>  查看数据库,能正常查看到用户,证明创建成功</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">use</span> flask_todo_demo<span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> alembic_version<span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token keyword">user</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">❯ <span class="token function">git</span> add <span class="token keyword">.</span>
+❯ <span class="token function">git</span> commit -m <span class="token string">"ORM User创建成功"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>  创建<code>user_loader</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># sqlModel.py</span>
+
+@login_manager<span class="token punctuation">.</span>user_loader
+<span class="token keyword">def</span> <span class="token function">load_user</span><span class="token punctuation">(</span>user_id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> User<span class="token punctuation">.</span>query<span class="token punctuation">.</span>get<span class="token punctuation">(</span>int<span class="token punctuation">(</span>user_id<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h5 id="2-创建前端login页面"><a href="#2-创建前端login页面" class="headerlink" title="2. 创建前端login页面"></a>2. 创建前端<code>login</code>页面</h5><blockquote>
+<p>  使用<code>slate</code>主题的<code>form</code>表单样式,创建一个登录的前端</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token comment" spellcheck="true">/*base.css*/</span>
+<span class="token comment" spellcheck="true">/*使用伪类*/</span>
+<span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">:after</span>, <span class="token class">.clearfix</span><span class="token pseudo-element">:before</span></span><span class="token punctuation">{</span>
+   <span class="token property">content</span><span class="token punctuation">:</span><span class="token string">""</span><span class="token punctuation">;</span>
+   <span class="token property">display</span><span class="token punctuation">:</span>table<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">:after</span></span><span class="token punctuation">{</span>
+   <span class="token property">clear</span><span class="token punctuation">:</span>both<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/*清除ie浮动*/</span>
+<span class="token selector"><span class="token class">.clearfix</span></span><span class="token punctuation">{</span>
+   <span class="token property">zoom</span><span class="token punctuation">:</span><span class="token number">1</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-jinja2"><code class="language-jinja2">{% extends 'base.html' %}
+
+{% block title %}
+>      登录
+>   {% endblock %}
+
+{% block content %}
+>      <div class="container">
+>          <div class="row clearfix">
+>              <div class="col-md-4 column">
+>              </div>
+>              <div class="col-md-4 column">
+>                  <form action class="form-signin" method="post">
+>                      <fieldset>
+>                          <div class="form-group clearfix">
+>                              <label for="exampleInputEmail1">邮箱</label>
+>                              <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="邮箱" id="exampleInputEmail">
+>                              <label for="exampleInputPassword1" style="float: left;">密码</label> <label for style="float: right"><a href="#">忘记密码</a></label>
+>                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password">
+>                              <label for="Code">验证码</label>
+>                              <div>
+>                                  <input type="text" class="form-control" name="code" placeholder="验证码" style="width: 70%; float:left">
+>                                  <img src alt="code" style="float: right; width: 27%">
+>                              </div>
+>                          </div>
+>                          <div class="form-check">
+>                              <label class="form-check-label">
+>                                  <input class="form-check-input" type="checkbox" name="confirmed">
+>                                  记住我
+>                              </label>
+>                          </div>
+>                          <button type="submit" class="btn btn-success btn-lg" style="margin: 10px 80px; width:50%; padding: 8px 12px">登录</button>
+>                      </fieldset>
+>                  </form>
+>                  <br>
+>                  <small>没有账户?</small><a href>&nbsp;注册</a>
+>              </div>
+>              <div class="col-md-4 column">
+>              </div>
+>          </div>
+>      </div>
+>   {% endblock %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  它包含基本的登录样式:邮箱,密码,忘记密码,已经注册,同时包含一个验证码结构.</p>
+<p>  根据以上样式,可以设计后端的表单结构,路由处理.</p>
+</blockquote>
+<h5 id="3-表单结构"><a href="#3-表单结构" class="headerlink" title="3.表单结构"></a>3.表单结构</h5><blockquote>
+<ul>
+<li><p>引入<code>CSRF</code>保护</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># commons/exts.py</span>
+<span class="token keyword">from</span> flask_wtf<span class="token punctuation">.</span>csrf <span class="token keyword">import</span> CSRFProtect
+csrf <span class="token operator">=</span> CSRFProtect<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>初始化</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># __init__.py</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+csrf<span class="token punctuation">.</span>init_app<span class="token punctuation">(</span>app<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>SECRET_KEY</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># config.py</span>
+
+<span class="token keyword">import</span> os 
+
+<span class="token comment" spellcheck="true"># CSRF保护</span>
+SECRET_KEY <span class="token operator">=</span> os<span class="token punctuation">.</span>urandom<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>auth/forms</code>:引入正则表单式进行判断</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask_wtf <span class="token keyword">import</span> FlaskForm
+<span class="token keyword">from</span> wtforms <span class="token keyword">import</span> StringField<span class="token punctuation">,</span> PasswordField<span class="token punctuation">,</span> BooleanField
+<span class="token keyword">from</span> wtforms<span class="token punctuation">.</span>validators <span class="token keyword">import</span> Email<span class="token punctuation">,</span> DataRequired<span class="token punctuation">,</span> Length<span class="token punctuation">,</span> Regexp
+<span class="token keyword">class</span> <span class="token class-name">AuthLoginForm</span><span class="token punctuation">(</span>FlaskForm<span class="token punctuation">)</span><span class="token punctuation">:</span>
+email <span class="token operator">=</span> StringField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Email<span class="token punctuation">(</span>message<span class="token operator">=</span><span class="token string">"请输入正确的邮箱."</span><span class="token punctuation">)</span><span class="token punctuation">,</span> DataRequired<span class="token punctuation">(</span>message<span class="token operator">=</span><span class="token string">"请输入内容."</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Length<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token string">'请输入正确长度的邮箱地址.'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+password <span class="token operator">=</span> PasswordField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Regexp<span class="token punctuation">(</span>regex<span class="token operator">=</span><span class="token string">'^(?:(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])).{6,32}'</span><span class="token punctuation">,</span> message<span class="token operator">=</span><span class="token string">"密码应包含字母数字大小写,至少6位."</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Length<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+code <span class="token operator">=</span> StringField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span>Regexp<span class="token punctuation">(</span>regex<span class="token operator">=</span><span class="token string">'^[A-Za-z0-9]+$'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Length<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">,</span> <span class="token string">'请输入正确的验证码.'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+confirmed <span class="token operator">=</span> BooleanField<span class="token punctuation">(</span>validators<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>auth/views</code></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 登录</span>
+@auth_bp<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">auth_login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+form <span class="token operator">=</span> AuthLoginForm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> form<span class="token punctuation">.</span>validate_on_submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>form<span class="token punctuation">.</span>email<span class="token punctuation">.</span>data<span class="token punctuation">,</span> form<span class="token punctuation">.</span>password<span class="token punctuation">.</span>data<span class="token punctuation">,</span> form<span class="token punctuation">.</span>code<span class="token punctuation">.</span>data<span class="token punctuation">,</span> form<span class="token punctuation">.</span>confired<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+    flash<span class="token punctuation">(</span><span class="token string">'success'</span><span class="token punctuation">,</span> <span class="token string">'success'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url_for<span class="token punctuation">(</span><span class="token string">'main.index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>form<span class="token punctuation">.</span>errors<span class="token punctuation">)</span>
+<span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'auth/login.html'</span><span class="token punctuation">,</span> form<span class="token operator">=</span>form<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>login.html</code>: 引入<code>flask-bootstrap</code>处理<code>flash</code>消息.并且添加<code>csrf_token</code></p>
+<pre class="line-numbers language-jinja2"><code class="language-jinja2">
+{% from 'bootstrap/utils.html' import render_messages %}
+{{ render_messages(container=False, dismissible=True, dismiss_animate=True) }}
+<form action="" class="form-signin" method="post">
+{{ form.csrf_token() }}
+<fieldset><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</blockquote>
+<h5 id="4-验证数据库"><a href="#4-验证数据库" class="headerlink" title="4.验证数据库"></a>4.验证数据库</h5><blockquote>
+<p>  更新密码复杂度</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># manager.py</span>
+
+<span class="token comment" spellcheck="true"># 更新密码</span>
+@manager<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">'-e'</span><span class="token punctuation">,</span> <span class="token string">'--email'</span><span class="token punctuation">,</span> dest<span class="token operator">=</span><span class="token string">'id'</span><span class="token punctuation">)</span>
+@manager<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">'-p'</span><span class="token punctuation">,</span> <span class="token string">'--password'</span><span class="token punctuation">,</span> dest<span class="token operator">=</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">CMS_user_update_password</span><span class="token punctuation">(</span>email<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+   user <span class="token operator">=</span> User<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>email<span class="token operator">=</span>email<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+   <span class="token keyword">if</span> user <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+       user<span class="token punctuation">.</span>password <span class="token operator">=</span> password
+       user<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"密码已经更新"</span><span class="token punctuation">)</span>
+   <span class="token keyword">else</span><span class="token punctuation">:</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"账户不存在"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ python manager.py CMS_user_update_password -e admin@wenyan.online -p 2008.Cn123<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>  如果你直接运行,会发现这个账户是永远查不到的,为什么?</p>
+<p>  因为<code>User._email</code>是类的私有属性,而<code>SQLALchemy.filter_by()\filter()</code>依靠的都是类属性在查找</p>
+<pre class="line-numbers language-python"><code class="language-python">db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>User<span class="token punctuation">)</span><span class="token punctuation">.</span>filter<span class="token punctuation">(</span>User<span class="token punctuation">.</span>email <span class="token operator">-=</span> email<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>User<span class="token punctuation">)</span><span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>email <span class="token operator">=</span> email<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>  这样是有错误的,为了解决这个问题,在<code>SQLALchemy</code>中引入了其他的方法:</p>
+<ul>
+<li><p>参考<code>https://www.osgeo.cn/sqlalchemy/orm/mapped_attributes.html#using-descriptors-and-hybrids</code></p>
+<p>有3种方法解决以上问题</p>
+</li>
+<li><p><code>hybrid_property</code>:超级装饰器</p>
+</li>
+<li><p><code>synonym</code>:镜像一个名称,允许类上的任何属性<strong>镜像</strong>映射到另一个属性</p>
+</li>
+<li><p><code>@synonyum_for()</code>:镜像装饰器,同上.</p>
+<p>这里我使用了第二种方法,比较简单的映射.</p>
+<p>修改<code>sqlModel.py</code>:注意引用的时机</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>orm <span class="token keyword">import</span> synonym
+
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">,</span> BaseModel<span class="token punctuation">,</span> UserMixin<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ <span class="token comment" spellcheck="true"># -- email 正则匹配</span>
+@property
+<span class="token keyword">def</span> <span class="token function">email</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> self<span class="token punctuation">.</span>_email
+
+@email<span class="token punctuation">.</span>setter
+<span class="token keyword">def</span> <span class="token function">email</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> raw_email<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token operator">not</span> check_length<span class="token punctuation">(</span>raw_email<span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token operator">not</span> bool<span class="token punctuation">(</span>EMAIL_REGEX<span class="token punctuation">.</span>match<span class="token punctuation">(</span>raw_email<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"{} 不是有效的邮箱"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>raw_email<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>_email <span class="token operator">=</span> raw_email
+
+email <span class="token operator">=</span> synonym<span class="token punctuation">(</span><span class="token string">"_email"</span><span class="token punctuation">,</span> descriptor<span class="token operator">=</span>email<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p>  更新登录视图</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># auth/views.py</span>
+<span class="token comment" spellcheck="true"># 登录</span>
+@auth_bp<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">auth_login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    form <span class="token operator">=</span> AuthLoginForm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> form<span class="token punctuation">.</span>validate_on_submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 验证邮箱和密码</span>
+        user <span class="token operator">=</span> User<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>email<span class="token operator">=</span>form<span class="token punctuation">.</span>email<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> user <span class="token keyword">is</span> <span class="token operator">not</span> None <span class="token operator">and</span> user<span class="token punctuation">.</span>check_password<span class="token punctuation">(</span>form<span class="token punctuation">.</span>password<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token triple-quoted-string string">"""
+            :判断confirm,确定是否要自动登录
+            :使用 user.seen() 自动更新登录时间
+            """</span>
+            <span class="token keyword">if</span> form<span class="token punctuation">.</span>confirmed<span class="token punctuation">.</span>data<span class="token punctuation">:</span>
+                login_user<span class="token punctuation">(</span>user<span class="token punctuation">.</span>seen<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> remember<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> duration<span class="token operator">=</span>timedelta<span class="token punctuation">(</span>days<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                login_user<span class="token punctuation">(</span>user<span class="token punctuation">.</span>seen<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 判断next</span>
+            url_next <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"next"</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> url_next <span class="token keyword">is</span> None <span class="token operator">or</span> <span class="token operator">not</span> url_next<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                url_next <span class="token operator">=</span> url_for<span class="token punctuation">(</span><span class="token string">'main.index'</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> redirect<span class="token punctuation">(</span>url_for<span class="token punctuation">(</span><span class="token string">'main.index'</span><span class="token punctuation">)</span> <span class="token operator">or</span> url_next<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            flash<span class="token punctuation">(</span><span class="token string">"无效的用户名和密码"</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>form<span class="token punctuation">.</span>errors<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'auth/login.html'</span><span class="token punctuation">,</span> form<span class="token operator">=</span>form<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  更新权限后,可以在运行程序,尝试登录.可发现登录成功.</p>
+</blockquote>
+<h5 id="5-处理错误"><a href="#5-处理错误" class="headerlink" title="5.处理错误"></a>5.处理错误</h5><blockquote>
+<p>  整个网站上还是会有<code>CSRF</code>的报错信息,这里包装一下来处理这个错误信息.</p>
+<p>  在<code>commons</code>蓝图中创建<code>errors.py</code>文件,来接受处理<code>CSRF</code>错误.</p>
+<p>  在<code>Flask</code>中处理错误有以下几种方式</p>
+<ul>
+<li><p><code>abort(400)</code>:中断请求,返回错误</p>
+</li>
+<li><p><code>errorhandler</code>:捕捉当前<code>app/blueprint</code>的状态码,并自定义处理</p>
+</li>
+<li><p><code>app_errorhandler</code>:作用在<code>Blueprint</code>中,捕捉全局状态码,并自定义错误.</p>
+<p>以上,<code>errorhandler</code>可以作用在<code>app</code>中,也可以是<code>Blueprint</code>,但是作用在<code>Blueprint</code>只会返回当前蓝图中的错误.<code>app_errorhandler</code>只能在<code>Blueprint</code>中使用,它是作用在全局中的.</p>
+<p>所以,我们选择在<code>commons</code>这个蓝图中,处理这些报错.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># common/errors.py</span>
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> commons_bp
+<span class="token keyword">from</span> flask_wtf<span class="token punctuation">.</span>csrf <span class="token keyword">import</span> CSRFError
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> render_template
+
+@commons_bp<span class="token punctuation">.</span>app_errorhandler<span class="token punctuation">(</span>CSRFError<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">handle_csrf_error</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'csrf_error.html'</span><span class="token punctuation">,</span> reason<span class="token operator">=</span>e<span class="token punctuation">.</span>description<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">400</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p>  现在是我们在开发这个网站,如果有验证的报错,能返回到页面上,肯定是最好的.就不需要去后端控制台查看错误了.</p>
+<p>  创建一个宏结构,用于处理表单的错误.</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!---templates/macro/form_errors.html -----></span>
+{% macro print_error(form,name="") %}
+>       {% if form.errors %}
+>           {% for filedname, errors in form.errors.items() %}
+>               {% if filedname == name %}
+>                   {% for error in errors %}
+>                       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>invalid-feedback<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ error }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>                   {% endfor %}
+>               {% endif %}
+>           {% endfor %}
+>       {% endif %}
+>   {% endmacro %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  应用在前端</p>
+<pre class="line-numbers language-html"><code class="language-html">{% from "macro/form_errors.html" import print_error %}
+
+{% block content %}
+>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col-md-4 column<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col-md-4 column<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                   {{ render_messages(container=False, dismissible=True, dismiss_animate=True) }}
+>                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-signin<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                       {{ form.csrf_token() }}
+>                       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">></span></span>
+>                           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-group clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleInputEmail1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>邮箱<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">aria-describedby</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>emailHelp<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>邮箱<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleInputEmail<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                               {{ print_error(form, name="email") }}
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleInputPassword1<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>密码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">float</span><span class="token punctuation">:</span> right</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>忘记密码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleInputPassword1<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>密码<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                               {{ print_error(form, name="password") }}
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Code<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>验证码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clearfix<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>code<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>验证码<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">70%</span><span class="token punctuation">;</span> <span class="token property">float</span><span class="token punctuation">:</span>left</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>code<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">27%</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>                               {{ print_error(form, name="code") }}
+>                           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>                           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check-label<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check-input<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>confirmed<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>                                   记住我
+>                               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+>                           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>                           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-success btn-lg<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">10</span>px <span class="token number">80</span>px<span class="token punctuation">;</span> <span class="token property">width</span><span class="token punctuation">:</span><span class="token number">50%</span><span class="token punctuation">;</span> <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">8</span>px <span class="token number">12</span>px</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+>                       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">></span></span>
+>                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+>                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+>                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>small</span><span class="token punctuation">></span></span>没有账户?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token punctuation">></span></span><span class="token entity" title="&nbsp;">&amp;nbsp;</span>注册<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+>               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col-md-4 column<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+>               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+>   {% endblock %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p><img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/wechat.png" alt="wechat"></p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">文彦</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.wenyan.online/2020/12/29/20002/">https://www.wenyan.online/2020/12/29/20002/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">文彦</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Flask/">
+                                    <span class="chip bg-color">Flask</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/valine/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'UOgQFSf3sO6A5iMWIulw0W3z-MdYXbMMI',
+        appKey: 'O6A049Sr3c2tRivCE68EsQzO',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!'
+    });
+</script>
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/12/29/20002/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-12-27/1609065564543-10343.png" class="responsive-img" alt="Flask Todo项目:注册功能">
+                        
+                        <span class="card-title">Flask Todo项目:注册功能</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Flask
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Flask/" class="post-category">
+                                    Flask
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Flask/">
+                        <span class="chip bg-color">Flask</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/27/20001-md/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-12-27/1609065564543-10343.png" class="responsive-img" alt="Flask Todo项目:创建基本视图">
+                        
+                        <span class="card-title">Flask Todo项目:创建基本视图</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Flask
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Flask/" class="post-category">
+                                    Flask
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Flask/">
+                        <span class="chip bg-color">Flask</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 文彦Blog<br />'
+            + '文章作者: 文彦<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1,  h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1,  h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+                <footer class="page-footer bg-color">
+    <script data-ad-client="ca-pub-4337512190549598" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+                <div class="container row center-align" style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        <span id="year">2019</span>
+                        <a href="/about" target="_blank">
+                            文彦
+                        </a>
+                        |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a> |&nbsp;Theme&nbsp;
+                        <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+                        <br>
+                        
+                                
+                                    
+                                        
+                                            
+                                                
+                                                    <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+                                                    </span>
+                                                    
+                                                        
+                                                            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+                                                            </span>
+                                                            
+                                                                <br>
+                                                                
+                                                                        <br>
+                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
+    <a href="https://github.com/ningwenyan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:ningyanke@outlook.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+
+                    </div>
+                </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+    <script>
+        if (window.mermaid) {
+            mermaid.initialize({
+                theme: 'forest'
+            });
+        }
+    </script>
+    
+
+                    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+                        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+                            <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/materialize/materialize.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/masonry/masonry.pkgd.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/aos/aos.js"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/scrollprogress/scrollProgress.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/lightGallery/js/lightgallery-all.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//js/matery.js"></script>
+
+                            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?407f502eb914179baa7e4efa6da65a6e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+                                <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+                                    
+                                        <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/others/clicklove.js" async="async"></script>
+                                        
+                                            
+                                                <script async src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/others/busuanzi.pure.mini.js"></script>
+                                                
+
+                                                    
+
+                                                            
+
+                                                                    
+
+                                                                            
+
+                                                                                        
+
+                                                                                                
+                                                                                                    <script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/instantpage/instantpage.js" type="module"></script>
+                                                                                                    
+                                                                                                        <!--动态线条背景-->
+                                                                                                        <script type="text/javascript" color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+                                                                                                        </script>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+
+</html>

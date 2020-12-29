@@ -1033,7 +1033,7 @@ SELECT * FROM transaction_test;
 <p>所以,事务2在执行<code>update</code>前,读到的记录的最新版本是<code>(1,2)</code> ,<code>trx_id</code> 是102,<code>update</code> 后,<code>trx_id</code>变成了101,数据变成了<code>(1,3)</code>.再执行<code>select</code> 语句的时候,<code>row_id</code> 指向了自己,按照一致性读的规则.自己对自己是可见的.所以就可以读出<code>(1,3)</code>.</p>
 </blockquote>
 <p><img src="/2020/08/06/sql-shi-wu/wechat.png"></p>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
             </div>
             <hr/>
 
