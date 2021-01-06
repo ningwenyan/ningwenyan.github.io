@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wenyan.online/"/>
-  <updated>2020-12-29T14:34:52.955Z</updated>
+  <updated>2021-01-06T13:42:17.409Z</updated>
   <id>https://www.wenyan.online/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Flask Todo项目:注册功能</title>
-    <link href="https://www.wenyan.online/2020/12/29/20002/"/>
-    <id>https://www.wenyan.online/2020/12/29/20002/</id>
-    <published>2020-12-29T13:40:10.000Z</published>
-    <updated>2020-12-29T14:34:52.955Z</updated>
+    <title>20004</title>
+    <link href="https://www.wenyan.online/2021/01/06/20004/"/>
+    <id>https://www.wenyan.online/2021/01/06/20004/</id>
+    <published>2021-01-06T13:12:59.000Z</published>
+    <updated>2021-01-06T13:42:17.409Z</updated>
     
     <summary type="html">
     
@@ -37,38 +37,6 @@
     </summary>
     
     
-      <category term="Flask" scheme="https://www.wenyan.online/categories/Flask/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flask Todo项目:创建基本视图</title>
-    <link href="https://www.wenyan.online/2020/12/27/20001-md/"/>
-    <id>https://www.wenyan.online/2020/12/27/20001-md/</id>
-    <published>2020-12-27T10:30:55.000Z</published>
-    <updated>2020-12-29T13:40:44.722Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-12-27/1609065564543-10343.png&quot; alt=&quot;10343&quot;&gt;&lt;/p&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/categories/Flask/"/>
-    
-    
-      <category term="Flask" scheme="https://www.wenyan.online/tags/Flask/"/>
     
   </entry>
   
@@ -564,6 +532,36 @@
         
           &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;redis连接&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://www.wenyan.online/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://www.wenyan.online/tags/flask/"/>
+    
+      <category term="redis" scheme="https://www.wenyan.online/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis事务</title>
+    <link href="https://www.wenyan.online/2020/10/18/redis12/"/>
+    <id>https://www.wenyan.online/2020/10/18/redis12/</id>
+    <published>2020-10-18T11:53:08.000Z</published>
+    <updated>2020-10-18T11:54:58.851Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://gitee.com/ningwenyan/My_chat_picgo/raw/master/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;redis-事务&quot;&gt;&lt;a
         
       
     
