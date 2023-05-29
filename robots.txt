@@ -5,13 +5,8 @@ Allow: /archives/
 Allow: /categories/
 Allow: /tags/ 
 Allow: /top/
+Allow: /ads.txt
 
-Disallow: /js/
-Disallow: /css/
-Disallow: /lib/
-Disallow: /fonts/
-Disallow: /images/
-Disallow: /fancybox/
 
-Sitemap: https://wenyan.online/sitemap.xml
-Sitemap: https://wenyan.online/baidusitemap.xml
+Sitemap: https://kningyuan.eu.org/sitemap.xml
+Sitemap: https://kningyuan.eu.org/baidusitemap.xml
