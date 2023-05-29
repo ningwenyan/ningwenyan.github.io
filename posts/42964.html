@@ -1,0 +1,874 @@
+<!DOCTYPE HTML><html lang="zh-CN"><head><meta charset="utf-8"><meta name="keywords" content="Flask Session"><meta name="description" content="Python | Flask |  MySQL | Linux | Ubuntu"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="renderer" content="webkit|ie-stand|ie-comp"><meta name="mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>flask上下文 | 文彦笔记</title><link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//favicon.png"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/awesome/css/all.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/materialize/materialize.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/aos/aos.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/animate/animate.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/lightGallery/css/lightgallery.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//css/matery.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//css/my.css"><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/jquery/jquery.min.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4337512190549598" crossorigin="anonymous"></script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="文彦笔记" type="application/atom+xml"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><header class="navbar-fixed"><nav id="headNav" class="bg-color nav-transparent"><div id="navContainer" class="nav-wrapper container"><div class="brand-logo"><a href="/" class="waves-effect waves-light"><img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/logo.png" class="logo-img" alt="LOGO"> <span class="logo-span">文彦笔记</span></a></div><a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a><ul class="right nav-menu"><li class="hide-on-med-and-down nav-item"><a href="/" class="waves-effect waves-light"><i class="fas fa-home" style="zoom:.6"></i> <span>首页</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/flaskProject" class="waves-effect waves-light"><i class="fas fa-list" style="zoom:.6"></i> <span>flask</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/tags" class="waves-effect waves-light"><i class="fas fa-tags" style="zoom:.6"></i> <span>标签</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/categories" class="waves-effect waves-light"><i class="fas fa-bookmark" style="zoom:.6"></i> <span>分类</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/archives" class="waves-effect waves-light"><i class="fas fa-archive" style="zoom:.6"></i> <span>归档</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/about" class="waves-effect waves-light"><i class="fas fa-user-circle" style="zoom:.6"></i> <span>关于</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/contact" class="waves-effect waves-light"><i class="fas fa-comments" style="zoom:.6"></i> <span>留言板</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/navigate" class="waves-effect waves-light"><i class="fas fa-rocket" style="zoom:.6"></i> <span>WenYan导航</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/commic" class="waves-effect waves-light"><i class="fas fa-book" style="zoom:.6"></i> <span>WenYan动漫</span></a></li><li><a href="#searchModal" class="modal-trigger waves-effect waves-light"><i id="searchIcon" class="fas fa-search" title="搜索" style="zoom:.85"></i></a></li></ul><div id="mobile-nav" class="side-nav sidenav"><div class="mobile-head bg-color"><img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/logo.png" class="logo-img circle responsive-img"><div class="logo-name">文彦笔记</div><div class="logo-desc">Python | Flask | MySQL | Linux | Ubuntu</div></div><ul class="menu-list mobile-menu-list"><li class="m-nav-item"><a href="/" class="waves-effect waves-light"><i class="fa-fw fas fa-home"></i> 首页</a></li><li class="m-nav-item"><a href="/flaskProject" class="waves-effect waves-light"><i class="fa-fw fas fa-list"></i> flask</a></li><li class="m-nav-item"><a href="/tags" class="waves-effect waves-light"><i class="fa-fw fas fa-tags"></i> 标签</a></li><li class="m-nav-item"><a href="/categories" class="waves-effect waves-light"><i class="fa-fw fas fa-bookmark"></i> 分类</a></li><li class="m-nav-item"><a href="/archives" class="waves-effect waves-light"><i class="fa-fw fas fa-archive"></i> 归档</a></li><li class="m-nav-item"><a href="/about" class="waves-effect waves-light"><i class="fa-fw fas fa-user-circle"></i> 关于</a></li><li class="m-nav-item"><a href="/contact" class="waves-effect waves-light"><i class="fa-fw fas fa-comments"></i> 留言板</a></li><li class="m-nav-item"><a href="/navigate" class="waves-effect waves-light"><i class="fa-fw fas fa-rocket"></i> Navigate</a></li><li class="m-nav-item"><a href="/commic" class="waves-effect waves-light"><i class="fa-fw fas fa-book"></i> Commic</a></li><li><div class="divider"></div></li><li><a href="https://github.com/ningwenyan" class="waves-effect waves-light" target="_blank"><i class="fab fa-github-square fa-fw"></i>Fork Me</a></li></ul></div></div><style>.nav-transparent .github-corner{display:none!important}.github-corner{position:absolute;z-index:10;top:0;right:0;border:0;transform:scale(1.1)}.github-corner svg{color:#0f9d58;fill:#fff;height:64px;width:64px}.github-corner:hover .octo-arm{animation:a .56s ease-in-out}.github-corner .octo-arm{animation:none}@keyframes a{0%,to{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}</style><a href="https://github.com/ningwenyan" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a></nav></header><div class="bg-cover pd-header post-cover" style="background-image:url(https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-24/1600958410193-10299.png)"><div class="container" style="right:0;left:0"><div class="row"><div class="col s12 m12 l12"><div class="brand"><h1 class="description center-align post-title">flask上下文</h1></div></div></div></div></div><main class="post-container content"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/tocbot/tocbot.css"><style>#articleContent h1::before,#articleContent h2::before,#articleContent h3::before,#articleContent h4::before,#articleContent h5::before,#articleContent h6::before{display:block;content:" ";height:100px;margin-top:-100px;visibility:hidden}#articleContent :focus{outline:0}.toc-fixed{position:fixed;top:64px}.toc-widget{width:345px;padding-left:20px}.toc-widget .toc-title{margin:35px 0 15px 0;padding-left:17px;font-size:1.5rem;font-weight:700;line-height:1.5rem}.toc-widget ol{padding:0;list-style:none}#toc-content{height:calc(100vh - 250px);overflow:auto}#toc-content ol{padding-left:10px}#toc-content ol li{padding-left:10px}#toc-content .toc-link:hover{color:#42b983;font-weight:700;text-decoration:underline}#toc-content .toc-link::before{background-color:transparent;max-height:25px;position:absolute;right:23.5vw;display:block}#toc-content .is-active-link{color:#42b983}#floating-toc-btn{position:fixed;right:15px;bottom:76px;padding-top:15px;margin-bottom:0;z-index:998}#floating-toc-btn .btn-floating{width:48px;height:48px}#floating-toc-btn .btn-floating i{line-height:48px;font-size:1.4rem}</style><div class="row"><div id="main-content" class="col s12 m12 l9"><div id="artDetail"><div class="card"><div class="card-content article-info"><div class="row tag-cate"><div class="col s7"><div class="article-tag"><a href="/tags/Flask/"><span class="chip bg-color">Flask</span></a></div></div><div class="col s5 right-align"><div class="post-cate"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/Flask-Session/" class="post-category">Flask Session</a></div></div></div><div class="post-info"><div class="post-date info-break-policy"><i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp; 2020-10-19</div></div></div><hr class="clearfix"><div class="card-content article-card-content"><div id="articleContent"><p><img src="https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-10-19/1603113809608-10318.png" alt="10318"></p><h2 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h2><blockquote><p>在<code>Flask0.9</code> 之前,<code>Flask</code> 只有请求上下文<code>request context</code> 的概念.</p><p>在写<code>Flask</code> 程序时,可以直接调用<code>request,session,g</code> 等变量.比如:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>request
+app<span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'This is {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这些变量看起来像全局变量,因为可以直接调用并返回值.但实际上这些变量并不是真正意义的全局变量.比如在多线程服务器中,多个线程同时处理不同的客户端发送的不同请求时,每个线程看到的<code>request</code>对象必然是不同的.</p><pre class="mermaid">> graph TB
+A(client1)
+B(client2)
+C(client3)
+D(web)
+E(Thead_1)
+E2(Thead_2)
+E3(Thead_3)
+A-.request_1.->E
+B-.request_2.->E2
+C-.request_3.->E3
+E-->D
+E2-->D
+E3-->D
+</pre><p>如果不设置全局变量,那么在编写代码时必须手动传递<code>request</code>变量到视图函数中.这就导致了每个视图函数中必须增加一个参数.除了访问请求对象,如果视图函数还需要处理<code>session</code> ,那就又需要传递一个参数,这样情况会变得很复杂.</p><p>为了避免大量可有可无的参数把视图函数弄的复杂,<code>Flask</code> 使用上下文来临时把某些对象变为全局可访问.</p><ul><li>在这里<code>Flask</code> 在设计时采取了线程隔离的思路,也就是说在一次请求的一个线程中可以将<code>request</code> 变成全局变量,但是仅限于请求的这个线程内部,不同线程使用线程标识符来区别,这样就不会影响其他线程的请求.<code>Flask</code> 实现线程隔离主要用到了<code>werkzeug</code> 中的两个类:<code>Local和LocalProxy</code></li></ul><pre class="mermaid">> graph TB
+A(client1)
+B(client2)
+C(client3)
+D(web)
+E(Thead_1)
+E2(Thead_2)
+E3(Thead_3)
+A-.request是Thread_1的全局变量.->E
+B-.request是Thread_2的全局变量.->E2
+C-.request是Thread_3的全局变量.->E3
+E-->D
+E2-->D
+E3-->D
+
+</pre><ul><li>实现了线程隔离后,为了在一个线程中更方便的处理这些变量,<code>Flask</code> 通过<code>werkzeug.LocalStack</code>实现了了一个堆栈结构.它的作用是用来存储一个环境,比如,某个线程得到一个请求,那么和这个请求的所有相关信息都会打包,打包形成的就是处理请求的一个环境.<code>Flask</code> 将这种环境称为请求上下文<code>request context</code>,之后<code>Flask</code> 会把这个<code>request context</code> 放置到堆栈结构中.一切完成后,就可以通过这个<code>request context</code> 获取相关对象并直接访问,比如<code>current_app,request,session,g</code> .还可以通过调用对象的方法或者属性来获取其他信息,比如<code>request.method</code> ,当请求结束后,请求上下文会被删除,堆栈结构重新等待新的请求上下文对象被<code>push</code> .</li></ul><p>对于单一应用来说<code>request context</code> 就可以了,但是<code>Flask</code> 是支持多<code>app</code> 实例的.当一个应用的请求上下文环境中,需要嵌套处理另一个引用的相关操作时(这种情况更多的用于测试或者脚本易用<code>flask_script</code> 等等),请求上下文就不能很好的处理问题了,因为<code>current_app</code> 无法确定当前处理的是哪个应用,也就无从谈起<code>request context</code> 了,为了解决这个问题,<code>Flask</code> 把与应用相关的信息单独保存下来,形成了;一个<code>application context</code> 应用上下文对象.</p><p><code>application context</code> 和<code>request context</code> 类似,它可以单独使用,也可以结合<code>request context</code> 一起使用.<code>Flask</code> 在处理请求时会自动推送应用程序上下文.</p></blockquote><h3 id="1-什么是上下文"><a href="#1-什么是上下文" class="headerlink" title="1.什么是上下文"></a>1.什么是上下文</h3><blockquote><p>类似于中文的结合上下文理解,上下文指示了一个环境,语境,语义.在程序中代码执行到某一时刻时,根据之前代码所做的操作以及下文将要执行的逻辑,可以决定当前时刻下可以使用的变量,或者要完成的事情.</p><p>比如:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>request
+app<span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    username <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'This is {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>函数<code>index()</code>访问了<code>request</code> 这个外部变量.假设<code>request</code> 并不是全局变量,就需要去构造<code>request</code> 的值,否则程序无法运行.类似</p><pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> c <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">return</span> c
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">>></span><span class="token operator">></span> foo<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token number">1</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">def</span> <span class="token function">foo1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">return</span> a
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">>></span><span class="token operator">></span> foo1<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+File <span class="token string">"&lt;input>"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">></span>
+foo1<span class="token punctuation">(</span><span class="token punctuation">)</span>
+File <span class="token string">"&lt;input>"</span><span class="token punctuation">,</span> line <span class="token number">2</span><span class="token punctuation">,</span> <span class="token keyword">in</span> foo1
+<span class="token keyword">return</span> a
+NameError<span class="token punctuation">:</span> name <span class="token string">'a'</span> <span class="token keyword">is</span> <span class="token operator">not</span> defined<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>但是<code>Flask</code> 实现了请求上下文,这里的<code>request</code> 就是一个全局变量,它是根据当前的环境生成 的.那么这个环境就可以称之为上下文.</p><p>结合上面的介绍可以知道,<code>Flask</code> 实现了2种上下文,即请求上下文(<code>request context</code>)和应用上下文(<code>application context</code>).<code>Flask</code> 中的上下文相当于一个容器,它保存了<code>Flask</code> 运行过程中的一些信息.</p><ul><li><code>application</code> 指的是<code>app=Flask(__name__)</code> 创建的<code>app</code>对象.</li><li><code>request</code> 指的是每次的<code>http</code> 请求发生时,<code>WSGIServer</code>调用<code>Flask.__call__()</code>之后,在内部创建的<code>Response</code> 对象.</li><li><code>application</code> 的生命周期大于<code>request</code>,一个<code>application</code> 存活期间,可以发出多次<code>http request</code> ,会产生多个<code>request</code>.</li></ul></blockquote><h3 id="2-请求上下文"><a href="#2-请求上下文" class="headerlink" title="2.请求上下文"></a>2.请求上下文</h3><blockquote><p>像上面的<code>request</code> ,它的表现就像一个全局变量一样可以使用,但是它又不是一个真正的全局变量,因为一个多线程服务器中,不可能每个<code>Thread</code>的<code>request</code> 都一样,那么如何让<code>request</code>的行为像全局变量一样呢?既然和<code>Thread</code> 线程相关,那么它的表现就应该是对于每个<code>Thread</code> ,<code>request</code> 对象是它的全局变量.</p><pre class="mermaid">> graph TB
+A(client1)
+B(client2)
+C(client3)
+D(web)
+E(Thead_1)
+E2(Thead_2)
+E3(Thead_3)
+A-.request是Thread_1的全局变量.->E
+B-.request是Thread_2的全局变量.->E2
+C-.request是Thread_3的全局变量.->E3
+E-->D
+E2-->D
+E3-->D
+</pre><p>在<code>Python</code> 的多线程模块中,有一个类似的概念<code>threading.local</code> ,它可以实现多线程中每个线程只使用自己的局部变量,而不影响其他线程,类似与:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
+
+<span class="token comment" spellcheck="true"># 创建一个全局的Local对象,它存储的是一个字典对象</span>
+local <span class="token operator">=</span> threading<span class="token punctuation">.</span>local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true"># 创建一个函数</span>
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>var<span class="token punctuation">)</span><span class="token punctuation">:</span>
+local<span class="token punctuation">.</span>tname <span class="token operator">=</span> var
+<span class="token keyword">print</span><span class="token punctuation">(</span>local<span class="token punctuation">.</span>tname<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+t1 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>func<span class="token punctuation">,</span>args<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'test1'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+t2 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>func<span class="token punctuation">,</span>args<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'test2'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+t1<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t2<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t1<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t2<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>运行后:</p><pre class="line-numbers language-bash"><code class="language-bash">❯ python 线程访问局部变量.py
+test1
+test2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>虽然<code>local</code> 是一个全局对象,但是由于是一个<code>threading.local()</code> 对象.所以每个子线程访问得到的局部变量是不同的.<code>threading.local()</code>内部保存是一个<a href="https://docs.python.org/zh-cn/3/library/threading.html?highlight=threading#thread-local-data" target="_blank" rel="noopener">字典对象</a>.实现了线程和值的对相应类似于</p><pre class="line-numbers language-python"><code class="language-python"><span class="token punctuation">{</span>
+<span class="token string">'thread_1'</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+  <span class="token string">'tname'</span><span class="token punctuation">:</span><span class="token string">'test1'</span>    
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token string">'thread_2'</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">'tname'</span><span class="token punctuation">:</span><span class="token string">'test2'</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在<code>Flask</code> 中也实现了类似的对应.它依赖与<code>werkzeug.Local</code> .</p><hr><p>这里先来看下<code>Flask</code> 中的<code>request context</code> 的定义,它被写入到了<code>globals.py</code> 文件中:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> functools <span class="token keyword">import</span> partial
+
+<span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalProxy
+<span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalStack
+
+_request_ctx_err_msg<span class="token operator">=</span><span class="token string">'...'</span>
+_app_ctx_err_msg<span class="token operator">=</span><span class="token string">'...'</span>
+
+<span class="token keyword">def</span> <span class="token function">_lookup_req_object</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+top <span class="token operator">=</span> _request_ctx_stack<span class="token punctuation">.</span>top
+<span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+  <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_request_ctx_err_msg<span class="token punctuation">)</span>
+<span class="token keyword">return</span> getattr<span class="token punctuation">(</span>top<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">_lookup_app_object</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+top <span class="token operator">=</span> _app_ctx_stack<span class="token punctuation">.</span>top
+<span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+  <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_app_ctx_err_msg<span class="token punctuation">)</span>
+<span class="token keyword">return</span> getattr<span class="token punctuation">(</span>top<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">_find_app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+top <span class="token operator">=</span> _app_ctx_stack<span class="token punctuation">.</span>top
+<span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+  <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_app_ctx_err_msg<span class="token punctuation">)</span>
+<span class="token keyword">return</span> top<span class="token punctuation">.</span>app
+
+
+<span class="token comment" spellcheck="true"># context locals</span>
+_request_ctx_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+_app_ctx_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+current_app <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>_find_app<span class="token punctuation">)</span>
+request <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_req_object<span class="token punctuation">,</span> <span class="token string">"request"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+session <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_req_object<span class="token punctuation">,</span> <span class="token string">"session"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+g <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_app_object<span class="token punctuation">,</span> <span class="token string">"g"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><code>Flask</code> 中提供的2种上下文:<code>application context</code> 和<code>request context</code> ,在这里分别演化如下:</p><ul><li><code>application context</code><ul><li><code>current app</code></li><li><code>g</code></li></ul></li><li><code>request context</code><ul><li><code>request</code></li><li><code>session</code></li></ul></li></ul><p>他们的实现依赖于<code>LocalProxy()</code>,为了更好的使用内部变量,由生成了2个堆栈结构<code>_request_ctx_stack</code>和<code>_app_ctx_stack</code> ,它依赖与<code>LocalStack()</code>,根据导入可以知道他们均来自于<code>werkzeug.local</code></p></blockquote><h4 id="1-werkzeug-local"><a href="#1-werkzeug-local" class="headerlink" title="1.werkzeug.local"></a>1.<code>werkzeug.local</code></h4><blockquote><p><a href="https://werkzeug.palletsprojects.com/en/0.16.x/local/?highlight=local#module-werkzeug.local" target="_blank" rel="noopener">官网介绍</a></p><p>文档中直接写出了为什么要实现一个<code>local</code> 模块</p><pre class="line-numbers language-markdown"><code class="language-markdown">The Python standard library has a concept called “thread locals” (or thread-local data). A thread local is a global object in which you can put stuff in and get back later in a thread-safe and thread-specific way. That means that whenever you set or get a value on a thread local object, the thread local object checks in which thread you are and retrieves the value corresponding to your thread (if one exists). So, you won’t accidentally get another thread’s data.
+This approach, however, has a few disadvantages. For example, besides threads, there are other types of concurrency in Python. A very popular one is greenlets. Also, whether every request gets its own thread is not guaranteed in WSGI. It could be that a request is reusing a thread from a previous request, and hence data is left over in the thread local object.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>以上文档解释了<code>并发</code> 的问题,多线程并不是唯一的方式,在<code>Python</code> 中还有<code>greenlet</code>协程.协程的特点就是一个线程执行,一个线程中可以存在多个协程,可以理解为:协程复用线程.对于<code>WSGI</code> 应用来说,如果每一个线程处理一个请求,那么<code>threading.local</code> 可以解决单线程访问局部变量,但是每一个协程去处理一个请求时,一个线程中就存在多个协程,<code>threading.local</code> 会造成多个请求之间数据的相互干扰.为了解决这个问题,<code>werkzeug</code> 实现了一个<code>local</code>模块.它包含了4个类:</p><ul><li><code>Local</code>:存储线程或协程的私有变量</li><li><code>LocalStack</code>:堆栈数据结构</li><li><code>LocalProxy</code>:负责把所有对自己的操作转发给内部的 <code>Local</code> 对象</li><li><code>LocalManager</code></li></ul><p>源码文档:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># werkzeug.local</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">from</span> greenlet <span class="token keyword">import</span> getcurrent <span class="token keyword">as</span> get_ident
+<span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> thread <span class="token keyword">import</span> get_ident
+    <span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>
+        <span class="token keyword">from</span> _thread <span class="token keyword">import</span> get_ident
+
+  <span class="token keyword">def</span> <span class="token function">release_local</span><span class="token punctuation">(</span>local<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    local<span class="token punctuation">.</span>__release_local__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Local</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    __slots__ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"__storage__"</span><span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__storage__"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">,</span> get_ident<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> iter<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__storage__<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Create a proxy for a name."""</span>
+        <span class="token keyword">return</span> LocalProxy<span class="token punctuation">(</span>self<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__release_local__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>__storage__<span class="token punctuation">.</span>pop<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>__storage__<span class="token punctuation">[</span>self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+        <span class="token keyword">except</span> KeyError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> AttributeError<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        ident <span class="token operator">=</span> self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        storage <span class="token operator">=</span> self<span class="token punctuation">.</span>__storage__
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            storage<span class="token punctuation">[</span>ident<span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> value
+        <span class="token keyword">except</span> KeyError<span class="token punctuation">:</span>
+            storage<span class="token punctuation">[</span>ident<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> value<span class="token punctuation">}</span>
+
+    <span class="token keyword">def</span> <span class="token function">__delattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">del</span> self<span class="token punctuation">.</span>__storage__<span class="token punctuation">[</span>self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+        <span class="token keyword">except</span> KeyError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> AttributeError<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">LocalStack</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_local <span class="token operator">=</span> Local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__release_local__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__release_local__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">_get__ident_func__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__ident_func__
+
+    <span class="token keyword">def</span> <span class="token function">_set__ident_func__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+
+    __ident_func__ <span class="token operator">=</span> property<span class="token punctuation">(</span>_get__ident_func__<span class="token punctuation">,</span> _set__ident_func__<span class="token punctuation">)</span>
+    <span class="token keyword">del</span> _get__ident_func__<span class="token punctuation">,</span> _set__ident_func__
+
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">_lookup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            rv <span class="token operator">=</span> self<span class="token punctuation">.</span>top
+            <span class="token keyword">if</span> rv <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+                <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span><span class="token string">"object unbound"</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> rv
+
+        <span class="token keyword">return</span> LocalProxy<span class="token punctuation">(</span>_lookup<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Pushes a new item to the stack"""</span>
+        rv <span class="token operator">=</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">,</span> <span class="token string">"stack"</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> rv <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>stack <span class="token operator">=</span> rv <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        rv<span class="token punctuation">.</span>append<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> rv
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Removes the topmost item from the stack, will return the
+        old value or `None` if the stack was already empty.
+        """</span>
+        stack <span class="token operator">=</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">,</span> <span class="token string">"stack"</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> stack <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        <span class="token keyword">elif</span> len<span class="token punctuation">(</span>stack<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            release_local<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    @property
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""The topmost item on the stack.  If the stack is empty,
+        `None` is returned.
+        """</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">except</span> <span class="token punctuation">(</span>AttributeError<span class="token punctuation">,</span> IndexError<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+
+
+<span class="token keyword">class</span> <span class="token class-name">LocalManager</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> locals<span class="token operator">=</span>None<span class="token punctuation">,</span> ident_func<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> locals <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>locals <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">elif</span> isinstance<span class="token punctuation">(</span>locals<span class="token punctuation">,</span> Local<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>locals <span class="token operator">=</span> <span class="token punctuation">[</span>locals<span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>locals <span class="token operator">=</span> list<span class="token punctuation">(</span>locals<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> ident_func <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>ident_func <span class="token operator">=</span> ident_func
+            <span class="token keyword">for</span> local <span class="token keyword">in</span> self<span class="token punctuation">.</span>locals<span class="token punctuation">:</span>
+                object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>local<span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">,</span> ident_func<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>ident_func <span class="token operator">=</span> get_ident
+
+    <span class="token keyword">def</span> <span class="token function">get_ident</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>ident_func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">cleanup</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Manually clean up the data in the locals for this context.  Call
+        this at the end of the request or use `make_middleware()`.
+        """</span>
+        <span class="token keyword">for</span> local <span class="token keyword">in</span> self<span class="token punctuation">.</span>locals<span class="token punctuation">:</span>
+            release_local<span class="token punctuation">(</span>local<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">make_middleware</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> app<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Wrap a WSGI application so that cleaning up happens after
+        request end.
+        """</span>
+
+        <span class="token keyword">def</span> <span class="token function">application</span><span class="token punctuation">(</span>environ<span class="token punctuation">,</span> start_response<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> ClosingIterator<span class="token punctuation">(</span>app<span class="token punctuation">(</span>environ<span class="token punctuation">,</span> start_response<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>cleanup<span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> application
+
+    <span class="token keyword">def</span> <span class="token function">middleware</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> update_wrapper<span class="token punctuation">(</span>self<span class="token punctuation">.</span>make_middleware<span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">,</span> func<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"&lt;%s storages: %d>"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__name__<span class="token punctuation">,</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>locals<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+@implements_bool
+<span class="token keyword">class</span> <span class="token class-name">LocalProxy</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    __slots__ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"__local"</span><span class="token punctuation">,</span> <span class="token string">"__dict__"</span><span class="token punctuation">,</span> <span class="token string">"__name__"</span><span class="token punctuation">,</span> <span class="token string">"__wrapped__"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> local<span class="token punctuation">,</span> name<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"_LocalProxy__local"</span><span class="token punctuation">,</span> local<span class="token punctuation">)</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__name__"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> callable<span class="token punctuation">(</span>local<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>local<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># "local" is a callable that is not an instance of Local or</span>
+            <span class="token comment" spellcheck="true"># LocalManager: mark it as a wrapped function.</span>
+            object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__wrapped__"</span><span class="token punctuation">,</span> local<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">_get_current_object</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Return the current object.  This is useful if you want the real
+        object behind the proxy at a time for performance reasons or because
+        you want to pass the object into a different context.
+        """</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>__local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> self<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> AttributeError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span><span class="token string">"no object bound to %s"</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+
+    @property
+    <span class="token keyword">def</span> <span class="token function">__dict__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__dict__
+        <span class="token keyword">except</span> RuntimeError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> AttributeError<span class="token punctuation">(</span><span class="token string">"__dict__"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            obj <span class="token operator">=</span> self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> RuntimeError<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"&lt;%s unbound>"</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__name__
+        <span class="token keyword">return</span> repr<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__bool__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> bool<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> RuntimeError<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+    <span class="token keyword">def</span> <span class="token function">__unicode__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> unicode<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># noqa</span>
+        <span class="token keyword">except</span> RuntimeError<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> repr<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__dir__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> dir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> RuntimeError<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> name <span class="token operator">==</span> <span class="token string">"__members__"</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> dir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__delitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">del</span> self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>先看<code>Local</code>类</p><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># werkzeug.local</span>
+<span class="token comment" spellcheck="true"># 尝试导入线程或协程</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">from</span> greenlet <span class="token keyword">import</span> getcurrent <span class="token keyword">as</span> get_ident
+<span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> thread <span class="token keyword">import</span> get_ident
+    <span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>
+        <span class="token keyword">from</span> _thread <span class="token keyword">import</span> get_ident
+
+  <span class="token keyword">def</span> <span class="token function">release_local</span><span class="token punctuation">(</span>local<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    local<span class="token punctuation">.</span>__release_local__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Local</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    class object:
+    __slots__: Union[Text, Iterable[Text]]
+    object.__slots__:这个类变量可以赋值为字符串,或可迭代对象,它会对已声明的变量保留空间,并阻止自动为每个实例创建__dict__和__weakref__
+    >>> foo = Foo()
+    >>> dir(foo)
+    ['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__ini
+    t__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setat
+    tr__', '__sizeof__', '__slots__', '__str__', '__subclasshook__', 'test']
+    """</span>
+    __slots__ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"__storage__"</span><span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        __setattr__ ==> x.any =value 赋值语句时使用
+         object.__setattr__(self, "__storage__", {})
+         相当于: 
+         localTest = Local()
+         localTest.__storage__ = {}
+         等于给 Local()实例添加一个属性 ,并且值为列表
+         这里相当于为Local()实例添加了2个属性值
+         Local().__storage__ = {}
+         Local().__ident_func__ = get_ident
+         get_ident 是线程的唯一标识符
+        """</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__storage__"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">,</span> get_ident<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> iter<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__storage__<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Create a proxy for a name."""</span>
+        <span class="token keyword">return</span> LocalProxy<span class="token punctuation">(</span>self<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__release_local__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>__storage__<span class="token punctuation">.</span>pop<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+
+    <span class="token triple-quoted-string string">"""
+    运算符重载
+    __getattr__ ==> x.any 获取不存在的属性
+    __setattr__ ==> x.any = value 属性赋值语句
+    __delattr__ ==> del x.any 删除属性
+    实现了访问Local()实例属性值的操作
+    """</span>       
+
+    <span class="token keyword">def</span> <span class="token function">__getattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        storage={
+            ident:{
+                name:value
+            }
+        }
+        return storage[ident][name]
+        """</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>__storage__<span class="token punctuation">[</span>self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+        <span class="token keyword">except</span> KeyError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> AttributeError<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        实现了一个字典对象保存如下:
+        storage={
+            ident:{
+                name:value
+            }
+        }
+        storage={
+            线程唯一标识符:{
+                name:value
+            }
+        }
+        """</span>
+        ident <span class="token operator">=</span> self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        storage <span class="token operator">=</span> self<span class="token punctuation">.</span>__storage__
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            storage<span class="token punctuation">[</span>ident<span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> value
+        <span class="token keyword">except</span> KeyError<span class="token punctuation">:</span>
+            storage<span class="token punctuation">[</span>ident<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> value<span class="token punctuation">}</span>
+
+    <span class="token keyword">def</span> <span class="token function">__delattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">del</span> self<span class="token punctuation">.</span>__storage__<span class="token punctuation">[</span>self<span class="token punctuation">.</span>__ident_func__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+        <span class="token keyword">except</span> KeyError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> AttributeError<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+以上实现了每个线程对应的键值对,也就是每个线程自己的 变量的集合
+"""</span>      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>以上可以看到:</p><ul><li><code>Local()</code> 实例的数据都保存在<code>__storage__</code> 属性中, 这个属性是一个嵌套的字典,它类似与:</li></ul><pre class="line-numbers language-python"><code class="language-python">local <span class="token operator">=</span> Local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+local<span class="token punctuation">.</span>__strorage__<span class="token operator">=</span><span class="token punctuation">{</span>
+    ident<span class="token punctuation">:</span><span class="token punctuation">{</span>                           <span class="token comment" spellcheck="true"># 线程或协程的唯一标识符</span>
+        name<span class="token punctuation">:</span>value            <span class="token comment" spellcheck="true"># 线程或协程中的变量对应</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>每一个<code>client</code> 都会有唯一一个的一个线程或携程与之对应,这样就实现了线程(协程)隔离</li></ul><pre class="mermaid">> graph LR
+A(client1)
+B(127.0.0.1:5000)
+C(Thread1)
+D(name:value)
+A1(client2)
+B1(127.0.0.1:5000)
+C1(Thread2)
+D1(name:value)
+
+A-->B
+A1-->B1
+B-->C
+B1-->C1
+C-->A
+C-->D
+C1-->A1
+C1-->D1
+
+</pre><ul><li><code>ident</code> 是自动对应的当访问实例的属性时,就自动变成了访问内部的字典</li></ul><pre class="line-numbers language-python"><code class="language-python">local <span class="token operator">=</span> Local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+local<span class="token punctuation">.</span>__strorage__<span class="token operator">=</span><span class="token punctuation">{</span>
+    ident<span class="token punctuation">:</span><span class="token punctuation">{</span>                           <span class="token comment" spellcheck="true"># 线程或协程的唯一标识符</span>
+        name<span class="token punctuation">:</span>value            <span class="token comment" spellcheck="true"># 线程或协程中的变量对应</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true"># ident 是唯一确定的,假设标识符是:</span>
+ident <span class="token operator">=</span> <span class="token number">123</span>
+<span class="token comment" spellcheck="true"># 访问local.name相当于</span>
+local<span class="token punctuation">.</span>name <span class="token operator">==</span><span class="token operator">></span> Local<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__getattr__<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token operator">==</span><span class="token operator">></span>local<span class="token punctuation">.</span>__storage__<span class="token punctuation">[</span>ident<span class="token punctuation">]</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># 自动变成访问内部字典</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li><code>Local</code> 类内部实现了<code>__release_local__</code> ,用来清空当前线程(协程)的数据.</li><li><code>__call__</code> 返回一个<code>LocalProxy</code> 对象.</li></ul><hr><p>接下来看另外一个类<code>LocalStack</code>,它用来实现一个堆栈结构.</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">LocalStack</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token triple-quoted-string string">"""
+  实例化一个 Local()对象
+  """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_local <span class="token operator">=</span> Local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__release_local__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__release_local__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">_get__ident_func__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__ident_func__
+
+    <span class="token keyword">def</span> <span class="token function">_set__ident_func__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">,</span> <span class="token string">"__ident_func__"</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+
+    __ident_func__ <span class="token operator">=</span> property<span class="token punctuation">(</span>_get__ident_func__<span class="token punctuation">,</span> _set__ident_func__<span class="token punctuation">)</span>
+    <span class="token keyword">del</span> _get__ident_func__<span class="token punctuation">,</span> _set__ident_func__
+
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">_lookup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            rv <span class="token operator">=</span> self<span class="token punctuation">.</span>top
+            <span class="token keyword">if</span> rv <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+                <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span><span class="token string">"object unbound"</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> rv
+
+        <span class="token keyword">return</span> LocalProxy<span class="token punctuation">(</span>_lookup<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+push,pop,top 实现了堆栈的操作.
+"""</span>
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        getattr(x,y)==>x.y getattr()能够不返回报错而返回一个默认值
+        rv = Local().stack 有就返回,没有就返回None
+        rv=Local().stack ==> 访问内部字典对象的值,==>Local().__storage__[ident][stack]
+        初始为没有值,就指定一个空列表
+        Local().stack = []
+        push(a)=>Local().stack.append(a)
+        """</span>
+        rv <span class="token operator">=</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">,</span> <span class="token string">"stack"</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> rv <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>stack <span class="token operator">=</span> rv <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        rv<span class="token punctuation">.</span>append<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> rv
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        删除列表中元素
+        """</span>
+        stack <span class="token operator">=</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">,</span> <span class="token string">"stack"</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> stack <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        <span class="token keyword">elif</span> len<span class="token punctuation">(</span>stack<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            release_local<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_local<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    @property
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        self._local.stack[-1] ==> Local().stack[-1]==>Local().__storage__[ident][stack][-1]
+        top() 永远指向了最开始的元素
+        """</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">except</span> <span class="token punctuation">(</span>AttributeError<span class="token punctuation">,</span> IndexError<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><p><code>localProxy</code>:负责把所有对自己的操作转发给内部的 <code>Local</code> 对象,重点关注它的<code>__call__</code>函数,它会返回一个<code>Local()</code> 实例对象</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x
+@implements_bool
+<span class="token keyword">class</span> <span class="token class-name">LocalProxy</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    __slots__ 魔法属性
+    """</span>
+    __slots__ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"__local"</span><span class="token punctuation">,</span> <span class="token string">"__dict__"</span><span class="token punctuation">,</span> <span class="token string">"__name__"</span><span class="token punctuation">,</span> <span class="token string">"__wrapped__"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> local<span class="token punctuation">,</span> name<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        object.__setattr__(self, "_LocalProxy__local", local)表示会为实例创建一个属性值
+        def local(name):
+            return 1
+        localproxy = LocalProxy(local,name)
+        localproxy.__LocalProxy__local = local
+        localproxy.__name__ = name
+        """</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"_LocalProxy__local"</span><span class="token punctuation">,</span> local<span class="token punctuation">)</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__name__"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> callable<span class="token punctuation">(</span>local<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>local<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># "local" is a callable that is not an instance of Local or</span>
+            <span class="token comment" spellcheck="true"># LocalManager: mark it as a wrapped function.</span>
+            object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"__wrapped__"</span><span class="token punctuation">,</span> local<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">_get_current_object</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        这里有一个让人疑惑的参数. self.__local,其实这个代表了类的一个私有变量,
+        当访问 self.__local ==> self.__LocalProxy__local,而 __LocalProxy__local
+        恰好是上面实现的 object.__setattr__(self, "_LocalProxy__local", local)
+        所以其实 self.__local ==> local==>等价于访问传递进入的 local 变量.
+        这就实现了访问某个单一的 Local()
+        """</span>
+        <span class="token comment" spellcheck="true"># Local,LocalStack 都实现了 __release_local__ 方法</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>__local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> self<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> AttributeError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span><span class="token string">"no object bound to %s"</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>    
+
+    <span class="token triple-quoted-string string">"""
+    实现访问不存在属性的操作
+     localproxy = LocalProxy()
+    self._get_current_oject().name ==> localproxy.
+    """</span>        
+      <span class="token keyword">def</span> <span class="token function">__getattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> name <span class="token operator">==</span> <span class="token string">"__members__"</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> dir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__delitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">del</span> self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+
+    __call__ <span class="token operator">=</span> <span class="token keyword">lambda</span> x<span class="token punctuation">,</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token operator">**</span>kw<span class="token punctuation">:</span> x<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token operator">**</span>kw<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> wrapper<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>重载了<code>__call__</code> 后,访问<code>LocalProxy()</code> 相当于访问一个<code>Local()</code> 实例.</p><hr><p>依次解释一下代码</p><ol><li><code>__slots__ = (&quot;__local&quot;)</code>魔法方法<code>__slots__</code>查看<a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__slots__#object.__slots__" target="_blank" rel="noopener">官网</a> 它允许显式的声明属性并禁止创建<code>__dict__和__weakref__</code> 用来节省空间,提升查询属性的速度.类似与:</li></ol><pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">class</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     __slots__ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'_local'</span><span class="token punctuation">,</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">>></span><span class="token operator">></span> dir<span class="token punctuation">(</span>Foo<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'__class__'</span><span class="token punctuation">,</span> <span class="token string">'__delattr__'</span><span class="token punctuation">,</span> <span class="token string">'__dir__'</span><span class="token punctuation">,</span> <span class="token string">'__doc__'</span><span class="token punctuation">,</span> <span class="token string">'__eq__'</span><span class="token punctuation">,</span> <span class="token string">'__format__'</span><span class="token punctuation">,</span> <span class="token string">'__ge__'</span><span class="token punctuation">,</span> <span class="token string">'__getattribute__'</span><span class="token punctuation">,</span> <span class="token string">'__gt__'</span><span class="token punctuation">,</span> <span class="token string">'__hash__'</span><span class="token punctuation">,</span> <span class="token string">'__init__'</span><span class="token punctuation">,</span> <span class="token string">'__init_subclass__'</span><span class="token punctuation">,</span> <span class="token string">'__le__'</span><span class="token punctuation">,</span> <span class="token string">'__lt__'</span><span class="token punctuation">,</span> <span class="token string">'__module__'</span><span class="token punctuation">,</span> <span class="token string">'__ne__'</span><span class="token punctuation">,</span> <span class="token string">'__new__'</span><span class="token punctuation">,</span> <span class="token string">'__reduce__'</span><span class="token punctuation">,</span> <span class="token string">'__reduce_ex__'</span><span class="token punctuation">,</span> <span class="token string">'__repr__'</span><span class="token punctuation">,</span> <span class="token string">'__setattr__'</span><span class="token punctuation">,</span> <span class="token string">'__sizeof__'</span><span class="token punctuation">,</span> <span class="token string">'__slots__'</span><span class="token punctuation">,</span> <span class="token string">'__str__'</span><span class="token punctuation">,</span> <span class="token string">'__subclasshook__'</span><span class="token punctuation">,</span> <span class="token string">'_local'</span><span class="token punctuation">,</span> <span class="token string">'test'</span><span class="token punctuation">]</span>
+
+ <span class="token comment" spellcheck="true"># 这样就显式的创建属性 Foo._local, Foo.test</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="2"><li><code>object.__setattr__(self,&#39;_LocalProxy__local&#39;,local)</code> 属性<a href="../10047.md">拦截 </a>,有3个默认的属性拦截方法:<ul><li><code>__getatt__</code>:当用户访问一个根本不存在*(或者暂时不存在)* 的属性时,你可以通过这个魔法方法来定义类的行为,</li><li><code>__setattr__</code>:它允许你自定义某个属性的赋值行为,不管这个属性存在与否.</li><li><code>__delattr__</code>:删除某个不存在的属性</li></ul></li></ol><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__setattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>key<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__getattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> key <span class="token operator">==</span> <span class="token string">'a'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'hello'</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'world'</span>
+
+foo <span class="token operator">=</span> Foo<span class="token punctuation">(</span><span class="token punctuation">)</span>
+foo<span class="token punctuation">.</span>a<span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>foo<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="3"><li>使用<code>object和self</code> 可以达成相同的效果</li></ol><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span><span class="token string">'att_x'</span><span class="token punctuation">,</span>x<span class="token punctuation">)</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span><span class="token string">'att_y'</span><span class="token punctuation">,</span>y<span class="token punctuation">)</span>
+
+foo <span class="token operator">=</span>Foo<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>foo<span class="token punctuation">.</span>att_x<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>foo<span class="token punctuation">.</span>att_y<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+1
+2
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="4"><li>解释一下<code>self.__lcoal</code> 指向的值,在<code>Python</code> 中,默认的<code>__</code> 双下划线表示是有属性,无法从外部直接访问,而且根据<code>PEP8</code> 会直接<a href="https://stackoverflow.com/questions/1301346/what-is-the-meaning-of-a-single-and-a-double-underscore-before-an-object-name" target="_blank" rel="noopener">更名</a>.类似与<code>__span==&gt;_classname_span</code> ,其中<code>classname</code> 为当前类名.</li></ol><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">10</span>
+        self<span class="token punctuation">.</span>_x <span class="token operator">=</span> <span class="token number">20</span>
+        self<span class="token punctuation">.</span>__x <span class="token operator">=</span> <span class="token number">30</span>
+
+test <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>__dict__<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+{'x': 10, '_x': 20, '_Test__x': 30}
+其中 test.__x 变成了 _Test__x  
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="5"><li>所有这里的<code>self.__lcoal</code> 要根据<code>__init__</code> 中的定义一起来理解</li></ol><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">LocalProxy</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    __slots__ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"__local"</span><span class="token punctuation">,</span> <span class="token string">"__dict__"</span><span class="token punctuation">,</span> <span class="token string">"__name__"</span><span class="token punctuation">,</span> <span class="token string">"__wrapped__"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> local<span class="token punctuation">,</span> name<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"_LocalProxy__local"</span><span class="token punctuation">,</span> local<span class="token punctuation">)</span>
+
+
+    <span class="token keyword">def</span> <span class="token function">_get_current_object</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        <span class="token keyword">if</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>__local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> self<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> AttributeError<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span><span class="token string">"no object bound to %s"</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+
+  <span class="token triple-quoted-string string">"""
+  这里的 self.__local() 相当于访问 self._LocalProxy__lcoal ,而这正好是 init中定义好的变量,所以它指向了 传入的变量 local
+  """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="6"><li>最后的<code>__call__</code> 实现了一个闭包函数类似与</li></ol><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'1'</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyClass</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>foo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        object<span class="token punctuation">.</span>__setattr__<span class="token punctuation">(</span>self<span class="token punctuation">,</span><span class="token string">'_MyClass__local'</span><span class="token punctuation">,</span>foo<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__local
+
+    __call__ <span class="token operator">=</span> <span class="token keyword">lambda</span> x<span class="token punctuation">,</span> <span class="token operator">*</span>a<span class="token punctuation">,</span><span class="token operator">**</span>kw<span class="token punctuation">:</span>x<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">*</span>a<span class="token punctuation">,</span><span class="token operator">**</span>kw<span class="token punctuation">)</span>
+foo <span class="token operator">=</span> Foo<span class="token punctuation">(</span><span class="token punctuation">)</span>
+mc <span class="token operator">=</span>MyClass<span class="token punctuation">(</span>foo<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>mc<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+'1'
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><p>看完代码后,来解释一下为什么会出现<code>LocalProxy</code> ,这主要是解决多个可调用对象的时候出现的问题.</p><p><code>Local</code> 实现了线程之间数据隔离,<code>LocalStack</code> 实现了一个堆栈数据机构,需要处理的线程会被<code>push</code> 到堆栈中,使用完后会释放掉,这样,一个线程中存在多个数据,当访问这些数据时,如何才能访问到自己想要的数据,类似与:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalStack<span class="token punctuation">,</span>LocalProxy
+
+user_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+user_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Jack'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+user_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Bob'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> user_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+user <span class="token operator">=</span> get_user<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+Bob
+Bob
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>如果使用<code>LocalProxy</code> ,会得到不同的值</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalStack<span class="token punctuation">,</span>LocalProxy
+
+user_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+user_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Jack'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+user_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Bob'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> user_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+user <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>get_user<span class="token punctuation">,</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+Bob
+Jack
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>使用了<code>LocalProxy</code> 后,它自动更新了<code>user</code> 的值,从而得到了不同的值.类似于:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalStack<span class="token punctuation">,</span>LocalProxy
+
+user_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 查看 线程或协程 对应的字典</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># {}</span>
+user_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Jack'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+user_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'Bob'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 查看 线程或协程 对应的字典</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># {&lt;greenlet.greenlet object at 0x7f8e3434a5d0>: {'stack': [{'name': 'Jack'}, {'name': 'Bob'}]}}</span>
+
+<span class="token keyword">def</span> <span class="token function">get_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> user_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+user <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>get_user<span class="token punctuation">,</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 查看 线程或协程 对应的字典</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># {&lt;greenlet.greenlet object at 0x7f8e3434a5d0>: {'stack': [{'name': 'Jack'}]}}</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>堆栈结构是自动更新的,而使用<code>LocalProxy</code> 后可以连接到自动更新后的堆栈结构中.</p><pre class="line-numbers language-python"><code class="language-python">user <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>get_user<span class="token punctuation">,</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">></span> user<span class="token punctuation">.</span>_get_current_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>get_user<span class="token punctuation">,</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">></span> 进行判断
+       <span class="token keyword">if</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>__local<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>__local<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">></span> 相当于判断
+       <span class="token keyword">if</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>get_user<span class="token punctuation">,</span> <span class="token string">"__release_local__"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> get_user<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">></span>get_user<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+
+
+如上<span class="token punctuation">,</span>访问两次 user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>相当于进行了<span class="token number">2</span>次的 get_user<span class="token punctuation">(</span><span class="token punctuation">)</span>赋值
+<span class="token operator">==</span><span class="token operator">></span>user1<span class="token operator">=</span>get_user<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+        user2<span class="token operator">=</span>get_user<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+ user<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span>
+<span class="token operator">==</span><span class="token operator">></span>user1<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span>
+<span class="token operator">==</span><span class="token operator">></span>user2<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span>
+对比user <span class="token operator">=</span> get_user<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>可以获得<span class="token number">2</span>个不同的值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>它的作用是什么呢,这就要看<code>Flask</code> 的<code>global.py</code></p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> functools <span class="token keyword">import</span> partial
+
+<span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalProxy
+<span class="token keyword">from</span> werkzeug<span class="token punctuation">.</span>local <span class="token keyword">import</span> LocalStack
+
+_request_ctx_err_msg<span class="token operator">=</span><span class="token string">'...'</span>
+_app_ctx_err_msg<span class="token operator">=</span><span class="token string">'...'</span>
+
+<span class="token keyword">def</span> <span class="token function">_lookup_req_object</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    top <span class="token operator">=</span> _request_ctx_stack<span class="token punctuation">.</span>top
+    <span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_request_ctx_err_msg<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>top<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">_lookup_app_object</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    top <span class="token operator">=</span> _app_ctx_stack<span class="token punctuation">.</span>top
+    <span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_app_ctx_err_msg<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>top<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">_find_app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    top <span class="token operator">=</span> _app_ctx_stack<span class="token punctuation">.</span>top
+    <span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_app_ctx_err_msg<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> top<span class="token punctuation">.</span>app
+
+
+<span class="token comment" spellcheck="true"># context locals</span>
+_request_ctx_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+_app_ctx_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+current_app <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>_find_app<span class="token punctuation">)</span>
+request <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_req_object<span class="token punctuation">,</span> <span class="token string">"request"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+session <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_req_object<span class="token punctuation">,</span> <span class="token string">"session"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+g <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_app_object<span class="token punctuation">,</span> <span class="token string">"g"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这里实现了一个<code>request=LocalProxy(partial(_lookup_req_object,&#39;request&#39;))</code></p><p><code>partial</code><a href="https://docs.python.org/zh-cn/3/library/functools.html?highlight=partial#functools.partial" target="_blank" rel="noopener">阅读官方文档</a>高级函数,它提供了一个类似下面的方法.</p><p>假如有如下函数</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> x <span class="token operator">*</span> y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>现在,如果像返回某个数的双倍,即:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> multiply<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token number">6</span>
+<span class="token operator">>></span><span class="token operator">></span> multiply<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token number">8</span>
+<span class="token operator">>></span><span class="token operator">></span> multiply<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>上面的调用有写繁琐,每次都需要传入<code>y=2</code>,我们可以定义一个新的函数,把<code>y=2</code> 作为默认值,</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">double</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> multiply<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 现在在调用这个函数</span>
+
+<span class="token operator">>></span><span class="token operator">></span> double<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token number">6</span>
+<span class="token operator">>></span><span class="token operator">></span> double<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token number">8</span>
+<span class="token operator">>></span><span class="token operator">></span> double<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>使用<code>partial</code> 可以完成如上的任务</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> functools <span class="token keyword">import</span> partial
+
+double <span class="token operator">=</span> partial<span class="token punctuation">(</span>multiply<span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><code>partial</code> 接收函数 <code>multiply</code> 作为参数，固定 <code>multiply</code> 的参数 <code>y=2</code>，并返回一个新的函数给 <code>double</code>，这跟我们自己定义 <code>double</code> 函数的效果是一样的。</p><p>所以,简单而言,<code>partial</code> 函数的功能就是:把一个函数的某些参数给固定住,返回一个新的函数.</p><p>所以上面的也很好理解:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">_lookup_req_object</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    top <span class="token operator">=</span> _request_ctx_stack<span class="token punctuation">.</span>top
+    <span class="token keyword">if</span> top <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">(</span>_request_ctx_err_msg<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> getattr<span class="token punctuation">(</span>top<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+_request_ctx_stack <span class="token operator">=</span> LocalStack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+request <span class="token operator">=</span> LocalProxy<span class="token punctuation">(</span>partial<span class="token punctuation">(</span>_lookup_req_object<span class="token punctuation">,</span> <span class="token string">"request"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># ==> request = LocalProxy(_lookup_req_object('request'))</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>典型的<code>Flask</code>结构:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>request
+app<span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        username <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'This is {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">)</span> 
+    <span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        username <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'This is {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这样访问的是同一个<code>request</code> 对象,而访问到的网页是两个,获取到的值应该是不一样的.这是因为<code>request</code> 是一个<code>LocalProxy</code> 对象,它会更新<code>LocalStack</code></p><pre class="line-numbers language-python"><code class="language-python">request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">></span> request1<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        request2<span class="token punctuation">.</span>artgs<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">></span> 实现了 LocalStack的自动更新<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> request
+<span class="token keyword">from</span> flask<span class="token punctuation">.</span>globals <span class="token keyword">import</span> _app_ctx_stack<span class="token punctuation">,</span> _request_ctx_stack
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 堆栈结构</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>_app_ctx_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>_request_ctx_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>_app_ctx_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>_request_ctx_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'This is {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">)</span>
+
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">'/login/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    username <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>_app_ctx_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>_request_ctx_stack<span class="token punctuation">.</span>_local<span class="token punctuation">.</span>__storage__<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'This is {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token triple-quoted-string string">"""
+从浏览器访问:
+http://127.0.0.1:5000/?username=python
+http://127.0.0.1:5000/login/?username=python
+得到:
+{&lt;greenlet.greenlet object at 0x7f4e6c24fd60>: {'stack': [&lt;flask.ctx.AppContext object at 0x7f4e6c274950>]}}
+{&lt;greenlet.greenlet object at 0x7f4e6c24fd60>: {'stack': [&lt;RequestContext 'http://127.0.0.1:5000/?username=python' [GET] of app>]}}
+127.0.0.1  "GET /?username=python HTTP/1.1" 200 -
+{&lt;greenlet.greenlet object at 0x7f4e6c24ff70>: {'stack': [&lt;flask.ctx.AppContext object at 0x7f4e6c274f90>]}}
+{&lt;greenlet.greenlet object at 0x7f4e6c24ff70>: {'stack': [&lt;RequestContext 'http://127.0.0.1:5000/login/?username=python' [GET] of app>]}}
+127.0.0.1  "GET /login/?username=python HTTP/1.1" 200 -
+"""</span>    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>以上实现了不同的上下文内容.</p></blockquote><h4 id="2-g全局变量"><a href="#2-g全局变量" class="headerlink" title="2.g全局变量"></a>2.<code>g</code>全局变量</h4><blockquote><p>对于 g 这个上下文变量来说，其用途会更加广泛些。比如说如果对于某个请求，我们几个视图函数都需要用到一个前端传递过来的变量，那么就可以把它保存到 g 变量当中</p><pre class="line-numbers language-python"><code class="language-python">g<span class="token punctuation">.</span>name <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这样，其他的视图函数就可以在同一个请求中直接使用 g.name 来访问，而不用每次都调用 request 了。而这种特性往往和请求钩子相结合使用，可以极大的提高代码的简洁性</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/wechat.png" alt="wechat"></p><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css"></div><hr><div class="reprint" id="reprint-statement"><div class="reprint__author"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-user">文章作者: </i></span><span class="reprint-info"><a href="/about" rel="external nofollow noreferrer">文彦</a></span></div><div class="reprint__type"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-link">文章链接: </i></span><span class="reprint-info"><a href="https://blog.kningyuan.eu.org/posts/42964.html">https://blog.kningyuan.eu.org/posts/42964.html</a></span></div><div class="reprint__notice"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-copyright">版权声明: </i></span><span class="reprint-info">本博客所有文章除特別声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a> 许可协议。转载请注明来源 <a href="/about" target="_blank">文彦</a> !</span></div></div><script async defer>function navToReprintStatement(){$("html, body").animate({scrollTop:$("#reprint-statement").offset().top-80},800)}document.addEventListener("copy",function(t){M.toast({html:'<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>'})})</script><div class="tag_share" style="display:block"><div class="post-meta__tag-list" style="display:inline-block"><div class="article-tag"><a href="/tags/Flask/"><span class="chip bg-color">Flask</span></a></div></div><div class="post_share" style="zoom:80%;width:fit-content;display:inline-block;float:right;margin:-.15rem 0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/share/css/share.min.css"><div id="article-share"><div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/share/js/social-share.min.js"></script></div></div></div><style>#reward{margin:40px 0;text-align:center}#reward .reward-link{font-size:1.4rem;line-height:38px}#reward .btn-floating:hover{box-shadow:0 6px 12px rgba(0,0,0,.2),0 5px 15px rgba(0,0,0,.2)}#rewardModal{width:320px;height:350px}#rewardModal .reward-title{margin:15px auto;padding-bottom:5px}#rewardModal .modal-content{padding:10px}#rewardModal .close{position:absolute;right:15px;top:15px;color:rgba(0,0,0,.5);font-size:1.3rem;line-height:20px;cursor:pointer}#rewardModal .close:hover{color:#ef5350;transform:scale(1.3);-moz-transform:scale(1.3);-webkit-transform:scale(1.3);-o-transform:scale(1.3)}#rewardModal .reward-tabs{margin:0 auto;width:210px}.reward-tabs .tabs{height:38px;margin:10px auto;padding-left:0}.reward-content ul{padding-left:0!important}.reward-tabs .tabs .tab{height:38px;line-height:38px}.reward-tabs .tab a{color:#fff;background-color:#ccc}.reward-tabs .tab a:hover{background-color:#ccc;color:#fff}.reward-tabs .wechat-tab .active{color:#fff!important;background-color:#22ab38!important}.reward-tabs .alipay-tab .active{color:#fff!important;background-color:#019fe8!important}.reward-tabs .reward-img{width:210px;height:210px}</style><div id="reward"><a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a><div id="rewardModal" class="modal"><div class="modal-content"><a class="close modal-close"><i class="fas fa-times"></i></a><h4 class="reward-title">你的赏识是我前进的动力</h4><div class="reward-content"><div class="reward-tabs"><ul class="tabs row"><li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li><li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li></ul><div id="alipay"><img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码"></div><div id="wechat"><img src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码"></div></div></div></div></div></div><script>$(function(){$(".tabs").tabs()})</script></div></div><style>.valine-card{margin:1.5rem auto}.valine-card .card-content{padding:20px 20px 5px 20px}#vcomments textarea{box-sizing:border-box;background:url(/medias/comment_bg.png) 100% 100% no-repeat}#vcomments p{margin:2px 2px 10px;font-size:1.05rem;line-height:1.78rem}#vcomments blockquote p{text-indent:.2rem}#vcomments a{padding:0 2px;color:#4cbf30;font-weight:500;text-decoration:none}#vcomments img{max-width:100%;height:auto;cursor:pointer}#vcomments ol li{list-style-type:decimal}#vcomments ol,ul{display:block;padding-left:2em;word-spacing:.05rem}#vcomments ul li,ol li{display:list-item;line-height:1.8rem;font-size:1rem}#vcomments ul li{list-style-type:disc}#vcomments ul ul li{list-style-type:circle}#vcomments table,td,th{padding:12px 13px;border:1px solid #dfe2e5}#vcomments table,td,th{border:0}table tr:nth-child(2n),thead{background-color:#fafafa}#vcomments table th{background-color:#f2f2f2;min-width:80px}#vcomments table td{min-width:80px}#vcomments h1{font-size:1.85rem;font-weight:700;line-height:2.2rem}#vcomments h2{font-size:1.65rem;font-weight:700;line-height:1.9rem}#vcomments h3{font-size:1.45rem;font-weight:700;line-height:1.7rem}#vcomments h4{font-size:1.25rem;font-weight:700;line-height:1.5rem}#vcomments h5{font-size:1.1rem;font-weight:700;line-height:1.4rem}#vcomments h6{font-size:1rem;line-height:1.3rem}#vcomments p{font-size:1rem;line-height:1.5rem}#vcomments hr{margin:12px 0;border:0;border-top:1px solid #ccc}#vcomments blockquote{margin:15px 0;border-left:5px solid #42b983;padding:1rem .8rem .3rem .8rem;color:#666;background-color:rgba(66,185,131,.1)}#vcomments pre{font-family:monospace,monospace;padding:1.2em;margin:.5em 0;background:#272822;overflow:auto;border-radius:.3em;tab-size:4}#vcomments code{font-family:monospace,monospace;padding:1px 3px;font-size:.92rem;color:#e96900;background-color:#f8f8f8;border-radius:2px}#vcomments pre code{font-family:monospace,monospace;padding:0;color:#e8eaf6;background-color:#272822}#vcomments pre[class*=language-]{padding:1.2em;margin:.5em 0}#vcomments code[class*=language-],pre[class*=language-]{color:#e8eaf6}#vcomments [type=checkbox]:not(:checked),[type=checkbox]:checked{position:inherit;margin-left:-1.3rem;margin-right:.4rem;margin-top:-1px;vertical-align:middle;left:unset;visibility:visible}#vcomments b,strong{font-weight:700}#vcomments dfn{font-style:italic}#vcomments small{font-size:85%}#vcomments cite{font-style:normal}#vcomments mark{background-color:#fcf8e3;padding:.2em}#vcomments table,td,th{padding:12px 13px;border:1px solid #dfe2e5}table tr:nth-child(2n),thead{background-color:#fafafa}#vcomments table th{background-color:#f2f2f2;min-width:80px}#vcomments table td{min-width:80px}#vcomments [type=checkbox]:not(:checked),[type=checkbox]:checked{position:inherit;margin-left:-1.3rem;margin-right:.4rem;margin-top:-1px;vertical-align:middle;left:unset;visibility:visible}</style><div class="card valine-card" data-aos="fade-up"><div class="comment_headling" style="font-size:20px;font-weight:700;position:relative;padding-left:20px;top:15px;padding-bottom:5px"><i class="fas fa-comments fa-fw" aria-hidden="true"></i> <span>评论</span></div><div id="vcomments" class="card-content" style="display:grid"></div></div><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/valine/av-min.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/valine/Valine.min.js"></script><script>new Valine({el:"#vcomments",appId:"4D08X5mQ4KUr126NW8IvCzQ7-gzGzoHsz",appKey:"W8Ga6qdP1wi5QLHkirRTdK96",notify:!1,verify:!1,visitor:!0,avatar:"mm",pageSize:"10",lang:"zh-cn",placeholder:"ヾﾉ≧∀≦)o来啊，快活啊!"})</script><article id="prenext-posts" class="prev-next articles"><div class="row article-row"><div class="article col s12 m6" data-aos="fade-up"><div class="article-badge left-badge text-color"><i class="fas fa-chevron-left"></i>&nbsp;上一篇</div><div class="card"><a href="/posts/56618.html"><div class="card-image"><img src="https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-10-21/1603288807365-10322.png" class="responsive-img" alt="FlaskMail"> <span class="card-title">FlaskMail</span></div></a><div class="card-content article-content"><div class="summary block-with-text">FlaskMail</div><div class="publish-info"><span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2020-10-21 </span><span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/FlaskMail/" class="post-category">FlaskMail</a></span></div></div><div class="card-action article-tags"><a href="/tags/Flask/"><span class="chip bg-color">Flask</span></a></div></div></div><div class="article col s12 m6" data-aos="fade-up"><div class="article-badge right-badge text-color">下一篇&nbsp;<i class="fas fa-chevron-right"></i></div><div class="card"><a href="/posts/42949.html"><div class="card-image"><img src="https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-27/1601218579668-10303.png" class="responsive-img" alt="redis连接"> <span class="card-title">redis连接</span></div></a><div class="card-content article-content"><div class="summary block-with-text">redis数据类型</div><div class="publish-info"><span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2020-10-18 </span><span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/redis/" class="post-category">redis</a></span></div></div><div class="card-action article-tags"><a href="/tags/flask/"><span class="chip bg-color">flask</span> </a><a href="/tags/redis/"><span class="chip bg-color">redis</span></a></div></div></div></div></article></div><script>$("#articleContent").on("copy",function(e){var n,t,o,i;void 0===window.getSelection||(""+(n=window.getSelection())).length<Number.parseInt("120")||(t=document.getElementsByTagName("body")[0],(o=document.createElement("div")).style.position="absolute",o.style.left="-99999px",t.appendChild(o),o.appendChild(n.getRangeAt(0).cloneContents()),"PRE"===n.getRangeAt(0).commonAncestorContainer.nodeName&&(o.innerHTML="<pre>"+o.innerHTML+"</pre>"),i=document.location.href,o.innerHTML+='<br />来源: 文彦笔记<br />文章作者: 文彦<br />文章链接: <a href="'+i+'">'+i+"</a><br />本文章著作权归作者所有，任何形式的转载都请注明出处。",n.selectAllChildren(o),window.setTimeout(function(){t.removeChild(o)},200))})</script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeBlockFuction.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeLang.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeCopy.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/codeBlock/codeShrink.js"></script><style type="text/css">code[class*=language-],pre[class*=language-]{white-space:pre!important}</style></div><div id="toc-aside" class="expanded col l3 hide-on-med-and-down"><div class="toc-widget"><div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div><div id="toc-content"></div></div></div></div><div id="floating-toc-btn" class="hide-on-med-and-down"><a class="btn-floating btn-large bg-color"><i class="fas fa-list-ul"></i></a></div><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/tocbot/tocbot.min.js"></script><script>$(function(){tocbot.init({tocSelector:"#toc-content",contentSelector:"#articleContent",headingsOffset:-(.4*$(window).height()-45),collapseDepth:Number("0"),headingSelector:"h1,  h2, h3, h4, h5, h6"});let t=0,e="toc-heading-",n=($("#toc-content a").each(function(){$(this).attr("href","#"+e+ ++t)}),t=0,$("#articleContent").children("h1,  h2, h3, h4, h5, h6").each(function(){$(this).attr("id",e+ ++t)}),parseInt(.4*$(window).height()-64)),o=$(".toc-widget");$(window).scroll(function(){$(window).scrollTop()>n?o.addClass("toc-fixed"):o.removeClass("toc-fixed")});const i="expanded";let a=$("#toc-aside"),c=$("#main-content");$("#floating-toc-btn .btn-floating").click(function(){a.hasClass(i)?(a.removeClass(i).hide(),c.removeClass("l9")):(a.addClass(i).show(),c.addClass("l9"));var e="artDetail";if(0!==(e=$("#artDetail")).length){let t=e.width();450<=t?t+=21:350<=t&&t<450?t+=18:300<=t&&t<350?t+=16:t+=14,$("#prenext-posts").width(t)}})})</script></main><footer class="page-footer bg-color"><script data-ad-client="ca-pub-4337512190549598" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><div class="container row center-align" style="margin-bottom:0!important"><div class="col s12 m8 l8 copy-right">Copyright&nbsp;&copy; <span id="year">2019</span> <a href="/about" target="_blank">文彦 </a>|&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a> |&nbsp;Theme&nbsp; <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a><br><span id="busuanzi_container_site_pv">|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv" class="white-color"></span>&nbsp;次 </span><span id="busuanzi_container_site_uv">|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv" class="white-color"></span>&nbsp;人</span><br><br></div><div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/ningwenyan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50"><i class="fab fa-github"></i> </a><a href="mailto:ningyanke@outlook.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50"><i class="fas fa-envelope-open"></i> </a><a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50"><i class="fas fa-rss"></i></a></div></div></footer><div class="progress-bar"></div><script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script><script>window.mermaid&&mermaid.initialize({theme:"forest"})</script><div id="searchModal" class="modal"><div class="modal-content"><div class="search-header"><span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span> <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input"></div><div id="searchResult"></div></div></div><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//js/search.js"></script><script type="text/javascript">$(function(){searchFunc("https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//search.xml","searchInput","searchResult")})</script><div id="backTop" class="top-scroll"><a class="btn-floating btn-large waves-effect waves-light" href="#!"><i class="fas fa-arrow-up"></i></a></div><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/materialize/materialize.min.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/masonry/masonry.pkgd.min.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/aos/aos.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/scrollprogress/scrollProgress.min.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/lightGallery/js/lightgallery-all.min.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//js/matery.js"></script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script"),t=(e.src="https://hm.baidu.com/hm.js?407f502eb914179baa7e4efa6da65a6e",document.getElementsByTagName("script")[0]);t.parentNode.insertBefore(e,t)}()</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js",(e=document.getElementsByTagName("script")[0]).parentNode.insertBefore(t,e)}()</script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/others/clicklove.js" async></script><script async src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/others/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/gh/ningwenyan/ningwenyan.github.io@master//libs/instantpage/instantpage.js" type="module"></script><script type="text/javascript" color="122 103 238" opacity="0.7" zindex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({pluginRootPath:"live2dw/",pluginJsPath:"lib/",pluginModelPath:"assets/",tagMode:!1,log:!1,model:{jsonPath:"https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json"},display:{position:"left",width:150,height:300},mobile:{show:!0},react:{opacity:.7}})</script></body></html>

@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>文彦笔记</title>
+  
+  <subtitle>Flask笔记</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.kningyuan.eu.org/"/>
+  <updated>2023-05-28T02:27:22.842Z</updated>
+  <id>https://blog.kningyuan.eu.org/</id>
+  
+  <author>
+    <name>文彦</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20004</title>
+    <link href="https://blog.kningyuan.eu.org/posts/7203.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/7203.html</id>
+    <published>2021-01-06T13:12:59.000Z</published>
+    <updated>2023-05-28T02:27:22.842Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-12-27/1609065564543-10343.png&quot; alt=&quot;10343&quot;&gt;&lt;/p&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:使用条件进行线程同步</title>
+    <link href="https://blog.kningyuan.eu.org/posts/11161.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/11161.html</id>
+    <published>2020-11-26T14:29:29.000Z</published>
+    <updated>2023-05-28T02:27:24.700Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;使用条件进行线程同步&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flask_bootstrap</title>
+    <link href="https://blog.kningyuan.eu.org/posts/42064.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/42064.html</id>
+    <published>2020-11-26T14:03:30.000Z</published>
+    <updated>2023-05-28T02:27:23.008Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-11-24/1606225199622-10333.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Flask-Bootstrap&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Flask Bootstrap" scheme="https://blog.kningyuan.eu.org/categories/Flask-Bootstrap/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+      <category term="Bootstrap" scheme="https://blog.kningyuan.eu.org/tags/Bootstrap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:使用Rlock 进行线程同步</title>
+    <link href="https://blog.kningyuan.eu.org/posts/35554.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/35554.html</id>
+    <published>2020-11-15T12:14:24.000Z</published>
+    <updated>2023-05-28T02:27:24.699Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FlaskRestful</title>
+    <link href="https://blog.kningyuan.eu.org/posts/7438.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/7438.html</id>
+    <published>2020-11-05T11:33:57.000Z</published>
+    <updated>2023-05-28T02:27:23.409Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-11-5/1604576436084-10328.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Flask-Restful&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="flask" scheme="https://blog.kningyuan.eu.org/categories/flask/"/>
+    
+    
+      <category term="flask" scheme="https://blog.kningyuan.eu.org/tags/flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:python支持多线程</title>
+    <link href="https://blog.kningyuan.eu.org/posts/37055.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/37055.html</id>
+    <published>2020-11-03T13:06:39.000Z</published>
+    <updated>2023-05-28T02:27:24.653Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Python对多线程的支持&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:多线程介绍</title>
+    <link href="https://blog.kningyuan.eu.org/posts/648.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/648.html</id>
+    <published>2020-11-03T13:06:34.000Z</published>
+    <updated>2023-05-28T02:27:24.651Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:同步异步</title>
+    <link href="https://blog.kningyuan.eu.org/posts/9500.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/9500.html</id>
+    <published>2020-11-03T12:54:51.000Z</published>
+    <updated>2023-05-28T02:27:24.645Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;同步-异步&quot;&gt;&lt;a href=&quot;#同步-异步&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:进程池</title>
+    <link href="https://blog.kningyuan.eu.org/posts/34076.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/34076.html</id>
+    <published>2020-11-03T12:54:46.000Z</published>
+    <updated>2023-05-28T02:27:24.636Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;进程池&quot;&gt;&lt;a href=&quot;#进程池&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:共享内存</title>
+    <link href="https://blog.kningyuan.eu.org/posts/50839.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/50839.html</id>
+    <published>2020-11-03T12:54:39.000Z</published>
+    <updated>2023-05-28T02:27:24.820Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;共享内存&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flask信号</title>
+    <link href="https://blog.kningyuan.eu.org/posts/57252.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/57252.html</id>
+    <published>2020-10-29T12:26:51.000Z</published>
+    <updated>2023-05-28T02:27:22.984Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-10-29/1603974337105-10327.png&quot; alt=&quot;10327&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Flask信号机制&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/categories/Flask/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flask签名认证</title>
+    <link href="https://blog.kningyuan.eu.org/posts/1501.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/1501.html</id>
+    <published>2020-10-29T12:15:17.000Z</published>
+    <updated>2023-05-28T02:27:23.194Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-10-29/1603973609698-10326.png&quot; alt=&quot;10326&quot;&gt;&lt;/p&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="flask" scheme="https://blog.kningyuan.eu.org/categories/flask/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:使用同步原语数据交换</title>
+    <link href="https://blog.kningyuan.eu.org/posts/13617.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/13617.html</id>
+    <published>2020-10-27T13:59:40.000Z</published>
+    <updated>2023-05-28T02:27:24.803Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;使用同步原语数据交换&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flask邮箱验证</title>
+    <link href="https://blog.kningyuan.eu.org/posts/55600.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/55600.html</id>
+    <published>2020-10-27T13:52:39.000Z</published>
+    <updated>2023-05-28T02:27:23.592Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Flask发送注册邮件&quot;&gt;&lt;a href=&quot;#Flask发送注册邮件&quot; class=&quot;headerlink&quot; title=&quot;Flask发送注册邮件&quot;&gt;&lt;/a&gt;Flask发送注册邮件&lt;/h2&gt;&lt;h3 id=&quot;1-导读&quot;&gt;&lt;a href=&quot;#1-导读&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="FlaskMail" scheme="https://blog.kningyuan.eu.org/categories/FlaskMail/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flask启动流程</title>
+    <link href="https://blog.kningyuan.eu.org/posts/20864.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/20864.html</id>
+    <published>2020-10-23T13:59:07.000Z</published>
+    <updated>2023-05-28T02:27:23.562Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Flask-启动流程&quot;&gt;&lt;a href=&quot;#Flask-启动流程&quot; class=&quot;headerlink&quot; title=&quot;Flask 启动流程&quot;&gt;&lt;/a&gt;&lt;code&gt;Flask&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/categories/Flask/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python进程线程:使用PIPE交换数据</title>
+    <link href="https://blog.kningyuan.eu.org/posts/38467.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/38467.html</id>
+    <published>2020-10-22T14:10:40.000Z</published>
+    <updated>2023-05-28T02:27:24.785Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-28/1601302980292-10305.png&quot; alt=&quot;10305&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;进程之间交换对象&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kningyuan.eu.org/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FlaskMail</title>
+    <link href="https://blog.kningyuan.eu.org/posts/56618.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/56618.html</id>
+    <published>2020-10-21T14:06:29.000Z</published>
+    <updated>2023-05-28T02:27:23.298Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-10-21/1603288807365-10322.png&quot; alt=&quot;10322&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;Mail电子邮件&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="FlaskMail" scheme="https://blog.kningyuan.eu.org/categories/FlaskMail/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flask上下文</title>
+    <link href="https://blog.kningyuan.eu.org/posts/42964.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/42964.html</id>
+    <published>2020-10-19T13:32:01.000Z</published>
+    <updated>2023-05-28T02:27:23.471Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-10-19/1603113809608-10318.png&quot; alt=&quot;10318&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;上下文&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Flask Session" scheme="https://blog.kningyuan.eu.org/categories/Flask-Session/"/>
+    
+    
+      <category term="Flask" scheme="https://blog.kningyuan.eu.org/tags/Flask/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis连接</title>
+    <link href="https://blog.kningyuan.eu.org/posts/42949.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/42949.html</id>
+    <published>2020-10-18T11:53:16.000Z</published>
+    <updated>2023-05-28T02:27:24.967Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;redis连接&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://blog.kningyuan.eu.org/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://blog.kningyuan.eu.org/tags/flask/"/>
+    
+      <category term="redis" scheme="https://blog.kningyuan.eu.org/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis事务</title>
+    <link href="https://blog.kningyuan.eu.org/posts/25854.html"/>
+    <id>https://blog.kningyuan.eu.org/posts/25854.html</id>
+    <published>2020-10-18T11:53:08.000Z</published>
+    <updated>2023-05-28T02:27:24.962Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ningwenyan/My_chat_picgo/2020-9-27/1601218579668-10303.png&quot; alt=&quot;10303&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;redis-事务&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://blog.kningyuan.eu.org/categories/redis/"/>
+    
+    
+      <category term="flask" scheme="https://blog.kningyuan.eu.org/tags/flask/"/>
+    
+      <category term="redis" scheme="https://blog.kningyuan.eu.org/tags/redis/"/>
+    
+  </entry>
+  
+</feed>
